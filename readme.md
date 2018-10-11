@@ -1,0 +1,33 @@
+# Bet Prophet
+
+This is a Laravel and Vue.JS based web application.
+
+## Installation
+
+## How to run API
+
+1.) Clone the project locally
+
+2.) Open `terminal` or `command prompt`
+
+3.) `cd` to project
+
+4.) Run `composer install`
+
+5.) Run `cp .env.example .env` to create the projects environment file
+
+6.) Run `php artisan key:generate`
+
+7.) Run `php artisan serve`
+
+
+## How to run Web App
+
+1.) Go to project directory
+
+2.) `cd` to `frontend/`
+
+3.) Run `npm install` or `yarn`
+
+4.) Run `npm run serve` or `yarn serve`
+
