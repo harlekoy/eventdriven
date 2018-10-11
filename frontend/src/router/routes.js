@@ -7,6 +7,11 @@ export default [
     component: () => lazyLoadView(import('@views/home')),
   },
   {
+    path: '/callback',
+    name: 'callback',
+    component: () => lazyLoadView(import('@views/Callback')),
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => lazyLoadView(import('@views/login')),

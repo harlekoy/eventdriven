@@ -1,5 +1,51 @@
+<template>
+<div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Auth0 - Vue</a>
+
+          <router-link :to="'/'"
+            class="btn btn-primary btn-margin">
+              Home
+          </router-link>
+
+          <button
+            id="qsLoginBtn"
+            class="btn btn-primary btn-margin"
+            v-if="!authenticated"
+            @click="login()">
+              Log In
+          </button>
+
+          <button
+            id="qsLogoutBtn"
+            class="btn btn-primary btn-margin"
+            v-if="authenticated"
+            @click="logout()">
+              Log Out
+          </button>
+
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <router-view
+        :auth="auth"
+        :authenticated="authenticated">
+      </router-view>
+    </div>
+  </div>
+</template>
+
 <script>
 import appConfig from '@src/app.config'
+import AuthService from '@auth'
+
+const auth = new AuthService()
+
+const { login, logout, authenticated, authNotifier } = auth
 
 export default {
   page: {
@@ -9,18 +55,23 @@ export default {
       return title ? `${title} | ${appConfig.title}` : appConfig.title
     },
   },
+
+  data () {
+    authNotifier.on('authChange', authState => {
+      this.authenticated = authState.authenticated
+    })
+    return {
+      auth,
+      authenticated
+    }
+  },
+
+  methods: {
+    login,
+    logout
+  }
 }
 </script>
-
-<template>
-  <div id="app">
-    <!--
-    Even when routes use the same component, treat them
-    as distinct and create the component again.
-    -->
-    <router-view :key="$route.fullPath" />
-  </div>
-</template>
 
 <!-- This should generally be the only global CSS in the app. -->
 <style lang="scss">

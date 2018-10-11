@@ -39,14 +39,15 @@ export default {
 <template>
   <ul :class="$style.container">
     <NavBarRoutes :routes="persistentNavRoutes" />
-    <NavBarRoutes
+    <a @click="$hAuth.login()" href="#">Login</a>
+   <!--  <NavBarRoutes
       v-if="loggedIn"
       :routes="loggedInNavRoutes"
     />
     <NavBarRoutes
       v-else
       :routes="loggedOutNavRoutes"
-    />
+    /> -->
   </ul>
 </template>
 

@@ -13,6 +13,8 @@ const aliases = {
   '@utils': 'src/utils',
   '@state': 'src/state',
   '@design': 'src/design/index.scss',
+  '@plugins': 'src/plugins',
+  '@auth': 'src/auth/AuthService',
 }
 
 module.exports = {
