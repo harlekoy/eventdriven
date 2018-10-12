@@ -14,9 +14,8 @@ use Illuminate\Http\Request;
 */
 
 // This endpoint doesn't need authentication
-// Route::get('/public', function (Request $request) {
-//     return response()->json(["message" => "Hello from a public endpoint! You don't need to be authenticated to see this."]);
-// });
+Route::post('/signup/validate', 'RegisterController@validate');
+Route::post('/signup', 'RegisterController@store');
 
 Route::group(['middleware' => 'jwt'], function () {
     Route::get('/auth', 'AuthController@index');

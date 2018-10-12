@@ -57,9 +57,14 @@ export const actions = {
     commit('SET_CURRENT_USER', null)
   },
 
-  signUp ({ commit }, data) {
-    signup(data, () => {
-      console.log('test')
+  async signUp ({ commit }, data) {
+    await axios.post('signup/validate', data)
+
+    signup(data, async (err, response) => {
+      console.log(err, response)
+      await axios.post('signup', Object.assign(data, {
+        auth0id: response.Id
+      }))
     })
   },
 
