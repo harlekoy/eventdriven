@@ -1,4 +1,5 @@
 import store from '@state/store'
+import auth from '@middlewares/auth'
 
 export default [
   {
@@ -12,56 +13,33 @@ export default [
     component: () => lazyLoadView(import('@views/Callback')),
   },
   {
+    path: '/register',
+    name: 'register',
+    component: () => lazyLoadView(import('@views/Register')),
+  },
+  {
+    path: '/password/reset/:token',
+    name: 'reset-password',
+    component: () => lazyLoadView(import('@views/ResetPassword')),
+  },
+  {
+    path: '/password/forgot',
+    name: 'forgot-password',
+    component: () => lazyLoadView(import('@views/ForgotPassword')),
+  },
+  {
     path: '/login',
     name: 'login',
-    component: () => lazyLoadView(import('@views/login')),
-    beforeEnter(routeTo, routeFrom, next) {
-      // If the user is already logged in
-      if (store.getters['auth/loggedIn']) {
-        // Redirect to the home page instead
-        next({ name: 'home' })
-      } else {
-        // Continue to the login page
-        next()
-      }
-    },
+    component: () => lazyLoadView(import('@views/Login')),
+    beforeEnter: auth
   },
   {
     path: '/profile',
     name: 'profile',
-    component: () => lazyLoadView(import('@views/profile')),
+    component: () => lazyLoadView(import('@views/Profile')),
     meta: {
       authRequired: true,
     },
-    props: route => ({ user: store.state.auth.currentUser }),
-  },
-  {
-    path: '/profile/:username',
-    name: 'username-profile',
-    component: () => lazyLoadView(import('@views/profile')),
-    meta: {
-      authRequired: true,
-    },
-    beforeEnter(routeTo, routeFrom, next) {
-      store
-        // Try to fetch the user's information by their username
-        .dispatch('users/fetchUser', { username: routeTo.params.username })
-        .then(user => {
-          // Add the user to the route params, so that it can
-          // be provided as a prop for the view component below.
-          routeTo.params.user = user
-          // Continue to the route.
-          next()
-        })
-        .catch(() => {
-          // If a user with the provided username could not be
-          // found, redirect to the 404 page.
-          next({ name: '404', params: { resource: 'User' } })
-        })
-    },
-    // Set the user from the route params, once it's set in the
-    // beforeEnter route guard.
-    props: route => ({ user: route.params.user }),
   },
   {
     path: '/logout',

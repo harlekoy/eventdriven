@@ -1,1 +1,1 @@
-import './auth0'
+import './axios'

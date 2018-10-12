@@ -14,17 +14,17 @@ use Illuminate\Http\Request;
 */
 
 // This endpoint doesn't need authentication
-Route::get('/public', function (Request $request) {
-    return response()->json(["message" => "Hello from a public endpoint! You don't need to be authenticated to see this."]);
+// Route::get('/public', function (Request $request) {
+//     return response()->json(["message" => "Hello from a public endpoint! You don't need to be authenticated to see this."]);
+// });
+
+Route::group(['middleware' => 'jwt'], function () {
+    Route::get('/auth', 'AuthController@index');
 });
 
-Route::get('/private', function (Request $request) {
-    return response()->json(["message" => "Hello from a private endpoint! You need to have a valid Access Token to see this."]);
-})->middleware('jwt');
-
-Route::get('/private-scoped', function (Request $request) {
-    return response()->json([
-        "message" => "Hello from a private endpoint! You need to have a valid Access Token and a scope of read:messages to see this."
-    ]);
-})->middleware('check.scope:read:messages');
+// Route::get('/private-scoped', function (Request $request) {
+//     return response()->json([
+//         "message" => "Hello from a private endpoint! You need to have a valid Access Token and a scope of read:messages to see this."
+//     ]);
+// })->middleware('check.scope:read:messages');
 

@@ -5,12 +5,20 @@
 </template>
 
 <script>
-  export default {
-    name: 'callback',
-    props: ['auth'],
-    data () {
-      this.auth.handleAuthentication()
-      return {}
-    }
+import qs from 'qs'
+import { mapActions } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions({
+      handleAuth: 'auth/handleAuth'
+    })
+  },
+
+  async mounted () {
+    await this.handleAuth()
+
+    this.$router.push({ name: 'home' })
   }
+}
 </script>

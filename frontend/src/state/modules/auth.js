@@ -1,4 +1,10 @@
+import auth0 from 'auth0-js'
 import axios from 'axios'
+import qs from 'qs'
+import router from '@router'
+import Vue from 'vue'
+import { getSavedState, saveState } from '@utils/localStorage'
+import { signin, signup, forgot } from '@utils/auth'
 
 export const state = {
   currentUser: getSavedState('auth.currentUser'),
@@ -8,7 +14,6 @@ export const mutations = {
   SET_CURRENT_USER(state, newValue) {
     state.currentUser = newValue
     saveState('auth.currentUser', newValue)
-    setDefaultAuthHeaders(state)
   },
 }
 
@@ -17,25 +22,34 @@ export const getters = {
   loggedIn(state) {
     return !!state.currentUser
   },
+
+  user () {
+    return state.currentUser
+  }
 }
 
 export const actions = {
-  // This is automatically run in `src/state/store.js` when the app
-  // starts, along with any other actions named `init` in other modules.
-  init({ state, dispatch }) {
-    setDefaultAuthHeaders(state)
-    dispatch('validate')
+  // Logs in the current user.
+  async logIn(context, { username, password } = {}) {
+    signin(username, password)
   },
 
-  // Logs in the current user.
-  logIn({ commit, dispatch, getters }, { username, password } = {}) {
-    if (getters.loggedIn) return dispatch('validate')
+  // This handles the Auth0 callback
+  async handleAuth ({ commit }) {
+    let response = qs.parse(
+      router
+        .currentRoute
+        .hash
+        .substring(1)
+    )
 
-    return axios.post('/api/session', { username, password }).then(response => {
-      const user = response.data
-      commit('SET_CURRENT_USER', user)
-      return user
+    const { data: { data }} = await axios.get('auth', {
+      headers: {
+        Authorization: `Bearer ${response.id_token}`
+      }
     })
+
+    commit('SET_CURRENT_USER', Object.assign(response, data))
   },
 
   // Logs out the current user.
@@ -43,41 +57,15 @@ export const actions = {
     commit('SET_CURRENT_USER', null)
   },
 
-  // Validates the current user's token and refreshes it
-  // with new data from the API.
-  validate({ commit, state }) {
-    if (!state.currentUser) return Promise.resolve(null)
-
-    return axios
-      .get('/api/session')
-      .then(response => {
-        const user = response.data
-        commit('SET_CURRENT_USER', user)
-        return user
-      })
-      .catch(error => {
-        if (error.response.status === 401) {
-          commit('SET_CURRENT_USER', null)
-        }
-        return null
-      })
+  signUp ({ commit }, data) {
+    signup(data, () => {
+      console.log('test')
+    })
   },
-}
 
-// ===
-// Private helpers
-// ===
-
-function getSavedState(key) {
-  return JSON.parse(window.localStorage.getItem(key))
-}
-
-function saveState(key, state) {
-  window.localStorage.setItem(key, JSON.stringify(state))
-}
-
-function setDefaultAuthHeaders(state) {
-  axios.defaults.headers.common.Authorization = state.currentUser
-    ? state.currentUser.token
-    : ''
+  forgotPassword({ commit }, email) {
+    forgot(email, (err, response) => {
+      console.log('test')
+    })
+  }
 }

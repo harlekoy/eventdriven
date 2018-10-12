@@ -1,10 +1,16 @@
 ---
-to: "src/router/views/<%= h.inflection.dasherize(name) %>.vue"
+to: "src/router/views/<%= h.inflection.camelize(name) %>.vue"
 ---
 <%
-  const fileName = h.inflection.dasherize(name)
+  const fileName = h.inflection.camelize(name)
   const importName = h.inflection.camelize(fileName.replace(/-/g, '_'))
-%><script>
+%><template>
+  <Layout>
+    <%= h.inflection.titleize(name.replace(/-/g, '_')) %>
+  </Layout>
+</template>
+
+<script>
 import Layout from '@layouts/main'
 
 export default {
@@ -15,12 +21,6 @@ export default {
   components: { Layout }
 }
 </script>
-
-<template>
-  <Layout>
-    <%= h.inflection.titleize(name.replace(/-/g, '_')) %>
-  </Layout>
-</template>
 <%
 
 if (useStyles) { %>

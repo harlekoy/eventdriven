@@ -1,5 +1,17 @@
+<template>
+  <Layout>
+    <h1>
+      <BaseIcon name="user" />
+      {{ user.name }}
+      Profile
+    </h1>
+    <pre>{{ user }}</pre>
+  </Layout>
+</template>
+
 <script>
 import Layout from '@layouts/main'
+import { mapGetters } from 'vuex'
 
 export default {
   page() {
@@ -13,23 +25,13 @@ export default {
       ],
     }
   },
+
   components: { Layout },
-  props: {
-    user: {
-      type: Object,
-      required: true,
-    },
-  },
+
+  computed: {
+    ...mapGetters({
+        user: 'auth/user',
+    })
+  }
 }
 </script>
-
-<template>
-  <Layout>
-    <h1>
-      <BaseIcon name="user" />
-      {{ user.name }}
-      Profile
-    </h1>
-    <pre>{{ user }}</pre>
-  </Layout>
-</template>

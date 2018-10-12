@@ -1,6 +1,6 @@
 <template>
 <div>
-    <nav class="navbar navbar-default">
+    <!-- <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Auth0 - Vue</a>
@@ -28,7 +28,7 @@
 
         </div>
       </div>
-    </nav>
+    </nav> -->
 
     <div class="container">
       <router-view
@@ -75,12 +75,8 @@ export default {
 
 <!-- This should generally be the only global CSS in the app. -->
 <style lang="scss">
-// Allow element/type selectors, because this is global CSS.
-// stylelint-disable selector-max-type, selector-class-pattern
+@import 'assets/styles/tailwind.postcss';
 
-// Normalize default styles across browsers,
-// https://necolas.github.io/normalize.css/
-@import '~normalize.css/normalize.css';
 // Style loading bar between pages.
 // https://github.com/rstacruz/nprogress
 @import '~nprogress/nprogress.css';
@@ -88,49 +84,6 @@ export default {
 // Design variables and utilities from src/design.
 @import '@design';
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  background: $color-body-bg;
-}
-
-#app {
-  @extend %typography-small;
-}
-
-// ===
-// Base element styles
-// ===
-
-a,
-a:visited {
-  color: $color-link-text;
-}
-
-h1 {
-  @extend %typography-xxlarge;
-}
-
-h2 {
-  @extend %typography-xlarge;
-}
-
-h3 {
-  @extend %typography-large;
-}
-
-h4 {
-  @extend %typography-medium;
-}
-
-h5,
-h6 {
-  @extend %typography-small;
-}
 
 // ===
 // Vendor

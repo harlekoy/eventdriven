@@ -85,7 +85,7 @@ return [
     |   Token decoding algorithms supported by your API
     |
     */
-    'supported_algs'        => ['RS256'],
+    'supported_algs'        => ['HS256'],
 
     /*
     |--------------------------------------------------------------------------
