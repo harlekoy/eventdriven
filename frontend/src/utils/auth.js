@@ -36,7 +36,7 @@ export function loginViaSocial (connection, cb) {
   webAuth.authorize({
     connection,
     responseType: 'token id_token',
-    redirectUri: 'http://localhost:8081/callback'
+    redirectUri: process.env.VUE_APP_AUTH0_CALLBACK
   }, () => {
     console.log('test')
   })

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Auth0\ManagementAPI;
 use App\User;
 use Auth0\Login\Contract\Auth0UserRepository;
 
@@ -28,12 +29,23 @@ class UserRepository implements Auth0UserRepository {
       $user = User::where("auth0id", $profile->user_id)->first();
 
       if ($user === null) {
-          // If not, create one
-          $user = new User();
-          $user->email = $profile->email; // you should ask for the email scope
-          $user->auth0id = $profile->user_id;
-          $user->name = $profile->name; // you should ask for the name scope
-          $user->save();
+        $user = User::where('email', $profile->email)->first();
+
+        if ($user) {
+          $api = ManagementAPI::create();
+          $identity = explode('|', $profile->user_id);
+
+          $api->users->linkAccount($user->auth0id, [
+              'provider' => head($identity),
+              'user_id'  => last($identity),
+          ]);
+        } else {
+          $user = User::create([
+            'email'    => $profile->email,
+            'auth0id'  => $profile->user_id,
+            'name'     => $profile->name
+          ]);
+        }
       }
 
       return $user;

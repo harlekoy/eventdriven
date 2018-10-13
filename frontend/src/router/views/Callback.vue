@@ -18,7 +18,7 @@ export default {
   async mounted () {
     await this.handleAuth()
 
-    // this.$router.push({ name: 'home' })
+    this.$router.push({ name: 'home' })
   }
 }
 </script>
