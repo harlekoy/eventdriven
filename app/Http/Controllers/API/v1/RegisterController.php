@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\v1;
 
+use App\Auth0\ManagementAPI;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\User;
@@ -49,6 +50,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create($data);
+        $user = User::whereEmail($data['email'])->first();
+
+        if ($user) { // Link account
+            $api = ManagementAPI::create();
+
+            $api->users->linkAccount($user->auth0id, [
+                'provider' => 'auth0',
+                'user_id'  => $data['auth0id'],
+            ]);
+
+            return $user;
+        } else {
+            return User::create($data);
+        }
     }
 }

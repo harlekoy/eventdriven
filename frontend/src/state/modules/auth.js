@@ -61,7 +61,6 @@ export const actions = {
     await axios.post('signup/validate', data)
 
     signup(data, async (err, response) => {
-      console.log(err, response)
       await axios.post('signup', Object.assign(data, {
         auth0id: response.Id
       }))

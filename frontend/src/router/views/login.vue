@@ -26,6 +26,7 @@
           Log in
         </span>
       </BaseButton>
+      <a href="#" @click="loginViaSocial('google-oauth2')">Google</a>
       <p v-if="authError">
         There was an error logging in to your account.
       </p>
@@ -38,6 +39,7 @@ import appConfig from '@src/app.config'
 import auth0 from 'auth0-js'
 import Layout from '@layouts/main'
 import { authMethods } from '@state/helpers'
+import { loginViaSocial } from '@utils/auth'
 
 export default {
   page: {
@@ -64,6 +66,7 @@ export default {
         password: this.password,
       })
     },
+    loginViaSocial
   },
 }
 </script>

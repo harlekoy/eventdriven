@@ -31,3 +31,13 @@ export function forgot (email, cb) {
     email,
   }, cb)
 }
+
+export function loginViaSocial (connection, cb) {
+  webAuth.authorize({
+    connection,
+    responseType: 'token id_token',
+    redirectUri: 'http://localhost:8081/callback'
+  }, () => {
+    console.log('test')
+  })
+}
