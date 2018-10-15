@@ -1,11 +1,17 @@
 <template>
   <Layout>
-    <input v-model="form.username" type="text" placeholder="Username">
-    <input v-model="form.name" type="text" placeholder="Name">
-    <input v-model="form.email" type="email" placeholder="Email">
-    <input v-model="form.password" type="password" placeholder="Password">
+    <form class="flex flex-col w-1/3 mx-auto">
+      <input class="bg-grey-lighter my-2 p-4"
+        v-model="form.username" type="text" placeholder="Username">
+      <input class="bg-grey-lighter my-2 p-4"
+        v-model="form.name" type="text" placeholder="Name">
+      <input class="bg-grey-lighter my-2 p-4"
+        v-model="form.email" type="email" placeholder="Email">
+      <input class="bg-grey-lighter my-2 p-4"
+        v-model="form.password" type="password" placeholder="Password">
 
-    <button @click.prevent="register">Register</button>
+      <button class="p-4 rounded bg-blue text-white" @click.prevent="register">Register</button>
+    </form>
   </Layout>
 </template>
 

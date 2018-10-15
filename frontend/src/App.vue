@@ -1,42 +1,12 @@
 <template>
 <div>
-    <!-- <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Auth0 - Vue</a>
-
-          <router-link :to="'/'"
-            class="btn btn-primary btn-margin">
-              Home
-          </router-link>
-
-          <button
-            id="qsLoginBtn"
-            class="btn btn-primary btn-margin"
-            v-if="!authenticated"
-            @click="login()">
-              Log In
-          </button>
-
-          <button
-            id="qsLogoutBtn"
-            class="btn btn-primary btn-margin"
-            v-if="authenticated"
-            @click="logout()">
-              Log Out
-          </button>
-
-        </div>
-      </div>
-    </nav> -->
-
-    <div class="container">
-      <router-view
-        :auth="auth"
-        :authenticated="authenticated">
-      </router-view>
-    </div>
+  <div class="container mx-auto">
+    <router-view
+      :auth="auth"
+      :authenticated="authenticated">
+    </router-view>
   </div>
+</div>
 </template>
 
 <script>

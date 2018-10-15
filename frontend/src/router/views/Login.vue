@@ -1,19 +1,24 @@
 <template>
   <Layout>
     <form
-      :class="$style.form"
+      class="w-1/3 mx-auto flex flex-col"
       @submit.prevent="tryToLogIn"
     >
       <BaseInput
+        class="bg-grey-lighter p-4 rounded my-2"
         v-model="username"
         name="username"
+        placeholder="Email"
       />
       <BaseInput
+        class="bg-grey-lighter p-4 rounded my-2"
         v-model="password"
         name="password"
         type="password"
+        placeholder="Password"
       />
       <BaseButton
+        class="rounded"
         :disabled="tryingToLogIn"
         type="submit"
       >
@@ -70,11 +75,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" module>
-@import '@design';
-
-.form {
-  text-align: center;
-}
-</style>
