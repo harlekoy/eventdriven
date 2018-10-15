@@ -5,7 +5,6 @@ const prettier = require('prettier')
 const aliases = {
   '@': '.',
   '@assets': 'src/assets',
-  '@auth': 'src/auth/AuthService',
   '@components': 'src/components',
   '@design': 'src/design/index.scss',
   '@layouts': 'src/router/layouts',

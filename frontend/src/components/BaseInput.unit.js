@@ -1,6 +1,6 @@
-import BaseInput from './_base-input'
+import BaseInput from './BaseInput'
 
-describe('@components/_base-input', () => {
+describe('@components/BaseInput', () => {
   it('works with v-model', () => {
     const wrapper = mount(BaseInput, { propsData: { value: 'aaa' } })
     const inputEl = wrapper.find('input').element

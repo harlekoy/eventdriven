@@ -5,7 +5,7 @@ export default [
   {
     path: '/',
     name: 'home',
-    component: () => lazyLoadView(import('@views/home')),
+    component: () => lazyLoadView(import('@views/Home')),
   },
   {
     path: '/callback',
@@ -91,10 +91,10 @@ function lazyLoadView(AsyncView) {
   const AsyncHandler = () => ({
     component: AsyncView,
     // A component to use while the component is loading.
-    loading: require('@views/loading').default,
+    loading: require('@views/Loading').default,
     // A fallback component in case the timeout is exceeded
     // when loading the component.
-    error: require('@views/timeout').default,
+    error: require('@views/Timeout').default,
     // Delay before showing the loading component.
     // Default: 200 (milliseconds).
     delay: 400,

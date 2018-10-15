@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Layout from '@layouts/main'
+import Layout from '@layouts/Main'
 import { mapActions } from 'vuex'
 
 export default {

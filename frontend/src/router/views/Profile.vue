@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Layout from '@layouts/main'
+import Layout from '@layouts/Main'
 import { mapGetters } from 'vuex'
 
 export default {

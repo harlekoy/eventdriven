@@ -54,7 +54,7 @@
 <script>
 import appConfig from '@src/app.config'
 import auth0 from 'auth0-js'
-import Layout from '@layouts/main'
+import Layout from '@layouts/Main'
 import { authMethods } from '@state/helpers'
 import { loginViaSocial } from '@utils/auth'
 

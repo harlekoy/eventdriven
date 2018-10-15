@@ -1,17 +1,15 @@
 <template>
-<div>
-  <div class="container mx-auto">
-    <router-view
-      :auth="auth"
-      :authenticated="authenticated">
-    </router-view>
-  </div>
+<div id="app">
+  <!--
+    Even when routes use the same component, treat them
+    as distinct and create the component again.
+  -->
+  <router-view :key="$route.fullPath" />
 </div>
 </template>
 
 <script>
 import appConfig from '@src/app.config'
-import AuthService from '@auth'
 
 const auth = new AuthService()
 
