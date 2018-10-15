@@ -13,19 +13,6 @@ use Illuminate\Support\Facades\Validator;
 class RegisterController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        event(new Registered($user = $this->create($request->all())));
-
-        return new UserResource($user);
-    }
-
-    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -40,29 +27,5 @@ class RegisterController extends Controller
         ]);
 
         $validator->validate();
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
-    {
-        $user = User::whereEmail($data['email'])->first();
-
-        if ($user) { // Link account
-            $api = ManagementAPI::create();
-
-            $api->users->linkAccount($user->auth0id, [
-                'provider' => 'auth0',
-                'user_id'  => $data['auth0id'],
-            ]);
-
-            return $user;
-        } else {
-            return User::create($data);
-        }
     }
 }
