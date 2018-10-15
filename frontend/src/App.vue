@@ -11,10 +11,6 @@
 <script>
 import appConfig from '@src/app.config'
 
-const auth = new AuthService()
-
-const { login, logout, authenticated, authNotifier } = auth
-
 export default {
   page: {
     // All subcomponent titles will be injected into this template.
@@ -23,21 +19,6 @@ export default {
       return title ? `${title} | ${appConfig.title}` : appConfig.title
     },
   },
-
-  data () {
-    authNotifier.on('authChange', authState => {
-      this.authenticated = authState.authenticated
-    })
-    return {
-      auth,
-      authenticated
-    }
-  },
-
-  methods: {
-    login,
-    logout
-  }
 }
 </script>
 
