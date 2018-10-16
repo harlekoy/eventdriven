@@ -46,21 +46,21 @@
           Log in
         </span>
       </BaseButton>
-      <a 
+      <a
         class="no-underline text-center text-white bg-facebook-blue rounded p-3 my-2"
         href="#">
-        <img 
+        <img
           class="float-left fill-current"
           src="@assets/images/facebook.svg" width="17" alt="Facebook">
         Continue with Facebook
       </a>
-      <a 
+      <a
         class="no-underline text-center text-white bg-google-green rounded p-3 my-2"
-        href="#" 
+        href="#"
         @click="loginViaSocial('google-oauth2')">
-        <img 
+        <img
           class="float-left fill-current"
-          src="@assets/images/google.svg" width="14" alt="Google"> 
+          src="@assets/images/google.svg" width="14" alt="Google">
         Continue with Google
       </a>
       <p v-if="authError">
