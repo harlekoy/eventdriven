@@ -43,6 +43,11 @@ View the full documentation at https://tailwindcss.com.
 
 let colors = {
   'transparent': 'transparent',
+   // brand
+  'brand-green': '#27B386',
+  'brand-green-light': '#26B386',
+  'google-green': '#00B96C',
+  'facebook-blue': '#37589C',
 
   'black': '#22292f',
   'grey-darkest': '#3d4852',

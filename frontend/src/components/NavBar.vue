@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="bg-white">
     <nav class="container mx-auto">
       <div class="left">
         <router-link :to="{ name: 'home' }" class="logo">

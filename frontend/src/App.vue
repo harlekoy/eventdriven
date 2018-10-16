@@ -26,6 +26,9 @@ export default {
 <style lang="scss">
 @import 'assets/styles/tailwind.postcss';
 
+html, body, #app {
+  @apply h-full;
+}
 // Style loading bar between pages.
 // https://github.com/rstacruz/nprogress
 @import '~nprogress/nprogress.css';
