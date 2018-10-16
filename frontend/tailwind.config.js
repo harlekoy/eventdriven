@@ -84,10 +84,10 @@ let colors = {
   'yellow-lightest': '#fcfbeb',
 
   'green-darkest': '#0f2f21',
-  'green-darker': '#1a4731',
+  'green-darker': '#164C36',
   'green-dark': '#1f9d55',
   'green': '#009245',
-  'green-light': '#51d88a',
+  'green-light': '#8DE2C5',
   'green-lighter': '#a2f5bf',
   'green-lightest': '#e3fcec',
 
@@ -752,6 +752,7 @@ module.exports = {
 
   zIndex: {
     'auto': 'auto',
+    '-10': -10,
     '0': 0,
     '10': 10,
     '20': 20,

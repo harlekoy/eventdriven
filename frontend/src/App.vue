@@ -36,6 +36,9 @@ html, body, #app {
 // Design variables and utilities from src/design.
 @import '@design';
 
+// Font
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+
 
 // ===
 // Vendor
