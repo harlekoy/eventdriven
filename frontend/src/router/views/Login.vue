@@ -4,7 +4,7 @@
       <h1 class="font-sans font-thin text-5xl text-green-darker">Login</h1>
     </div>
     <form
-      class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow-md"
+      class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow"
       @submit.prevent="tryToLogIn"
     >
       <!-- Alert box -->
@@ -20,13 +20,13 @@
       </div>
 
       <BaseInput
-        class="bg-grey-lighter p-4 rounded my-2 mb-4"
+        class="bg-grey-lightest p-4 rounded my-2 mb-4"
         v-model="username"
         name="username"
         placeholder="Username"
       />
       <BaseInput
-        class="bg-grey-lighter p-4 rounded my-2 mb-4"
+        class="bg-grey-lightest p-4 rounded my-2 mb-4"
         v-model="password"
         name="password"
         type="password"
@@ -48,14 +48,16 @@
       </BaseButton>
       <a
         class="no-underline text-center text-white bg-facebook-blue rounded p-3 my-2"
-        href="#">
+        href="#"
+        @click="loginViaSocial('facebook')"
+        >
         <img
           class="float-left fill-current"
           src="@assets/images/facebook.svg" width="17" alt="Facebook">
         Continue with Facebook
       </a>
       <a
-        class="no-underline text-center text-white bg-google-green rounded p-3 my-2"
+        class="no-underline text-center text-white bg-google-red rounded p-3 my-2"
         href="#"
         @click="loginViaSocial('google-oauth2')">
         <img
@@ -102,6 +104,7 @@ export default {
         password: this.password,
       })
     },
+
     loginViaSocial
   },
 }

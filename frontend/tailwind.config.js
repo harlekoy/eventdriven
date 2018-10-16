@@ -46,7 +46,7 @@ let colors = {
    // brand
   'brand-green': '#27B386',
   'brand-green-light': '#26B386',
-  'google-green': '#00B96C',
+  'google-red': '#DD4B39',
   'facebook-blue': '#37589C',
 
   'black': '#22292f',
