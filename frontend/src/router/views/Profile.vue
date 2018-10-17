@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout class="bg-green-linea">
     <h1>
       <BaseIcon name="user" />
       {{ user.name }}

@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout class="bg-green-linea">
     Resetpassword
   </Layout>
 </template>

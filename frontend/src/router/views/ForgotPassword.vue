@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout class="bg-green-linea">
     <input v-model="email" type="email" placeholder="Email">
     <button @click.prevent="forgotPassword(email)">Reset Password</button>
   </Layout>

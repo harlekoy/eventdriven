@@ -1,9 +1,9 @@
 <template>
-  <Layout>
+  <Layout class="bg-green-linear">
     <div class="container mx-auto text-center my-4 md:my-8">
-      <h1 class="font-sans font-thin text-5xl text-green-darker">Sign up</h1>      
+      <h1 class="font-sans font-thin text-5xl text-green-darker">Sign up</h1>
     </div>
-    <form 
+    <form
       class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow-md">
       <input class="bg-grey-lighter rounded my-2 mb-4 p-4"
         v-model="form.username" type="text" placeholder="Username">

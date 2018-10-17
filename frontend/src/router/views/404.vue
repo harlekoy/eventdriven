@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout class="bg-green-linea">
     <div class="absolute pin-t pin-l w-full h-full flex">
       <div class="container flex flex-col-reverse lg:flex-row mx-auto">
         <div class="flex-1 flex items-center">

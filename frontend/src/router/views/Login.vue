@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout class="bg-green-linear">
     <div class="container mx-auto text-center my-4 md:my-8">
       <h1 class="font-sans font-thin text-5xl text-green-darker">Login</h1>
     </div>

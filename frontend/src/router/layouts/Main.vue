@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full bg-green-linear">
+  <div class="h-full">
     <NavBar />
     <div class="content">
       <slot />
