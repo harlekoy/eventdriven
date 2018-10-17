@@ -39,12 +39,28 @@ html, body, #app {
 // Font
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
 
-
 // ===
 // Vendor
 // ===
 
 #nprogress .bar {
   background: $color-link-text;
+}
+
+h1 {
+  @apply text-5xl font-light;
+}
+
+h6 {
+  @apply text-xl font-light;
+}
+
+.btn {
+  @apply uppercase  rounded border-3;
+  line-height: 55px;
+
+  &.btn-plain {
+    @apply border-white text-lg px-5;
+  }
 }
 </style>

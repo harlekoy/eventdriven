@@ -2,9 +2,7 @@
   <div class="h-full bg-green-linear">
     <NavBar />
     <div class="content">
-      <div class="container mx-auto">
-        <slot />
-      </div>
+      <slot />
     </div>
     <app-footer />
   </div>
@@ -37,7 +35,7 @@ export default {
         }
 
         .content {
-          @apply py-6 relative;
+          @apply relative;
           flex: 1;
 
           &:before {

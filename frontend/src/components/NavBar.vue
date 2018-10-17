@@ -33,6 +33,8 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '@design';
+
   body {
     font-family: 'Poppins', sans-serif;
   }
@@ -43,9 +45,18 @@ export default {
     nav {
       @apply flex justify-between;
 
+      @include breakpoint-max(md) {
+        @apply flex-col;
+      }
+
       > .left {
         @apply flex;
         min-height: 83px;
+
+        @include breakpoint-max(md) {
+          @apply flex-col;
+          padding-top: 10px;
+        }
 
         > * {
           @apply border-r border-grey-lighter flex items-center;
@@ -53,6 +64,10 @@ export default {
 
         > .logo {
           padding-right: 30px;
+
+          @include breakpoint-max(md) {
+            @apply border-0 p-0 justify-center;
+          }
         }
 
         > .item {
@@ -62,6 +77,15 @@ export default {
 
           &:hover {
             border-bottom: 5px solid config('colors.green');
+
+            @include breakpoint-max(md) {
+              @apply border-0;
+            }
+          }
+
+          @include breakpoint-max(md) {
+            @apply border-0;
+            padding: 10px;
           }
 
           i {
@@ -77,9 +101,17 @@ export default {
       > .right {
         @apply flex items-center;
 
+        @include breakpoint-max(md) {
+          @apply justify-center pt-4 flex-wrap;
+        }
+
         > .item {
           @apply text-base text-grey items-center flex no-underline;
           margin: 0 0 0 30px;
+
+          @include breakpoint-max(md) {
+            @apply m-4;
+          }
 
           .icon-help {
             @apply .text-2xl;

@@ -260,7 +260,7 @@ module.exports = {
     '2xl': '1.5rem',    // 24px
     '3xl': '1.875rem',  // 30px
     '4xl': '2.25rem',   // 36px
-    '5xl': '3rem',      // 48px
+    '5xl': '2.625rem',  // 42px
     '6xl': '4rem',      // 64px
     '7xl': '6rem',      // 96px
     '8xl': '8rem',      // 128px
@@ -438,7 +438,7 @@ module.exports = {
   borderRadius: {
     'none': '0',
     'sm': '.125rem',
-    default: '.25rem',
+    default: '7px',
     'lg': '.5rem',
     'full': '9999px',
   },
