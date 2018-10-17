@@ -4,15 +4,24 @@
       <div class="container flex flex-col-reverse lg:flex-row mx-auto">
         <div class="flex-1 flex items-center">
           <div>
-            <h1 class="text-6xl lg:text-8xl">404</h1>
-            <p class="text-lg lg:text-2xl">We are very sorry for the inconvience. It looks like you're trying to access a page that either has been deleted or never even existed.</p>
+            <h1 class="text-6xl lg:text-8xl">
+              404
+            </h1>
+            <p class="text-lg lg:text-2xl">
+              We are very sorry for the inconvience. It looks like you're trying to access a page that either has been deleted or never even existed.
+            </p>
             <div class="mt-4">
-              <router-link :to="{ name: 'home' }">Go Home</router-link>
+              <router-link :to="{ name: 'home' }">
+                Go Home
+              </router-link>
             </div>
           </div>
         </div>
         <div class="flex-1 justify-center flex">
-          <img class="w-1/3 lg:w-2/3" src="/ace.svg">
+          <img 
+            class="w-1/3 lg:w-2/3" 
+            src="/ace.svg"
+          >
         </div>
       </div>
     </div>

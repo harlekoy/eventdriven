@@ -27,19 +27,20 @@ export default {
   <div class="form-check py-3">
     <label
       class="relative pl-3 text-green-darker"
-      for="name">
-
+      for="name"
+    >
       <span class="text-control text-sm relative pl-5">
-        <slot/>
+        <slot />
       </span>
 
       <input
-        class="opacity-0"
         id="name"
-        @change="toggleValue"
+        class="opacity-0"
         :checked="checked"
-        :type="type"/>
-        <span class="checkbox"></span>
+        :type="type"
+        @change="toggleValue"
+      >
+      <span class="checkbox" />
     </label>
   </div>
 </template>

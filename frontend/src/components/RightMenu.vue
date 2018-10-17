@@ -2,29 +2,52 @@
   <div class="right relative">
     <div class="item">
       Help
-      <i class="icon-help"></i>
+      <i class="icon-help" />
     </div>
     <template v-if="loggedIn">
-      <div class="item" @click="toggleDropdown" v-click-outside="hideDropdown">
+      <div 
+        v-click-outside="hideDropdown" 
+        class="item" 
+        @click="toggleDropdown"
+      >
         £9,054
-        <i class="icon-user"></i>
-        <div class="dropdown" :class="{ active }">
-          <a href="#" class="item">Your Dashboard</a>
+        <i class="icon-user" />
+        <div 
+          class="dropdown" 
+          :class="{ active }"
+        >
+          <a 
+            href="#" 
+            class="item"
+          >
+            Your Dashboard
+          </a>
           <router-link
             :to="{ name: 'profile' }"
             class="item"
           >
             Your Profile
           </router-link>
-          <a @click="logout" class="item">Logout</a>
+          <a 
+            class="item" 
+            @click="logout"
+          >
+            Logout
+          </a>
         </div>
       </div>
     </template>
     <template v-else>
-      <router-link :to="{ name: 'login' }" class="item">
+      <router-link 
+        :to="{ name: 'login' }" 
+        class="item"
+      >
         Login
       </router-link>
-      <router-link :to="{ name: 'register' }" class="item bordered">
+      <router-link 
+        :to="{ name: 'register' }" 
+        class="item bordered"
+      >
         Sign Up
       </router-link>
     </template>
@@ -32,47 +55,47 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
-  import ClickOutside from 'vue-click-outside'
+import { mapGetters, mapActions } from 'vuex'
+import ClickOutside from 'vue-click-outside'
 
-  export default {
-    data () {
-      return {
-        active: false
-      }
-    },
-
-    computed: {
-      ...mapGetters({
-        loggedIn: 'auth/loggedIn'
-      })
-    },
-
-    methods: {
-      ...mapActions({
-        logOut: 'auth/logOut'
-      }),
-
-      logout () {
-        this.logOut()
-        this.$router.push({ name: 'home' })
-      },
-
-      toggleDropdown () {
-        this.active = !this.active
-      },
-
-      hideDropdown () {
-        if (this.active) {
-          this.active = false
-        }
-      }
-    },
-
-    directives: {
-      ClickOutside
+export default {
+  data () {
+    return {
+      active: false
     }
+  },
+
+  computed: {
+    ...mapGetters({
+      loggedIn: 'auth/loggedIn'
+    })
+  },
+
+  methods: {
+    ...mapActions({
+      logOut: 'auth/logOut'
+    }),
+
+    logout () {
+      this.logOut()
+      this.$router.push({ name: 'home' })
+    },
+
+    toggleDropdown () {
+      this.active = !this.active
+    },
+
+    hideDropdown () {
+      if (this.active) {
+        this.active = false
+      }
+    }
+  },
+
+  directives: {
+    ClickOutside
   }
+}
 </script>
 
 <style lang="scss">

@@ -4,8 +4,8 @@
       :class="classes"
       :type="type"
       :value="value"
-      v-on="listeners"
       v-bind="$attrs"
+      v-on="listeners"
     >
     <span
       v-show="hasError()"
@@ -46,17 +46,6 @@ export default {
     }
   },
 
-  watch: {
-    targetClass: {
-      handler (current) {
-        this.classes = Object.assign(current, {
-          invalid: this.hasError()
-        })
-      },
-      immediate: true
-    }
-  },
-
   computed: {
     listeners() {
       return {
@@ -67,6 +56,17 @@ export default {
 
     modelName () {
       return this.$vnode.data.model.expression
+    }
+  },
+
+  watch: {
+    targetClass: {
+      handler (current) {
+        this.classes = Object.assign(current, {
+          invalid: this.hasError()
+        })
+      },
+      immediate: true
     }
   },
 

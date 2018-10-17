@@ -1,18 +1,19 @@
 <template>
   <div class="flex items-center justify-center">
     <Logo class="h-6 mb-4" />
-    <h1 class="text-2xl lg:text-3xl text-grey-darkest">Logging you in</h1>
+    <h1 class="text-2xl lg:text-3xl text-grey-darkest">
+      Logging you in
+    </h1>
     <div class="lds-ellipsis">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div />
+      <div />
+      <div />
+      <div />
     </div>
   </div>
 </template>
 
 <script>
-import qs from 'qs'
 import { mapActions } from 'vuex'
 import Logo from '@components/Logo'
 

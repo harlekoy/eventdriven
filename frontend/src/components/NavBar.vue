@@ -2,19 +2,22 @@
   <header class="bg-white">
     <nav class="container mx-auto">
       <div class="left">
-        <router-link :to="{ name: 'home' }" class="logo">
-          <logo :width="162"/>
+        <router-link 
+          :to="{ name: 'home' }" 
+          class="logo"
+        >
+          <Logo :width="162" />
         </router-link>
         <div class="item">
           Buy
-          <i class="icon-down"></i>
+          <i class="icon-down" />
         </div>
         <div class="item">
           Sell
-          <i class="icon-down"></i>
+          <i class="icon-down" />
         </div>
       </div>
-      <right-menu/>
+      <RightMenu />
     </nav>
   </header>
 </template>

@@ -1,11 +1,17 @@
 <template>
   <footer>
     <div class="container mx-auto">
-      <a href="#">HOME</a>
-      <i class="icon-down"></i>
-      <a href="#">FIFA WORLD CUP</a>
-      <i class="icon-down"></i>
-      <a href="#">GAME LINES</a>
+      <a href="#">
+        HOME
+      </a>
+      <i class="icon-down" />
+      <a href="#">
+        FIFA WORLD CUP
+      </a>
+      <i class="icon-down" />
+      <a href="#">
+        GAME LINES
+      </a>
     </div>
   </footer>
 </template>

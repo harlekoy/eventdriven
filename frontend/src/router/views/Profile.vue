@@ -1,125 +1,158 @@
 <template>
   <Layout class="bg-grey-lightest">
-    <h1 class="text-center my-8">Your Profile</h1>
+    <h1 class="text-center my-8">
+      Your Profile
+    </h1>
     <div class="container mx-auto mb-12">
       <div class="flex">
         <div class="w-1/4 pr-8 flex justify-end">
           <div class="flex flex-col w-48">
-            <div class="bg-grey w-32 h-32 rounded-full">
-            </div>
-            <a class="text-black my-8 font-bold hover:text-green-dark" href="#">Upload New Picture</a>
+            <div class="bg-grey w-32 h-32 rounded-full" />
+            <a 
+              class="text-black my-8 font-bold hover:text-green-dark" 
+              href="#"
+            >
+              Upload New Picture
+            </a>
 
             <ul class="list-reset">
               <li class="py-4 border-b">
-                <a class="text-black font-bold hover:text-green-dark" href="#">Dashboard</a>
+                <a 
+                  class="text-black font-bold hover:text-green-dark" 
+                  href="#"
+                >
+                  Dashboard
+                </a>
               </li>
               <li class="py-4 border-b">
-                <a class="text-black font-bold hover:text-green-dark" href="#">Contact Information</a>
+                <a 
+                  class="text-black font-bold hover:text-green-dark" 
+                  href="#"
+                >
+                  Contact Information
+                </a>
               </li>
               <li class="py-4 border-b">
-                <a class="text-black font-bold hover:text-green-dark" href="#">Password</a>
+                <a 
+                  class="text-black font-bold hover:text-green-dark" 
+                  href="#"
+                >
+                  Password
+                </a>
               </li>
               <li class="py-4 border-b">
-                <a class="text-black font-bold hover:text-green-dark" href="#">Deposit Funds</a>
+                <a 
+                  class="text-black font-bold hover:text-green-dark" 
+                  href="#"
+                >
+                  Deposit Funds
+                </a>
               </li>
               <li class="py-4 border-b">
-                <a class="text-black font-bold hover:text-green-dark" href="#">Withdraw Funds</a>
+                <a 
+                  class="text-black font-bold hover:text-green-dark" 
+                  href="#"
+                >
+                  Withdraw Funds
+                </a>
               </li>
             </ul>
           </div>
         </div>
         <div class="bg-white h-full flex-1 rounded-lg text-grey-darkest p-4 shadow-lg">
           <div class="flex items-center justify-between border-b pb-4 mb-4">
-            <h2 class="font-light text-lg">Personal Details & Contact Information</h2>
+            <h2 class="font-light text-lg">
+              Personal Details & Contact Information
+            </h2>
             <span>76% Complete</span>
           </div>
           <div class="flex flex-wrap -mx-4">
             <!-- First name -->
             <BaseInput
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
               v-model="profile.first_name"
               v-validate="'required'"
+              class="w-1/2 px-4 my-1"
+              :target-class="{ 'w-full': true }"
               name="first_name"
               placeholder="First name"
             />
 
             <!-- Last name -->
             <BaseInput
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
               v-model="profile.last_name"
               v-validate="'required'"
+              class="w-1/2 px-4 my-1"
+              :target-class="{ 'w-full': true }"
               name="last_name"
               placeholder="Last name"
             />
 
             <!-- Email Address -->
             <BaseInput
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
               v-model="profile.email"
               v-validate="'required'"
+              class="w-1/2 px-4 my-1"
+              :target-class="{ 'w-full': true }"
               name="email"
               placeholder="Email Address"
             />
 
             <!-- Address Line 1 -->
             <BaseInput
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
               v-model="profile.address_1"
               v-validate="'required'"
+              class="w-1/2 px-4 my-1"
+              :target-class="{ 'w-full': true }"
               name="address_1"
               placeholder="Address Line 1"
             />
 
             <!-- Address Line 2 -->
             <BaseInput
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
               v-model="profile.address_2"
               v-validate="'required'"
+              class="w-1/2 px-4 my-1"
+              :target-class="{ 'w-full': true }"
               name="address_2"
               placeholder="Address Line 2"
             />
 
             <!-- Town / City -->
             <BaseInput
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
               v-model="profile.city"
               v-validate="'required'"
+              class="w-1/2 px-4 my-1"
+              :target-class="{ 'w-full': true }"
               name="city"
               placeholder="Town / City"
             />
 
             <!-- State / County -->
             <BaseInput
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
               v-model="profile.state"
               v-validate="'required'"
+              class="w-1/2 px-4 my-1"
+              :target-class="{ 'w-full': true }"
               name="state"
               placeholder="State / County"
             />
 
             <!-- Country -->
             <BaseInput
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
               v-model="profile.country"
               v-validate="'required'"
+              class="w-1/2 px-4 my-1"
+              :target-class="{ 'w-full': true }"
               name="country"
               placeholder="Country"
             />
 
             <!-- Zip code / Postcode -->
             <BaseInput
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
               v-model="profile.postcode"
               v-validate="'required'"
+              class="w-1/2 px-4 my-1"
+              :target-class="{ 'w-full': true }"
               name="postcode"
               placeholder="Zip Code / Postcode"
             />
@@ -134,7 +167,10 @@
                 name="sync"
                 spin
               />
-              <span class="uppercase font-bold" v-else>
+              <span 
+                v-else 
+                class="uppercase font-bold"
+              >
                 Save
               </span>
             </BaseButton>
@@ -168,6 +204,8 @@ export default {
     }
   },
 
+  components: { Layout },
+
   data () {
     return {
       profile: {
@@ -185,11 +223,9 @@ export default {
     }
   },
 
-  components: { Layout },
-
   computed: {
     ...mapGetters({
-        user: 'auth/user',
+      user: 'auth/user',
     })
   }
 }

@@ -1,11 +1,11 @@
 <template>
-<div id="app">
-  <!--
+  <div id="app">
+    <!--
     Even when routes use the same component, treat them
     as distinct and create the component again.
   -->
-  <router-view :key="$route.fullPath" />
-</div>
+    <router-view :key="$route.fullPath" />
+  </div>
 </template>
 
 <script>

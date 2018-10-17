@@ -1,20 +1,37 @@
 <template>
   <Layout class="bg-green-linear">
     <div class="container mx-auto text-center my-4 md:my-8">
-      <h1 class="font-sans font-thin text-5xl text-green-darker">Login</h1>
+      <h1 class="font-sans font-thin text-5xl text-green-darker">
+        Login
+      </h1>
     </div>
     <form
       class="w-2/3 sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow mb-12"
       @submit.prevent="tryToLogIn"
     >
       <!-- Alert box -->
-      <div class="bg-teal-lightest border-t-4 border-teal rounded-b text-teal-darkest px-4 py-3 my-2 mb-6" role="alert">
+      <div
+        class="bg-teal-lightest border-t-4 border-teal rounded-b text-teal-darkest px-4 py-3 my-2 mb-6"
+        role="alert"
+      >
         <div class="flex leading-normal">
-          <svg class="h-6 w-6 text-teal mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg>
+          <svg
+            class="h-6 w-6 text-teal mr-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
+          </svg>
           <div>
-            <p class="font-bold">User Test Credentials:</p>
-            <p class="text-sm"><b>Username:</b> admin</p>
-            <p class="text-sm"><b>Password:</b> Testing@123</p>
+            <p class="font-bold">
+              User Test Credentials:
+            </p>
+            <p class="text-sm">
+              <b>Username:</b> admin
+            </p>
+            <p class="text-sm">
+              <b>Password:</b> Testing@123
+            </p>
           </div>
         </div>
       </div>
@@ -46,50 +63,64 @@
         </span>
       </BaseButton>
 
-      <p v-if="authError" class="py-4 text-grey-dark text-sm">
+      <p
+        v-if="authError"
+        class="py-4 text-grey-dark text-sm"
+      >
         There was an error logging in to your account.
       </p>
 
       <p class="flex flex-row mb-6">
         <BaseCheckbox
+          v-model="remember_me"
           class="flex-1 cursor-pointer"
           type="checkbox"
+          :checked="remember_me"
           @input="toggleValue"
-          v-model="remember_me"
-          :checked="remember_me">
+        >
           Remember Me
         </BaseCheckbox>
 
         <router-link
           :to="{ name: 'forgot-password' }"
           class="flex-1 text-sm text-grey-darkest outline-none py-3 no-underline justify-end flex text-green-darker hover:text-blue"
-          >Forgot Password
+        >
+          Forgot Password
         </router-link>
       </p>
       <a
         class="no-underline text-center text-white bg-facebook-blue rounded p-3 my-2 text-sm -ml-1"
         href="#"
         @click="loginViaSocial('facebook')"
-        >
+      >
         <img
           class="float-left"
-          src="@assets/images/facebook.svg" width="17" alt="Facebook">
-          Continue with Facebook
+          src="@assets/images/facebook.svg"
+          width="17"
+          alt="Facebook"
+        >
+        Continue with Facebook
       </a>
       <a
         class="no-underline text-center text-white bg-google-red rounded p-3 my-2 text-sm -ml-1"
         href="#"
-        @click="loginViaSocial('google-oauth2')">
+        @click="loginViaSocial('google-oauth2')"
+      >
         <img
           class="float-left"
-          src="@assets/images/google.svg" width="14" alt="Google">
-          Continue with Google
+          src="@assets/images/google.svg"
+          width="14"
+          alt="Google"
+        >
+        Continue with Google
       </a>
       <p class="pt-4 pb-1 text-center">
         <router-link
           to="/register"
           class="text-sm text-grey-darkest outline-none hover:text-blue"
-          >Create new account</router-link>
+        >
+          Create new account
+        </router-link>
       </p>
     </form>
   </Layout>
@@ -97,7 +128,6 @@
 
 <script>
 import appConfig from '@src/app.config'
-import auth0 from 'auth0-js'
 import Layout from '@layouts/Main'
 import { authMethods } from '@state/helpers'
 import { loginViaSocial } from '@utils/auth'

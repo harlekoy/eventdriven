@@ -1,7 +1,10 @@
 <template>
-  <div class="banner" :style="{ backgroundImage: 'url(' + img + ')' }">
+  <div 
+    class="banner" 
+    :style="{ backgroundImage: 'url(' + img + ')' }"
+  >
     <div class="container mx-auto">
-      <slot/>
+      <slot />
     </div>
   </div>
 </template>

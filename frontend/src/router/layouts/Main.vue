@@ -4,7 +4,7 @@
     <div class="content">
       <slot />
     </div>
-    <app-footer />
+    <AppFooter />
   </div>
 </template>
 

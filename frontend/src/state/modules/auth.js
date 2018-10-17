@@ -1,8 +1,6 @@
-import auth0 from 'auth0-js'
 import axios from 'axios'
 import qs from 'qs'
 import router from '@router'
-import Vue from 'vue'
 import { getSavedState, saveState } from '@utils/localStorage'
 import { signin, signup, forgot } from '@utils/auth'
 
