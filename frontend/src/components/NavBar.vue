@@ -14,35 +14,21 @@
           <i class="icon-down"></i>
         </div>
       </div>
-      <div class="right">
-        <div class="item">
-          Help
-          <i class="icon-help"></i>
-        </div>
-        <!-- <div class="item">
-          £9,054
-          <i class="icon-user"></i>
-        </div> -->
-        <template>
-          <router-link :to="{ name: 'login' }" class="item">
-            Login
-          </router-link>
-          <router-link :to="{ name: 'register' }" class="item bordered">
-            Sign Up
-          </router-link>
-        </template>
-      </div>
+      <right-menu/>
     </nav>
   </header>
 </template>
 
 <script>
 import Logo from '@components/Logo'
+import RightMenu from '@components/RightMenu'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    Logo
-  },
+    Logo,
+    RightMenu
+  }
 }
 </script>
 
@@ -52,7 +38,7 @@ export default {
   }
 
   header {
-    @apply shadow;
+    @apply shadow relative z-10;
 
     nav {
       @apply flex justify-between;
@@ -91,7 +77,7 @@ export default {
       > .right {
         @apply flex items-center;
 
-        .item {
+        > .item {
           @apply text-base text-grey items-center flex no-underline;
           margin: 0 0 0 30px;
 

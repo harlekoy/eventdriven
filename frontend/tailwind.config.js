@@ -49,6 +49,8 @@ let colors = {
   'google-red': '#DD4B39',
   'facebook-blue': '#37589C',
 
+  'black-trans': 'rgba(26, 26, 26, .8)',
+
   'black': '#22292f',
   'grey-darkest': '#3d4852',
   'grey-darker': '#606f7b',
