@@ -47,10 +47,13 @@ export default {
   },
 
   watch: {
-    targetClass (current) {
-      this.classes = Object.assign(current, {
-        invalid: this.hasError()
-      })
+    targetClass: {
+      handler (current) {
+        this.classes = Object.assign(current, {
+          invalid: this.hasError()
+        })
+      },
+      immediate: true
     }
   },
 
