@@ -1,6 +1,7 @@
 <template>
   <div class="flex items-center justify-center">
-    <h1>Logging you in</h1>
+    <Logo class="h-6 mb-4" />
+    <h1 class="text-2xl lg:text-3xl text-grey-darkest">Logging you in</h1>
     <div class="lds-ellipsis">
       <div></div>
       <div></div>
@@ -13,8 +14,13 @@
 <script>
 import qs from 'qs'
 import { mapActions } from 'vuex'
+import Logo from '@components/Logo'
 
 export default {
+  components: {
+    Logo,
+  },
+
   methods: {
     ...mapActions({
       handleAuth: 'auth/handleAuth'

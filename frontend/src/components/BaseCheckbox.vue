@@ -25,7 +25,7 @@ export default {
 
 <template>
   <div class="form-check py-3">
-    <label 
+    <label
       class="relative pl-3 text-green-darker"
       for="name">
 
@@ -38,7 +38,7 @@ export default {
         id="name"
         @change="toggleValue"
         :checked="checked"
-        :type="type"/> 
+        :type="type"/>
         <span class="checkbox"></span>
     </label>
   </div>

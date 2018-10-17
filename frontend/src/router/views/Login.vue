@@ -4,7 +4,7 @@
       <h1 class="font-sans font-thin text-5xl text-green-darker">Login</h1>
     </div>
     <form
-      class="w-2/3 sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow"
+      class="w-2/3 sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow mb-12"
       @submit.prevent="tryToLogIn"
     >
       <!-- Alert box -->
@@ -52,7 +52,7 @@
 
       <p class="flex flex-row mb-6">
         <BaseCheckbox
-          class="flex-1"
+          class="flex-1 cursor-pointer"
           type="checkbox"
           @input="toggleValue"
           v-model="remember_me"
@@ -61,8 +61,8 @@
         </BaseCheckbox>
 
         <router-link
-          to="/register"
-          class="flex-1 text-sm text-grey-darkest outline-none py-3 no-underline justify-end flex text-green-darker"
+          :to="{ name: 'forgot-password' }"
+          class="flex-1 text-sm text-grey-darkest outline-none py-3 no-underline justify-end flex text-green-darker hover:text-blue"
           >Forgot Password
         </router-link>
       </p>
@@ -88,7 +88,7 @@
       <p class="pt-4 pb-1 text-center">
         <router-link
           to="/register"
-          class="text-sm text-grey-darkest outline-none"
+          class="text-sm text-grey-darkest outline-none hover:text-blue"
           >Create new account</router-link>
       </p>
     </form>
@@ -153,7 +153,7 @@ export default {
 
 <style lang="scss" scoped>
 /deep/ input {
-  @apply bg-grey-lighter p-4 rounded my-2 w-full border
+  @apply bg-grey-lighter p-4 rounded my-2 w-full border border-grey-lighter
 }
 
 /deep/ input:focus {

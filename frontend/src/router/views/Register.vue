@@ -4,7 +4,7 @@
       <h1 class="font-sans font-thin text-5xl text-green-darker">Sign up</h1>
     </div>
     <form
-      class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow-md">
+      class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow-md mb-12">
       <input class="bg-grey-lighter rounded my-2 mb-4 p-4 outline-none"
         v-model="form.username" type="text" placeholder="Username">
       <input class="bg-grey-lighter rounded my-2 mb-4 p-4 outline-none"
@@ -20,7 +20,7 @@
       <p class="py-4 text-center">
         <router-link
           to="/login"
-          class="text-sm text-grey-darkest outline-none">
+          class="text-sm text-grey-darkest outline-none hover:text-blue">
           Have an account? Sign In
         </router-link>
       </p>
