@@ -27,7 +27,7 @@ export default {
 @import 'assets/styles/tailwind.postcss';
 
 html, body, #app {
-  @apply h-full;
+  @apply min-h-full;
 }
 // Style loading bar between pages.
 // https://github.com/rstacruz/nprogress

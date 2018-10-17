@@ -4,7 +4,7 @@
       <h1 class="font-sans font-thin text-5xl text-green-darker">Login</h1>
     </div>
     <form
-      class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow"
+      class="w-2/3 sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow"
       @submit.prevent="tryToLogIn"
     >
       <!-- Alert box -->
@@ -18,22 +18,21 @@
           </div>
         </div>
       </div>
-
       <BaseInput
-        class="bg-grey-lightest p-4 rounded my-2 mb-4"
+        class="bg-grey-lighter p-4 rounded my-2 mb-4 outline-none"
         v-model="username"
         name="username"
         placeholder="Username"
       />
       <BaseInput
-        class="bg-grey-lightest p-4 rounded my-2 mb-4"
+        class="bg-grey-lighter p-4 rounded my-2 mb-4 outline-none"
         v-model="password"
         name="password"
         type="password"
         placeholder="Password"
       />
       <BaseButton
-        class="rounded p-4 my-2 mb-8"
+        class="rounded p-4 my-2"
         :disabled="tryingToLogIn"
         type="submit"
       >
@@ -46,27 +45,51 @@
           Log in
         </span>
       </BaseButton>
+
+      <p v-if="authError" class="py-4 text-grey-dark text-sm">
+        There was an error logging in to your account.
+      </p>
+
+      <p class="flex flex-row mb-6">
+        <BaseCheckbox
+          class="flex-1"
+          type="checkbox"
+          @input="toggleValue"
+          v-model="remember_me"
+          :checked="remember_me">
+          Remember Me
+        </BaseCheckbox>
+
+        <router-link
+          to="/register"
+          class="flex-1 text-sm text-grey-darkest outline-none py-3 no-underline justify-end flex text-green-darker"
+          >Forgot Password
+        </router-link>
+      </p>
       <a
-        class="no-underline text-center text-white bg-facebook-blue rounded p-3 my-2"
+        class="no-underline text-center text-white bg-facebook-blue rounded p-3 my-2 text-sm -ml-1"
         href="#"
         @click="loginViaSocial('facebook')"
         >
         <img
-          class="float-left fill-current"
+          class="float-left"
           src="@assets/images/facebook.svg" width="17" alt="Facebook">
-        Continue with Facebook
+          Continue with Facebook
       </a>
       <a
-        class="no-underline text-center text-white bg-google-red rounded p-3 my-2"
+        class="no-underline text-center text-white bg-google-red rounded p-3 my-2 text-sm -ml-1"
         href="#"
         @click="loginViaSocial('google-oauth2')">
         <img
-          class="float-left fill-current"
+          class="float-left"
           src="@assets/images/google.svg" width="14" alt="Google">
-        Continue with Google
+          Continue with Google
       </a>
-      <p v-if="authError">
-        There was an error logging in to your account.
+      <p class="pt-4 pb-1 text-center">
+        <router-link
+          to="/register"
+          class="text-sm text-grey-darkest outline-none"
+          >Create new account</router-link>
       </p>
     </form>
   </Layout>
@@ -89,10 +112,12 @@ export default {
     return {
       username: '',
       password: '',
+      remember_me: false,
       authError: null,
       tryingToLogIn: false,
     }
   },
+  
   methods: {
     ...authMethods,
 
@@ -103,6 +128,10 @@ export default {
         username: this.username,
         password: this.password,
       })
+    },
+
+    toggleValue(state) {
+      this.remember_me = state
     },
 
     loginViaSocial
