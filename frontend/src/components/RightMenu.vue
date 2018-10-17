@@ -10,7 +10,12 @@
         <i class="icon-user"></i>
         <div class="dropdown" :class="{ active }">
           <a href="#" class="item">Your Dashboard</a>
-          <a href="#" class="item">Your Profile</a>
+          <router-link
+            :to="{ name: 'profile' }"
+            class="item"
+          >
+            Your Profile
+          </router-link>
           <a @click="logout" class="item">Logout</a>
         </div>
       </div>
