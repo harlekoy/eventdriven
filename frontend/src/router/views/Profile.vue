@@ -30,7 +30,7 @@
         </div>
         <div class="bg-white h-full flex-1 rounded-lg text-grey-darkest p-4 shadow-lg">
           <div class="flex items-center justify-between border-b pb-4 mb-4">
-            <h2 class="font-light text-xl">Personal Details & Contact Information</h2>
+            <h2 class="font-light text-lg">Personal Details & Contact Information</h2>
             <span>76% Complete</span>
           </div>
           <div class="flex flex-wrap -mx-4">
@@ -126,7 +126,7 @@
           </div>
           <div class="flex justify-end">
             <BaseButton
-              class="rounded py-4 w-48 my-2"
+              class="rounded py-4 w-48 my-2 bg-gradient"
               type="submit"
             >
               <BaseIcon
@@ -134,7 +134,7 @@
                 name="sync"
                 spin
               />
-              <span class="uppercase" v-else>
+              <span class="uppercase font-bold" v-else>
                 Save
               </span>
             </BaseButton>
@@ -171,7 +171,15 @@ export default {
   data () {
     return {
       profile: {
-        first_name: ''
+        first_name: '',
+        last_name: '',
+        email: '',
+        address_1: '',
+        address_2: '',
+        state: '',
+        city: '',
+        postcode: '',
+        country: '',
       },
       load: false,
     }

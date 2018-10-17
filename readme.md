@@ -18,7 +18,9 @@ This is a Laravel and Vue.JS based web application.
 
 6.) Run `php artisan key:generate`
 
-7.) Run `php artisan serve`
+7.) Run `php artisan migrate`
+
+8.) Run `php artisan serve`
 
 
 ## How to run Web App

@@ -48,7 +48,7 @@ let colors = {
   'brand-green-light': '#26B386',
   'google-red': '#DD4B39',
   'facebook-blue': '#37589C',
-
+  'gradient': 'linear-gradient(45deg, #86cf73 0%,#30c2c4 100%)',
   'black-trans': 'rgba(26, 26, 26, .8)',
 
   'black': '#22292f',
