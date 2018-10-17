@@ -30,8 +30,8 @@ export const getters = {
 
 export const actions = {
   // Logs in the current user.
-  async logIn(context, { username, password } = {}) {
-    signin(username, password)
+  async logIn(context, { username, password, cb } = {}) {
+    signin(username, password, cb)
   },
 
   // This handles the Auth0 callback

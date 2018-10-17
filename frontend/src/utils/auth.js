@@ -5,14 +5,14 @@ let webAuth = new auth0.WebAuth({
   clientID: process.env.VUE_APP_AUTH0_CLIENT_ID,
 })
 
-export function signin (username, password) {
+export function signin (username, password, cb) {
   webAuth.login({
     realm: process.env.VUE_APP_AUTH0_REALM,
     username,
     password,
     responseType: 'token id_token',
     redirectUri: process.env.VUE_APP_AUTH0_CALLBACK,
-  })
+  }, cb)
 }
 
 export function signup ({ username, email, password, metadata }, cb) {

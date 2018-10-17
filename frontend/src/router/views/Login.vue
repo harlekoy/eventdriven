@@ -19,14 +19,14 @@
         </div>
       </div>
       <BaseInput
-        class="bg-grey-lighter p-4 rounded my-2 mb-4 outline-none"
         v-model="username"
+        v-validate="'required'"
         name="username"
         placeholder="Username"
       />
       <BaseInput
-        class="bg-grey-lighter p-4 rounded my-2 mb-4 outline-none"
         v-model="password"
+        v-validate="'required'"
         name="password"
         type="password"
         placeholder="Password"
@@ -37,7 +37,7 @@
         type="submit"
       >
         <BaseIcon
-          v-if="tryingToLogIn"
+          v-if="load"
           name="sync"
           spin
         />
@@ -114,20 +114,31 @@ export default {
       password: '',
       remember_me: false,
       authError: null,
-      tryingToLogIn: false,
+      load: false,
     }
   },
-  
+
   methods: {
     ...authMethods,
 
     // Try to log the user in with the username
     // and password they provided.
-    tryToLogIn() {
-      return this.logIn({
-        username: this.username,
-        password: this.password,
-      })
+    async tryToLogIn() {
+      this.load = true
+
+      const valid = await this.$validator.validateAll()
+
+      if (valid) {
+        this.logIn({
+          username: this.username,
+          password: this.password,
+          cb: () => {
+            this.load = false
+          }
+        })
+      } else {
+        this.load = false
+      }
     },
 
     toggleValue(state) {
@@ -137,4 +148,19 @@ export default {
     loginViaSocial
   },
 }
+
 </script>
+
+<style lang="scss" scoped>
+/deep/ input {
+  @apply bg-grey-lighter p-4 rounded my-2 w-full border
+}
+
+/deep/ input:focus {
+  @apply border-blue-light
+}
+
+[aria-invalid="true"] /deep/ input {
+  @apply border-red
+}
+</style>

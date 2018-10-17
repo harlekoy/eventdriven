@@ -1,3 +1,8 @@
 a {
   @apply no-underline
 }
+
+input:focus,
+button:focus {
+  @apply outline-none
+}
