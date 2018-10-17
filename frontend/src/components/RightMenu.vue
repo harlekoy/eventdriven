@@ -50,8 +50,13 @@
 
     methods: {
       ...mapActions({
-        logout: 'auth/logOut'
+        logOut: 'auth/logOut'
       }),
+
+      logout () {
+        this.logOut()
+        this.$router.push({ name: 'home' })
+      },
 
       toggleDropdown () {
         this.active = !this.active
