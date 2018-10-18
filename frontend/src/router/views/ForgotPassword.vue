@@ -4,19 +4,38 @@
       <h1 class="font-sans font-thin text-5xl text-green-darker">Forgot Password</h1>
     </div>
     <form
-      class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow-md mb-12">
+      @submit.prevent="forgot"
+      class="w-9/10 sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow-md mb-12">
+
+      <BaseAlert v-if="message">
+        {{ this.message }}
+      </BaseAlert>
+
       <input
         v-model="email"
         class="bg-grey-lighter rounded my-2 mb-4 p-4 outline-none"
         type="email"
         placeholder="Email">
-      <button
-        class="p-4 rounded text-white bg-brand-green mb-4"
-        @click.prevent="forgotPassword(email)">Reset Password</button>
+
+      <BaseButton
+        class="rounded p-4 my-2"
+        :disabled="load"
+        type="submit"
+      >
+        <BaseIcon
+          v-if="load"
+          name="spinner"
+          spin
+        />
+        <span v-else>
+          Reset Password
+        </span>
+      </BaseButton>
+
       <p class="pt-4 pb-2 text-center">
         <router-link
           to="/login"
-          class="text-sm text-grey-darkest outline-none hover:text-blue">
+          class="text-sm text-grey-darkest outline-none hover:text-blue-dark">
           Have an account? Sign In
         </router-link>
       </p>
@@ -39,6 +58,8 @@ export default {
   data () {
     return {
       email: '',
+      load: false,
+      message: ''
     }
   },
 
@@ -46,6 +67,18 @@ export default {
     ...mapActions({
       forgotPassword: 'auth/forgotPassword'
     }),
+
+    forgot () {
+      this.load = true
+
+      this.forgotPassword({
+        email: this.email,
+        cb: (err, msg) => {
+          this.message = msg
+          this.load = false
+        }
+      })
+    }
   }
 }
 </script>

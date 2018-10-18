@@ -17,12 +17,12 @@
 
             <ul class="list-reset">
               <li class="py-4 border-b">
-                <a
+                <router-link
                   class="text-black font-bold hover:text-green-dark"
-                  href="#"
+                  :to="{ name: 'dashboard' }"
                 >
                   Dashboard
-                </a>
+                </router-link>
               </li>
               <li class="py-4 border-b">
                 <a
@@ -164,7 +164,7 @@
             >
               <BaseIcon
                 v-if="load"
-                name="sync"
+                name="spinner"
                 spin
               />
               <span

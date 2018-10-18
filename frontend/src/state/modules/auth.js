@@ -62,20 +62,15 @@ export const actions = {
     commit('SET_CURRENT_USER', null)
   },
 
-  async signUp ({ commit }, data) {
-    await axios.post('signup/validate', data)
-
-    signup(data, async (err, response) => {
-    })
+  signUp ({ commit }, { data, cb }) {
+    signup(data, cb)
   },
 
   saveToken({ commit }, payload) {
     commit('SAVE_TOKEN', payload)
   },
 
-  forgotPassword({ commit }, email) {
-    forgot(email, (err, response) => {
-      console.log('test')
-    })
+  forgotPassword({ commit }, { email, cb }) {
+    forgot(email, cb)
   }
 }

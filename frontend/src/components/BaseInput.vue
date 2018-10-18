@@ -7,6 +7,7 @@
       v-bind="$attrs"
       v-on="listeners"
     >
+    <slot/>
     <span
       v-show="hasError()"
       class="text-red text-xs"
@@ -31,12 +32,15 @@ export default {
       type: [String, Number],
       default: '',
     },
-
     targetClass: {
       type: Object,
       default () {
         return {}
       }
+    },
+    error: {
+      type: String,
+      default: null
     }
   },
 
@@ -61,29 +65,39 @@ export default {
 
   watch: {
     targetClass: {
-      handler (current) {
-        this.classes = Object.assign(current, {
-          invalid: this.hasError()
-        })
-      },
+      handler: 'handleTargetClass',
       immediate: true
+    },
+
+    error (current) {
+      if (current) {
+        this.handleTargetClass(this.classes)
+      }
     }
   },
 
   methods: {
+    handleTargetClass (classes) {
+      this.classes = Object.assign(classes, {
+        'border border-red': this.hasError()
+      })
+    },
+
     hasError () {
-      return !! this.error()
+      return !!this.getError() || !!this.error
     },
 
     errorMsg () {
-      let error = this.error()
+      let error = this.getError()
 
       if (error) {
         return error.msg
       }
+
+      return this.error
     },
 
-    error () {
+    getError () {
       return find(this.errors.items, { field: this.modelName })
     }
   },

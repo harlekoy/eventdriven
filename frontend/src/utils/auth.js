@@ -15,7 +15,7 @@ export function signin (username, password, cb) {
   }, cb)
 }
 
-export function signup ({ username, email, password, metadata }, cb) {
+export function signup ({ username, email, password, metadata } = {}, cb) {
   webAuth.signup({
     connection: process.env.VUE_APP_AUTH0_REALM,
     username,
@@ -38,6 +38,5 @@ export function loginViaSocial (connection, cb) {
     responseType: 'token id_token',
     redirectUri: process.env.VUE_APP_AUTH0_CALLBACK
   }, () => {
-    console.log('test')
   })
 }

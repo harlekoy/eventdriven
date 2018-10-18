@@ -6,56 +6,44 @@
       </h1>
     </div>
     <form
-      class="w-2/3 sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow mb-12"
+      class="w-9/10 sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow mb-12"
       @submit.prevent="tryToLogIn"
     >
-      <!-- Alert box -->
-      <div
-        class="bg-teal-lightest border-t-4 border-teal rounded-b text-teal-darkest px-4 py-3 my-2 mb-6"
-        role="alert"
-      >
-        <div class="flex leading-normal">
-          <svg
-            class="h-6 w-6 text-teal mr-4"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-          >
-            <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
-          </svg>
-          <div>
-            <p class="font-bold">
-              User Test Credentials:
-            </p>
-            <p class="text-sm">
-              <b>Username:</b> admin
-            </p>
-            <p class="text-sm">
-              <b>Password:</b> Testing@123
-            </p>
-          </div>
-        </div>
-      </div>
+      <BaseAlert>
+        <p class="font-bold">
+          User Test Credentials:
+        </p>
+        <p class="text-sm">
+          <b>Username:</b> admin
+        </p>
+        <p class="text-sm">
+          <b>Password:</b> Testing@123
+        </p>
+      </BaseAlert>
+
       <BaseInput
         v-model="username"
         v-validate="'required'"
         name="username"
         placeholder="Username"
       />
-      <BaseInput
+
+      <BasePassword
         v-model="password"
         v-validate="'required'"
         name="password"
         type="password"
         placeholder="Password"
       />
+
       <BaseButton
         class="rounded p-4 my-2"
-        :disabled="tryingToLogIn"
+        :disabled="load"
         type="submit"
       >
         <BaseIcon
           v-if="load"
-          name="sync"
+          name="spinner"
           spin
         />
         <span v-else>
@@ -65,15 +53,15 @@
 
       <p
         v-if="authError"
-        class="py-4 text-grey-dark text-sm"
+        class="py-4 text-red text-sm text-center"
       >
-        There was an error logging in to your account.
+        {{ authError }}
       </p>
 
       <p class="flex flex-row mb-6">
         <BaseCheckbox
           v-model="remember_me"
-          class="flex-1 cursor-pointer"
+          class="flex-1 cursor-pointer whitespace-no-wrap"
           type="checkbox"
           :checked="remember_me"
           @input="toggleValue"
@@ -83,7 +71,7 @@
 
         <router-link
           :to="{ name: 'forgot-password' }"
-          class="flex-1 text-sm text-grey-darkest outline-none py-3 no-underline justify-end flex text-green-darker hover:text-blue"
+          class="flex-1 text-sm text-grey-darkest outline-none py-3 no-underline justify-end flex text-green-darker hover:text-blue-dark"
         >
           Forgot Password
         </router-link>
@@ -117,7 +105,7 @@
       <p class="pt-4 pb-1 text-center">
         <router-link
           to="/register"
-          class="text-sm text-grey-darkest outline-none hover:text-blue"
+          class="text-sm text-grey-darkest outline-none hover:text-blue-dark"
         >
           Create new account
         </router-link>
@@ -160,13 +148,15 @@ export default {
     // and password they provided.
     async tryToLogIn() {
       this.load = true
+      this.authError = null
 
       const valid = await this.$validator.validateAll()
       if (valid) {
         this.logIn({
           username: this.username,
           password: this.password,
-          cb: () => {
+          cb: ({ error_description: msg }) => {
+            this.authError = msg
             this.load = false
           }
         })

@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 // This endpoint doesn't need authentication
-Route::post('/signup/validate', 'RegisterController@validate');
+Route::post('/signup/validate', 'RegisterController@store');
 
 Route::group(['middleware' => 'jwt'], function () {
     Route::get('/auth', 'AuthController@index');

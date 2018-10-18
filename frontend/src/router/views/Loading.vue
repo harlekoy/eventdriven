@@ -15,7 +15,7 @@ export default {
     <Transition appear>
       <BaseIcon
         :class="$style.loadingIcon"
-        name="sync"
+        name="spinner"
         spin
       />
     </Transition>
