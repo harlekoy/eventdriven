@@ -42,6 +42,14 @@ export default [
     },
   },
   {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: () => lazyLoadView(import('@views/Dashboard')),
+    meta: {
+      authRequired: true,
+    },
+  },
+  {
     path: '/logout',
     name: 'logout',
     meta: {

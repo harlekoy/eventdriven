@@ -1,0 +1,179 @@
+<template>
+  <Layout class="bg-green-linear">
+    <h1 class="text-center my-8">Your Dashboard</h1>
+    <div class="container mx-auto mb-10 flex board">
+      <div class="side">
+        <balance/>
+        <account-setup/>
+      </div>
+      <div class="main white-wrapper">
+        <div class="tabs mb-6">
+          <div class="tab active">
+            ALL RECENT ACTIVITY
+          </div>
+          <div class="tab">
+            OPEN BETS
+          </div>
+          <div class="tab">
+            BOUGHT
+          </div>
+          <div class="tab">
+            SOLD
+          </div>
+        </div>
+        <table class="main">
+          <thead>
+            <tr>
+              <th>DATE</th>
+              <th>WAGER</th>
+              <th>ODDS</th>
+              <th>TOTAL</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>6/10/18</td>
+              <td>Manchester United to win</td>
+              <td>29:1</td>
+              <td>-$985</td>
+              <td>
+                <i class="icon-trash"></i>
+                <button class="btn btn-success btn-xs">EDIT</button>
+              </td>
+            </tr>
+            <tr>
+              <td>6/10/18</td>
+              <td>Manchester United to win</td>
+              <td>29:1</td>
+              <td>-$985</td>
+              <td>
+                <i class="icon-trash"></i>
+                <button class="btn btn-success btn-xs">EDIT</button>
+              </td>
+            </tr>
+            <tr>
+              <td>6/10/18</td>
+              <td>Manchester United to win</td>
+              <td>29:1</td>
+              <td>-$985</td>
+              <td>
+                <i class="icon-trash"></i>
+                <button class="btn btn-success btn-xs">EDIT</button>
+              </td>
+            </tr>
+            <tr>
+              <td>6/10/18</td>
+              <td>Manchester United to win</td>
+              <td>29:1</td>
+              <td>-$985</td>
+              <td>
+                <i class="icon-trash"></i>
+                <button class="btn btn-success btn-xs">EDIT</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="actions">
+          <a href="" class="text-base">
+            See all transactions
+            <i class="icon-down"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <bank-accounts/>
+  </Layout>
+</template>
+
+
+<script>
+import appConfig from '@src/app.config'
+import Layout from '@layouts/Main'
+import AccountSetup from '@components/AccountSetup'
+import Balance from '@components/Balance'
+import BankAccounts from '@components/BankAccounts'
+
+export default {
+  page: {
+    title: 'Dashboard',
+    meta: [{ name: 'description', content: appConfig.description }],
+  },
+
+  components: {
+    Layout,
+    AccountSetup,
+    Balance,
+    BankAccounts
+  },
+}
+</script>
+
+<style lang="scss">
+  @import '@design';
+
+  .board {
+    @apply flex-row;
+
+    @include breakpoint-max(lg) {
+      @apply flex-col;
+    }
+
+    .side {
+      flex: 0 0 385px;
+      padding-right: 25px;
+
+      @include breakpoint-max(lg) {
+        @apply pr-0;
+        margin-bottom: 25px;
+      }
+
+      .white-wrapper {
+        padding: 30px 22px 20px;
+
+        &:not(:last-child) {
+          margin-bottom: 25px;
+        }
+
+        table {
+          p {
+            @apply leading-loose;
+          }
+        }
+      }
+    }
+
+    .white-wrapper.main {
+      @apply flex-1 flex flex-col;
+      padding: 30px 22px 20px;
+
+      .actions {
+        @apply flex-1 items-end flex justify-end mt-6;
+
+        i {
+          transform: rotate(-90deg);
+          @apply inline-block ml-4;
+          font-size: 10px;
+        }
+      }
+    }
+
+    .tabs {
+      @apply flex border-b border-grey-darkest;
+
+      @include breakpoint-max(md) {
+        @apply flex-col;
+      }
+
+      .tab {
+        @apply text-base font-semibold text-black bg-grey-lightest px-4 cursor-pointer;
+        margin-right: 1px;
+        line-height: 41px;
+
+        &.active {
+          @apply bg-green-darker text-white;
+        }
+      }
+    }
+  }
+</style>

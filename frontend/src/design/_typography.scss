@@ -414,3 +414,19 @@ $typography-line-heights-contrast: (
 
   @extend %font-content;
 }
+
+p {
+  @apply text-sm font-medium;
+
+  &.uppercase {
+    letter-spacing: .6px;
+  }
+
+  &.lg {
+    @apply text-lg;
+  }
+}
+
+a {
+  @apply text-brand-green-light;
+}

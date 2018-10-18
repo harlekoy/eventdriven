@@ -52,19 +52,19 @@ let colors = {
   'black-trans': 'rgba(26, 26, 26, .8)',
 
   'black': '#22292f',
-  'grey-darkest': '#3d4852',
-  'grey-darker': '#606f7b',
-  'grey-dark': '#8795a1',
+  'grey-darkest': '#333333',
+  'grey-darker': '#666666',
+  'grey-dark': '#808080',
   'grey': '#999999',
-  'grey-light': '#dae1e7',
+  'grey-light': '#CCCCCC',
   'grey-lighter': '#E6E6E6',
-  'grey-lightest': '#f8fafc',
+  'grey-lightest': '#F2F2F2',
   'white': '#ffffff',
 
   'red-darkest': '#3b0d0c',
   'red-darker': '#621b18',
   'red-dark': '#cc1f1a',
-  'red': '#e3342f',
+  'red': '#ED1C24',
   'red-light': '#ef5753',
   'red-lighter': '#f9acaa',
   'red-lightest': '#fcebea',
@@ -104,7 +104,7 @@ let colors = {
   'blue-darkest': '#12283a',
   'blue-darker': '#1c3d5a',
   'blue-dark': '#2779bd',
-  'blue': '#3490dc',
+  'blue': '#1B1464',
   'blue-light': '#6cb2eb',
   'blue-lighter': '#bcdefa',
   'blue-lightest': '#eff8ff',
@@ -258,7 +258,7 @@ module.exports = {
     'lg': '1.125rem',   // 18px
     'xl': '1.25rem',    // 20px
     '2xl': '1.5rem',    // 24px
-    '3xl': '1.875rem',  // 30px
+    '3xl': '2rem',  // 30px
     '4xl': '2.25rem',   // 36px
     '5xl': '2.625rem',  // 42px
     '6xl': '4rem',      // 64px
@@ -735,6 +735,7 @@ module.exports = {
 
   shadows: {
     default: '0 2px 4px 0 rgba(0,0,0,0.10)',
+    'wrapper': '4px 6px 10px -5px rgba(0,0,0,.5)',
     'md': '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
     'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
     'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',

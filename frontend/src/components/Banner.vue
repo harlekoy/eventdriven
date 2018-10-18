@@ -1,6 +1,6 @@
 <template>
-  <div 
-    class="banner" 
+  <div
+    class="banner"
     :style="{ backgroundImage: 'url(' + img + ')' }"
   >
     <div class="container mx-auto">

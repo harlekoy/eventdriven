@@ -1,5 +1,5 @@
 <template>
-  <Layout class="bg-grey-lightest">
+  <Layout class="bg-green-linear">
     <h1 class="text-center my-8">
       Your Profile
     </h1>
@@ -8,8 +8,8 @@
         <div class="w-1/4 pr-8 flex justify-end">
           <div class="flex flex-col w-48">
             <div class="bg-grey w-32 h-32 rounded-full" />
-            <a 
-              class="text-black my-8 font-bold hover:text-green-dark" 
+            <a
+              class="text-black my-8 font-bold hover:text-green-dark"
               href="#"
             >
               Upload New Picture
@@ -17,40 +17,40 @@
 
             <ul class="list-reset">
               <li class="py-4 border-b">
-                <a 
-                  class="text-black font-bold hover:text-green-dark" 
+                <a
+                  class="text-black font-bold hover:text-green-dark"
                   href="#"
                 >
                   Dashboard
                 </a>
               </li>
               <li class="py-4 border-b">
-                <a 
-                  class="text-black font-bold hover:text-green-dark" 
+                <a
+                  class="text-black font-bold hover:text-green-dark"
                   href="#"
                 >
                   Contact Information
                 </a>
               </li>
               <li class="py-4 border-b">
-                <a 
-                  class="text-black font-bold hover:text-green-dark" 
+                <a
+                  class="text-black font-bold hover:text-green-dark"
                   href="#"
                 >
                   Password
                 </a>
               </li>
               <li class="py-4 border-b">
-                <a 
-                  class="text-black font-bold hover:text-green-dark" 
+                <a
+                  class="text-black font-bold hover:text-green-dark"
                   href="#"
                 >
                   Deposit Funds
                 </a>
               </li>
               <li class="py-4 border-b">
-                <a 
-                  class="text-black font-bold hover:text-green-dark" 
+                <a
+                  class="text-black font-bold hover:text-green-dark"
                   href="#"
                 >
                   Withdraw Funds
@@ -167,8 +167,8 @@
                 name="sync"
                 spin
               />
-              <span 
-                v-else 
+              <span
+                v-else
                 class="uppercase font-bold"
               >
                 Save

@@ -24,12 +24,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-down:before {
+.icon-trash:before {
   content: "\e900";
 }
-.icon-help:before {
+.icon-warning:before {
   content: "\e901";
 }
-.icon-user:before {
+.icon-down:before {
   content: "\e902";
+}
+.icon-help:before {
+  content: "\e903";
+}
+.icon-user:before {
+  content: "\e904";
 }

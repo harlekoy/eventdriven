@@ -1,0 +1,62 @@
+table {
+  @apply w-full;
+
+  tr {
+    td {
+      padding: 0 5px;
+      vertical-align: middle;
+    }
+  }
+
+  &.main {
+    thead {
+      tr {
+        th {
+          @apply text-sm font-semibold py-3 border-b text-left;
+
+          &:last-child {
+            @apply text-right;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          @apply py-4 text-grey-darkest text-sm font-light align-middle relative;
+
+          i {
+            @apply text-brand-green-light text-2xl mr-6 align-middle;
+          }
+
+          &:last-child {
+            @apply text-right;
+          }
+        }
+
+        &:nth-child(even) {
+          @apply bg-grey-lightest;
+
+          td:first-child {
+            &:before {
+              content: '';
+              @apply absolute bg-grey-lightest pin-y;
+              width: 22px;
+              left: -22px;
+            }
+          }
+
+          td:last-child {
+            &:before {
+              content: '';
+              @apply absolute bg-grey-lightest pin-y;
+              width: 22px;
+              right: -22px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -5,31 +5,31 @@
       <i class="icon-help" />
     </div>
     <template v-if="loggedIn">
-      <div 
-        v-click-outside="hideDropdown" 
-        class="item" 
+      <div
+        v-click-outside="hideDropdown"
+        class="item"
         @click="toggleDropdown"
       >
         £9,054
         <i class="icon-user" />
-        <div 
-          class="dropdown" 
+        <div
+          class="dropdown"
           :class="{ active }"
         >
-          <a 
-            href="#" 
+          <router-link
+            :to="{ name: 'dashboard' }"
             class="item"
           >
             Your Dashboard
-          </a>
+          </router-link>
           <router-link
             :to="{ name: 'profile' }"
             class="item"
           >
             Your Profile
           </router-link>
-          <a 
-            class="item" 
+          <a
+            class="item"
             @click="logout"
           >
             Logout
@@ -38,14 +38,14 @@
       </div>
     </template>
     <template v-else>
-      <router-link 
-        :to="{ name: 'login' }" 
+      <router-link
+        :to="{ name: 'login' }"
         class="item"
       >
         Login
       </router-link>
-      <router-link 
-        :to="{ name: 'register' }" 
+      <router-link
+        :to="{ name: 'register' }"
         class="item bordered"
       >
         Sign Up

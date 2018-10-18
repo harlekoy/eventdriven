@@ -1,11 +1,16 @@
 @import 'breakpoints';
+@import 'buttons';
 @import 'defaults';
 @import 'colors';
+@import 'columns';
 @import 'durations';
 @import 'fonts';
+@import 'headings';
 @import 'layers';
 @import 'sizes';
+@import 'tables';
 @import 'typography';
+@import 'wrappers';
 
 :export {
   // Any values that need to be accessible from JavaScript

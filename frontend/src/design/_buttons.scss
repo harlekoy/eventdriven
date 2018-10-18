@@ -1,0 +1,25 @@
+.btn {
+  @apply rounded border-3 text-lg;
+  line-height: 55px;
+
+  &.btn-sm {
+    line-height: 49px;
+  }
+
+  &.btn-xs {
+    @apply text-sm px-4;
+    line-height: 29px;
+  }
+
+  &.btn-success {
+    @apply bg-brand-green-light text-white border-transparent;
+
+    &.btn-bordered {
+      @apply text-brand-green-light border-brand-green-light bg-transparent;
+    }
+  }
+
+  &.btn-plain {
+    @apply border-white px-5;
+  }
+}
