@@ -1,37 +1,48 @@
 <template>
-  <footer>
-    <div class="container mx-auto">
-      <a href="#">
-        HOME
-      </a>
-      <i class="icon-down" />
-      <a href="#">
-        FIFA WORLD CUP
-      </a>
-      <i class="icon-down" />
-      <a href="#">
-        GAME LINES
-      </a>
+  <div class="footer bg-green-linear-45">
+    <div class="container mx-auto px-3 py-16 flex-col md:flex-row items-start flex items-stretch text-center md:text-left">
+      <div class="flex-1 flex-col mb-6 md:mb-0">
+        <h3 class="mb-3 text-white text-lg">Company</h3>
+        <router-link class="py-2 block text-white text-sm font-thin" to="/">Our Story</router-link>
+        <router-link class="py-2 block text-white text-sm font-thin" to="/">FAQs</router-link>
+        <router-link class="py-2 block text-white text-sm font-thin" to="/">How it Works</router-link>
+        <router-link class="py-2 block text-white text-sm font-thin" to="/">Meet the Team</router-link>
+        <router-link class="py-2 block text-white text-sm font-thin" to="/">Careers</router-link>
+      </div>
+      <div class="flex-1 flex-col mb-6 md:mb-0">
+        <h3 class="mb-3 text-white text-lg">Help & Contact</h3>
+        <router-link class="py-2 block text-white text-sm font-thin" to="/">Contact Us</router-link>
+        <router-link class="py-2 block text-white text-sm font-thin" to="/">Support Docs</router-link>
+        <router-link class="py-2 block text-white text-sm font-thin" to="/">Ask the Community</router-link>
+      </div>
+      <div class="flex-1 flex-col mb-6 md:mb-0">
+        <h3 class="mb-3 text-white text-lg">Join us</h3>
+        <router-link class="py-2 block text-white text-sm font-thin" to="/register">Create an Account</router-link>
+        <router-link class="py-2 block text-white text-sm font-thin" to="/">Partner with Us</router-link>
+        <router-link class="py-2 block text-white text-sm font-thin" to="/">Careers</router-link>
+      </div>
+      <div class="flex-1 flex-col mb-6 md:mb-0 text-white">
+        <h3 class="mb-3 text-white text-lg">Follow Us</h3>
+        <router-link class="p-3 md:pr-4 text-white text-xl md:-ml-3" to="/">
+          <span class="icon-instagram"/>
+        </router-link>
+        <router-link class="p-3 md:pr-4 text-white text-xl md:-ml-3" to="/">
+          <span class="icon-facebook"/>
+        </router-link>
+        <router-link class="p-3 md:pr-4 text-white text-xl md:-ml-3" to="/">
+          <span class="icon-twitter"/>
+        </router-link>
+        <router-link class="p-3 md:pr-4 text-white text-xl md:-ml-3" to="/">
+          <span class="icon-linkedin"/>
+        </router-link>
+      </div>
     </div>
-  </footer>
+  </div>
 </template>
 
 <style lang="scss">
-  footer {
-    @apply flex;
-
-    > .container {
-      @apply flex items-center;
-    }
-
-    a {
-      @apply text-white no-underline font-bold text-xs mr-3;
-    }
-
-    i {
-      @apply text-yellow mr-3;
-      font-size: 8px;
-      transform: rotate(-90deg);
-    }
+  .footer {
+    @apply flex bg-green;
+    min-height: 260px;
   }
 </style>

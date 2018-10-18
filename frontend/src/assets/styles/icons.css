@@ -24,12 +24,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrow-left:before {
-  content: "\e905";
-}
-.icon-arrow-right:before {
-  content: "\e906";
-}
 .icon-trash:before {
   content: "\e900";
 }
@@ -44,4 +38,25 @@
 }
 .icon-user:before {
   content: "\e904";
+}
+.icon-arrow-left:before {
+  content: "\e905";
+}
+.icon-arrow-right:before {
+  content: "\e906";
+}
+.icon-facebook:before {
+  content: "\ea90";
+}
+.icon-instagram:before {
+  content: "\ea92";
+}
+.icon-twitter:before {
+  content: "\ea96";
+}
+.icon-youtube:before {
+  content: "\ea9d";
+}
+.icon-linkedin:before {
+  content: "\eac9";
 }

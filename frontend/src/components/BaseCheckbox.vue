@@ -52,6 +52,10 @@ export default {
 	label {
     user-select: none;
 
+    .text-control {
+      top: 2px;
+    }
+
 		input[type="checkbox"] {
       margin-right: 16px;
       @apply absolute pin-l;
