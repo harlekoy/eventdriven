@@ -4,18 +4,21 @@
     <div class="content">
       <slot />
     </div>
+    <Breadcrumbs />
     <AppFooter />
   </div>
 </template>
 
 <script>
 import NavBar from '@components/NavBar'
+import Breadcrumbs from '@components/Breadcrumbs'
 import AppFooter from '@components/Footer'
 
 export default {
   components: {
     NavBar,
-    AppFooter
+    AppFooter,
+    Breadcrumbs,
   },
 }
 </script>
