@@ -18,6 +18,9 @@ Route::post('/signup/validate', 'RegisterController@store');
 
 Route::group(['middleware' => 'jwt'], function () {
     Route::get('/auth', 'AuthController@index');
+
+    Route::apiResource('user', 'UserController');
+    Route::apiResource('user.address', 'UserAddressController');
 });
 
 // Route::get('/private-scoped', function (Request $request) {
