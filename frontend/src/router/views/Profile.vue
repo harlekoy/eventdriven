@@ -1,5 +1,5 @@
 <template>
-  <Layout class="bg-green-linear">
+  <Layout class="bg-grey-lightest">
     <h1 class="text-center my-8">
       Your Profile
     </h1>
@@ -233,6 +233,6 @@ export default {
 
 <style scoped>
 /deep/ input {
-  @apply bg-grey-lighter p-4 rounded my-2 border border-grey-lighter
+  @apply bg-grey-lightest p-4 rounded my-2 border border-grey-lightest
 }
 </style>
