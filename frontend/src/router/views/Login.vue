@@ -131,6 +131,7 @@ import appConfig from '@src/app.config'
 import Layout from '@layouts/Main'
 import { authMethods } from '@state/helpers'
 import { loginViaSocial } from '@utils/auth'
+import { mapActions } from 'vuex';
 
 export default {
   page: {
@@ -142,14 +143,18 @@ export default {
     return {
       username: '',
       password: '',
-      remember_me: false,
       authError: null,
       load: false,
+      remember_me: false,
     }
   },
 
   methods: {
     ...authMethods,
+
+    ...mapActions({
+      saveToken: 'auth/saveToken',
+    }),
 
     // Try to log the user in with the username
     // and password they provided.
@@ -157,7 +162,6 @@ export default {
       this.load = true
 
       const valid = await this.$validator.validateAll()
-
       if (valid) {
         this.logIn({
           username: this.username,
@@ -166,6 +170,8 @@ export default {
             this.load = false
           }
         })
+
+        this.saveToken({ remember_me: this.remember_me })
       } else {
         this.load = false
       }

@@ -3,9 +3,11 @@ import qs from 'qs'
 import router from '@router'
 import { getSavedState, saveState } from '@utils/localStorage'
 import { signin, signup, forgot } from '@utils/auth'
+import Cookies from "js-cookie";
 
 export const state = {
   currentUser: getSavedState('auth.currentUser'),
+  remember_me: false,
 }
 
 export const mutations = {
@@ -13,6 +15,11 @@ export const mutations = {
     state.currentUser = newValue
     saveState('auth.currentUser', newValue)
   },
+
+  SAVE_TOKEN(state, {remember_me}) {
+    state.remember_me = remember_me
+    Cookies.set('remember', remember_me, { expires: remember_me ? 365 : null })
+  }
 }
 
 export const getters = {
@@ -23,7 +30,7 @@ export const getters = {
 
   user () {
     return state.currentUser
-  }
+  },
 }
 
 export const actions = {
@@ -60,6 +67,10 @@ export const actions = {
 
     signup(data, async (err, response) => {
     })
+  },
+
+  saveToken({ commit }, payload) {
+    commit('SAVE_TOKEN', payload)
   },
 
   forgotPassword({ commit }, email) {
