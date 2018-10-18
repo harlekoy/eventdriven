@@ -257,8 +257,8 @@ module.exports = {
     'base': '1rem',     // 16px
     'lg': '1.125rem',   // 18px
     'xl': '1.25rem',    // 20px
-    '2xl': '1.5rem',    // 24px
-    '3xl': '2rem',  // 30px
+    '2xl': '1.75rem',   // 24px
+    '3xl': '2rem',      // 30px
     '4xl': '2.25rem',   // 36px
     '5xl': '2.625rem',  // 42px
     '6xl': '4rem',      // 64px
@@ -437,9 +437,9 @@ module.exports = {
 
   borderRadius: {
     'none': '0',
-    'sm': '.125rem',
+    'sm': '4px',
     default: '7px',
-    'lg': '.5rem',
+    'lg': '10px',
     'full': '9999px',
   },
 
@@ -735,7 +735,7 @@ module.exports = {
 
   shadows: {
     default: '0 2px 4px 0 rgba(0,0,0,0.10)',
-    'wrapper': '4px 6px 10px -5px rgba(0,0,0,.5)',
+    'wrapper': '4px 6px 10px -5px rgba(0,0,0,.5), 0 0 12px -3px rgba(0, 0, 0, 0.5)',
     'md': '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
     'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
     'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',

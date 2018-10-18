@@ -9,6 +9,14 @@
         START SELLING
       </button>
     </Banner>
+    <div class="container mx-auto my-12">
+      <h3 class="text-center mb-10">Events</h3>
+      <carousel></carousel>
+      <h3 class="text-center mt-12 mb-10">Teams</h3>
+      <carousel></carousel>
+      <h3 class="text-center mt-12 mb-10">Players</h3>
+      <carousel></carousel>
+    </div>
   </Layout>
 </template>
 
@@ -16,15 +24,18 @@
 import appConfig from '@src/app.config'
 import Layout from '@layouts/Main'
 import Banner from '@components/Banner'
+import Carousel from '@components/Carousel'
 
 export default {
   page: {
     title: 'Home',
     meta: [{ name: 'description', content: appConfig.description }],
   },
+
   components: {
     Layout,
-    Banner
+    Banner,
+    Carousel
   },
 }
 </script>

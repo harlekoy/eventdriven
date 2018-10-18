@@ -19,8 +19,8 @@ export default {
 
 <style lang="scss" scoped>
 .banner {
-  @apply bg-cover bg-center flex justify-center items-center text-center h-full;
-  margin-top: 1px;
+  @apply bg-cover bg-center flex justify-center items-center text-center py-10;
+  min-height: 400px;
 
   > .container {
     > * {
