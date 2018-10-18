@@ -72,5 +72,9 @@ export const actions = {
 
   forgotPassword({ commit }, { email, cb }) {
     forgot(email, cb)
+  },
+
+  updateCurrentUser ({ commit, getters }, data) {
+    commit('SET_CURRENT_USER', Object.assign({}, getters.user, data))
   }
 }

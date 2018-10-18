@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Auth0\ManagementAPI;
-use App\User;
+use App\Models\User;
 use Auth0\Login\Contract\Auth0UserRepository;
 
 class UserRepository implements Auth0UserRepository {

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
-use App\Models\Address;
 use App\Models\Upload;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use JD\Cloudder\Facades\Cloudder;
 
 class User extends Authenticatable
 {
@@ -18,13 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'username',
-        'dob',
-        'email',
-        'auth0id',
-        'address_id'
+        'username', 'name', 'email', 'auth0id'
     ];
 
     /**
@@ -35,26 +29,6 @@ class User extends Authenticatable
     protected $hidden = [
         'remember_token',
     ];
-
-    /**
-     * Get user's addresses.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function addresses()
-    {
-        return $this->hasMany(Address::class);
-    }
-
-    /**
-     * Get user's primary address.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function address()
-    {
-        return $this->hasOne(Address::class);
-    }
 
     /**
      * Get all of the user's uploads.

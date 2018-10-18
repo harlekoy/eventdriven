@@ -21,6 +21,7 @@
     "@fortawesome/fontawesome-svg-core": "1.2.4",
     "@fortawesome/free-solid-svg-icons": "5.3.1",
     "@fortawesome/vue-fontawesome": "0.1.1",
+    "@websanova/vue-upload": "^1.2.3-beta",
     "EventEmitter": "^1.0.0",
     "auth0-js": "^9.8.0",
     "auth0-lock": "^11.10.0",
@@ -34,9 +35,13 @@
     "vue": "2.5.17",
     "vue-auth0-handler": "^1.0.3",
     "vue-carousel": "^0.14.0",
+    "vue-clazy-load": "^0.4.2",
     "vue-click-outside": "^1.0.7",
+    "vue-clip": "^1.0.0",
+    "vue-filepond": "^4.0.0",
     "vue-meta": "1.5.3",
     "vue-router": "3.0.1",
+    "vuejs-uploader": "^0.6.5",
     "vuex": "3.0.1"
   },
   "devDependencies": {

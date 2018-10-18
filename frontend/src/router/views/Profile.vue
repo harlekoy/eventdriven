@@ -7,13 +7,7 @@
       <div class="flex">
         <div class="w-1/4 pr-8 flex justify-end">
           <div class="flex flex-col w-48">
-            <div class="bg-grey w-32 h-32 rounded-full" />
-            <a
-              class="text-black my-8 font-bold hover:text-green-dark"
-              href="#"
-            >
-              Upload New Picture
-            </a>
+            <Uploader />
 
             <ul class="list-reset">
               <li class="py-4 border-b">
@@ -66,115 +60,117 @@
             </h2>
             <span>76% Complete</span>
           </div>
-          <div class="flex flex-wrap -mx-4">
-            <!-- First name -->
-            <BaseInput
-              v-model="profile.first_name"
-              v-validate="'required'"
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
-              name="first_name"
-              placeholder="First name"
-            />
-
-            <!-- Last name -->
-            <BaseInput
-              v-model="profile.last_name"
-              v-validate="'required'"
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
-              name="last_name"
-              placeholder="Last name"
-            />
-
-            <!-- Email Address -->
-            <BaseInput
-              v-model="profile.email"
-              v-validate="'required'"
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
-              name="email"
-              placeholder="Email Address"
-            />
-
-            <!-- Address Line 1 -->
-            <BaseInput
-              v-model="profile.address_1"
-              v-validate="'required'"
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
-              name="address_1"
-              placeholder="Address Line 1"
-            />
-
-            <!-- Address Line 2 -->
-            <BaseInput
-              v-model="profile.address_2"
-              v-validate="'required'"
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
-              name="address_2"
-              placeholder="Address Line 2"
-            />
-
-            <!-- Town / City -->
-            <BaseInput
-              v-model="profile.city"
-              v-validate="'required'"
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
-              name="city"
-              placeholder="Town / City"
-            />
-
-            <!-- State / County -->
-            <BaseInput
-              v-model="profile.state"
-              v-validate="'required'"
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
-              name="state"
-              placeholder="State / County"
-            />
-
-            <!-- Country -->
-            <BaseInput
-              v-model="profile.country"
-              v-validate="'required'"
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
-              name="country"
-              placeholder="Country"
-            />
-
-            <!-- Zip code / Postcode -->
-            <BaseInput
-              v-model="profile.postcode"
-              v-validate="'required'"
-              class="w-1/2 px-4 my-1"
-              :target-class="{ 'w-full': true }"
-              name="postcode"
-              placeholder="Zip Code / Postcode"
-            />
-          </div>
-          <div class="flex justify-end">
-            <BaseButton
-              class="rounded py-4 w-48 my-2 bg-gradient"
-              type="submit"
-            >
-              <BaseIcon
-                v-if="load"
-                name="spinner"
-                spin
+          <form @submit.prevent="updateProfile">
+            <div class="flex flex-wrap -mx-4">
+              <!-- First name -->
+              <BaseInput
+                v-model="profile.first_name"
+                v-validate="'required'"
+                class="w-1/2 px-4 my-1"
+                :target-class="{ 'w-full': true }"
+                name="first_name"
+                placeholder="First name"
               />
-              <span
-                v-else
-                class="uppercase font-bold"
+
+              <!-- Last name -->
+              <BaseInput
+                v-model="profile.last_name"
+                v-validate="'required'"
+                class="w-1/2 px-4 my-1"
+                :target-class="{ 'w-full': true }"
+                name="last_name"
+                placeholder="Last name"
+              />
+
+              <!-- Email Address -->
+              <BaseInput
+                v-model="profile.email"
+                v-validate="'required'"
+                class="w-1/2 px-4 my-1"
+                :target-class="{ 'w-full': true }"
+                name="email"
+                placeholder="Email Address"
+              />
+
+              <!-- Address Line 1 -->
+              <BaseInput
+                v-model="profile.address_1"
+                v-validate="'required'"
+                class="w-1/2 px-4 my-1"
+                :target-class="{ 'w-full': true }"
+                name="address_1"
+                placeholder="Address Line 1"
+              />
+
+              <!-- Address Line 2 -->
+              <BaseInput
+                v-model="profile.address_2"
+                v-validate="'required'"
+                class="w-1/2 px-4 my-1"
+                :target-class="{ 'w-full': true }"
+                name="address_2"
+                placeholder="Address Line 2"
+              />
+
+              <!-- Town / City -->
+              <BaseInput
+                v-model="profile.city"
+                v-validate="'required'"
+                class="w-1/2 px-4 my-1"
+                :target-class="{ 'w-full': true }"
+                name="city"
+                placeholder="Town / City"
+              />
+
+              <!-- State / County -->
+              <BaseInput
+                v-model="profile.state"
+                v-validate="'required'"
+                class="w-1/2 px-4 my-1"
+                :target-class="{ 'w-full': true }"
+                name="state"
+                placeholder="State / County"
+              />
+
+              <!-- Country -->
+              <BaseInput
+                v-model="profile.country"
+                v-validate="'required'"
+                class="w-1/2 px-4 my-1"
+                :target-class="{ 'w-full': true }"
+                name="country"
+                placeholder="Country"
+              />
+
+              <!-- Zip code / Postcode -->
+              <BaseInput
+                v-model="profile.postcode"
+                v-validate="'required'"
+                class="w-1/2 px-4 my-1"
+                :target-class="{ 'w-full': true }"
+                name="postcode"
+                placeholder="Zip Code / Postcode"
+              />
+            </div>
+            <div class="flex justify-end">
+              <BaseButton
+                class="rounded py-4 w-48 my-2 bg-gradient"
+                type="submit"
               >
-                Save
-              </span>
-            </BaseButton>
-          </div>
+                <BaseIcon
+                  v-if="load"
+                  name="spinner"
+                  spin
+                />
+                <span
+                  v-else
+                  class="uppercase font-bold"
+                >
+                  Save
+                </span>
+              </BaseButton>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -190,6 +186,7 @@
 <script>
 import Layout from '@layouts/Main'
 import { mapGetters } from 'vuex'
+import Uploader from '@components/Uploader'
 
 export default {
   page() {
@@ -204,7 +201,7 @@ export default {
     }
   },
 
-  components: { Layout },
+  components: { Layout, Uploader },
 
   data () {
     return {
@@ -227,6 +224,16 @@ export default {
     ...mapGetters({
       user: 'auth/user',
     })
+  },
+
+  methods: {
+    updateProfile () {
+      this.load = true
+
+      setTimeout(() => {
+        this.load = false
+      }, 2000)
+    }
   }
 }
 </script>

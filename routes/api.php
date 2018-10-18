@@ -17,7 +17,20 @@ use Illuminate\Http\Request;
 Route::post('/signup/validate', 'RegisterController@store');
 
 Route::group(['middleware' => 'jwt'], function () {
-    Route::get('/auth', 'AuthController@index');
+    Route::get('/auth', [
+        'uses' => 'AuthController@index',
+        'as'   => 'user.auth',
+    ]);
+
+    Route::post('/upload', [
+        'uses' => 'UploadController@store',
+        'as'   => 'upload.store'
+    ]);
+
+    Route::patch('/upload/{upload}', [
+        'uses' => 'UploadController@update',
+        'as'   => 'upload.update'
+    ]);
 
     Route::apiResource('user', 'UserController');
     Route::apiResource('user.address', 'UserAddressController');
