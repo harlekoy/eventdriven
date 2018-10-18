@@ -12,4 +12,4 @@
   </svg>
 </template>
 
-<style>.cls-1{fill:#22b573;stroke:#fff;stroke-miterlimit:10;}</style>
+<style scoped>.cls-1{fill:#22b573;stroke:#fff;stroke-miterlimit:10;}</style>
