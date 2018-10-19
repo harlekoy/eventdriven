@@ -64,4 +64,14 @@ class User extends Authenticatable
     {
         return $this->morphMany(Upload::class, 'uploadable');
     }
+
+    /**
+     * Get user fullname.
+     *
+     * @return string
+     */
+    public function getFullnameAttribute()
+    {
+        return $this->first_name.' '.$this->last_name;
+    }
 }
