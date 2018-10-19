@@ -21,24 +21,20 @@
         <router-link class="py-2 block text-white text-sm font-thin" to="/">Partner with Us</router-link>
         <router-link class="py-2 block text-white text-sm font-thin" to="/">Careers</router-link>
       </div>
-      <div class="flex-1 flex-col mb-6 md:mb-0 text-white">
-        <h3 class="mb-3 text-white text-lg">Follow Us</h3>
-        <router-link class="p-3 md:pr-4 text-white text-xl md:-ml-3" to="/">
-          <span class="icon-instagram"/>
-        </router-link>
-        <router-link class="p-3 md:pr-4 text-white text-xl md:-ml-3" to="/">
-          <span class="icon-facebook"/>
-        </router-link>
-        <router-link class="p-3 md:pr-4 text-white text-xl md:-ml-3" to="/">
-          <span class="icon-twitter"/>
-        </router-link>
-        <router-link class="p-3 md:pr-4 text-white text-xl md:-ml-3" to="/">
-          <span class="icon-linkedin"/>
-        </router-link>
-      </div>
+      <FollowUs />
     </div>
   </div>
 </template>
+
+<script>
+import FollowUs from '@components/FollowUs'
+
+export default {
+  components: {
+    FollowUs,
+  }
+}
+</script>
 
 <style lang="scss">
   .footer {
