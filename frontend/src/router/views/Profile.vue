@@ -82,6 +82,16 @@
                 placeholder="Last name"
               />
 
+              <!-- Email -->
+              <BaseInput
+                v-model="profile.username"
+                v-validate="'required'"
+                class="w-1/2 px-4 my-1"
+                :target-class="{ 'w-full': true }"
+                name="username"
+                placeholder="Username"
+              />
+
               <!-- Email Address -->
               <BaseInput
                 v-model="profile.email"
@@ -94,7 +104,7 @@
 
               <!-- Address Line 1 -->
               <BaseInput
-                v-model="profile.address_1"
+                v-model="profile.address.address_1"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
@@ -104,7 +114,7 @@
 
               <!-- Address Line 2 -->
               <BaseInput
-                v-model="profile.address_2"
+                v-model="profile.address.address_2"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
@@ -114,7 +124,7 @@
 
               <!-- Town / City -->
               <BaseInput
-                v-model="profile.city"
+                v-model="profile.address.city"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
@@ -124,7 +134,7 @@
 
               <!-- State / County -->
               <BaseInput
-                v-model="profile.state"
+                v-model="profile.address.state"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
@@ -134,7 +144,7 @@
 
               <!-- Country -->
               <BaseInput
-                v-model="profile.country"
+                v-model="profile.address.country"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
@@ -144,7 +154,7 @@
 
               <!-- Zip code / Postcode -->
               <BaseInput
-                v-model="profile.postcode"
+                v-model="profile.address.zip_code"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
@@ -185,8 +195,9 @@
 
 <script>
 import Layout from '@layouts/Main'
+import { mapGetters, mapActions } from 'vuex'
+import { assign, pick } from 'lodash'
 import Uploader from '@components/Uploader'
-import { mapGetters } from 'vuex'
 import { success } from '@utils/toast'
 
 export default {
@@ -210,12 +221,15 @@ export default {
         first_name: '',
         last_name: '',
         email: '',
-        address_1: '',
-        address_2: '',
-        state: '',
-        city: '',
-        postcode: '',
-        country: '',
+        username: '',
+        address: {
+          address_1: '',
+          address_2: '',
+          state: '',
+          city: '',
+          zip_code: '',
+          country: '',
+        }
       },
       load: false,
     }
@@ -227,16 +241,31 @@ export default {
     })
   },
 
-  methods: {
-    updateProfile () {
-      this.load = true
+  mounted () {
+    assign(this.profile, pick(this.user, ['first_name', 'last_name', 'username', 'email', 'address']))
+  },
 
-      setTimeout(() => {
+  methods: {
+    ...mapActions({
+      updateAddress: 'profile/updateAddress',
+      updateCurrentUser: 'auth/updateCurrentUser'
+    }),
+
+    async updateProfile () {
+      this.load = true
+      const valid = await this.$validator.validateAll()
+
+      if (valid) {
+        try {
+          const { data: { data }} = await this.updateAddress({ profile: this.profile, id: this.user.id })
+          this.updateCurrentUser(data)
+
+          success({ text: 'Account successfully updated.' })
+        } catch (e) {}
         this.load = false
-        success({
-          text: 'Profile updated.'
-        })
-      }, 2000)
+      } else {
+        this.load = false
+      }
     }
   }
 }

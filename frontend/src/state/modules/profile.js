@@ -22,5 +22,9 @@ export const actions = {
     const user = rootGetters['auth/user']
 
     dispatch('auth/updateCurrentUser', { avatar: avatar.url }, { root: true })
+  },
+
+  async updateAddress ({ commit }, data) {
+    return await axios.patch(`user/${data.id}`, data.profile)
   }
 }
