@@ -1,19 +1,21 @@
 <template>
   <div>
-    <input
-      :class="classes"
-      :type="type"
-      :value="value"
-      v-bind="$attrs"
-      v-on="listeners"
-    >
+    <div class="w-full">
+      <input
+        :class="classes"
+        :type="type"
+        :value="value"
+        v-bind="$attrs"
+        v-on="listeners"
+      >
+      <span
+        v-show="hasError()"
+        class="text-red text-xs"
+      >
+        {{ errorMsg() }}
+      </span>
+    </div>
     <slot/>
-    <span
-      v-show="hasError()"
-      class="text-red text-xs"
-    >
-      {{ errorMsg() }}
-    </span>
   </div>
 </template>
 

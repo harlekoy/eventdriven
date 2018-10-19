@@ -62,7 +62,7 @@ class UserController extends Controller
     {
         $data = request()->all();
 
-        $address = $user->address;
+        $address = $user->address ?? new Address(['user_id' => $user->id]);
 
         $user->fill($data)->save();
 

@@ -17,9 +17,15 @@
       />
 
       <BaseInput
-        v-model="form.name"
-        placeholder="Name"
-        :error="validationErrors.name"
+        v-model="form.first_name"
+        placeholder="First Name"
+        :error="validationErrors.first_name"
+      />
+
+      <BaseInput
+        v-model="form.last_name"
+        placeholder="Last Name"
+        :error="validationErrors.last_name"
       />
 
       <BaseInput
@@ -51,6 +57,13 @@
         </span>
       </BaseButton>
 
+      <p
+        v-if="authError"
+        class="py-4 text-red text-sm text-center"
+      >
+        {{ authError }}
+      </p>
+
       <p class="py-4 text-center">
         <router-link
           to="/login"
@@ -68,6 +81,7 @@ import axios from 'axios'
 import Layout from '@layouts/Main'
 import { head, mapValues } from 'lodash'
 import { mapActions } from 'vuex'
+import { success } from '@utils/toast'
 
 export default {
   page: {
@@ -82,11 +96,14 @@ export default {
       form: {
         username: '',
         email: '',
-        name: '',
+        first_name: '',
+        last_name: '',
         password: '',
+        dob: '',
       },
       load: false,
       validationErrors: {},
+      authError: '',
     }
   },
 
@@ -122,9 +139,21 @@ export default {
 
       if (valid) {
         this.signup({
-          data: this.form,
-          cb: () => {
+          data: Object.assign(this.form, {
+            name: `${this.form.first_name} ${this.form.last_name}`,
+          }),
+          cb: (err) => {
             this.load = false
+
+            if (!err) {
+              success({
+                text: 'User account created.'
+              })
+
+              this.$router.push({ name: 'login' })
+            } else {
+              this.authError = description
+            }
           }
         })
       }

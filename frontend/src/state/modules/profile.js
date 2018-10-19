@@ -7,24 +7,20 @@ export const state = {
 }
 
 export const getters = {
-  avatar: state => state.avatar
 }
 
 export const mutations = {
-  setAvatar (state, avatar) {
-    state.avatar = avatar
-  }
 }
 
 export const actions = {
   async uploadAvatar ({ commit, dispatch, rootGetters }, formData) {
     const { data: { data: avatar }} = await axios.post('/upload', formData)
-    const user = rootGetters['auth/user']
 
     dispatch('auth/updateCurrentUser', { avatar: avatar.url }, { root: true })
+    await dispatch('updateAddress', rootGetters['auth/user'])
   },
 
   async updateAddress ({ commit }, data) {
-    return await axios.patch(`user/${data.id}`, data.profile)
+    return await axios.patch(`user/${data.id}`, data)
   }
 }

@@ -9,7 +9,7 @@
       />
     </div>
     <LazyLoad :src="avatar">
-      <img class="absolute" :src="avatar" alt="">
+      <img class="absolute w-full" :src="avatar" alt="">
       <div class="flex justify-center items-center w-32 h-32 bg-grey-lighter text-grey-darker" slot="placeholder">
         <BaseIcon
           class="text-xl z-50"

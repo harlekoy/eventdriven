@@ -21,13 +21,14 @@ class UserResource extends JsonResource
             'last_name'  => $this->last_name,
             'dob'        => $this->dob,
             'email'      => $this->email,
+            'avatar'     => $this->avatar,
             'created_at' => $this->created_at->toW3cString(),
             'updated_at' => $this->updated_at->toW3cString(),
         ];
 
         if ($this->address) {
             $data['address']    = [
-                'address_id' => $this->address->id,
+                'id'         => $this->address->id,
                 'address_1'  => $this->address->address_1,
                 'address_2'  => $this->address->address_2,
                 'city'       => $this->address->city,

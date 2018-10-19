@@ -24,7 +24,8 @@ class User extends Authenticatable
         'dob',
         'email',
         'auth0id',
-        'address_id'
+        'address_id',
+        'avatar',
     ];
 
     /**

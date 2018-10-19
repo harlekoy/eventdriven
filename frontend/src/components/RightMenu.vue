@@ -1,9 +1,9 @@
 <template>
   <div class="right relative">
-    <div class="item">
+    <a href="#" class="item">
       Help
       <i class="icon-help" />
-    </div>
+    </a>
     <template v-if="loggedIn">
       <div
         v-click-outside="hideDropdown"
@@ -11,7 +11,17 @@
         @click="toggleDropdown"
       >
         £9,054
-        <i class="icon-user" />
+        <LazyLoad v-if="avatar" :src="avatar">
+          <img class="w-9 h-9 rounded-full block ml-2" :src="avatar">
+          <div class="ml-2 flex justify-center items-center w-9 h-9 bg-grey-lighter text-grey-darker rounded-full" slot="placeholder">
+            <BaseIcon
+              class="text-sm z-50"
+              name="spinner"
+              spin
+            />
+          </div>
+        </LazyLoad>
+        <i v-else class="icon-user" />
         <div
           class="dropdown"
           :class="{ active }"
@@ -57,8 +67,13 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import ClickOutside from 'vue-click-outside'
+import { VueClazyLoad } from 'vue-clazy-load'
 
 export default {
+  components: {
+    LazyLoad: VueClazyLoad,
+  },
+
   data () {
     return {
       active: false
@@ -67,8 +82,15 @@ export default {
 
   computed: {
     ...mapGetters({
-      loggedIn: 'auth/loggedIn'
-    })
+      loggedIn: 'auth/loggedIn',
+      user: 'auth/user',
+    }),
+
+    avatar () {
+      if (this.user) {
+        return this.user.avatar
+      }
+    }
   },
 
   methods: {

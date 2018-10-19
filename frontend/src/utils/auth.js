@@ -1,4 +1,5 @@
 import auth0 from 'auth0-js'
+import { omit } from 'lodash'
 
 let webAuth = new auth0.WebAuth({
   domain: process.env.VUE_APP_AUTH0_DOMAIN,
@@ -15,13 +16,13 @@ export function signin (username, password, cb) {
   }, cb)
 }
 
-export function signup ({ username, email, password, metadata } = {}, cb) {
+export function signup (data = {}, cb) {
   webAuth.signup({
     connection: process.env.VUE_APP_AUTH0_REALM,
-    username,
-    email,
-    password,
-    user_metadata: metadata
+    username: data.username,
+    email: data.email,
+    password: data.password,
+    userMetadata: omit(data, ['username', 'name', 'email', 'password'])
   }, cb)
 }
 

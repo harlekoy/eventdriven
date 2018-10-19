@@ -70,6 +70,7 @@
                 :target-class="{ 'w-full': true }"
                 name="first_name"
                 placeholder="First name"
+                :error="validationErrors.first_name"
               />
 
               <!-- Last name -->
@@ -80,6 +81,7 @@
                 :target-class="{ 'w-full': true }"
                 name="last_name"
                 placeholder="Last name"
+                :error="validationErrors.last_name"
               />
 
               <!-- Email -->
@@ -90,6 +92,7 @@
                 :target-class="{ 'w-full': true }"
                 name="username"
                 placeholder="Username"
+                :error="validationErrors.username"
               />
 
               <!-- Email Address -->
@@ -100,66 +103,73 @@
                 :target-class="{ 'w-full': true }"
                 name="email"
                 placeholder="Email Address"
+                :error="validationErrors.email"
               />
 
               <!-- Address Line 1 -->
               <BaseInput
-                v-model="profile.address.address_1"
+                v-model="address.address_1"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
                 name="address_1"
                 placeholder="Address Line 1"
+                :error="validationErrors.address_1"
               />
 
               <!-- Address Line 2 -->
               <BaseInput
-                v-model="profile.address.address_2"
+                v-model="address.address_2"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
                 name="address_2"
                 placeholder="Address Line 2"
+                :error="validationErrors.address_2"
               />
 
               <!-- Town / City -->
               <BaseInput
-                v-model="profile.address.city"
+                v-model="address.city"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
                 name="city"
                 placeholder="Town / City"
+                :error="validationErrors.city"
               />
 
               <!-- State / County -->
               <BaseInput
-                v-model="profile.address.state"
+                v-model="address.state"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
                 name="state"
                 placeholder="State / County"
+                :error="validationErrors.state"
               />
 
               <!-- Country -->
               <BaseInput
-                v-model="profile.address.country"
+                v-model="address.country"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
                 name="country"
                 placeholder="Country"
+                :error="validationErrors.country"
               />
 
               <!-- Zip code / Postcode -->
               <BaseInput
-                v-model="profile.address.zip_code"
+                v-model="address.zip_code"
                 v-validate="'required'"
                 class="w-1/2 px-4 my-1"
                 :target-class="{ 'w-full': true }"
                 name="postcode"
                 placeholder="Zip Code / Postcode"
+                :error="validationErrors.zip_code"
               />
             </div>
             <div class="flex justify-end">
@@ -196,7 +206,7 @@
 <script>
 import Layout from '@layouts/Main'
 import { mapGetters, mapActions } from 'vuex'
-import { assign, pick } from 'lodash'
+import { assign, pick, mapValues, head } from 'lodash'
 import Uploader from '@components/Uploader'
 import { success } from '@utils/toast'
 
@@ -222,15 +232,16 @@ export default {
         last_name: '',
         email: '',
         username: '',
-        address: {
-          address_1: '',
-          address_2: '',
-          state: '',
-          city: '',
-          zip_code: '',
-          country: '',
-        }
       },
+      address: {
+        address_1: '',
+        address_2: '',
+        state: '',
+        city: '',
+        zip_code: '',
+        country: '',
+      },
+      validationErrors: {},
       load: false,
     }
   },
@@ -242,7 +253,7 @@ export default {
   },
 
   mounted () {
-    assign(this.profile, pick(this.user, ['first_name', 'last_name', 'username', 'email', 'address']))
+    this.initData()
   },
 
   methods: {
@@ -251,21 +262,40 @@ export default {
       updateCurrentUser: 'auth/updateCurrentUser'
     }),
 
+    initData() {
+      this.profile = Object.assign(this.profile, pick(this.user, [
+        'id',
+        'first_name',
+        'last_name',
+        'username',
+        'email',
+      ]))
+
+      this.address = Object.assign(this.address, this.user.address)
+    },
+
     async updateProfile () {
       this.load = true
-      const valid = await this.$validator.validateAll()
 
-      if (valid) {
-        try {
-          const { data: { data }} = await this.updateAddress({ profile: this.profile, id: this.user.id })
-          this.updateCurrentUser(data)
+      try {
+        const { data: { data }} = await this.updateAddress({
+          ...this.profile,
+          address: this.address,
+        })
 
-          success({ text: 'Account successfully updated.' })
-        } catch (e) {}
-        this.load = false
-      } else {
-        this.load = false
+        await this.updateCurrentUser(data)
+
+        success({
+          text: 'Account successfully updated.',
+          width: 400,
+        })
+      } catch ({ response: { data: { errors }} }) {
+        this.validationErrors = mapValues(errors, (errors) => {
+          return head(errors)
+        })
       }
+
+      this.load = false
     }
   }
 }
@@ -274,5 +304,9 @@ export default {
 <style scoped>
 /deep/ input {
   @apply bg-grey-lightest p-4 rounded my-2 border border-grey-lightest
+}
+
+/deep/ .border-red {
+  @apply border-red
 }
 </style>

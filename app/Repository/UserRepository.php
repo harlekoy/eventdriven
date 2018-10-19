@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Auth0\ManagementAPI;
+use App\Auth0\UserData;
 use App\Models\User;
 use Auth0\Login\Contract\Auth0UserRepository;
 
@@ -34,17 +35,17 @@ class UserRepository implements Auth0UserRepository {
         if ($user) {
           $api = ManagementAPI::create();
           $identity = explode('|', $profile->user_id);
-
           $api->users->linkAccount($user->auth0id, [
               'provider' => head($identity),
               'user_id'  => last($identity),
           ]);
         } else {
-          $user = User::create([
-            'email'    => $profile->email,
-            'auth0id'  => $profile->user_id,
-            'name'     => $profile->name
-          ]);
+          $user = User::create(array_merge([
+            'email'      => $profile->email,
+            'auth0id'    => $profile->user_id,
+            'first_name' => $profile->name,
+            'username'   => $profile->nickname,
+          ], UserData::identity($profile->user_id)));
         }
       }
 

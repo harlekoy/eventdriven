@@ -11,8 +11,9 @@
         "fideloper/proxy": "^4.0",
         "jrm2k6/cloudder": "^0.6.0",
         "laravel/framework": "5.7.*",
+        "laravel/nova": "*",
         "laravel/tinker": "^1.0",
-        "laravel/nova": "*"
+        "silvanite/nova-field-cloudinary": "^1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

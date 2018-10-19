@@ -1,12 +1,12 @@
 <template>
 <BaseInput
   class="flex relative items-center"
-  v-model="value"
+  v-model="password"
   :type="type"
   placeholder="Password"
   :error="error"
 >
-<a v-if="value" class="absolute pin-r p-4" @click="toggle" href="#">
+<a v-if="value" class="absolute pin-r p-4" @click.prevent="toggle" href="#">
   <BaseIcon
     class="text-grey"
     :name="icon"
@@ -29,10 +29,16 @@ export default {
     }
   },
 
-  watch: {
-    value (current) {
-      this.$emit('input', current)
+  data () {
+    return {
+      password: '',
     }
+  },
+
+  watch: {
+    password (current) {
+      this.$emit('input', current)
+    },
   },
 
   data () {
