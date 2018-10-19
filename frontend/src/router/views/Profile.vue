@@ -185,8 +185,9 @@
 
 <script>
 import Layout from '@layouts/Main'
-import { mapGetters } from 'vuex'
 import Uploader from '@components/Uploader'
+import { mapGetters } from 'vuex'
+import { success } from '@utils/toast'
 
 export default {
   page() {
@@ -232,6 +233,9 @@ export default {
 
       setTimeout(() => {
         this.load = false
+        success({
+          text: 'Profile updated.'
+        })
       }, 2000)
     }
   }

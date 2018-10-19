@@ -6,7 +6,7 @@
   placeholder="Password"
   :error="error"
 >
-<a class="absolute pin-r p-4" @click="toggle" href="#">
+<a v-if="value" class="absolute pin-r p-4" @click="toggle" href="#">
   <BaseIcon
     class="text-grey"
     :name="icon"

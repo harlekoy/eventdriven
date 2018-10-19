@@ -24,7 +24,11 @@
     class="text-black my-8 font-bold hover:text-green-dark"
     href="#"
   >
-    Upload New Picture
+    <BaseIcon
+      class="mr-2"
+      name="camera"
+    />
+    Upload Picture
   </a>
 </div>
 </template>
@@ -34,6 +38,7 @@ import { VueClazyLoad } from 'vue-clazy-load'
 import axios from 'axios'
 import { mapActions, mapGetters } from 'vuex'
 import { get } from 'lodash'
+import { success, fail } from '@utils/toast'
 
 export default {
   components: {
@@ -48,17 +53,20 @@ export default {
 
   created() {
     this.$upload.on('profile-avatar', {
-      onSuccess(res) {
-        this.$msgbag.success('Avatar uploaded successfully.');
-      },
       onError(res) {
-        console.log(res)
-        // this.$msgbag.error('Error uploading avatar.');
+        fail({
+          text: 'Error uploading avatar.'
+        })
       },
+
       http: async (data) => {
         this.load = true
         await this.uploadAvatar(data.body)
         this.load = false
+
+        success({
+          text: 'Avatar uploaded.'
+        })
       }
     })
   },
