@@ -7,7 +7,7 @@
             <h1 class="text-6xl lg:text-8xl">
               404
             </h1>
-            <p class="text-lg lg:text-2xl">
+            <p class="text-lg lg:text-xl font-light">
               We are very sorry for the inconvience. It looks like you're trying to access a page that either has been deleted or never even existed.
             </p>
             <div class="mt-4">
@@ -18,8 +18,8 @@
           </div>
         </div>
         <div class="flex-1 justify-center flex">
-          <img 
-            class="w-1/3 lg:w-2/3" 
+          <img
+            class="w-1/3 lg:w-2/3"
             src="/ace.svg"
           >
         </div>

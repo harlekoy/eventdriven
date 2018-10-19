@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'auth0',
     ],
 
     /*
@@ -38,11 +38,16 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'auth0',
         ],
 
         'api' => [
             'driver' => 'token',
+            'provider' => 'auth0',
+        ],
+
+        'admins' => [
+            'driver' => 'session',
             'provider' => 'users',
         ],
     ],
@@ -65,14 +70,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'auth0' => [
             'driver' => 'auth0'
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
     ],
 
     /*
@@ -91,6 +96,12 @@ return [
     */
 
     'passwords' => [
+        'auth0' => [
+            'provider' => 'auth0',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',

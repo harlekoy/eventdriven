@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=1280">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="/favicon.png">
 
     <title>{{ Nova::name() }}</title>
 
@@ -24,8 +25,12 @@
             <!-- Sidebar -->
             <div class="min-h-screen flex-none pt-header min-h-screen w-sidebar bg-grad-sidebar px-6">
                 <a href="{{ Nova::path() }}">
-                    <div class="absolute pin-t pin-l pin-r bg-logo flex items-center w-sidebar h-header px-6 text-white">
-                       @include('nova::partials.logo')
+                    <div class="absolute pin-t pin-l pin-r bg-logo flex items-center w-sidebar h-header px-6 text-white justify-center">
+                       @include('nova::partials.logo', [
+                            'height' => '34',
+                            'logoColor' => '#fff',
+                            'logoTextColor' => '#fff',
+                       ])
                     </div>
                 </a>
 
