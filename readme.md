@@ -18,7 +18,7 @@ This is a Laravel and Vue.JS based web application.
 
 6.) Run `php artisan key:generate`
 
-7.) Run `php artisan migrate`
+7.) Run `php artisan migrate --seed`
 
 8.) Run `php artisan serve`
 
@@ -33,3 +33,9 @@ This is a Laravel and Vue.JS based web application.
 
 4.) Run `npm run serve` or `yarn serve`
 
+## App URL paths
+
+- App Login `prophet.test/login`
+- App API `prophet.test/api/*`
+- Admin Login `prophet.test/admin/login`
+- Admin API `prophet.test/nova-api/*`

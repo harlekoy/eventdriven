@@ -11,6 +11,7 @@
 >
     {{ csrf_field() }}
 
+    @include('nova::auth.partials.alert')
     @component('nova::auth.partials.heading')
         {{ __('Welcome Back!') }}
     @endcomponent
