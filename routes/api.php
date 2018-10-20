@@ -34,6 +34,11 @@ Route::group(['middleware' => 'jwt'], function () {
 
     Route::apiResource('user', 'UserController');
     Route::apiResource('user.address', 'UserAddressController');
+
+    Route::group(['middleware' => 'sport_league'], function () {
+        Route::apiResource('teams', 'TeamController');
+        Route::apiResource('players', 'PlayerController');
+    });
 });
 
 // Route::get('/private-scoped', function (Request $request) {

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
+import { fail } from '@utils/toast'
 import { getSavedState } from '@utils/localStorage'
 
 axios.defaults.baseURL = process.env.VUE_APP_API_URL
@@ -10,18 +11,23 @@ axios.interceptors.request.use(request => {
 
   if (user) {
     request.headers.common['Authorization'] = `Bearer ${user.id_token}`
+    request.headers.common['X-Sport-League'] = 'nba'
   }
 
   return request
 })
 
 axios.interceptors.response.use(response => response, async (error) => {
-  const { status } = error.response
+  const { status, data: { message }} = error.response
 
-  if (status === 403) {
-    alert(status)
-  } else if (status === 404) {
-    alert(status)
+  switch (status) {
+    case 403:
+    case 404:
+      fail({
+        text: message,
+        timer: 5000,
+      })
+    break
   }
 
   return Promise.reject(error)

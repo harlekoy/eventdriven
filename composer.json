@@ -13,7 +13,8 @@
         "laravel/framework": "5.7.*",
         "laravel/nova": "*",
         "laravel/tinker": "^1.0",
-        "silvanite/nova-field-cloudinary": "^1.0"
+        "silvanite/nova-field-cloudinary": "^1.0",
+        "hipsterjazzbo/landlord": "dev-laravel-57"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -41,6 +42,10 @@
         {
             "type": "path",
             "url": "./nova"
+        },
+        {
+            "type": "vcs",
+            "url":  "git@github.com:hmazter/Landlord.git"
         }
     ],
     "extra": {

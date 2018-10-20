@@ -25,6 +25,7 @@ import appConfig from '@src/app.config'
 import Layout from '@layouts/Main'
 import Banner from '@components/Banner'
 import Carousel from '@components/Carousel'
+import { mapActions } from 'vuex'
 
 export default {
   page: {
@@ -37,5 +38,15 @@ export default {
     Banner,
     Carousel
   },
+
+  async mounted () {
+    await this.fetchTeams()
+  },
+
+  methods: {
+    ...mapActions({
+        fetchTeams: 'league/fetchTeams',
+    })
+  }
 }
 </script>
