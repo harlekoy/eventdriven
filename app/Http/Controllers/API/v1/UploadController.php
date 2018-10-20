@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\UploadRequest;
 use App\Http\Resources\UploadResource;
 use App\Models\Upload;

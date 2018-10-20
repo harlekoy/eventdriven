@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Models\Address;
 use App\Models\Upload;
+use App\Traits\HasAddress;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasAddress;
 
     /**
      * The attributes that are mass assignable.

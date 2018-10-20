@@ -35,15 +35,13 @@ Route::group(['middleware' => 'jwt'], function () {
     Route::apiResource('user', 'UserController');
     Route::apiResource('user.address', 'UserAddressController');
 
+    Route::apiResource('transactions', 'TransactionController', [
+        'only' => ['index', 'show'],
+    ]);
+
     Route::group(['middleware' => 'sport_league'], function () {
         Route::apiResource('teams', 'TeamController');
         Route::apiResource('players', 'PlayerController');
     });
 });
-
-// Route::get('/private-scoped', function (Request $request) {
-//     return response()->json([
-//         "message" => "Hello from a private endpoint! You need to have a valid Access Token and a scope of read:messages to see this."
-//     ]);
-// })->middleware('check.scope:read:messages');
 
