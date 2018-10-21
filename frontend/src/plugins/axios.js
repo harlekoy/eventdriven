@@ -28,6 +28,16 @@ axios.interceptors.response.use(response => response, async (error) => {
         timer: 5000,
       })
     break
+
+    case 500:
+      fail({
+        title: 'Error!',
+        text: message,
+        timer: 5000,
+        position: 'bottom-right',
+        width: 500,
+      })
+    break
   }
 
   return Promise.reject(error)
