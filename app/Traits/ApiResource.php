@@ -16,6 +16,14 @@ trait ApiResource
     public $resource;
 
     /**
+     * API controller constructor.
+     */
+    public function __construct()
+    {
+        $this->apiInstances($this->init());
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

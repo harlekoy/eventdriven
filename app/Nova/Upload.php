@@ -2,28 +2,29 @@
 
 namespace App\Nova;
 
+use App\Nova\User;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
-class User extends Resource
+class Upload extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\\Models\\User';
+    public static $model = 'App\\Models\Upload';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'image_name';
 
     /**
      * The columns that should be searched.
@@ -31,32 +32,8 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id',
-        'username',
-        'first_name',
-        'last_name',
-        'email',
+        'image_name',
     ];
-
-    /**
-     * Get the value that should be displayed to represent the resource.
-     *
-     * @return string
-     */
-    public function title()
-    {
-        return $this->first_name.' '.$this->last_name;
-    }
-
-    /**
-     * Get the search result subtitle for the resource.
-     *
-     * @return string
-     */
-    public function subtitle()
-    {
-        return $this->email;
-    }
 
     /**
      * Get the fields displayed by the resource.
@@ -69,30 +46,13 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
-            CloudinaryImage::make('Avatar'),
+            MorphTo::make('Uploader', 'uploadable')->types([
+                User::class,
+            ]),
 
-            Text::make('Username')
-                ->sortable()
-                ->rules('required', 'max:255'),
 
-            Text::make('First Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Last Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
-
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:6')
-                ->updateRules('nullable', 'string', 'min:6'),
+            CloudinaryImage::make('Image', 'image_url'),
+            Text::make('Title', 'image_name'),
         ];
     }
 

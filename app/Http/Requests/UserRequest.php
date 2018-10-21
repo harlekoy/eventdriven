@@ -8,11 +8,12 @@ class UserRequest extends FormRequest
 {
     protected $rules = [
         'POST' => [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|unique:users,email',
-            'username' => 'required|unique:users,username',
+            'first_name' => 'required|string|max:255|bail',
+            'last_name' => 'required|string|max:255|bail',
+            'email' => 'required|string|email|max:255|unique:users,email|bail',
+            'username' => 'required|string|max:255|unique:users,username|bail',
             'dob' => 'nullable|date',
+            'password' => 'required',
             'address' => [
                 'address_1' => 'required',
                 'address_2' => 'nullable',

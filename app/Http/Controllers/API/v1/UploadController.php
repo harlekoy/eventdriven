@@ -8,6 +8,7 @@ use App\Models\Upload;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use JD\Cloudder\Facades\Cloudder;
 
 class UploadController extends Controller
@@ -25,35 +26,12 @@ class UploadController extends Controller
 
         Cloudder::upload($pathname, null);
 
-        list($width, $height) = getimagesize($pathname);
-
-        $url = Cloudder::show(
-            Cloudder::getPublicId(), compact('width', 'height')
-        );
-
         $upload = Upload::create([
-            'image_name' => $file->getClientOriginalName(),
-            'image_url'  => $url,
+            'uploadable_id'   => Auth::user()->id,
+            'uploadable_type' => User::class,
+            'image_name'      => $file->getClientOriginalName(),
+            'image_url'       => Cloudder::getPublicId().'.jpeg',
         ]);
-
-        return new UploadResource($upload);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UploadRequest $request, Upload $upload)
-    {
-        $types =  $request->uploadables();
-
-        $upload->fill([
-            'model_type' => $types[$request->type_name],
-            'model_id'   => $request->type_id
-        ])->save();
 
         return new UploadResource($upload);
     }

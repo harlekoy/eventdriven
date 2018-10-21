@@ -27,11 +27,6 @@ Route::group(['middleware' => 'jwt'], function () {
         'as'   => 'upload.store'
     ]);
 
-    Route::patch('/upload/{upload}', [
-        'uses' => 'UploadController@update',
-        'as'   => 'upload.update'
-    ]);
-
     Route::apiResource('user', 'UserController');
     Route::apiResource('user.address', 'UserAddressController');
 

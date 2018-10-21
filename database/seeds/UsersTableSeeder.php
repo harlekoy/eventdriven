@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
                 'username'   => 'admin',
                 'first_name' => 'Harlequin',
                 'last_name'  => 'Doyon',
-                'password'   => bcrypt('Testing@123'),
+                'password'   => 'Testing@123',
                 'email'      => 'admin@admin.com',
                 'auth0id'    => 'auth0|5bc459173385d56f61f6f007',
                 'avatar'     => 'https://lh3.googleusercontent.com/-3leip6HHt1c/AAAAAAAAAAI/AAAAAAAAADU/LAY-wyLxkv0/photo.jpg',

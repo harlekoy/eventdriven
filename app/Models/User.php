@@ -5,13 +5,14 @@ namespace App\Models;
 use App\Models\Address;
 use App\Models\Upload;
 use App\Traits\HasAddress;
+use App\Traits\HasAuth0;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasAddress;
+    use Notifiable, HasAuth0, HasAddress;
 
     /**
      * The attributes that are mass assignable.
@@ -19,14 +20,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'username',
+        'address_id',
+        'auth0id',
+        'avatar',
         'dob',
         'email',
-        'auth0id',
-        'address_id',
-        'avatar',
+        'first_name',
+        'last_name',
+        'password',
+        'phone_number',
+        'username',
     ];
 
     /**
@@ -74,5 +77,15 @@ class User extends Authenticatable
     public function getFullnameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
+    }
+
+    /**
+     * Set password attribute.
+     *
+     * @param string $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
     }
 }

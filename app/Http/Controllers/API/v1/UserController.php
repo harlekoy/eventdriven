@@ -13,14 +13,16 @@ class UserController extends Controller
     use ApiResource;
 
     /**
-     * API controller constructor.
+     * Initialize API resource.
+     *
+     * @return array
      */
-    public function __construct()
+    public function init()
     {
-        $this->apiInstances([
+        return [
             'model'    => User::class,
             'request'  => UserRequest::class,
             'resource' => UserResource::class,
-        ]);
+        ];
     }
 }
