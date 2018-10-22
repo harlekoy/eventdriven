@@ -35,6 +35,44 @@
         :error="validationErrors.email"
       />
 
+      <PlaceInput
+        v-model="form.address.address_1"
+        type="text"
+        @change="onComplete"
+        placeholder="Address, Country, Postcode"/>
+
+      <BaseInput
+        v-show="form.address.address_2"
+        v-model="form.address.address_2"
+        type="text"
+        placeholder="Country"
+        :error="validationErrors.email"
+      />
+
+      <BaseInput
+        v-show="form.address.country"
+        v-model="form.address.country"
+        type="text"
+        placeholder="Country"
+        :error="validationErrors.email"
+      />
+
+      <BaseInput
+        v-show="form.address.city"
+        v-model="form.address.city"
+        type="text"
+        placeholder="City"
+        :error="validationErrors.city"
+      />
+
+      <BaseInput
+        v-show="form.address.postcode"
+        v-model="form.address.postcode"
+        type="text"
+        placeholder="Postcode"
+        :error="validationErrors.postcode"
+      />
+
       <BasePassword
         v-model="form.password"
         type="password"
@@ -82,6 +120,7 @@ import Layout from '@layouts/Main'
 import { head, mapValues } from 'lodash'
 import { mapActions } from 'vuex'
 import { success } from '@utils/toast'
+import PlaceInput from 'vue-places'
 
 export default {
   page: {
@@ -89,7 +128,7 @@ export default {
     meta: [{ name: 'description', content: 'Register' }],
   },
 
-  components: { Layout },
+  components: { Layout, PlaceInput },
 
   data () {
     return {
@@ -99,6 +138,13 @@ export default {
         first_name: '',
         last_name: '',
         password: '',
+        address: {
+          address_1: '',
+          address_2: '',
+          city: '',
+          country: '',
+          country_code: '',
+        },
         dob: '',
       },
       load: false,
@@ -115,6 +161,18 @@ export default {
     ...mapActions({
       signup: 'auth/signUp',
     }),
+
+    onComplete(response) {
+      let {country, postcode, value, name, countryCode} = response
+
+      this.form.address = {
+        address_1: value,
+        address_2: name,
+        country: country,
+        postcode: postcode,
+        country_code: countryCode
+      }
+    },
 
     async validate () {
       try {
@@ -165,5 +223,17 @@ export default {
 <style scoped>
 /deep/ input {
   @apply bg-grey-lighter rounded my-3 p-4 w-full
+}
+
+.ap-input {
+  height: 50px;
+  @apply border-none;
+}
+
+.ap-icon-clear {
+  width: 12px;
+  height: 12px;
+  top: 30px;
+  cursor: pointer;
 }
 </style>

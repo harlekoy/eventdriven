@@ -27,12 +27,12 @@
                 </router-link>
               </li>
               <li class="py-4 border-b">
-                <a
+                <router-link
                   class="text-black font-bold hover:text-green-dark"
-                  href="#"
+                  :to="{ name: 'forgot-password' }"
                 >
                   Password
-                </a>
+                </router-link>
               </li>
               <li class="py-4 border-b">
                 <a
