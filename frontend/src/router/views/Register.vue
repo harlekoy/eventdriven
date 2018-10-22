@@ -39,6 +39,7 @@
         v-model="form.address.address_1"
         type="text"
         @change="onComplete"
+        :error="validationErrors.address_1"
         placeholder="Address, Country, Postcode"/>
 
       <BaseInput
@@ -46,7 +47,7 @@
         v-model="form.address.address_2"
         type="text"
         placeholder="Country"
-        :error="validationErrors.email"
+        :error="validationErrors.address_2"
       />
 
       <BaseInput
@@ -54,7 +55,7 @@
         v-model="form.address.country"
         type="text"
         placeholder="Country"
-        :error="validationErrors.email"
+        :error="validationErrors.country"
       />
 
       <BaseInput
