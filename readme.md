@@ -39,3 +39,8 @@ This is a Laravel and Vue.JS based web application.
 - App API `prophet.test/api/*`
 - Admin Login `prophet.test/admin/login`
 - Admin API `prophet.test/nova-api/*`
+
+## Additional Information
+
+Here is the [Postman](https://www.getpostman.com/collections/9d43ee6cdba7ee7064c0) routes to test the API.
+Note: Make sure the Laravel instance is running.
