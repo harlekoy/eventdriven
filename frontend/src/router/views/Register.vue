@@ -117,10 +117,11 @@
 <script>
 import axios from 'axios'
 import Layout from '@layouts/Main'
+import PlaceInput from 'vue-places'
+import { geoip } from '@utils/geoip'
 import { head, mapValues } from 'lodash'
 import { mapActions } from 'vuex'
 import { success } from '@utils/toast'
-import PlaceInput from 'vue-places'
 
 export default {
   page: {
@@ -153,8 +154,9 @@ export default {
     }
   },
 
-  mounted () {
+  async mounted () {
     this.validationErrors = Object.assign({}, this.form)
+    console.log(await geoip())
   },
 
   methods: {
