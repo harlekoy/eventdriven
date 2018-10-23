@@ -1,18 +1,23 @@
 <template>
-<BaseInput
-  class="flex relative items-center"
-  v-model="password"
-  :type="type"
-  placeholder="Password"
-  :error="error"
->
-<a v-if="value" class="absolute pin-r p-4" @click.prevent="toggle" href="#">
-  <BaseIcon
-    class="text-grey"
-    :name="icon"
-  />
-</a>
-</BaseInput>
+  <BaseInput
+    v-model="password"
+    class="flex relative items-center"
+    :type="type"
+    placeholder="Password"
+    :error="error"
+  >
+    <a
+      v-if="value"
+      class="absolute pin-r p-4"
+      href="#"
+      @click.prevent="toggle"
+    >
+      <BaseIcon
+        class="text-grey"
+        :name="icon"
+      />
+    </a>
+  </BaseInput>
 </template>
 
 <script>
@@ -32,6 +37,8 @@ export default {
   data () {
     return {
       password: '',
+      icon: 'eye-slash',
+      type: 'password',
     }
   },
 
@@ -39,14 +46,6 @@ export default {
     password (current) {
       this.$emit('input', current)
     },
-  },
-
-  data () {
-    return {
-      password: '',
-      icon: 'eye-slash',
-      type: 'password',
-    }
   },
 
   methods: {

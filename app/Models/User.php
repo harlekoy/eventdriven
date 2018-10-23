@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\Upload;
 use App\Traits\HasAddress;
 use App\Traits\HasAuth0;
+use App\Traits\HasAvatar;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,7 +16,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class User extends Authenticatable
 {
     use Notifiable, HasAuth0, HasAddress,
-        CausesActivity;
+        HasAvatar, CausesActivity;
 
     /**
      * The attributes that are mass assignable.

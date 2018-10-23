@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { saveState } from '@utils/localStorage'
 
 export const state = {
   info: {},

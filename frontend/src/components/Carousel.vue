@@ -1,11 +1,27 @@
 <template>
-  <carousel class="carousel" :paginationEnabled="false" :navigationEnabled="true" :perPage="4" :perPageCustom="[[0, 1], [768, 2], [992, 3], [1200, 4]]">
-    <slide class="carousel-inner"><card/></slide>
-    <slide class="carousel-inner"><card/></slide>
-    <slide class="carousel-inner"><card/></slide>
-    <slide class="carousel-inner"><card/></slide>
-    <slide class="carousel-inner"><card/></slide>
-  </carousel>
+  <Carousel 
+    class="carousel" 
+    :pagination-enabled="false" 
+    :navigation-enabled="true" 
+    :per-page="4" 
+    :per-page-custom="[[0, 1], [768, 2], [992, 3], [1200, 4]]"
+  >
+    <Slide class="carousel-inner">
+      <Card />
+    </Slide>
+    <Slide class="carousel-inner">
+      <Card />
+    </Slide>
+    <Slide class="carousel-inner">
+      <Card />
+    </Slide>
+    <Slide class="carousel-inner">
+      <Card />
+    </Slide>
+    <Slide class="carousel-inner">
+      <Card />
+    </Slide>
+  </Carousel>
 </template>
 
 <script>

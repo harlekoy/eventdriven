@@ -1,63 +1,95 @@
 <template>
   <div class="white-wrapper">
     <div class="flex justify-between border-b border-grey-light pb-6 mb-6">
-      <p class="lg">Account Setup</p>
+      <p class="lg">
+        Account Setup
+      </p>
       <p>76% Complete</p>
     </div>
     <table class="w-full">
       <tr>
         <td>
-          <p class="font-semibold">Email</p>
+          <p class="font-semibold">
+            Email
+          </p>
         </td>
         <td>
-          <p class="font-light">alex@orchestrate.nyc</p>
+          <p class="font-light">
+            alex@orchestrate.nyc
+          </p>
         </td>
         <td>
-          <p class="font-semibold text-green text-right">Verify</p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <p class="font-semibold">Phone</p>
-        </td>
-        <td>
-          <p class="font-light">+1 (917) 285-3415</p>
-        </td>
-        <td>
-          <p class="font-semibold text-green text-right">Verify</p>
+          <p class="font-semibold text-green text-right">
+            Verify
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <p class="font-semibold">Bank</p>
+          <p class="font-semibold">
+            Phone
+          </p>
         </td>
         <td>
-          <p class="font-light">Connected</p>
+          <p class="font-light">
+            +1 (917) 285-3415
+          </p>
         </td>
         <td>
-          <p class="font-semibold text-green text-right">+ Add</p>
+          <p class="font-semibold text-green text-right">
+            Verify
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="font-semibold">
+            Bank
+          </p>
+        </td>
+        <td>
+          <p class="font-light">
+            Connected
+          </p>
+        </td>
+        <td>
+          <p class="font-semibold text-green text-right">
+            + Add
+          </p>
         </td>
       </tr>
       <tr class="bg-red-lightest">
         <td>
-          <p class="font-semibold">KYC Info</p>
+          <p class="font-semibold">
+            KYC Info
+          </p>
         </td>
         <td>
-          <p class="font-semibold text-red"><i class="icon-warning"></i> Missing</p>
+          <p class="font-semibold text-red">
+            <i class="icon-warning" /> Missing
+          </p>
         </td>
         <td>
-          <p class="font-semibold text-red text-right">+ Add</p>
+          <p class="font-semibold text-red text-right">
+            + Add
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <p class="font-semibold">Funds</p>
+          <p class="font-semibold">
+            Funds
+          </p>
         </td>
         <td>
-          <p class="font-light">$0.00</p>
+          <p class="font-light">
+            $0.00
+          </p>
         </td>
         <td>
-          <p class="font-semibold text-green text-right">+ Deposit</p>
+          <p class="font-semibold text-green text-right">
+            + Deposit
+          </p>
         </td>
       </tr>
     </table>

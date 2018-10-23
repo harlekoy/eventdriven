@@ -10,7 +10,6 @@
 <script>
 import LeftMenu from '@components/LeftMenu'
 import RightMenu from '@components/RightMenu'
-import { mapGetters } from 'vuex'
 
 export default {
   components: {

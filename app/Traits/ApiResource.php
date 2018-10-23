@@ -5,6 +5,7 @@ namespace App\Traits;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 trait ApiResource
 {
@@ -14,6 +15,11 @@ trait ApiResource
      * @var string
      */
     public $resource;
+
+    /**
+     * @var integer
+     */
+    public $limit = 15;
 
     /**
      * API controller constructor.
@@ -28,9 +34,11 @@ trait ApiResource
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Model $model)
+    public function index(Request $request, Model $model)
     {
-        return $this->apiResponse($model->get());
+        $records = $this->fetchRecords();
+
+        return $this->apiResponse($records);
     }
 
     /**
@@ -102,7 +110,8 @@ trait ApiResource
     {
         $apiResource = $this->resource;
 
-        if ($model instanceOf Collection) {
+        if ($model instanceOf Collection ||
+            $model instanceOf LengthAwarePaginator) {
             return $apiResource::collection($model);
         }
 
@@ -119,6 +128,32 @@ trait ApiResource
         $model = app(Model::class);
 
         return $model->findOrFail($id);
+    }
+
+    /**
+     * Fetch records based on query params.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function fetchRecords()
+    {
+        $model = app(Model::class);
+
+        if ($page = request()->get('page')) {
+            return $model->paginate($this->limit());
+        }
+
+        return $model->get();
+    }
+
+    /**
+     * Get request limit or return the default if not exist.
+     *
+     * @return int
+     */
+    public function limit()
+    {
+        return request()->get('limit', $this->limit);
     }
 
     /**

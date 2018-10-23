@@ -10,12 +10,18 @@
       </button>
     </Banner>
     <div class="container mx-auto my-12">
-      <h3 class="text-center mb-10">Events</h3>
-      <carousel></carousel>
-      <h3 class="text-center mt-12 mb-10">Teams</h3>
-      <carousel></carousel>
-      <h3 class="text-center mt-12 mb-10">Players</h3>
-      <carousel></carousel>
+      <h3 class="text-center mb-10">
+        Events
+      </h3>
+      <Carousel />
+      <h3 class="text-center mt-12 mb-10">
+        Teams
+      </h3>
+      <Carousel />
+      <h3 class="text-center mt-12 mb-10">
+        Players
+      </h3>
+      <Carousel />
     </div>
   </Layout>
 </template>
@@ -45,7 +51,7 @@ export default {
 
   methods: {
     ...mapActions({
-        fetchTeams: 'league/fetchTeams',
+      fetchTeams: 'league/fetchTeams',
     })
   }
 }

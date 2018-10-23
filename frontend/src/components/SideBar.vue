@@ -20,14 +20,16 @@ export default {
     <div class="flex flex-col w-48">
       <Uploader />
       <ul class="list-reset">
-        <li 
+        <li
           v-for="(item, index) in menu"
           :key="index"
-          class="py-4 border-b">
+          class="py-4 border-b"
+        >
           <router-link
             class="text-black font-bold hover:text-green-dark"
-            :to="item.path">
-            {{item.name}}
+            :to="item.path"
+          >
+            {{ item.name }}
           </router-link>
         </li>
       </ul>

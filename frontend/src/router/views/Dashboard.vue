@@ -1,10 +1,12 @@
 <template>
   <Layout class="bg-green-linear">
-    <h1 class="text-center my-8">Your Dashboard</h1>
+    <h1 class="text-center my-8">
+      Your Dashboard
+    </h1>
     <div class="container mx-auto mb-10 flex board">
       <div class="side">
-        <balance/>
-        <account-setup/>
+        <Balance />
+        <AccountSetup />
       </div>
       <div class="main white-wrapper">
         <div class="tabs mb-6">
@@ -38,8 +40,10 @@
               <td>29:1</td>
               <td>-$985</td>
               <td>
-                <i class="icon-trash"></i>
-                <button class="btn btn-success btn-xs">EDIT</button>
+                <i class="icon-trash" />
+                <button class="btn btn-success btn-xs">
+                  EDIT
+                </button>
               </td>
             </tr>
             <tr>
@@ -48,8 +52,10 @@
               <td>29:1</td>
               <td>-$985</td>
               <td>
-                <i class="icon-trash"></i>
-                <button class="btn btn-success btn-xs">EDIT</button>
+                <i class="icon-trash" />
+                <button class="btn btn-success btn-xs">
+                  EDIT
+                </button>
               </td>
             </tr>
             <tr>
@@ -58,8 +64,10 @@
               <td>29:1</td>
               <td>-$985</td>
               <td>
-                <i class="icon-trash"></i>
-                <button class="btn btn-success btn-xs">EDIT</button>
+                <i class="icon-trash" />
+                <button class="btn btn-success btn-xs">
+                  EDIT
+                </button>
               </td>
             </tr>
             <tr>
@@ -68,21 +76,26 @@
               <td>29:1</td>
               <td>-$985</td>
               <td>
-                <i class="icon-trash"></i>
-                <button class="btn btn-success btn-xs">EDIT</button>
+                <i class="icon-trash" />
+                <button class="btn btn-success btn-xs">
+                  EDIT
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
         <div class="actions">
-          <a href="" class="text-base">
+          <a 
+            href="" 
+            class="text-base"
+          >
             See all transactions
-            <i class="icon-down"></i>
+            <i class="icon-down" />
           </a>
         </div>
       </div>
     </div>
-    <bank-accounts/>
+    <BankAccounts />
   </Layout>
 </template>
 

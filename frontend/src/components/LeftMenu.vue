@@ -11,7 +11,10 @@
       <i class="icon-down" />
       <div class="menu-dropdown">
         <div class="parent">
-          <div class="item active" @mouseenter="showInnerMenu">
+          <div 
+            class="item active" 
+            @mouseenter="showInnerMenu"
+          >
             Basketball
             <i class="icon-down" />
 
@@ -19,82 +22,174 @@
               <section>
                 <p><b>EVENTS</b></p>
                 <div class="items">
-                  <div class="item">NFL Playoffs</div>
-                  <div class="item">Superbowl</div>
+                  <div class="item">
+                    NFL Playoffs
+                  </div>
+                  <div class="item">
+                    Superbowl
+                  </div>
                 </div>
-                <div class="bg-green"></div>
+                <div class="bg-green" />
               </section>
               <section>
                 <p><b>TEAMS</b></p>
                 <div class="items">
-                  <div class="item">Buffallo Bills</div>
-                  <div class="item">LA Rams</div>
-                  <div class="item">Carolina Panthers</div>
-                  <div class="item">Miami Dolphins</div>
-                  <div class="item">Chicago Bears</div>
-                  <div class="item">Minnesota Vikings</div>
-                  <div class="item">Cincinnati Bengals</div>
-                  <div class="item">New Orleans Saints</div>
-                  <div class="item">Cleveland Browns</div>
-                  <div class="item">New York Giants</div>
-                  <div class="item">Dallas Cowboys</div>
-                  <div class="item">New York Jets</div>
-                  <div class="item">Denver Broncos</div>
-                  <div class="item">Philadelphia Eagles</div>
-                  <div class="item">Houston Texans</div>
-                  <div class="item">Pittsburgh Steelers</div>
-                  <div class="item">Kansas City Chiefs</div>
-                  <div class="item">San Francisco 49ers</div>
+                  <div class="item">
+                    Buffallo Bills
+                  </div>
+                  <div class="item">
+                    LA Rams
+                  </div>
+                  <div class="item">
+                    Carolina Panthers
+                  </div>
+                  <div class="item">
+                    Miami Dolphins
+                  </div>
+                  <div class="item">
+                    Chicago Bears
+                  </div>
+                  <div class="item">
+                    Minnesota Vikings
+                  </div>
+                  <div class="item">
+                    Cincinnati Bengals
+                  </div>
+                  <div class="item">
+                    New Orleans Saints
+                  </div>
+                  <div class="item">
+                    Cleveland Browns
+                  </div>
+                  <div class="item">
+                    New York Giants
+                  </div>
+                  <div class="item">
+                    Dallas Cowboys
+                  </div>
+                  <div class="item">
+                    New York Jets
+                  </div>
+                  <div class="item">
+                    Denver Broncos
+                  </div>
+                  <div class="item">
+                    Philadelphia Eagles
+                  </div>
+                  <div class="item">
+                    Houston Texans
+                  </div>
+                  <div class="item">
+                    Pittsburgh Steelers
+                  </div>
+                  <div class="item">
+                    Kansas City Chiefs
+                  </div>
+                  <div class="item">
+                    San Francisco 49ers
+                  </div>
                 </div>
               </section>
             </div>
           </div>
-          <div class="item" @mouseenter="showInnerMenu">
+          <div 
+            class="item" 
+            @mouseenter="showInnerMenu"
+          >
             Baseball
             <i class="icon-down" />
-            <div class="inner"></div>
+            <div class="inner" />
           </div>
-          <div class="item" @mouseenter="showInnerMenu">
+          <div 
+            class="item" 
+            @mouseenter="showInnerMenu"
+          >
             Football
             <i class="icon-down" />
-            <div class="inner"></div>
+            <div class="inner" />
           </div>
-          <div class="item" @mouseenter="showInnerMenu">
+          <div 
+            class="item" 
+            @mouseenter="showInnerMenu"
+          >
             Tennis
             <i class="icon-down" />
-            <div class="inner"></div>
+            <div class="inner" />
           </div>
         </div>
-        <div ref="child" class="child">
+        <div 
+          ref="child" 
+          class="child"
+        >
           <section>
             <p><b>EVENTS</b></p>
             <div class="items">
-              <div class="item">NFL Playoffs</div>
-              <div class="item">Superbowl</div>
+              <div class="item">
+                NFL Playoffs
+              </div>
+              <div class="item">
+                Superbowl
+              </div>
             </div>
-            <div class="bg-green"></div>
+            <div class="bg-green" />
           </section>
           <section>
             <p><b>TEAMS</b></p>
             <div class="items">
-              <div class="item">Buffallo Bills</div>
-              <div class="item">LA Rams</div>
-              <div class="item">Carolina Panthers</div>
-              <div class="item">Miami Dolphins</div>
-              <div class="item">Chicago Bears</div>
-              <div class="item">Minnesota Vikings</div>
-              <div class="item">Cincinnati Bengals</div>
-              <div class="item">New Orleans Saints</div>
-              <div class="item">Cleveland Browns</div>
-              <div class="item">New York Giants</div>
-              <div class="item">Dallas Cowboys</div>
-              <div class="item">New York Jets</div>
-              <div class="item">Denver Broncos</div>
-              <div class="item">Philadelphia Eagles</div>
-              <div class="item">Houston Texans</div>
-              <div class="item">Pittsburgh Steelers</div>
-              <div class="item">Kansas City Chiefs</div>
-              <div class="item">San Francisco 49ers</div>
+              <div class="item">
+                Buffallo Bills
+              </div>
+              <div class="item">
+                LA Rams
+              </div>
+              <div class="item">
+                Carolina Panthers
+              </div>
+              <div class="item">
+                Miami Dolphins
+              </div>
+              <div class="item">
+                Chicago Bears
+              </div>
+              <div class="item">
+                Minnesota Vikings
+              </div>
+              <div class="item">
+                Cincinnati Bengals
+              </div>
+              <div class="item">
+                New Orleans Saints
+              </div>
+              <div class="item">
+                Cleveland Browns
+              </div>
+              <div class="item">
+                New York Giants
+              </div>
+              <div class="item">
+                Dallas Cowboys
+              </div>
+              <div class="item">
+                New York Jets
+              </div>
+              <div class="item">
+                Denver Broncos
+              </div>
+              <div class="item">
+                Philadelphia Eagles
+              </div>
+              <div class="item">
+                Houston Texans
+              </div>
+              <div class="item">
+                Pittsburgh Steelers
+              </div>
+              <div class="item">
+                Kansas City Chiefs
+              </div>
+              <div class="item">
+                San Francisco 49ers
+              </div>
             </div>
           </section>
         </div>

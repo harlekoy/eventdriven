@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <places></places>
+  <Places />
 </template>
 
 <style lang="scss" scoped>

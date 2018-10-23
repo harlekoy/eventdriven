@@ -2,23 +2,31 @@
   <div class="card">
     <div class="white-wrapper overflow-hidden">
       <div class="thumb">
-        <heart/>
-        <img src="@assets/images/card-thumb.png"/>
+        <Heart />
+        <img src="@assets/images/card-thumb.png">
       </div>
       <div class="content">
-        <p class="text-base font-normal mb-4">Superbowl 2018</p>
+        <p class="text-base font-normal mb-4">
+          Superbowl 2018
+        </p>
         <div class="cols">
           <div class="col text-center border-r border-grey-light">
             <h2>80:1</h2>
-            <p class="text-xs">Odds</p>
+            <p class="text-xs">
+              Odds
+            </p>
           </div>
           <div class="col text-center border-r border-grey-light">
             <h2>22x</h2>
-            <p class="text-xs">Return</p>
+            <p class="text-xs">
+              Return
+            </p>
           </div>
           <div class="col text-center">
             <h2>97</h2>
-            <p class="text-xs">Wagers</p>
+            <p class="text-xs">
+              Wagers
+            </p>
           </div>
         </div>
       </div>

@@ -1,6 +1,11 @@
 <template>
   <UserLayout class="bg-grey-lightest">
-    <h1 slot="page-title" class="text-center my-8">Your Profile</h1>
+    <h1
+      slot="page-title"
+      class="text-center my-8"
+    >
+      Your Profile
+    </h1>
     <div class="flex items-center justify-between border-b pb-4 mb-4">
       <h2 class="font-light text-lg">
         Personal Details & Contact Information
@@ -144,7 +149,7 @@
 <script>
 import UserLayout from '@layouts/User'
 import { mapGetters, mapActions } from 'vuex'
-import { assign, pick, mapValues, head } from 'lodash'
+import { pick, mapValues, head } from 'lodash'
 import { success } from '@utils/toast'
 
 export default {

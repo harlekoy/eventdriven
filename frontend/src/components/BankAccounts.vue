@@ -1,6 +1,8 @@
 <template>
   <div class="container mx-auto mb-6 accounts">
-    <p class="text-base text-grey border-b border-grey pb-4">Your Linked Accounts</p>
+    <p class="text-base text-grey border-b border-grey pb-4">
+      Your Linked Accounts
+    </p>
     <div class="cols spaced flex-wrap">
       <div class="col lg:w-1/5 md:w-1/2 w-full">
         <div class="inner bg-red">
@@ -19,7 +21,9 @@
       <div class="col lg:w-1/5 md:w-1/2 w-full">
         <div class="inner dotted">
           <p class="text-center text-grey-darker">
-            <span class="icon">+</span>
+            <span class="icon">
+              +
+            </span>
             <br>Link Account
           </p>
         </div>

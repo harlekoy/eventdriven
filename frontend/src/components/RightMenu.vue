@@ -1,6 +1,9 @@
 <template>
   <div class="right relative">
-    <a href="#" class="item">
+    <a 
+      href="#" 
+      class="item"
+    >
       Help
       <i class="icon-help" />
     </a>
@@ -11,9 +14,18 @@
         @click="toggleDropdown"
       >
         £9,054
-        <LazyLoad v-if="avatar" :src="avatar">
-          <img class="w-9 h-9 rounded-full block ml-2" :src="avatar">
-          <div class="ml-2 flex justify-center items-center w-9 h-9 bg-grey-lighter text-grey-darker rounded-full" slot="placeholder">
+        <LazyLoad 
+          v-if="avatar" 
+          :src="avatar"
+        >
+          <img 
+            class="w-9 h-9 rounded-full block ml-2" 
+            :src="avatar"
+          >
+          <div 
+            slot="placeholder" 
+            class="ml-2 flex justify-center items-center w-9 h-9 bg-grey-lighter text-grey-darker rounded-full"
+          >
             <BaseIcon
               class="text-sm z-50"
               name="spinner"
@@ -21,7 +33,10 @@
             />
           </div>
         </LazyLoad>
-        <i v-else class="icon-user" />
+        <i 
+          v-else 
+          class="icon-user"
+        />
         <div
           class="account-dropdown"
           :class="{ active }"

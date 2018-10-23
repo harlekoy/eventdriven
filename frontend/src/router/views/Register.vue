@@ -6,10 +6,9 @@
       </h1>
     </div>
     <form
-      @submit.prevent="register"
       class="w-9/10 sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto flex flex-col p-10 bg-white rounded-xl shadow-md mb-12"
+      @submit.prevent="register"
     >
-
       <BaseInput
         v-model="form.username"
         placeholder="Username"
@@ -38,9 +37,10 @@
       <PlaceInput
         v-model="form.address.address_1"
         type="text"
-        @change="onComplete"
         :error="validationErrors.address_1"
-        placeholder="Address, Country, Postcode"/>
+        placeholder="Address, Country, Postcode"
+        @change="onComplete"
+      />
 
       <BaseInput
         v-show="form.address.address_2"
@@ -213,7 +213,7 @@ export default {
 
               this.$router.push({ name: 'login' })
             } else {
-              this.authError = description
+              this.authError = err
             }
           }
         })
