@@ -29,7 +29,7 @@
               <li class="py-4 border-b">
                 <router-link
                   class="text-black font-bold hover:text-green-dark"
-                  :to="{ name: 'forgot-password' }"
+                  :to="{ name: 'change-password' }"
                 >
                   Password
                 </router-link>
