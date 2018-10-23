@@ -33,11 +33,6 @@ export default [
     component: () => lazyLoadView(import('@views/ChangePassword')),
   },
   {
-    path: '/password/confirm',
-    name: 'confirm-password',
-    component: () => lazyLoadView(import('@views/ConfirmPassword')),
-  },
-  {
     path: '/login',
     name: 'login',
     component: () => lazyLoadView(import('@views/Login')),

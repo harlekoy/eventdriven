@@ -27,9 +27,10 @@ export default {
         >
           <router-link
             class="text-black font-bold hover:text-green-dark"
-            :to="item.path"
-          >
-            {{ item.name }}
+            active-class="text-green-dark"
+            exact
+            :to="item.path">
+            {{item.name}}
           </router-link>
         </li>
       </ul>
