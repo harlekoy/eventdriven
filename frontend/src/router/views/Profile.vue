@@ -5,54 +5,7 @@
     </h1>
     <div class="container mx-auto mb-12">
       <div class="flex">
-        <div class="w-1/4 pr-8 flex justify-end">
-          <div class="flex flex-col w-48">
-            <Uploader />
-
-            <ul class="list-reset">
-              <li class="py-4 border-b">
-                <router-link
-                  class="text-black font-bold hover:text-green-dark"
-                  :to="{ name: 'dashboard' }"
-                >
-                  Dashboard
-                </router-link>
-              </li>
-              <li class="py-4 border-b">
-                <router-link
-                  class="text-black font-bold hover:text-green-dark"
-                  :to="{ name: 'profile' }"
-                >
-                  Contact Information
-                </router-link>
-              </li>
-              <li class="py-4 border-b">
-                <router-link
-                  class="text-black font-bold hover:text-green-dark"
-                  :to="{ name: 'change-password' }"
-                >
-                  Password
-                </router-link>
-              </li>
-              <li class="py-4 border-b">
-                <a
-                  class="text-black font-bold hover:text-green-dark"
-                  href="#"
-                >
-                  Deposit Funds
-                </a>
-              </li>
-              <li class="py-4 border-b">
-                <a
-                  class="text-black font-bold hover:text-green-dark"
-                  href="#"
-                >
-                  Withdraw Funds
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <SideBar/>
         <div class="bg-white h-full flex-1 rounded-lg text-grey-darkest p-4 shadow-lg">
           <div class="flex items-center justify-between border-b pb-4 mb-4">
             <h2 class="font-light text-lg">
@@ -207,7 +160,7 @@
 import Layout from '@layouts/Main'
 import { mapGetters, mapActions } from 'vuex'
 import { assign, pick, mapValues, head } from 'lodash'
-import Uploader from '@components/Uploader'
+import SideBar from '@components/SideBar'
 import { success } from '@utils/toast'
 
 export default {
@@ -223,7 +176,7 @@ export default {
     }
   },
 
-  components: { Layout, Uploader },
+  components: { Layout, SideBar },
 
   data () {
     return {
