@@ -50,6 +50,7 @@ let colors = {
   'facebook-blue': '#37589C',
   'gradient': 'linear-gradient(45deg, #86cf73 0%,#30c2c4 100%)',
   'black-trans': 'rgba(26, 26, 26, .8)',
+  'white-trans': 'rgba(255, 255, 255, .91)',
 
   'black': '#22292f',
   'grey-darkest': '#333333',

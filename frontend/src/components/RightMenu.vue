@@ -23,7 +23,7 @@
         </LazyLoad>
         <i v-else class="icon-user" />
         <div
-          class="dropdown"
+          class="account-dropdown"
           :class="{ active }"
         >
           <router-link
@@ -121,7 +121,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .dropdown {
+  .account-dropdown {
     @apply absolute pin-r bg-black-trans opacity-0;
     top: 95%;
     padding: 23px;

@@ -1,35 +1,20 @@
 <template>
   <header class="bg-white">
     <nav class="container mx-auto">
-      <div class="left">
-        <router-link 
-          :to="{ name: 'home' }" 
-          class="logo"
-        >
-          <Logo :width="162" />
-        </router-link>
-        <div class="item">
-          Buy
-          <i class="icon-down" />
-        </div>
-        <div class="item">
-          Sell
-          <i class="icon-down" />
-        </div>
-      </div>
+      <LeftMenu />
       <RightMenu />
     </nav>
   </header>
 </template>
 
 <script>
-import Logo from '@components/Logo'
+import LeftMenu from '@components/LeftMenu'
 import RightMenu from '@components/RightMenu'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    Logo,
+    LeftMenu,
     RightMenu
   }
 }
@@ -80,6 +65,10 @@ export default {
 
           &:hover {
             border-bottom: 5px solid config('colors.green');
+
+            .menu-dropdown {
+              @apply block;
+            }
 
             @include breakpoint-max(md) {
               @apply border-0;
