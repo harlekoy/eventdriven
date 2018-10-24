@@ -1,45 +1,44 @@
 <template>
-  <div class="container mx-auto mb-6 accounts">
-    <p class="text-base text-grey border-b border-grey pb-4">
-      Your Linked Accounts
-    </p>
-    <div class="cols spaced flex-wrap">
-      <div class="col lg:w-1/5 md:w-1/2 w-full">
-        <div class="inner bg-red">
-          <p class="text-center leading-loose">
-            Skrill<br>•••• 8392
-          </p>
-        </div>
+  <div class="cols spaced flex-wrap">
+    <div class="col" :class="colClass">
+      <div class="inner bg-red">
+        <p class="text-center leading-loose">
+          Skrill<br>•••• 8392
+        </p>
       </div>
-      <div class="col lg:w-1/5 md:w-1/2 w-full">
-        <div class="inner bg-blue">
-          <p class="text-center leading-loose">
-            Netella<br>•••• 8392
-          </p>
-        </div>
+    </div>
+    <div class="col" :class="colClass">
+      <div class="inner bg-blue">
+        <p class="text-center leading-loose">
+          Netella<br>•••• 8392
+        </p>
       </div>
-      <div class="col lg:w-1/5 md:w-1/2 w-full">
-        <div class="inner dotted">
-          <p class="text-center text-grey-darker">
-            <span class="icon">
-              +
-            </span>
-            <br>Link Account
-          </p>
-        </div>
+    </div>
+    <div class="col" :class="colClass">
+      <div class="inner dotted">
+        <p class="text-center text-grey-darker">
+          <span class="icon">
+            +
+          </span>
+          <br>Link Account
+        </p>
       </div>
     </div>
   </div>
 </template>
 
+<script>
+export default {
+  props: {
+    colClass: String
+  }
+}
+</script>
+
 <style lang="scss" scoped>
   @import '@design';
 
-  .accounts {
-    > p {
-      margin-bottom: 25px;
-    }
-
+  .cols {
     .col {
       flex: none;
       margin-bottom: 25px;
@@ -60,9 +59,9 @@
         .icon {
           @apply rounded-full bg-green block m-auto font-light text-3xl text-center text-white;
           height: 30px;
-          padding: 1px 0 0 1px;
+          padding: 0 0 1px 0;
           width: 30px;
-          line-height: 30px;
+          line-height: 26px;
         }
       }
     }

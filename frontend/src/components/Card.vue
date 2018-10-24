@@ -2,7 +2,7 @@
   <div class="card">
     <div class="white-wrapper overflow-hidden">
       <div class="thumb">
-        <Heart />
+        <!-- <Heart /> -->
         <img src="@assets/images/card-thumb.png">
       </div>
       <div class="content">

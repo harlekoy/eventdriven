@@ -1,8 +1,6 @@
 <template>
   <Layout class="bg-green-linear">
-    <h1 class="text-center my-8">
-      Your Dashboard
-    </h1>
+    <h1 class="text-center my-8">Your Dashboard</h1>
     <div class="container mx-auto mb-10 flex board">
       <div class="side">
         <Balance />
@@ -85,8 +83,8 @@
           </tbody>
         </table>
         <div class="actions">
-          <a 
-            href="" 
+          <a
+            href=""
             class="text-base"
           >
             See all transactions
@@ -95,7 +93,12 @@
         </div>
       </div>
     </div>
-    <BankAccounts />
+    <div class="container mx-auto mb-6 accounts">
+      <p class="text-base text-grey border-b border-grey pb-4">
+        Your Linked Accounts
+      </p>
+      <BankAccounts :col-class="'lg:w-1/5 md:w-1/2 w-full'"/>
+    </div>
   </Layout>
 </template>
 
@@ -118,7 +121,7 @@ export default {
     AccountSetup,
     Balance,
     BankAccounts
-  },
+  }
 }
 </script>
 
@@ -187,6 +190,12 @@ export default {
           @apply bg-green-darker text-white;
         }
       }
+    }
+  }
+
+  .accounts {
+    > p {
+      margin-bottom: 25px;
     }
   }
 </style>

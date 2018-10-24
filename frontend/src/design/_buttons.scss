@@ -19,6 +19,10 @@
     }
   }
 
+  &.border-0 {
+    border: 0;
+  }
+
   &.btn-plain {
     @apply border-white px-5;
   }

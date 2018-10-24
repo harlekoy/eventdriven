@@ -50,6 +50,7 @@ let colors = {
   'facebook-blue': '#37589C',
   'gradient': 'linear-gradient(45deg, #86cf73 0%,#30c2c4 100%)',
   'black-trans': 'rgba(26, 26, 26, .8)',
+  'black-dark-trans': 'rgba(0, 0, 0, .8)',
   'white-trans': 'rgba(255, 255, 255, .91)',
 
   'black': '#22292f',
@@ -441,6 +442,7 @@ module.exports = {
     'sm': '4px',
     default: '7px',
     'lg': '10px',
+    'xl': '30px',
     'full': '9999px',
   },
 
