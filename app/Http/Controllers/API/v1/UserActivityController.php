@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use App\Http\Resources\ActivityResourceCollection as ResourceCollection;
+use App\Http\Resources\ActivityResource;
 use App\Models\User;
 
 class UserActivityController extends Controller
@@ -13,8 +13,8 @@ class UserActivityController extends Controller
      * @param User $user
      * @return ResourceCollection
      */
-    public function show(User $user)
+    public function index(User $user)
     {
-        return new ResourceCollection($user->actions()->paginate);
+        return ActivityResource::collection($user->actions);
     }
 }

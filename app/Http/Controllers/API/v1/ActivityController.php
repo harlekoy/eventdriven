@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers\API\v1;
 
+use App\Http\Resources\ActivityResource;
 use App\Http\Resources\ActivityResourceCollection as ResourceCollection;
+use App\Traits\ApiResource;
+use Illuminate\Http\Request;
 use Spatie\Activitylog\Models\Activity;
 
 class ActivityController extends Controller
 {
+    use ApiResource;
+
     /**
-     * Display a listing of the resource.
+     * Initialize API resource.
      *
-     * @param Activity $activity
-     * @return ResourceCollection
+     * @return array
      */
-    public function index(Activity $activity)
+    public function init()
     {
-        return new ResourceCollection($activity->paginate());
+        return [
+            'model'    => Activity::class,
+            'request'  => Request::class,
+            'resource' => ActivityResource::class,
+        ];
     }
 }

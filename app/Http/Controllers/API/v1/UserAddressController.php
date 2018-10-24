@@ -13,15 +13,17 @@ class UserAddressController extends Controller
     use ApiRelatedResource;
 
     /**
-     * API controller constructor.
+     * Initialize API resource.
+     *
+     * @return array
      */
-    public function __construct()
+    public function init()
     {
-        $this->apiInstances([
+        return [
             'model'    => User::class,
             'related'  => Address::class,
             'request'  => AddressRequest::class,
             'resource' => AddressResource::class,
-        ]);
+        ];
     }
 }
