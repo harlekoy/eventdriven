@@ -38,5 +38,8 @@ Route::group(['middleware' => 'jwt'], function () {
         Route::apiResource('teams', 'TeamController');
         Route::apiResource('players', 'PlayerController');
     });
+
+    Route::get('/auth/activities', 'ActivityController@index');
+    Route::get('/auth/{user}/activities', 'UserActivityController@show');
 });
 

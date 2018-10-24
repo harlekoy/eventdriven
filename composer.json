@@ -15,6 +15,7 @@
         "laravel/nova": "*",
         "laravel/tinker": "^1.0",
         "silvanite/nova-field-cloudinary": "^1.0",
+        "spatie/laravel-activitylog": "^3.1",
         "webpatser/laravel-uuid": "^3.0"
     },
     "require-dev": {
