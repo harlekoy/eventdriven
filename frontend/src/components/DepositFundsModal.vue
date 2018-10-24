@@ -137,81 +137,83 @@ export default {
 </script>
 
 <style lang="scss">
-.close {
-  @apply absolute cursor-pointer text-2xl text-grey;
-  top: -10px;
-  right: -10px;
-}
+.modal-wrapper {
+  .close {
+    @apply absolute cursor-pointer text-2xl text-grey;
+    top: -10px;
+    right: -10px;
+  }
 
-.steps {
-  @apply flex items-center justify-center;
+  .steps {
+    @apply flex items-center justify-center;
 
-  .step {
-    @apply flex flex-col items-center justify-center text-base font-black text-grey-light cursor-pointer;
-    width: 150px;
+    .step {
+      @apply flex flex-col items-center justify-center text-base font-black text-grey-light cursor-pointer;
+      width: 150px;
 
-    &.active {
-      @apply text-green;
+      &.active {
+        @apply text-green;
+
+        .count {
+          @apply bg-green text-white border-green;
+        }
+      }
 
       .count {
-        @apply bg-green text-white border-green;
-      }
-    }
+        @apply rounded-full border-3 border-grey-light flex items-center justify-center text-xl relative mb-2;
+        height: 38px;
+        width: 38px;
 
-    .count {
-      @apply rounded-full border-3 border-grey-light flex items-center justify-center text-xl relative mb-2;
-      height: 38px;
-      width: 38px;
-
-      svg {
-        @apply absolute pin-y m-auto;
-        margin-left: 20px;
-        left: 100%;
+        svg {
+          @apply absolute pin-y m-auto;
+          margin-left: 20px;
+          left: 100%;
+        }
       }
     }
   }
-}
 
-form {
-  padding: 30px 0 40px;
-  width: 100%;
-  max-width: 587px;
+  form {
+    padding: 30px 0 40px;
+    width: 100%;
+    max-width: 587px;
 
-  section,
-  section.flex {
-    @apply hidden;
+    section,
+    section.flex {
+      @apply hidden;
 
-    &.active {
-      @apply block;
+      &.active {
+        @apply block;
+      }
+
+      &.active.flex {
+        @apply flex;
+      }
     }
 
-    &.active.flex {
-      @apply flex;
+    .add-account {
+      @apply inline-flex bg-grey border-0 px-6 text-white items-center justify-center mt-4;
+
+      span {
+        @apply text-3xl mr-6;
+        height: 49px;
+        margin-top: -12px;
+      }
     }
-  }
-
-  .add-account {
-    @apply inline-flex bg-grey border-0 px-6 text-white items-center justify-center mt-4;
-
-    span {
-      @apply text-3xl mr-6;
-      height: 49px;
-      margin-top: -12px;
-    }
-  }
-
-  input {
-    @apply bg-grey-lightest p-4 rounded my-2 border border-grey-lightest
-  }
-
-  .amount {
-    @apply w-auto;
 
     input {
-      @apply bg-grey-lightest text-5xl px-4 border-0;
-      border-radius: 0;
-      width: 173px;
-      line-height: 80px;
+      @apply bg-grey-lightest p-4 rounded my-2 border border-grey-lightest
+    }
+
+    .amount {
+      @apply w-auto;
+
+      input {
+        @apply bg-grey-lightest text-5xl px-4 border-0;
+        border-radius: 0;
+        width: 173px;
+        line-height: 80px;
+      }
     }
   }
 }
