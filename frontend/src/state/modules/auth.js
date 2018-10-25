@@ -16,10 +16,10 @@ export const mutations = {
     saveState('auth.currentUser', newValue)
   },
 
-  SAVE_TOKEN(state, {remember_me}) {
+  SAVE_TOKEN(state, { remember_me }) {
     state.remember_me = remember_me
     Cookies.set('remember', remember_me, { expires: remember_me ? 365 : null })
-  }
+  },
 }
 
 export const getters = {
@@ -28,15 +28,15 @@ export const getters = {
     return !!state.currentUser
   },
 
-  user () {
+  user (state) {
     return state.currentUser
   },
 }
 
 export const actions = {
   // Logs in the current user.
-  async logIn(context, { username, password, cb } = {}) {
-    signin(username, password, cb)
+  async logIn(context, { username, password, cb, redirectUri } = {}) {
+    signin(username, password, cb, redirectUri)
   },
 
   // This handles the Auth0 callback
@@ -76,5 +76,5 @@ export const actions = {
 
   updateCurrentUser ({ commit, getters }, data) {
     commit('SET_CURRENT_USER', Object.assign({}, getters.user, data))
-  }
+  },
 }

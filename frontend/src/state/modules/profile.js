@@ -16,10 +16,10 @@ export const actions = {
     const { data: { data: avatar }} = await axios.post('/upload', formData)
 
     dispatch('auth/updateCurrentUser', { avatar: avatar.url }, { root: true })
-    await dispatch('updateAddress', rootGetters['auth/user'])
+    await dispatch('updateUser', rootGetters['auth/user'])
   },
 
-  async updateAddress ({ commit }, data) {
+  async updateUser ({ commit }, data) {
     return await axios.patch(`user/${data.id}`, data)
   }
 }

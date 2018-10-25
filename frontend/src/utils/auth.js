@@ -6,13 +6,17 @@ let webAuth = new auth0.WebAuth({
   clientID: process.env.VUE_APP_AUTH0_CLIENT_ID,
 })
 
-export function signin (username, password, cb) {
+export function signin (username, password, cb, redirectUri) {
+  if (!redirectUri) {
+    redirectUri = `${location.origin}/callback`
+  }
+
   webAuth.login({
     realm: process.env.VUE_APP_AUTH0_REALM,
     username,
     password,
     responseType: 'token id_token',
-    redirectUri: process.env.VUE_APP_AUTH0_CALLBACK,
+    redirectUri,
   }, cb)
 }
 
@@ -37,7 +41,7 @@ export function loginViaSocial (connection, cb) {
   webAuth.authorize({
     connection,
     responseType: 'token id_token',
-    redirectUri: process.env.VUE_APP_AUTH0_CALLBACK
+    redirectUri: `${location.origin}/callback`,
   }, () => {
   })
 }

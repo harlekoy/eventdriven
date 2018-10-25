@@ -4,6 +4,9 @@ namespace App\Traits;
 
 use App\Auth0\ManagementAPI;
 use App\Models\Address;
+use Exception;
+use GuzzleHttp\Exception\RequestException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 trait HasAuth0
 {
@@ -20,6 +23,31 @@ trait HasAuth0
                 $model->auth0id = $model->getAuth0Id($response);
             }
         });
+
+        static::updating(function ($model) {
+            // For admin dashboard purposes
+            if ($password = request()->get('password')) {
+                try {
+                    $model
+                        ->auth0Api()
+                        ->users
+                        ->update($model->auth0id, compact('password'));
+                } catch (RequestException $e) {
+                    $json = $e->getResponse()->getBody()->__toString();
+                    $response = json_decode($json);
+
+                    abort(422, str_replace(['PasswordStrengthError: '], '', $response->message));
+                }
+            }
+        });
+    }
+
+    /**
+     * Get the Auth0 management API.
+     */
+    public function auth0Api()
+    {
+        return ManagementAPI::create();
     }
 
     /**
@@ -31,7 +59,7 @@ trait HasAuth0
      */
     public function createAuth0User($model)
     {
-        $api = ManagementAPI::create();
+        $api = $this->auth0Api();
 
         return $api->users->create(array_merge(array_filter([
             'connection'   => config('auth0.connection_types.db'),
