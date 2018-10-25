@@ -1,7 +1,9 @@
 import axios from 'axios'
 import qs from 'qs'
+import store from '@state/store'
 import { fail } from '@utils/toast'
 import { getSavedState } from '@utils/localStorage'
+import router from '@router'
 
 axios.defaults.baseURL = process.env.VUE_APP_API_URL
 axios.defaults.paramsSerializer = params => qs.stringify(params, {arrayFormat: 'repeat'})
@@ -21,6 +23,16 @@ axios.interceptors.response.use(response => response, async (error) => {
   const { status, data: { message }} = error.response
 
   switch (status) {
+    case 401:
+      store.dispatch('logOut')
+      router.push({ name: 'login' })
+
+      fail({
+        title: 'Session Expired!',
+        text: 'Redirecting you to the login page',
+        timer: 4000,
+      })
+    break
     case 403:
     case 404:
       fail({

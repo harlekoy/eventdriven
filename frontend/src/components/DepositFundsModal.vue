@@ -1,8 +1,8 @@
 <template>
-  <base-modal>
+  <base-modal @close="close">
     <template slot="header">
       <h2>Deposit Funds</h2>
-      <div class="close" @click="$emit('close')">&times;</div>
+      <div class="close" @click="close">&times;</div>
     </template>
     <div class="flex flex-col items-center justify-center">
 
@@ -101,9 +101,10 @@
 </template>
 
 <script>
-import BaseModal from '@components/BaseModal'
 import Arrow from '@components/Arrow'
 import BankAccounts from '@components/BankAccounts'
+import BaseModal from '@components/BaseModal'
+import ClickOutside from 'vue-click-outside'
 
 export default {
   data () {
@@ -120,6 +121,10 @@ export default {
     }
   },
 
+  directives: {
+    ClickOutside,
+  },
+
   components: {
     BaseModal,
     Arrow,
@@ -127,6 +132,10 @@ export default {
   },
 
   methods: {
+    close () {
+      this.$emit('close')
+    },
+
     nextStep () {
       if (this.index < this.max) {
         this.index++

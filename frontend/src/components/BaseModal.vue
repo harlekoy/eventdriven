@@ -2,7 +2,7 @@
   <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container" v-click-outside="close">
           <div class="modal-header relative">
             <slot name="header">
             </slot>
@@ -15,11 +15,17 @@
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
+
 export default {
   date () {
     return {
       showModal: false
     }
+  },
+
+  directives: {
+    ClickOutside
   },
 
   created () {
@@ -28,6 +34,12 @@ export default {
 
   destroyed () {
     document.querySelector('body').classList.remove('overflow-hidden')
+  },
+
+  methods: {
+    close () {
+      this.$emit('close')
+    }
   }
 }
 </script>
