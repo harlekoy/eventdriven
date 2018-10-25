@@ -74,6 +74,13 @@
         :error="validationErrors.postcode"
       />
 
+      <PhoneMasked
+        type="text"
+        :placeholder="'Phone number'"
+        :pattern="['+## (##) ####-####']"
+        v-model="form.phone"
+      />
+
       <BasePassword
         v-model="form.password"
         type="password"
@@ -123,6 +130,7 @@ import { geoip } from '@utils/geoip'
 import { head, mapValues } from 'lodash'
 import { mapActions } from 'vuex'
 import { success } from '@utils/toast'
+import PhoneMasked from '@components/Phone';
 
 export default {
   page: {
@@ -130,7 +138,7 @@ export default {
     meta: [{ name: 'description', content: 'Register' }],
   },
 
-  components: { Layout, PlaceInput },
+  components: { Layout, PlaceInput, PhoneMasked },
 
   data () {
     return {
@@ -147,6 +155,7 @@ export default {
           country: '',
           country_code: '',
         },
+        phone: '',
         dob: '',
       },
       load: false,
