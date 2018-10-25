@@ -75,10 +75,10 @@
       />
 
       <PhoneMasked
+        v-model="form.phone"
         type="text"
         :placeholder="'Phone number'"
         :pattern="['+## (##) ####-####']"
-        v-model="form.phone"
       />
 
       <BasePassword

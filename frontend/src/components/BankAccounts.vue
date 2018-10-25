@@ -1,20 +1,29 @@
 <template>
   <div class="cols spaced flex-wrap">
-    <div class="col" :class="colClass">
+    <div 
+      class="col" 
+      :class="colClass"
+    >
       <div class="inner bg-red">
         <p class="text-center leading-loose">
           Skrill<br>•••• 8392
         </p>
       </div>
     </div>
-    <div class="col" :class="colClass">
+    <div 
+      class="col" 
+      :class="colClass"
+    >
       <div class="inner bg-blue">
         <p class="text-center leading-loose">
           Netella<br>•••• 8392
         </p>
       </div>
     </div>
-    <div class="col" :class="colClass">
+    <div 
+      class="col" 
+      :class="colClass"
+    >
       <div class="inner dotted">
         <p class="text-center text-grey-darker">
           <span class="icon">

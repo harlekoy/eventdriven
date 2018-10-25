@@ -1,43 +1,79 @@
 <template>
-  <base-modal @close="close">
+  <BaseModal @close="close">
     <template slot="header">
       <h2>Deposit Funds</h2>
-      <div class="close" @click="close">&times;</div>
+      <div 
+        class="close" 
+        @click="close"
+      >
+        &times;
+      </div>
     </template>
     <div class="flex flex-col items-center justify-center">
-
       <!-- Steps -->
       <div class="steps">
-        <div class="step" @click="index = 1" :class="{ active: index === 1 }">
-          <div class="count">1<arrow/></div>
+        <div 
+          class="step" 
+          :class="{ active: index === 1 }" 
+          @click="index = 1"
+        >
+          <div class="count">
+            1<Arrow />
+          </div>
           Choose amount
         </div>
-        <div class="step" @click="index = 2" :class="{ active: index === 2 }">
-          <div class="count">2<arrow/></div>
+        <div 
+          class="step" 
+          :class="{ active: index === 2 }" 
+          @click="index = 2"
+        >
+          <div class="count">
+            2<Arrow />
+          </div>
           Payment Method
         </div>
-        <div class="step" :class="{ active: index === 3 }">
-          <div class="count">3</div>
+        <div 
+          class="step" 
+          :class="{ active: index === 3 }"
+        >
+          <div class="count">
+            3
+          </div>
           Confirmation
         </div>
       </div>
 
       <!-- Form -->
       <form class="flex">
-        <section class="flex flex-col sm:flex-row items-center justify-center w-full" :class="{ active: index === 1 }">
-          <BaseInput v-model="amount" class="amount mr-0 sm:mr-2"/>
-          <BaseInput v-model="currency" class="amount"/>
+        <section 
+          class="flex flex-col sm:flex-row items-center justify-center w-full" 
+          :class="{ active: index === 1 }"
+        >
+          <BaseInput 
+            v-model="amount" 
+            class="amount mr-0 sm:mr-2"
+          />
+          <BaseInput 
+            v-model="currency" 
+            class="amount"
+          />
         </section>
-        <section :class="{ active: index === 2 }" class="w-full border-b border-grey-light pb-10">
-
+        <section 
+          :class="{ active: index === 2 }" 
+          class="w-full border-b border-grey-light pb-10"
+        >
           <!-- Heading -->
-          <p class="font-black mb-6">Bank Accounts</p>
+          <p class="font-black mb-6">
+            Bank Accounts
+          </p>
 
           <!-- Bank Accounts -->
-          <BankAccounts :col-class="'lg:w-1/3 w-full'"/>
+          <BankAccounts :col-class="'lg:w-1/3 w-full'" />
 
           <!-- Heading -->
-          <p class="font-black mb-6">Account Details</p>
+          <p class="font-black mb-6">
+            Account Details
+          </p>
 
           <!-- Account Number -->
           <BaseInput
@@ -56,7 +92,6 @@
           />
 
           <div class="cols sm:flex flex-col">
-
             <div class="col">
               <!-- Month -->
               <BaseInput
@@ -86,18 +121,23 @@
                 placeholder="Sec Code"
               />
             </div>
-
           </div>
 
-          <div class="btn add-account"><span>+</span>Add Account</div>
+          <div class="btn add-account">
+            <span>+</span>Add Account
+          </div>
         </section>
       </form>
 
       <!-- Next -->
-      <button @click="nextStep" class="btn btn-success btn-sm px-20 border-0 shadow">Next</button>
-
+      <button 
+        class="btn btn-success btn-sm px-20 border-0 shadow" 
+        @click="nextStep"
+      >
+        Next
+      </button>
     </div>
-  </base-modal>
+  </BaseModal>
 </template>
 
 <script>
@@ -107,6 +147,16 @@ import BaseModal from '@components/BaseModal'
 import ClickOutside from 'vue-click-outside'
 
 export default {
+
+  directives: {
+    ClickOutside,
+  },
+
+  components: {
+    BaseModal,
+    Arrow,
+    BankAccounts
+  },
   data () {
     return {
       index: 1,
@@ -119,16 +169,6 @@ export default {
       exp_year: '',
       sec_code: ''
     }
-  },
-
-  directives: {
-    ClickOutside,
-  },
-
-  components: {
-    BaseModal,
-    Arrow,
-    BankAccounts
   },
 
   methods: {

@@ -2,10 +2,9 @@
 import {TheMask} from 'vue-the-mask'
 
 export default {
-  data() {
-    return {
-      phone: '',
-    }
+
+  components: {
+    TheMask
   },
 
   props: {
@@ -26,15 +25,16 @@ export default {
       }
     },
   },
+  data() {
+    return {
+      phone: '',
+    }
+  },
 
   computed: {
     modelName () {
       return this.$vnode.data.model.expression
     }
-  },
-
-  components: {
-    TheMask
   },
 
   methods: {
@@ -48,11 +48,12 @@ export default {
 <template>
   <div>
     <TheMask 
-        @input="getValue" 
-        :mask="pattern" 
-        :placeholder="placeholder" 
-        :masked="true"
-        v-model="phone"/>  
+      v-model="phone" 
+      :mask="pattern" 
+      :placeholder="placeholder" 
+      :masked="true"
+      @input="getValue"
+    />  
   </div>
 </template>
 

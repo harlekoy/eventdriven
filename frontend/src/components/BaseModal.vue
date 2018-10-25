@@ -2,12 +2,14 @@
   <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container" v-click-outside="close">
+        <div 
+          v-click-outside="close" 
+          class="modal-container"
+        >
           <div class="modal-header relative">
-            <slot name="header">
-            </slot>
+            <slot name="header" />
           </div>
-          <slot/>
+          <slot />
         </div>
       </div>
     </div>

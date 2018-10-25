@@ -1,6 +1,11 @@
 <template>
   <Layout class="bg-grey-lightest">
-    <h1 slot="page-title" class="text-center my-8">Your Profile</h1>
+    <h1 
+      slot="page-title" 
+      class="text-center my-8"
+    >
+      Your Profile
+    </h1>
     <div class="flex items-center justify-between border-b pb-4 mb-6">
       <h2 class="font-light text-lg">
         Change Password
@@ -19,7 +24,12 @@
             type="password"
             placeholder="Password"
           />
-          <span v-if="message.old" class="text-red text-xs">{{ message.old }}</span>
+          <span 
+            v-if="message.old" 
+            class="text-red text-xs"
+          >
+            {{ message.old }}
+          </span>
         </div>
         <p class="w-1/2 my-1">
           New Password
@@ -32,7 +42,12 @@
             type="password"
             placeholder="Password"
           />
-          <span v-if="message.new" class="text-red text-xs">{{ message.new }}</span>
+          <span 
+            v-if="message.new" 
+            class="text-red text-xs"
+          >
+            {{ message.new }}
+          </span>
         </div>
       </div>
       <div class="flex justify-end">

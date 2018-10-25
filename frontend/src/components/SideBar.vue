@@ -29,8 +29,9 @@ export default {
             class="text-black font-bold hover:text-green-dark"
             active-class="text-green-dark"
             exact
-            :to="item.path">
-            {{item.name}}
+            :to="item.path"
+          >
+            {{ item.name }}
           </router-link>
         </li>
       </ul>

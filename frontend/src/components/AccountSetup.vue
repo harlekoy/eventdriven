@@ -33,12 +33,13 @@
         <td>
           <p>
             <input
+              v-model="phone"
+              v-mask="'+## (##) ####-####'"
               class="select-text font-light bg-white text-black"
               type="tel"
-              v-mask="'+## (##) ####-####'"
-              v-model="phone"
               :masked="true"
-              disabled/>
+              disabled
+            >
           </p>
         </td>
         <td>

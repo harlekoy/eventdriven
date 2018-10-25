@@ -6,7 +6,10 @@
     >
       <Logo :width="162" />
     </router-link>
-    <div class="item" @click="activate">
+    <div 
+      class="item" 
+      @click="activate"
+    >
       Buy
       <i class="icon-down" />
       <div class="menu-dropdown">
@@ -116,7 +119,10 @@
             <i class="icon-down" />
             <div class="inner" />
           </div>
-          <div class="close" @click="deactivate">
+          <div 
+            class="close" 
+            @click="deactivate"
+          >
             Close
           </div>
         </div>
@@ -198,7 +204,10 @@
         </div>
       </div>
     </div>
-    <div class="item" @click="activate">
+    <div 
+      class="item" 
+      @click="activate"
+    >
       Sell
       <i class="icon-down" />
     </div>

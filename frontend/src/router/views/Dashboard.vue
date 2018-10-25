@@ -1,6 +1,8 @@
 <template>
   <Layout class="bg-green-linear">
-    <h1 class="text-center my-8">Your Dashboard</h1>
+    <h1 class="text-center my-8">
+      Your Dashboard
+    </h1>
     <div class="container mx-auto mb-10 flex board">
       <div class="side">
         <Balance />
@@ -99,7 +101,7 @@
       <p class="text-base text-grey border-b border-grey pb-4">
         Your Linked Accounts
       </p>
-      <BankAccounts :col-class="'lg:w-1/5 md:w-1/2 w-full'"/>
+      <BankAccounts :col-class="'lg:w-1/5 md:w-1/2 w-full'" />
     </div>
   </Layout>
 </template>

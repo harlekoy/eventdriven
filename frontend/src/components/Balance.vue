@@ -1,13 +1,19 @@
 <template>
   <div class="white-wrapper">
-    <deposit-funds-modal v-if="showModal" @close="showModal = false"/>
+    <DepositFundsModal 
+      v-if="showModal" 
+      @close="showModal = false"
+    />
     <div class="cols flex-col sm:flex-row justify-between">
       <div class="col mb-6">
         <h2>£9,054</h2>
         <p class="mt-2 mb-8 uppercase">
           TOTAL BALANACE
         </p>
-        <button @click="showModal = true" class="btn btn-success btn-sm w-full">
+        <button 
+          class="btn btn-success btn-sm w-full" 
+          @click="showModal = true"
+        >
           Deposit
         </button>
       </div>
@@ -35,14 +41,14 @@
 import DepositFundsModal from '@components/DepositFundsModal'
 
 export default {
+
+  components: {
+    DepositFundsModal
+  },
   data () {
     return {
       showModal: false
     }
   },
-
-  components: {
-    DepositFundsModal
-  }
 }
 </script>
