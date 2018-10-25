@@ -91,6 +91,16 @@
   "gitHooks": {
     "pre-commit": "cross-env PRE_COMMIT=true lint-staged"
   },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
   "engines": {
     "node": ">=8.9.0",
     "yarn": ">=1.0.0"
