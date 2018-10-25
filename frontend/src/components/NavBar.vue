@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '@design';
+  @import '@assets/styles/breakpoints.scss';
 
   body {
     font-family: 'Poppins', sans-serif;
@@ -53,7 +53,7 @@ export default {
           padding-right: 30px;
 
           @include breakpoint-max(md) {
-            @apply border-0 p-0 justify-center;
+            @apply border-0 pt-2 pb-4 justify-center;
           }
         }
 
@@ -62,21 +62,29 @@ export default {
           border-bottom: 5px solid transparent;
           padding: 5px 40px 0 30px;
 
-          &:hover {
-            border-bottom: 5px solid config('colors.green');
+          @include breakpoint-min(md) {
+            &:hover {
+              border-bottom: 5px solid config('colors.green');
 
-            .menu-dropdown {
-              @apply block;
-            }
+              .menu-dropdown {
+                @apply block;
+              }
 
-            @include breakpoint-max(md) {
-              @apply border-0;
+              @include breakpoint-max(md) {
+                @apply border-0;
+              }
             }
           }
 
           @include breakpoint-max(md) {
             @apply border-0;
             padding: 10px;
+
+            &.active {
+              .menu-dropdown {
+                @apply block;
+              }
+            }
           }
 
           i {
@@ -85,6 +93,10 @@ export default {
             right: 20px;
             height: 10px;
             font-size: 8px;
+
+            @include breakpoint-max(md) {
+              @apply hidden;
+            }
           }
         }
       }
@@ -93,7 +105,7 @@ export default {
         @apply flex items-center;
 
         @include breakpoint-max(md) {
-          @apply justify-center pt-4 flex-wrap;
+          @apply justify-center flex-wrap;
         }
 
         > .item {

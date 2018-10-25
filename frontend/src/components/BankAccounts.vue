@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '@design';
+  @import '@assets/styles/breakpoints.scss';
 
   .cols {
     .col {

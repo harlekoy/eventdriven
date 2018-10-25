@@ -6,13 +6,13 @@
     >
       <Logo :width="162" />
     </router-link>
-    <div class="item">
+    <div class="item" @click="activate">
       Buy
       <i class="icon-down" />
       <div class="menu-dropdown">
         <div class="parent">
-          <div 
-            class="item active" 
+          <div
+            class="item active"
             @mouseenter="showInnerMenu"
           >
             Basketball
@@ -92,33 +92,36 @@
               </section>
             </div>
           </div>
-          <div 
-            class="item" 
+          <div
+            class="item"
             @mouseenter="showInnerMenu"
           >
             Baseball
             <i class="icon-down" />
             <div class="inner" />
           </div>
-          <div 
-            class="item" 
+          <div
+            class="item"
             @mouseenter="showInnerMenu"
           >
             Football
             <i class="icon-down" />
             <div class="inner" />
           </div>
-          <div 
-            class="item" 
+          <div
+            class="item"
             @mouseenter="showInnerMenu"
           >
             Tennis
             <i class="icon-down" />
             <div class="inner" />
           </div>
+          <div class="close" @click="deactivate">
+            Close
+          </div>
         </div>
-        <div 
-          ref="child" 
+        <div
+          ref="child"
           class="child"
         >
           <section>
@@ -195,7 +198,7 @@
         </div>
       </div>
     </div>
-    <div class="item">
+    <div class="item" @click="activate">
       Sell
       <i class="icon-down" />
     </div>
@@ -204,7 +207,7 @@
 
 <script>
 import Logo from '@components/Logo'
-import { forEach } from 'lodash'
+import { forEach, indexOf } from 'lodash'
 
 export default {
   components: {
@@ -212,13 +215,30 @@ export default {
   },
 
   methods: {
+    deactivate () {
+      const all = document.querySelectorAll('nav > .left > .item')
+
+      forEach(all, (item) => { item.classList.remove('active') })
+    },
+
+    activate (e) {
+      const all = document.querySelectorAll('nav > .left > .item')
+      const target =  e.target
+
+      if (indexOf(target.classList, 'active') !== -1) {
+        return
+      }
+
+      forEach(all, (item) => { item.classList.remove('active') })
+
+      target.classList.add('active')
+    },
+
     showInnerMenu (e) {
       const all = document.querySelectorAll('.menu-dropdown > .parent > .item')
       const target =  e.target
 
-      forEach(all, (item) => {
-        item.classList.remove('active')
-      })
+      forEach(all, (item) => { item.classList.remove('active') })
 
       target.classList.add('active')
       this.$refs.child.innerHTML = target.querySelector('.inner').innerHTML
@@ -228,12 +248,18 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@assets/styles/breakpoints.scss';
+
 .menu-dropdown {
   @apply absolute pin-l shadow overflow-hidden hidden;
   top: 100%;
   margin-top: 5px;
   width: 704px;
   height: 411px;
+
+  @include breakpoint-max(md) {
+    @apply fixed pin bg-green h-auto w-auto z-50 mt-0;
+  }
 
   &::after {
     @apply absolute pin-t pin-x;
@@ -246,7 +272,12 @@ export default {
     padding: 17px 0;
     width: 178px;
 
-    > .item {
+    @include breakpoint-max(sm) {
+      width: 145px;
+    }
+
+    > .item,
+    > .close {
       @apply text-white leading-loose text-base relative;
       padding: 0 20px;
 
@@ -267,12 +298,24 @@ export default {
         @apply hidden;
       }
     }
+
+    > .close {
+      @apply hidden pin-x absolute pin-b;
+
+      @include breakpoint-max(md) {
+        @apply block;
+      }
+    }
   }
 
   > .child {
     @apply pin-r pin-y bg-white absolute overflow-auto;
-    width: 526px;
+    width: calc(100% - 178px);
     padding-bottom: 10px;
+
+    @include breakpoint-max(sm) {
+      width: calc(100% - 145px);
+    }
 
     > section {
       padding: 23px 0 0;
@@ -299,6 +342,10 @@ export default {
           @apply text-green w-1/2 text-sm;
           line-height: 31px;
           padding: 0 30px 0 20px;
+
+          @include breakpoint-max(sm) {
+            @apply w-full;
+          }
 
           &:hover {
             @apply text-black bg-grey-lighter;

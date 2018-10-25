@@ -24,8 +24,8 @@
 
       <!-- Form -->
       <form class="flex">
-        <section class="flex items-center justify-center w-full" :class="{ active: index === 1 }">
-          <BaseInput v-model="amount" class="amount mr-2"/>
+        <section class="flex flex-col sm:flex-row items-center justify-center w-full" :class="{ active: index === 1 }">
+          <BaseInput v-model="amount" class="amount mr-0 sm:mr-2"/>
           <BaseInput v-model="currency" class="amount"/>
         </section>
         <section :class="{ active: index === 2 }" class="w-full border-b border-grey-light pb-10">
@@ -55,7 +55,7 @@
             placeholder="Name on Account"
           />
 
-          <div class="cols">
+          <div class="cols sm:flex flex-col">
 
             <div class="col">
               <!-- Month -->
@@ -137,6 +137,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@assets/styles/breakpoints.scss';
+
 .modal-wrapper {
   .close {
     @apply absolute cursor-pointer text-2xl text-grey;
@@ -147,9 +149,17 @@ export default {
   .steps {
     @apply flex items-center justify-center;
 
+    @include breakpoint-max(sm) {
+      @apply flex-col;
+    }
+
     .step {
       @apply flex flex-col items-center justify-center text-base font-black text-grey-light cursor-pointer;
       width: 150px;
+
+      @include breakpoint-max(sm) {
+        @apply mb-2;
+      }
 
       &.active {
         @apply text-green;
@@ -168,6 +178,10 @@ export default {
           @apply absolute pin-y m-auto;
           margin-left: 20px;
           left: 100%;
+
+          @include breakpoint-max(sm) {
+            @apply hidden;
+          }
         }
       }
     }

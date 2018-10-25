@@ -1,7 +1,7 @@
 <template>
   <div class="white-wrapper">
     <deposit-funds-modal v-if="showModal" @close="showModal = false"/>
-    <div class="cols justify-between">
+    <div class="cols flex-col sm:flex-row justify-between">
       <div class="col mb-6">
         <h2>£9,054</h2>
         <p class="mt-2 mb-8 uppercase">
@@ -11,7 +11,7 @@
           Deposit
         </button>
       </div>
-      <div class="col mb-6 text-right">
+      <div class="col mb-6 text-left sm:text-right">
         <h2 class="text-grey">
           £2,000
         </h2>

@@ -28,10 +28,10 @@ export default {
     @apply min-h-screen flex;
 
     #app {
-      @apply flex flex-1;
+      @apply flex flex-1 max-w-full overflow-hidden;
 
       > div {
-        @apply flex flex-1 flex-col;
+        @apply flex flex-1 flex-col max-w-full;
 
         header {
           flex: 0 0 83px;

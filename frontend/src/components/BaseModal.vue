@@ -20,33 +20,35 @@ export default {
     return {
       showModal: false
     }
+  },
+
+  created () {
+    document.querySelector('body').classList.add('overflow-hidden')
+  },
+
+  destroyed () {
+    document.querySelector('body').classList.remove('overflow-hidden')
   }
 }
 </script>
 
 <style lang="scss">
 .modal-mask {
-  @apply bg-black-dark-trans;
-  position: fixed;
+  @apply bg-black-dark-trans flex flex-col items-center overflow-auto fixed w-full h-full pin-t pin-l justify-center;
   z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: table;
   transition: opacity .3s ease;
+  padding: 20px;
 }
 
 .modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+  @apply flex flex-col items-center w-full;
 }
 
 .modal-container {
-  @apply .rounded-xl .bg-white;
+  @apply .rounded-xl .bg-white .w-full;
   padding: 35px;
-  width: 790px;
-  margin: 0px auto;
+  max-width: 790px;
+  margin: 0px auto 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;

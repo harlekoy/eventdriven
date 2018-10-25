@@ -1,3 +1,10 @@
 .white-wrapper {
   @apply bg-white rounded-lg text-grey-darkest p-4 shadow-wrapper;
 }
+
+.container {
+  @include breakpoint-max(sm) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
