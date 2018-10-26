@@ -2,9 +2,9 @@
   <Layout class="bg-grey-lightest">
     <h1 
       slot="page-title" 
-      class="text-center my-8"
+      class="text-center my-8 text-3xl lg:text-5xl"
     >
-      Your Profile
+      Change Password
     </h1>
     <div class="flex items-center justify-between border-b pb-4 mb-6">
       <h2 class="font-light text-lg">
@@ -13,10 +13,10 @@
     </div>
     <form @submit.prevent="submit">
       <div class="flex flex-col">
-        <p class="w-1/2 my-1">
+        <p class="w-full lg:w-1/2 my-1">
           Old Password
         </p>
-        <div class="w-1/2 my-1 mb-4">
+        <div class="w-full lg:w-1/2 my-1 mb-4">
           <BasePassword
             v-model="password.old"
             v-validate="'required'"
@@ -31,10 +31,10 @@
             {{ message.old }}
           </span>
         </div>
-        <p class="w-1/2 my-1">
+        <p class="w-full lg:w-1/2 my-1">
           New Password
         </p>
-        <div class="w-1/2 my-1">
+        <div class="w-full lg:w-1/2 my-1">
           <BasePassword
             v-model="password.new"
             v-validate="'required'"
@@ -50,7 +50,7 @@
           </span>
         </div>
       </div>
-      <div class="flex justify-end">
+      <div class="flex justify-center lg:justify-end">
         <BaseButton
           class="rounded py-4 w-48 my-2 bg-gradient"
           type="submit"

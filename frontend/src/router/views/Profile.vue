@@ -2,7 +2,7 @@
   <UserLayout class="bg-grey-lightest">
     <h1
       slot="page-title"
-      class="text-center my-8"
+      class="text-center my-8 text-3xl lg:text-5xl"
     >
       Your Profile
     </h1>
@@ -13,12 +13,12 @@
       <span>76% Complete</span>
     </div>
     <form @submit.prevent="updateProfile">
-      <div class="flex flex-wrap -mx-4">
+      <div class="flex flex-col lg:flex-row lg:flex-wrap -mx-4">
         <!-- First name -->
         <BaseInput
           v-model="profile.first_name"
           v-validate="'required'"
-          class="w-1/2 px-4 my-1"
+          class="w-full lg:w-1/2 px-4 my-1"
           :target-class="{ 'w-full': true }"
           name="first_name"
           placeholder="First name"
@@ -29,7 +29,7 @@
         <BaseInput
           v-model="profile.last_name"
           v-validate="'required'"
-          class="w-1/2 px-4 my-1"
+          class="w-full lg:w-1/2 px-4 my-1"
           :target-class="{ 'w-full': true }"
           name="last_name"
           placeholder="Last name"
@@ -40,7 +40,7 @@
         <BaseInput
           v-model="profile.username"
           v-validate="'required'"
-          class="w-1/2 px-4 my-1"
+          class="w-full lg:w-1/2 px-4 my-1"
           :target-class="{ 'w-full': true }"
           name="username"
           placeholder="Username"
@@ -51,7 +51,7 @@
         <BaseInput
           v-model="profile.email"
           v-validate="'required'"
-          class="w-1/2 px-4 my-1"
+          class="w-full lg:w-1/2 px-4 my-1"
           :target-class="{ 'w-full': true }"
           name="email"
           placeholder="Email Address"
@@ -62,7 +62,7 @@
         <BaseInput
           v-model="address.address_1"
           v-validate="'required'"
-          class="w-1/2 px-4 my-1"
+          class="w-full lg:w-1/2 px-4 my-1"
           :target-class="{ 'w-full': true }"
           name="address_1"
           placeholder="Address Line 1"
@@ -73,7 +73,7 @@
         <BaseInput
           v-model="address.address_2"
           v-validate="'required'"
-          class="w-1/2 px-4 my-1"
+          class="w-full lg:w-1/2 px-4 my-1"
           :target-class="{ 'w-full': true }"
           name="address_2"
           placeholder="Address Line 2"
@@ -84,7 +84,7 @@
         <BaseInput
           v-model="address.city"
           v-validate="'required'"
-          class="w-1/2 px-4 my-1"
+          class="w-full lg:w-1/2 px-4 my-1"
           :target-class="{ 'w-full': true }"
           name="city"
           placeholder="Town / City"
@@ -95,7 +95,7 @@
         <BaseInput
           v-model="address.state"
           v-validate="'required'"
-          class="w-1/2 px-4 my-1"
+          class="w-full lg:w-1/2 px-4 my-1"
           :target-class="{ 'w-full': true }"
           name="state"
           placeholder="State / County"
@@ -106,7 +106,7 @@
         <BaseInput
           v-model="address.country"
           v-validate="'required'"
-          class="w-1/2 px-4 my-1"
+          class="w-full lg:w-1/2 px-4 my-1"
           :target-class="{ 'w-full': true }"
           name="country"
           placeholder="Country"
@@ -117,14 +117,14 @@
         <BaseInput
           v-model="address.zip_code"
           v-validate="'required'"
-          class="w-1/2 px-4 my-1"
+          class="w-full lg:w-1/2 px-4 my-1"
           :target-class="{ 'w-full': true }"
           name="postcode"
           placeholder="Zip Code / Postcode"
           :error="validationErrors.zip_code"
         />
       </div>
-      <div class="flex justify-end">
+      <div class="flex justify-center lg:justify-end">
         <BaseButton
           class="rounded py-4 w-48 my-2 bg-gradient"
           type="submit"

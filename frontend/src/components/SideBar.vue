@@ -16,10 +16,10 @@ export default {
 </script>
 
 <template>
-  <div class="w-1/4 pr-8 flex justify-end">
+  <div class="w-full lg:w-1/4 pr-8 flex justify-center lg:justify-end mb-8 lg:mb-0">
     <div class="flex flex-col w-48">
       <Uploader />
-      <ul class="list-reset">
+      <ul class="list-reset text-center lg:text-left">
         <li
           v-for="(item, index) in menu"
           :key="index"

@@ -1,10 +1,10 @@
 <template>
   <div class="h-full">
     <NavBar />
-    <div class="content">
+    <div class="content px-3 lg:px-0">
       <slot name="page-title" />
       <div class="container mx-auto mb-12">
-        <div class="flex">
+        <div class="flex flex-col lg:flex-row">
           <SideBar />
           <div class="bg-white h-full flex-1 rounded-lg text-grey-darkest p-4 shadow-lg">
             <slot />

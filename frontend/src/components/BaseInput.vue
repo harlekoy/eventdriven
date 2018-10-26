@@ -105,3 +105,11 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+input {
+  padding: .75em !important;
+  line-height: 1.5em;
+}
+</style>
+

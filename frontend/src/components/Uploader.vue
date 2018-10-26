@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col items-center lg:items-start">
     <div class="relative w-32 h-32 rounded-full flex overflow-hidden">
       <div
         v-if="load"
