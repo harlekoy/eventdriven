@@ -12,10 +12,12 @@
         "hipsterjazzbo/landlord": "dev-laravel-57",
         "jrm2k6/cloudder": "^0.6.0",
         "laravel/framework": "5.7.*",
+        "laravel/horizon": "^1.4",
         "laravel/nova": "*",
         "laravel/tinker": "^1.0",
         "silvanite/nova-field-cloudinary": "^1.0",
         "spatie/laravel-activitylog": "^3.1",
+        "studio/laravel-totem": "^4.0",
         "webpatser/laravel-uuid": "^3.0"
     },
     "require-dev": {
