@@ -15,10 +15,18 @@
 
       <input
         v-model="email"
+        v-validate="'required'"
         class="bg-grey-lighter rounded my-2 mb-4 p-4 outline-none"
         type="email"
         placeholder="Email"
       >
+
+      <p
+        v-if="error"
+        class="py-4 text-red text-sm text-center"
+      >
+        {{ error }}
+      </p>
 
       <BaseButton
         class="rounded p-4 my-2"
@@ -63,7 +71,8 @@ export default {
     return {
       email: '',
       load: false,
-      message: ''
+      message: null,
+      error: null
     }
   },
 
@@ -73,11 +82,14 @@ export default {
     }),
 
     forgot () {
+      this.error = null
+      this.message = null
       this.load = true
 
       this.forgotPassword({
         email: this.email,
         cb: (err, msg) => {
+          if (err) this.error = err.description
           this.message = msg
           this.load = false
         }

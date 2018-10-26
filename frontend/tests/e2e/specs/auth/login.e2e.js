@@ -20,7 +20,7 @@ describe('Login', () => {
   })
 
   it('Requires Valid Email & Password', () => {
-    cy.get('form').contains('Log in').click()
+    cy.contains('form', 'Log in').click()
     cy.get('.text-red').should('contain', 'The username field is required.')
     cy.get('.text-red').should('contain', 'The username field is required.')
   })
@@ -28,6 +28,6 @@ describe('Login', () => {
   it('Redirect # When Logged In', () => {
     cy.get('[name="username"]').type('admin')
     cy.get('[name="password"] input').type('Testing@123{enter}')
-    cy.url().should('include', '/dashboard')
+    cy.url().should('include', '/')
   })
 })
