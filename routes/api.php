@@ -46,5 +46,9 @@ Route::group(['middleware' => 'jwt'], function () {
     Route::apiResource('user.activity', 'UserActivityController', [
         'only' => ['index'],
     ]);
+
+    Route::apiResource('countries', 'CountryController', [
+        'only' => ['index'],
+    ]);
 });
 
