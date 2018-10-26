@@ -1,10 +1,10 @@
 <template>
   <Layout class="bg-green-linea">
-    <div class="absolute pin-t pin-l w-full h-full flex">
-      <div class="container flex flex-col-reverse lg:flex-row mx-auto">
-        <div class="flex-1 flex items-center">
+    <div class="w-full h-full flex">
+      <div class="container flex flex-col-reverse lg:flex-row mx-auto py-12 lg:py-32">
+        <div class="flex-1 flex items-center text-center lg:text-left">
           <div>
-            <h1 class="text-6xl lg:text-8xl">
+            <h1 class="text-6xl text-3xl lg:text-8xl mb-5 lg:mb-0">
               404
             </h1>
             <p class="text-lg lg:text-xl font-light">
@@ -17,7 +17,7 @@
             </div>
           </div>
         </div>
-        <div class="flex-1 justify-center flex">
+        <div class="flex-1 justify-center flex mb-6 lg:mb-0">
           <img
             class="w-1/3 lg:w-2/3"
             src="/ace.svg"
