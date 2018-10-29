@@ -31,6 +31,7 @@
     "lodash": "4.17.10",
     "normalize.css": "8.0.0",
     "nprogress": "0.2.0",
+    "v-calendar": "^0.9.7",
     "vee-validate": "^2.1.0-beta.11",
     "vue": "2.5.17",
     "vue-auth0-handler": "^1.0.3",
