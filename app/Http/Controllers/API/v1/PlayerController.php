@@ -11,6 +11,10 @@ class PlayerController extends Controller
 {
     use ApiResource;
 
+    protected static $logAttributes = ['sport_league'];
+    protected static $logOnlyDirty = true;
+    protected static $logName = 'player';
+
     /**
      * API controller constructor.
      */
