@@ -39,6 +39,9 @@ This is a Laravel and Vue.JS based web application.
 - App API `prophet.test/api/*`
 - Admin Login `prophet.test/admin/login`
 - Admin API `prophet.test/nova-api/*`
+- App debugger `prophet.test/debugger`
+- App queue management tool `prophet.test/horizon` (need auth from admin tool)
+- Task scheduler management tool `prophet.test/totem` (need auth from admin tool)
 
 ## Additional Information
 
