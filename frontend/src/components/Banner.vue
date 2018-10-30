@@ -22,6 +22,27 @@ export default {
   @apply bg-cover bg-center flex justify-center items-center text-center py-10;
   min-height: 400px;
 
+  &.team {
+    @apply items-end relative;
+
+    &::before {
+      @apply absolute pin bg-black-light-trans;
+      content: '';
+    }
+
+    > .container {
+      @apply flex items-end relative;
+
+      h1 {
+        @apply m-0 flex items-center text-6xl font-normal;
+
+        img {
+          margin-right: 17px;
+        }
+      }
+    }
+  }
+
   > .container {
     > * {
       @apply text-white mx-auto;

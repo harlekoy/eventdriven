@@ -24,26 +24,35 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-trash:before {
+.icon-check:before {
   content: "\e900";
 }
-.icon-warning:before {
+.icon-fb:before {
   content: "\e901";
 }
-.icon-down:before {
+.icon-google-plus:before {
   content: "\e902";
 }
-.icon-help:before {
+.icon-trash:before {
   content: "\e903";
 }
-.icon-user:before {
+.icon-warning:before {
   content: "\e904";
 }
-.icon-arrow-left:before {
+.icon-down:before {
   content: "\e905";
 }
-.icon-arrow-right:before {
+.icon-help:before {
   content: "\e906";
+}
+.icon-user:before {
+  content: "\e907";
+}
+.icon-arrow-left:before {
+  content: "\e908";
+}
+.icon-arrow-right:before {
+  content: "\e909";
 }
 .icon-facebook:before {
   content: "\ea90";

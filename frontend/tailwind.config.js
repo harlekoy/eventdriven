@@ -49,6 +49,8 @@ let colors = {
   'google-red': '#DD4B39',
   'facebook-blue': '#37589C',
   'gradient': 'linear-gradient(45deg, #86cf73 0%,#30c2c4 100%)',
+
+  'black-light-trans': 'rgba(0, 0, 0, .4)',
   'black-trans': 'rgba(26, 26, 26, .8)',
   'black-dark-trans': 'rgba(0, 0, 0, .8)',
   'white-trans': 'rgba(255, 255, 255, .91)',
@@ -56,7 +58,7 @@ let colors = {
   'black': '#22292f',
   'grey-darkest': '#333333',
   'grey-darker': '#666666',
-  'grey-dark': '#808080',
+  'grey-dark': '#888888',
   'grey': '#999999',
   'grey-light': '#CCCCCC',
   'grey-lighter': '#E6E6E6',
@@ -67,7 +69,7 @@ let colors = {
   'red-darker': '#621b18',
   'red-dark': '#cc1f1a',
   'red': '#ED1C24',
-  'red-light': '#ef5753',
+  'red-light': '#DB4C3F',
   'red-lighter': '#f9acaa',
   'red-lightest': '#fcebea',
 
@@ -105,7 +107,7 @@ let colors = {
 
   'blue-darkest': '#12283a',
   'blue-darker': '#1c3d5a',
-  'blue-dark': '#2779bd',
+  'blue-dark': '#3D5998',
   'blue': '#1B1464',
   'blue-light': '#6cb2eb',
   'blue-lighter': '#bcdefa',

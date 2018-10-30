@@ -8,6 +8,11 @@ export default [
     component: () => lazyLoadView(import('@views/Home')),
   },
   {
+    path: '/team',
+    name: 'team',
+    component: () => lazyLoadView(import('@views/TeamIntermediary')),
+  },
+  {
     path: '/callback',
     name: 'callback',
     component: () => lazyLoadView(import('@views/Callback')),
