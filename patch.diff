@@ -1,0 +1,15 @@
+diff --git a/composer.json b/composer.json
+index 46807f9..a7c6143 100644
+--- a/composer.json
++++ b/composer.json
+@@ -50,6 +50,10 @@
+             "type": "path",
+             "url": "./nova"
+         },
++        {
++            "type": "path",
++            "url": "../betradar"
++        },
+         {
+             "type": "vcs",
+             "url":  "git@github.com:hmazter/Landlord.git"

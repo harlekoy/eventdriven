@@ -6,21 +6,25 @@ This is a Laravel and Vue.JS based web application.
 
 ## How to run API
 
-1.) Clone the project locally
+1.) Clone the project locally (`git clone git@github.com:betprophet1/app.git`)
 
 2.) Open `terminal` or `command prompt`
 
 3.) `cd` to project
 
-4.) Run `composer install`
+4.) Run `git clone git@github.com:betprophet1/betradar.git ../betradar`
 
-5.) Run `cp .env.example .env` to create the projects environment file
+5.) Run `git apply patch.diff`
 
-6.) Run `php artisan key:generate`
+6.) Run `composer install`
 
-7.) Run `php artisan migrate --seed`
+7.) Run `cp .env.example .env` to create the projects environment file
 
-8.) Run `php artisan serve`
+8.) Run `php artisan key:generate`
+
+9.) Run `php artisan migrate --seed`
+
+10.) Run `php artisan serve`
 
 
 ## How to run Web App
