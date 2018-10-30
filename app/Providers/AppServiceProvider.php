@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Horizon\Horizon;
+use Laravel\Telescope\Telescope;
 use Studio\Totem\Totem;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Horizon::auth(function ($request) {
+            return Auth::guard('admins')->check();
+        });
+
+        Telescope::auth(function ($request) {
             return Auth::guard('admins')->check();
         });
     }

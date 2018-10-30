@@ -26,12 +26,6 @@ axios.interceptors.response.use(response => response, async (error) => {
     case 401:
       store.dispatch('logOut')
       router.push({ name: 'login' })
-
-      fail({
-        title: 'Session Expired!',
-        text: 'Redirecting you to the login page',
-        timer: 4000,
-      })
     break
     case 403:
     case 404:

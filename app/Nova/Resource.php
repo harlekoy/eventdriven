@@ -12,7 +12,7 @@ abstract class Resource extends NovaResource
      *
      * @var string
      */
-    public static $group = 'Application';
+    public static $group = 'Resources';
 
     /**
      * Build an "index" query for the given resource.

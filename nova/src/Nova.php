@@ -241,7 +241,7 @@ class Nova
         return collect(static::availableResources($request))
                     ->groupBy(function ($item, $key) {
                         return $item::group();
-                    })->sortKeys()->all();
+                    })->sortKeysDesc()->all();
     }
 
     /**

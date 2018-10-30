@@ -1,18 +1,10 @@
 @if (count(Nova::availableResources(request())))
-    <h3 class="flex items-center font-normal text-white mb-6 text-base no-underline">
-        <svg class="sidebar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <path fill="var(--sidebar-icon)" d="M3 1h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2H3c-1.1045695 0-2-.8954305-2-2V3c0-1.1045695.8954305-2 2-2zm0 2v4h4V3H3zm10-2h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2h-4c-1.1045695 0-2-.8954305-2-2V3c0-1.1045695.8954305-2 2-2zm0 2v4h4V3h-4zM3 11h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2H3c-1.1045695 0-2-.8954305-2-2v-4c0-1.1045695.8954305-2 2-2zm0 2v4h4v-4H3zm10-2h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2h-4c-1.1045695 0-2-.8954305-2-2v-4c0-1.1045695.8954305-2 2-2zm0 2v4h4v-4h-4z"
-            />
-        </svg>
-        <span class="sidebar-label">{{ __('Resources') }}</span>
-    </h3>
-
     @foreach(Nova::groupedResources(request()) as $group => $resources)
         @if (count($resources) > 0)
             @if (count(Nova::groups(request())) > 1)
-                <h4 class="flex ml-8 mb-4 text-xs text-white-50% uppercase tracking-wide">
+                <h3 class="flex items-center font-normal text-white mb-6 text-base no-underline">
                 @if($group == 'Betradar')
-                <svg class="w-3 h-3 mr-2" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 497.4 382.3" enable-background="new 0 0 497.4 382.3" xml:space="preserve">
+                <svg class="sidebar-icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 497.4 382.3" enable-background="new 0 0 497.4 382.3" xml:space="preserve">
                   <g>
                     <path fill="var(--sidebar-icon)" d="M394.7,150.2v81.9c0,36.7-30.1,67-66.8,67H169.5c-36.7,0-66.8-30.3-66.8-67v-81.9c0-36.7,30.1-67,66.8-67
                       h158.4C364.6,83.2,394.7,113.5,394.7,150.2z"/>
@@ -23,9 +15,14 @@
                       h158.4C364.6,83.2,394.7,113.5,394.7,150.2z"/>
                   </g>
                 </svg>
+                @elseif($group == 'Resources')
+                <svg class="sidebar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path fill="var(--sidebar-icon)" d="M3 1h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2H3c-1.1045695 0-2-.8954305-2-2V3c0-1.1045695.8954305-2 2-2zm0 2v4h4V3H3zm10-2h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2h-4c-1.1045695 0-2-.8954305-2-2V3c0-1.1045695.8954305-2 2-2zm0 2v4h4V3h-4zM3 11h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2H3c-1.1045695 0-2-.8954305-2-2v-4c0-1.1045695.8954305-2 2-2zm0 2v4h4v-4H3zm10-2h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2h-4c-1.1045695 0-2-.8954305-2-2v-4c0-1.1045695.8954305-2 2-2zm0 2v4h4v-4h-4z"
+                    />
+                </svg>
                 @endif
                 <span>{{ $group }}</span>
-                </h4>
+                </h3>
             @endif
 
             <ul class="list-reset mb-8">
