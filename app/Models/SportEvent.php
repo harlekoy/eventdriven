@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Player extends Model
+class SportEvent extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,16 +13,10 @@ class Player extends Model
      */
     protected $fillable = [
         'id',
-        'name',
-        'full_name',
-        'type',
-        'date_of_birth',
-        'nationality',
-        'country_code',
-        'height',
-        'weight',
-        'jersey_number',
-        'gender',
+        'tournament_id',
+        'scheduled',
+        'start_time_tbd',
+        'status',
         'betradar_data',
     ];
 

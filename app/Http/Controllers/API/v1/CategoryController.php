@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use App\Http\Resources\PlayerResource;
-use App\Models\Player;
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
 use App\Traits\ApiResource;
 use Illuminate\Http\Request;
 
-class PlayerController extends Controller
+class CategoryController extends Controller
 {
     use ApiResource;
 
@@ -17,9 +17,9 @@ class PlayerController extends Controller
     public function __construct()
     {
         $this->apiInstances([
-            'model'    => Player::class,
+            'model'    => Category::class,
             'request'  => Request::class,
-            'resource' => PlayerResource::class,
+            'resource' => CategoryResource::class,
         ]);
     }
 }

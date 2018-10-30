@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use App\Http\Resources\PlayerResource;
-use App\Models\Player;
+use App\Http\Resources\TournamentInfoResource;
+use App\Models\TournamentInfo;
 use App\Traits\ApiResource;
 use Illuminate\Http\Request;
 
-class PlayerController extends Controller
+class TournamentInfoController extends Controller
 {
     use ApiResource;
 
@@ -17,9 +17,9 @@ class PlayerController extends Controller
     public function __construct()
     {
         $this->apiInstances([
-            'model'    => Player::class,
+            'model'    => TournamentInfo::class,
             'request'  => Request::class,
-            'resource' => PlayerResource::class,
+            'resource' => TournamentInfoResource::class,
         ]);
     }
 }

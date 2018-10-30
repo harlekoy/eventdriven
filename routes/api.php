@@ -34,11 +34,6 @@ Route::group(['middleware' => 'jwt'], function () {
         'only' => ['index', 'show'],
     ]);
 
-    Route::group(['middleware' => 'sport_league'], function () {
-        Route::apiResource('teams', 'TeamController');
-        Route::apiResource('players', 'PlayerController');
-    });
-
     Route::apiResource('activity', 'ActivityController', [
         'only' => ['index'],
     ]);
@@ -49,6 +44,46 @@ Route::group(['middleware' => 'jwt'], function () {
 
     Route::apiResource('countries', 'CountryController', [
         'only' => ['index'],
+    ]);
+
+    Route::apiResource('sports', 'SportController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::apiResource('seasons', 'SeasonController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::apiResource('categories', 'CategoryController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::apiResource('sport-events', 'SportEventController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::apiResource('venues', 'VenueController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::apiResource('players', 'PlayerController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::apiResource('competitors', 'CompetitorController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::apiResource('jerseys', 'JerseyController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::apiResource('tournaments', 'TournamentController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::apiResource('tournament-infos', 'TournamentInfoController', [
+        'only' => ['index', 'show']
     ]);
 });
 
