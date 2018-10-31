@@ -13,6 +13,11 @@ export default [
     component: () => lazyLoadView(import('@views/TeamIntermediary')),
   },
   {
+    path: '/competition',
+    name: 'competition',
+    component: () => lazyLoadView(import('@views/Competition')),
+  },
+  {
     path: '/callback',
     name: 'callback',
     component: () => lazyLoadView(import('@views/Callback')),

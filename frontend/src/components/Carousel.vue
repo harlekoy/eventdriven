@@ -1,9 +1,9 @@
 <template>
-  <Carousel 
-    class="carousel" 
-    :pagination-enabled="false" 
-    :navigation-enabled="true" 
-    :per-page="4" 
+  <Carousel
+    class="carousel"
+    :pagination-enabled="false"
+    :navigation-enabled="true"
+    :per-page="4"
     :per-page-custom="[[0, 1], [768, 2], [992, 3], [1200, 4]]"
   >
     <Slide class="carousel-inner">
@@ -60,7 +60,7 @@ export default {
         left: -15px;
 
         &::before {
-          content: '\e905';
+          content: '\e908';
         }
       }
 
@@ -68,7 +68,7 @@ export default {
         right: -15px;
 
         &::before {
-          content: '\e906';
+          content: '\e909';
         }
       }
     }
