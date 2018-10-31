@@ -10,81 +10,21 @@
       </div>
       <div class="main white-wrapper">
         <div class="tabs mb-6">
-          <div class="tab active">
-            ALL RECENT ACTIVITY
-          </div>
-          <div class="tab">
-            OPEN BETS
-          </div>
-          <div class="tab">
-            BOUGHT
-          </div>
-          <div class="tab">
-            SOLD
+          <div 
+            v-for="tab in dashboardTabs"
+            :key="tab.slug"
+            :class="['tab', { active: currentTab === tab.slug }]"
+            @click="changeTab(tab.slug)"
+            >
+            <span v-text="tab.title"/>
           </div>
         </div>
         <div class="table-wrapper">
-          <table class="main">
-            <thead>
-              <tr>
-                <th>DATE</th>
-                <th>WAGER</th>
-                <th>ODDS</th>
-                <th>TOTAL</th>
-                <th>ACTIONS</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>6/10/18</td>
-                <td>Manchester United to win</td>
-                <td>29:1</td>
-                <td>-$985</td>
-                <td>
-                  <i class="icon-trash" />
-                  <button class="btn btn-success btn-xs">
-                    EDIT
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>6/10/18</td>
-                <td>Manchester United to win</td>
-                <td>29:1</td>
-                <td>-$985</td>
-                <td>
-                  <i class="icon-trash" />
-                  <button class="btn btn-success btn-xs">
-                    EDIT
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>6/10/18</td>
-                <td>Manchester United to win</td>
-                <td>29:1</td>
-                <td>-$985</td>
-                <td>
-                  <i class="icon-trash" />
-                  <button class="btn btn-success btn-xs">
-                    EDIT
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>6/10/18</td>
-                <td>Manchester United to win</td>
-                <td>29:1</td>
-                <td>-$985</td>
-                <td>
-                  <i class="icon-trash" />
-                  <button class="btn btn-success btn-xs">
-                    EDIT
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <keep-alive>
+            <component
+              :is="currentTabComponent">
+            </component>
+          </keep-alive>
         </div>
         <div class="actions">
           <a
@@ -113,6 +53,11 @@ import Layout from '@layouts/Main'
 import AccountSetup from '@components/AccountSetup'
 import Balance from '@components/Balance'
 import BankAccounts from '@components/BankAccounts'
+import AllRecentActivity from '@components/AllRecentActivity'
+import OpenBets from '@components/OpenBets'
+import Bought from '@components/Bought'
+import Sold from '@components/Sold'
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   page: {
@@ -124,7 +69,25 @@ export default {
     Layout,
     AccountSetup,
     Balance,
-    BankAccounts
+    BankAccounts,
+    AllRecentActivity,
+    OpenBets,
+    Bought,
+    Sold,
+  },
+
+  computed: {
+    ...mapGetters({
+      dashboardTabs: 'dashboard/getDashboardTabComponents',
+      currentTabComponent: 'dashboard/currentTabComponent',
+      currentTab: 'dashboard/getCurrentTab',
+    }),
+  },
+
+  methods: {
+    ...mapActions({
+      changeTab: 'dashboard/changeTab'
+    }),
   }
 }
 </script>
