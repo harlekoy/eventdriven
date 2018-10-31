@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Category extends Model
+class Category extends BetradarModel
 {
     /**
      * The attributes that are mass assignable.
@@ -15,15 +13,25 @@ class Category extends Model
         'id',
         'name',
         'country_code',
-        'betradar_data',
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get sport.
      *
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    protected $casts = [
-        'betradar_data' => 'array',
-    ];
+    public function sport()
+    {
+        return $this->belongsTo(Sport::class);
+    }
+
+    /**
+     * Get country.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_code', 'alpha_3');
+    }
 }

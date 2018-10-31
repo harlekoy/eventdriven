@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\FetchCategoriesCommand;
+use App\Console\Commands\FetchSchedulesCommand;
 use App\Console\Commands\FetchSportsCommand;
 use App\Console\Commands\TraitMakeCommand;
 use Illuminate\Console\Scheduling\Schedule;
@@ -15,8 +17,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        TraitMakeCommand::class,
+        FetchCategoriesCommand::class,
+        FetchSchedulesCommand::class,
         FetchSportsCommand::class,
+        TraitMakeCommand::class,
     ];
 
     /**

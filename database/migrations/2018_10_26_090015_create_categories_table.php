@@ -15,6 +15,7 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->string('id')->primary()->nullable();
+            $table->string('sport_id')->nullable();
             $table->string('name')->nullable();
             $table->string('country_code')->nullable();
             $table->json('betradar_data')->nullable();

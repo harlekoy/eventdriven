@@ -30,6 +30,17 @@ class BetradarModel extends Model
     ];
 
     /**
+     * Scope a query to only include enabled data.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeEnabled($query)
+    {
+        return $query->whereEnable(1);
+    }
+
+    /**
      * Fill data based on betradar changes.
      *
      * @param  array $data
