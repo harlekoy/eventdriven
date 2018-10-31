@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class SportResource extends JsonResource
 {
@@ -15,9 +16,9 @@ class SportResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'            => $this->id,
-            'name'          => $this->name,
-            'betradar_data' => $this->betradar_data
+            'id'    => str_replace('sr:sport:', '', $this->id),
+            'image' => Storage::disk('cloudinary')->url($this->image),
+            'name'  => $this->name,
         ];
     }
 }

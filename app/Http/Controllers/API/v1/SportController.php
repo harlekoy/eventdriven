@@ -12,14 +12,16 @@ class SportController extends Controller
     use ApiResource;
 
     /**
-     * API controller constructor.
+     * Initialize API resource.
+     *
+     * @return array
      */
-    public function __construct()
+    public function init()
     {
-        $this->apiInstances([
+        return [
             'model'    => Sport::class,
             'request'  => Request::class,
             'resource' => SportResource::class,
-        ]);
+        ];
     }
 }

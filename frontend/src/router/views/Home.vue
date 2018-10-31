@@ -46,12 +46,12 @@ export default {
   },
 
   async mounted () {
-    await this.fetchTeams()
+    await this.fetchSports()
   },
 
   methods: {
     ...mapActions({
-      fetchTeams: 'league/fetchTeams',
+      fetchSports: 'league/fetchSports',
     })
   }
 }

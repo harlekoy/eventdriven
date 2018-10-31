@@ -2,10 +2,14 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\Enabled;
+use App\Nova\Filters\Image;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
 class Sport extends Resource
 {
@@ -50,6 +54,11 @@ class Sport extends Resource
         return [
             ID::make()->sortable(),
 
+            CloudinaryImage::make('Image'),
+
+            Boolean::make('Enabled', 'enable')
+                ->sortable(),
+
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
@@ -75,7 +84,10 @@ class Sport extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Image,
+            new Enabled,
+        ];
     }
 
     /**

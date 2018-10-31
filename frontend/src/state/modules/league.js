@@ -16,5 +16,9 @@ export const actions = {
 
   async fetchPlayers () {
     const response = await axios.get('players')
-  }
+  },
+
+  async fetchSports () {
+    const response = await axios.get('sports')
+  },
 }

@@ -15,6 +15,8 @@ class CreateSportsTable extends Migration
     {
         Schema::create('sports', function (Blueprint $table) {
             $table->string('id')->primary()->nullable();
+            $table->string('image')->nullable();
+            $table->boolean('enable')->default(false);
             $table->string('name')->nullable();
             $table->json('betradar_data')->nullable();
             $table->timestamps();

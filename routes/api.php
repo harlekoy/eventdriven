@@ -48,7 +48,7 @@ Route::group(['middleware' => 'jwt'], function () {
 
     Route::apiResource('sports', 'SportController', [
         'only' => ['index', 'show']
-    ]);
+    ])->middleware('enable');
 
     Route::apiResource('seasons', 'SeasonController', [
         'only' => ['index', 'show']
