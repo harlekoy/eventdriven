@@ -19,6 +19,10 @@
     }
   }
 
+  &.btn-success-dark {
+    @apply bg-green text-white border-transparent px-8 py-0;
+  }
+
   &.border-0 {
     border: 0;
   }
