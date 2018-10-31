@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Console\Commands\FetchCategoriesCommand;
 use App\Console\Commands\FetchSchedulesCommand;
 use App\Console\Commands\FetchSportsCommand;
+use App\Console\Commands\FetchTournamentsCommand;
 use App\Console\Commands\TraitMakeCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -20,6 +21,7 @@ class Kernel extends ConsoleKernel
         FetchCategoriesCommand::class,
         FetchSchedulesCommand::class,
         FetchSportsCommand::class,
+        FetchTournamentsCommand::class,
         TraitMakeCommand::class,
     ];
 

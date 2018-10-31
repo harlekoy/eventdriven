@@ -4,16 +4,16 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\Artisan;
 
-trait SportHasCategories
+trait SportHasTournaments
 {
     /**
-     * Boot sport has categories.
+     * Boot sport has tournaments.
      */
-    protected static function bootSportHasCategories()
+    protected static function bootSportHasTournaments()
     {
         static::updated(function ($model) {
             if (array_get($model->getDirty(), 'enable')) {
-                Artisan::call('betradar:categories', [
+                Artisan::call('betradar:tournaments', [
                     '--sport' => $model->id,
                 ]);
             }

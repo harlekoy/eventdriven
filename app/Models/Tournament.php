@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
+use App\Models\Season;
+use App\Models\Sport;
 
-class Tournament extends Model
+class Tournament extends BetradarModel
 {
     /**
      * The attributes that are mass assignable.
@@ -17,15 +19,42 @@ class Tournament extends Model
         'season_id',
         'category_id',
         'name',
-        'betradar_data',
+        'round',
+        'scheduled',
+        'played',
+        'max_coverage_level',
+        'min_coverage_level',
+        'max_covered',
+        'live_coverage',
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get sport.
      *
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    protected $casts = [
-        'betradar_data' => 'array',
-    ];
+    public function sport()
+    {
+        return $this->belongsTo(Sport::class);
+    }
+
+    /**
+     * Get category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get season.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function season()
+    {
+        return $this->belongsTo(Season::class);
+    }
 }

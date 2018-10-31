@@ -2,10 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Season extends Model
+class Season extends BetradarModel
 {
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'start_date',
+        'end_date',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -17,15 +25,5 @@ class Season extends Model
         'start_date',
         'end_date',
         'year',
-        'betradar_data',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'betradar_data' => 'array',
     ];
 }

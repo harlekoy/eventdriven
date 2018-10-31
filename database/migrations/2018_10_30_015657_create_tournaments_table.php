@@ -19,6 +19,14 @@ class CreateTournamentsTable extends Migration
             $table->string('season_id')->nullable();
             $table->string('category_id')->nullable();
             $table->string('name')->nullable();
+            $table->string('round')->nullable();
+            $table->string('scheduled')->nullable();
+            $table->string('played')->nullable();
+            $table->string('max_coverage_level')->nullable();
+            $table->string('min_coverage_level')->nullable();
+            $table->string('max_covered')->nullable();
+            $table->string('live_coverage')->nullable();
+            $table->json('betradar_data')->nullable();
             $table->timestamps();
         });
     }
