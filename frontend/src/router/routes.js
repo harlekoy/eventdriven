@@ -25,7 +25,7 @@ export default [
   {
     path: '/register',
     name: 'register',
-    component: () => lazyLoadView(import('@views/Register')),
+    component: () => lazyLoadView(import('@views/auth/Register')),
   },
   {
     path: '/password/reset/:token',

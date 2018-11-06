@@ -1,6 +1,6 @@
-<!-- eslint-disable -->
-
 <template>
+  <!-- eslint-disable -->
+
   <Layout class="bg-green-linear">
     <div class="container mx-auto">
 
@@ -8,7 +8,7 @@
       <h1 class="text-center my-4 md:my-8">Login</h1>
 
       <!-- Form -->
-      <form class="white-wrapper form p-10 mb-12" @submit.prevent="tryToLogIn">
+      <form class="white-wrapper form mb-12" @submit.prevent="tryToLogIn">
 
         <!-- Note -->
         <BaseAlert>
@@ -24,15 +24,13 @@
         <BasePassword v-model="password" v-validate="'required'" name="password" type="password" placeholder="Password"/>
 
         <!-- Login Button -->
-        <BaseButton class="btn p-4 mb-5" :disabled="load" type="submit">
+        <BaseButton class="btn mb-5" :disabled="load" type="submit">
           <BaseIcon v-if="load" name="spinner" spin/>
           <span v-else>Log in</span>
         </BaseButton>
 
         <!-- Errors -->
-        <p v-if="authError" class="invalid text-center">
-          {{ authError }}
-        </p>
+        <p v-if="authError" class="invalid text-center">{{ authError }}</p>
 
         <!-- Checkbox -->
         <p class="flex flex-row mb-5 justify-between">
@@ -61,6 +59,7 @@
         </div>
 
       </form>
+
     </div>
   </Layout>
 </template>

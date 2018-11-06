@@ -1,0 +1,22 @@
+.input-parent input,
+.input {
+  @apply bg-grey-lightest p-4 text-sm leading-none rounded-lg w-full border border-transparent mb-3;
+  height: 50px;
+
+  &:focus {
+    @apply border-blue-light
+  }
+}
+
+// Algolia
+.algolia-places {
+  @apply relative;
+
+  button {
+    @apply -mt-3;
+  }
+
+  .ap-dropdown-menu {
+    @apply -mt-3;
+  }
+}

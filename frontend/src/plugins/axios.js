@@ -25,7 +25,7 @@ axios.interceptors.response.use(response => response, async (error) => {
   switch (status) {
     case 401:
       store.dispatch('auth/logOut')
-      router.push({ name: 'login' })
+      // router.push({ name: 'login' })
     break
     case 403:
     case 404:
