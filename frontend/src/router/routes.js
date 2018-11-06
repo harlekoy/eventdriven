@@ -45,7 +45,7 @@ export default [
   {
     path: '/login',
     name: 'login',
-    component: () => lazyLoadView(import('@views/Login')),
+    component: () => lazyLoadView(import('@views/auth/Login')),
     beforeEnter: auth
   },
   {

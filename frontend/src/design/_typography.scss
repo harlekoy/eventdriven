@@ -415,18 +415,15 @@ $typography-line-heights-contrast: (
   @extend %font-content;
 }
 
+// Paragraph
 p {
   @apply text-sm font-normal;
 
-  &.uppercase {
-    letter-spacing: .6px;
-  }
-
-  &.lg {
-    @apply text-lg;
-  }
+  &.lg { @apply text-lg; }
 }
 
-a {
-  @apply text-brand-green-light;
-}
+// Anchor
+a { @apply no-underline text-sm text-brand-green-light outline-none; }
+
+// Invalid
+.invalid { @apply py-4 text-red text-sm; }

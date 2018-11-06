@@ -24,11 +24,9 @@ export default {
     },
 
     remove(item) {
-      console.log(item)
-
-        modal({
-          text: JSON.stringify(item)
-        })
+      modal({
+        text: JSON.stringify(item)
+      })
     },
 
     close() {
@@ -55,7 +53,7 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <tr 
+        <tr
           v-for="(item, index) in all_recent_activity"
           :key="index"
           >
@@ -72,7 +70,7 @@ export default {
             <span v-text="item.total"/>
           </td>
           <td>
-            <i 
+            <i
               @click="remove(item)"
               class="icon-trash cursor-pointer" />
             <button @click.prevent="edit(item)" class="btn btn-success btn-xs">

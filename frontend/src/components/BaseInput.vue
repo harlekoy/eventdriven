@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <div class="w-full">
+  <div class="input-wrapper">
+    <div class="inner">
       <input
+        autocomplete="off"
         :class="classes"
         :type="type"
         :value="value"
@@ -10,7 +11,7 @@
       >
       <span
         v-show="hasError()"
-        class="text-red text-xs"
+        class="invalid"
       >
         {{ errorMsg() }}
       </span>
@@ -107,9 +108,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-input {
-  padding: .75em !important;
-  line-height: 1.5em;
+.input-wrapper {
+  @apply w-full mb-3;
+
+  .inner {
+    @apply flex items-center w-full flex-wrap;
+  }
+
+  input {
+    @apply bg-grey-lightest p-4 text-sm leading-none rounded-lg w-full border border-transparent;
+    height: 50px;
+
+    &:focus {
+      @apply border-blue-light
+    }
+  }
+
+  [aria-invalid="true"] input {
+    @apply border-red
+  }
+
+  .invalid {
+    @apply pb-2;
+  }
 }
 </style>
 

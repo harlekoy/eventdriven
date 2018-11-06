@@ -1,5 +1,6 @@
 .btn {
-  @apply inline-flex justify-center items-center font-semibold text-base leading-normal rounded-lg bg-grey-dark text-white;
+  @apply inline-flex justify-center items-center font-semibold text-base leading-normal rounded-lg bg-teal text-white;
+  font-family: 'Poppins', sans-serif;
   padding: 0 15px;
   min-height: 50px;
 
@@ -17,10 +18,14 @@
     @apply bg-red;
   }
 
+  &.btn-fb {
+    @apply bg-facebook-blue;
+  }
+
   // Bordered
 
   &.btn-border {
-    @apply border-3 bg-transparent;
+    @apply border-3 bg-transparent text-teal border-teal;
 
     &.btn-primary {
       @apply text-blue border-blue;
@@ -44,6 +49,23 @@
 
   &.btn-lg {
     min-height: 55px;
+  }
+
+  // Iconed
+  &.iconed-left {
+    @apply relative;
+
+    .icon {
+      @apply absolute pin-l ml-5;
+    }
+  }
+
+  &.iconed-right {
+    @apply relative;
+
+    .icon {
+      @apply absolute pin-r mr-5;
+    }
   }
 
   // Helpers

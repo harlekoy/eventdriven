@@ -1,5 +1,11 @@
 .white-wrapper {
   @apply bg-white rounded-lg text-grey-darkest p-4 shadow-wrapper;
+
+  &.form {
+    @apply mx-auto flex flex-col w-full;
+    padding: 30px 30px 45px;
+    max-width: 517px;
+  }
 }
 
 .container {
