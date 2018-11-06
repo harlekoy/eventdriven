@@ -17,7 +17,28 @@ export const state = {
       slug: 'sold'
     },
   ],
-  currentTab: 'all-recent-activity'
+  currentTab: 'all-recent-activity',
+
+  recentActivity: [
+    {
+      date: '11/18/18',
+      wager: 'Manchester United',
+      odds: '29:1',
+      total: 985
+    },
+    {
+      date: '11/19/18',
+      wager: 'FC Barcelona',
+      odds: '20:1',
+      total: 685
+    },
+    {
+      date: '11/21/18',
+      wager: 'Manchester United',
+      odds: '40:1',
+      total: 400
+    },
+  ]
 }
 
 export const getters = {
@@ -38,6 +59,8 @@ export const getters = {
         return 'AllRecentActivity'
     }
   },
+
+  getRecentActivity: state => state.recentActivity,
 }
 
 export const mutations = {

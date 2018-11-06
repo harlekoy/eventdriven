@@ -416,7 +416,7 @@ $typography-line-heights-contrast: (
 }
 
 p {
-  @apply text-sm font-medium;
+  @apply text-sm font-normal;
 
   &.uppercase {
     letter-spacing: .6px;

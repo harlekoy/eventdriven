@@ -13,6 +13,20 @@ export function success (obj = {}) {
   }, obj))
 }
 
+export function modal (obj = {}) {
+  Vue.swal(Object.assign({
+    toast: false,
+    width: 450,
+    height: 550,
+    position: 'center',
+    showConfirmButton: true,
+    timer: false,
+    type: 'question',
+    title: 'Confirm Action',
+    text: 'it\'s a good day!',
+  }, obj))
+}
+
 export function fail (obj = {}) {
   Vue.swal(Object.assign({
     toast: true,
