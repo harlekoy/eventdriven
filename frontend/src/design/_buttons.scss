@@ -1,33 +1,54 @@
 .btn {
-  @apply rounded border-3 text-lg;
-  line-height: 55px;
+  @apply inline-flex justify-center items-center font-semibold text-base leading-normal rounded-lg bg-grey-dark text-white;
+  padding: 0 15px;
+  min-height: 50px;
 
-  &.btn-sm {
-    line-height: 49px;
-  }
+  // Types
 
-  &.btn-xs {
-    @apply text-sm px-4;
-    line-height: 29px;
+  &.btn-primary {
+    @apply bg-blue;
   }
 
   &.btn-success {
-    @apply bg-brand-green-light text-white border-transparent;
+    @apply bg-green;
+  }
 
-    &.btn-bordered {
-      @apply text-brand-green-light border-brand-green-light bg-transparent;
+  &.btn-danger {
+    @apply bg-red;
+  }
+
+  // Bordered
+
+  &.btn-border {
+    @apply border-3 bg-transparent;
+
+    &.btn-primary {
+      @apply text-blue border-blue;
+    }
+
+    &.btn-success {
+      @apply text-green border-green;
+    }
+
+    &.btn-danger {
+      @apply text-red border-red;
     }
   }
 
-  &.btn-success-dark {
-    @apply bg-green text-white border-transparent px-8 py-0;
+  // Sizes
+
+  &.btn-sm {
+    @apply .text-sm .rounded-sm;
+    min-height: 30px;
   }
 
-  &.border-0 {
-    border: 0;
+  &.btn-lg {
+    min-height: 55px;
   }
 
-  &.btn-plain {
-    @apply border-white px-5;
+  // Helpers
+
+  &.bg-white {
+    @apply bg-white;
   }
 }

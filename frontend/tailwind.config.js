@@ -55,10 +55,10 @@ let colors = {
   'black-dark-trans': 'rgba(0, 0, 0, .8)',
   'white-trans': 'rgba(255, 255, 255, .91)',
 
-  'black': '#22292f',
+  'black': '#1A1A1A',
   'grey-darkest': '#333333',
   'grey-darker': '#666666',
-  'grey-dark': '#888888',
+  'grey-dark': '#666666',
   'grey': '#999999',
   'grey-light': '#CCCCCC',
   'grey-lighter': '#E6E6E6',
@@ -67,8 +67,8 @@ let colors = {
 
   'red-darkest': '#3b0d0c',
   'red-darker': '#621b18',
-  'red-dark': '#cc1f1a',
-  'red': '#ED1C24',
+  'red-dark': '#ED1C24',
+  'red': '#DC4645',
   'red-light': '#DB4C3F',
   'red-lighter': '#f9acaa',
   'red-lightest': '#fcebea',
@@ -100,8 +100,8 @@ let colors = {
   'teal-darkest': '#0d3331',
   'teal-darker': '#20504f',
   'teal-dark': '#38a89d',
-  'teal': '#4dc0b5',
-  'teal-light': '#64d5ca',
+  'teal': '#26B386',
+  'teal-light': '#3FC2BD',
   'teal-lighter': '#a0f0ed',
   'teal-lightest': '#e8fffe',
 
@@ -441,7 +441,7 @@ module.exports = {
 
   borderRadius: {
     'none': '0',
-    'sm': '4px',
+    'sm': '5px',
     default: '7px',
     'lg': '10px',
     'xl': '30px',
