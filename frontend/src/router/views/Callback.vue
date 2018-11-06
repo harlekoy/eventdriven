@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-center">
     <Logo class="h-6 mb-4" />
-    <h1 class="text-2xl lg:text-3xl text-grey-darkest">
+    <h1 class="text-grey-darkest">
       Logging you in
     </h1>
     <div class="lds-ellipsis">

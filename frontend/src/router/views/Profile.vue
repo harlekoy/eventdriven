@@ -2,7 +2,7 @@
   <UserLayout class="bg-grey-lightest">
     <h1
       slot="page-title"
-      class="text-center my-8 text-3xl lg:text-5xl"
+      class="text-center my-8"
     >
       Your Profile
     </h1>

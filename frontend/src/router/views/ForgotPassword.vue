@@ -1,7 +1,7 @@
 <template>
   <Layout class="bg-green-linea">
     <div class="container mx-auto text-center my-4 md:my-8">
-      <h1 class="font-sans font-thin text-green-darker text-3xl lg:text-5xl">
+      <h1>
         Forgot Password
       </h1>
     </div>

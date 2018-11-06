@@ -1,6 +1,6 @@
 <template>
   <Layout class="bg-green-linear">
-    <h1 class="text-center my-8 text-3xl lg:text-5xl">
+    <h1 class="text-center my-8">
       Your Dashboard
     </h1>
     <div class="container mx-auto mb-10 flex board px-3 lg:px-0">

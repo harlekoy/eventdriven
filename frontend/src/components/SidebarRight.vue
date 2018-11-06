@@ -26,7 +26,7 @@ export default {
   <div class="sidebar-right modal">
     <div 
       v-click-outside="close"
-      class="modal-content bg-brand-green text-white w-2/4 h-32 p-10 overflow-auto">
+      class="modal-content bg-brand-green text-white w-2/4 h-32 p-10 overflow-auto shadow-lg">
       <h1 class="text-white flex justify-between mb-6">
         Open Bets
         <span @click="close" class="text-5xl font-hairline">&times;</span>
@@ -56,19 +56,19 @@ export default {
       </h2>
       <p class="text-sm text-center uppercase tracking-wide mb-10">Total Balance</p>
       <button 
-        class="btn border-0 bg-white btn-sm text-brand-green w-full mb-4" 
+        class="btn border-0 btn-lg bg-white text-green w-full mb-4" 
         @click="showModal = true"
       >
         Deposit
       </button>
-      <button class="btn btn-plain btn-sm btn-bordered w-full">
+      <button class="btn btn-lg btn-border border-white w-full">
         Withdraw
       </button>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 //@import '@design';
 
 .modal {
