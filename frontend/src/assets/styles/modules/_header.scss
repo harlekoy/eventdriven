@@ -1,0 +1,245 @@
+header {
+  @apply shadow relative z-10;
+
+  nav {
+    @apply flex justify-between;
+
+    @include breakpoint-max(md) {
+      @apply flex-col;
+    }
+
+    > .left {
+      @apply flex;
+      min-height: 83px;
+
+      @include breakpoint-max(md) {
+        @apply flex-col;
+        padding-top: 10px;
+      }
+
+      > * {
+        @apply border-r border-grey-lighter flex items-center;
+      }
+
+      > .logo {
+        padding-right: 30px;
+
+        @include breakpoint-max(md) {
+          @apply border-0 pt-2 pb-4 justify-center;
+        }
+      }
+
+      > .item {
+        @apply items-center justify-center text-xl relative cursor-pointer;
+        border-bottom: 5px solid transparent;
+        padding: 5px 40px 0 30px;
+
+        @include breakpoint-min(md) {
+          &:hover {
+            border-bottom: 5px solid config('colors.green');
+
+            .menu-dropdown {
+              @apply block;
+            }
+
+            @include breakpoint-max(md) {
+              @apply border-0;
+            }
+          }
+        }
+
+        @include breakpoint-max(md) {
+          @apply border-0;
+          padding: 10px;
+
+          &.active {
+            .menu-dropdown {
+              @apply block;
+            }
+          }
+        }
+
+        i {
+          @apply absolute pin-b m-auto text-green;
+          top: 5px;
+          right: 20px;
+          height: 10px;
+          font-size: 8px;
+
+          @include breakpoint-max(md) {
+            @apply hidden;
+          }
+        }
+      }
+    }
+
+    > .right {
+      @apply flex items-center;
+
+      @include breakpoint-max(md) {
+        @apply justify-center flex-wrap;
+      }
+
+      > .item {
+        @apply text-base text-grey items-center flex no-underline;
+        margin: 0 0 0 30px;
+
+        @include breakpoint-max(md) {
+          @apply m-4;
+        }
+
+        .icon-help {
+          @apply text-2xl;
+          margin-left: 10px;
+        }
+
+        .icon-user {
+          @apply text-4xl;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+.menu-dropdown {
+  @apply absolute pin-l shadow overflow-hidden hidden;
+  top: 100%;
+  margin-top: 5px;
+  width: 704px;
+  height: 411px;
+
+  @include breakpoint-max(md) {
+    @apply fixed pin bg-green h-auto w-auto z-50 mt-0;
+  }
+
+  &::after {
+    @apply absolute pin-t pin-x;
+    box-shadow: 0 -3px 10px 1px config('colors.black');
+    content: '';
+  }
+
+  > .parent {
+    @apply absolute pin-l bg-green pin-y;
+    padding: 17px 0;
+    width: 178px;
+
+    @include breakpoint-max(sm) {
+      width: 145px;
+    }
+
+    > .item,
+    > .close {
+      @apply text-white leading-loose text-base relative;
+      padding: 0 20px;
+
+      > .icon-down {
+        @apply text-white absolute pin-y m-auto;
+        font-style: normal;
+        transform: rotate(-90deg);
+        font-size: 8px;
+        right: 14px;
+      }
+
+      &:hover,
+      &.active {
+        @apply bg-green-darkest;
+      }
+
+      > .inner {
+        @apply hidden;
+      }
+    }
+
+    > .close {
+      @apply hidden pin-x absolute pin-b;
+
+      @include breakpoint-max(md) {
+        @apply block;
+      }
+    }
+  }
+
+  > .child {
+    @apply pin-r pin-y bg-white absolute overflow-auto;
+    width: calc(100% - 178px);
+    padding-bottom: 10px;
+
+    @include breakpoint-max(sm) {
+      width: calc(100% - 145px);
+    }
+
+    > section {
+      padding: 23px 0 0;
+
+      &:last-child {
+        @apply border-0;
+      }
+
+      > p {
+        @apply text-black;
+        margin-bottom: 23px;
+        padding: 0 25px 0 20px;
+      }
+
+      > .items {
+        @apply flex flex-wrap;
+
+        + .divider {
+          margin: 13px 30px 0 20px;
+        }
+
+        > .item {
+          @apply text-green w-1/2 text-sm;
+          line-height: 31px;
+          padding: 0 30px 0 20px;
+
+          @include breakpoint-max(sm) {
+            @apply w-full;
+          }
+
+          &:hover {
+            @apply text-black bg-grey-lighter;
+          }
+        }
+      }
+    }
+  }
+}
+
+.account-dropdown {
+  @apply absolute pin-r bg-black-trans opacity-0;
+  top: 95%;
+  padding: 23px;
+  min-width: 238px;
+  pointer-events: none;
+  transition: .25s all;
+
+  &.active {
+    opacity: 1;
+    top: 100%;
+    pointer-events: auto;
+  }
+
+  &::before {
+    @apply absolute;
+    content: '';
+    right: 10px;
+    top: -10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid config('colors.black-trans');
+  }
+
+  .item {
+    @apply whitespace-no-wrap block text-white text-sm mb-4 cursor-pointer;
+
+    &:hover {
+      @apply text-green;
+    }
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+}

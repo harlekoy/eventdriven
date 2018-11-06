@@ -1,0 +1,12 @@
+.divider {
+  @apply .bg-grey-light;
+  height: 1px;
+
+  &.divider-dark {
+    @apply .bg-grey-darkest;
+  }
+
+  &.divider-green {
+    @apply .bg-green;
+  }
+}
