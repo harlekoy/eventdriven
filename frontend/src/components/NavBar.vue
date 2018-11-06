@@ -10,11 +10,22 @@
 <script>
 import LeftMenu from '@components/LeftMenu'
 import RightMenu from '@components/RightMenu'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
     LeftMenu,
     RightMenu
+  },
+
+  mounted () {
+    this.fetchSports()
+  },
+
+  methods: {
+    ...mapActions({
+      fetchSports: 'sports/fetchSports'
+    })
   }
 }
 </script>

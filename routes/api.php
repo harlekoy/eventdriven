@@ -81,9 +81,5 @@ Route::group(['middleware' => 'jwt'], function () {
     Route::apiResource('tournaments', 'TournamentController', [
         'only' => ['index', 'show']
     ]);
-
-    Route::apiResource('tournament-infos', 'TournamentInfoController', [
-        'only' => ['index', 'show']
-    ]);
 });
 

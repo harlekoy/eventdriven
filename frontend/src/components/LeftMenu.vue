@@ -6,8 +6,8 @@
     >
       <Logo :width="162" />
     </router-link>
-    <div 
-      class="item" 
+    <div
+      class="item"
       @click="activate"
     >
       Buy
@@ -15,10 +15,13 @@
       <div class="menu-dropdown">
         <div class="parent">
           <div
-            class="item active"
+            v-for="(sport, sport_key) in sports"
+            :key="sport_key"
+            class="item"
+            :class="{ active: sport_key === 0 }"
             @mouseenter="showInnerMenu"
           >
-            Basketball
+            {{ sport.name }}
             <i class="icon-down" />
 
             <div class="inner">
@@ -96,31 +99,7 @@
             </div>
           </div>
           <div
-            class="item"
-            @mouseenter="showInnerMenu"
-          >
-            Baseball
-            <i class="icon-down" />
-            <div class="inner" />
-          </div>
-          <div
-            class="item"
-            @mouseenter="showInnerMenu"
-          >
-            Football
-            <i class="icon-down" />
-            <div class="inner" />
-          </div>
-          <div
-            class="item"
-            @mouseenter="showInnerMenu"
-          >
-            Tennis
-            <i class="icon-down" />
-            <div class="inner" />
-          </div>
-          <div 
-            class="close" 
+            class="close"
             @click="deactivate"
           >
             Close
@@ -204,8 +183,8 @@
         </div>
       </div>
     </div>
-    <div 
-      class="item" 
+    <div
+      class="item"
       @click="activate"
     >
       Sell
@@ -217,10 +196,17 @@
 <script>
 import Logo from '@components/Logo'
 import { forEach, indexOf } from 'lodash'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
     Logo
+  },
+
+  computed: {
+    ...mapGetters({
+      sports: 'sports/sports'
+    })
   },
 
   methods: {
