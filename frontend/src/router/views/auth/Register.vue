@@ -43,14 +43,14 @@
         <!-- Password -->
         <BasePassword v-model="form.password" type="password" placeholder="Password" :error="validationErrors.password"/>
 
+        <!-- Errors -->
+        <p v-if="authError" class="invalid text-center">{{ authError }}</p>
+
         <!-- Register Button -->
         <BaseButton class="btn mb-2" :disabled="load" type="submit">
           <BaseIcon v-if="load" name="spinner" spin/>
           <span v-else>Register</span>
         </BaseButton>
-
-        <!-- Errors -->
-        <p v-if="authError" class="invalid text-center">{{ authError }}</p>
 
         <!-- Login Link -->
         <div class="text-center mt-5">
