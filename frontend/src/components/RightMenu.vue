@@ -8,7 +8,7 @@
 
     <!-- Logged -->
     <template v-if="loggedIn">
-      <div v-click-outside="active = false" class="item" @click="active = !active">
+      <div v-click-outside="hideDropdown" class="item" @click="toggeDropdown">
 
         <!-- Label -->
         £9,054
@@ -82,9 +82,17 @@ export default {
       authLogout: 'auth/logOut'
     }),
 
-    toggleLogout () {
-      this.authLogout()
+    async toggleLogout () {
+      await this.authLogout()
       this.$router.push({ name: 'home' })
+    },
+
+    toggeDropdown () {
+      this.active = !this.active
+    },
+
+    hideDropdown () {
+      this.active = false
     }
   }
 }

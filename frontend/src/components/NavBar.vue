@@ -40,6 +40,6 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '@assets/styles/breakpoints.scss';
+  @import '@assets/styles/modules/_breakpoints.scss';
   @import '@assets/styles/modules/_header.scss';
 </style>
