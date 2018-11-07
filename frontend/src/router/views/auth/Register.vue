@@ -23,19 +23,19 @@
         <BaseInput v-model="form.email" type="email" placeholder="Email" :error="validationErrors.email"/>
 
         <!-- Address 1 -->
-        <PlaceInput class="input" autocomplete="off" v-model="form.address.address_1" type="text" :error="validationErrors.address_1"placeholder="Address, Country, Postcode" @change="onComplete"/>
-
-        <!-- Address 2 -->
-        <BaseInput v-show="form.address.address_2" v-model="form.address.address_2" type="text" placeholder="Country" :error="validationErrors.address_2"/>
+        <PlaceInput class="input" autocomplete="off" v-model="form.address_1" type="text" :error="validationErrors.address_1"placeholder="Address, Country, Postcode" @change="onComplete"/>
 
         <!-- Country -->
-        <BaseInput v-show="form.address.country" v-model="form.address.country" type="text" placeholder="Country" :error="validationErrors.country"/>
+        <BaseInput v-show="toggleFields" v-model="form.country" type="text" placeholder="Country" :error="validationErrors.country"/>
 
         <!-- City -->
-        <BaseInput v-show="form.address.city" v-model="form.address.city" type="text" placeholder="City" :error="validationErrors.city"/>
+        <BaseInput v-show="toggleFields" v-model="form.city" type="text" placeholder="City" :error="validationErrors.city"/>
+
+        <!-- Country Code -->
+        <BaseInput v-show="toggleFields" v-model="form.country_code" type="text" placeholder="Country code" :error="validationErrors.country_code"/>
 
         <!-- Post Code -->
-        <BaseInput v-show="form.address.postcode" v-model="form.address.postcode" type="text" placeholder="Postcode" :error="validationErrors.postcode"/>
+        <BaseInput v-show="toggleFields" v-model="form.postcode" type="text" placeholder="Postcode" :error="validationErrors.postcode"/>
 
         <!-- Phone -->
         <PhoneMasked class="input-parent" v-model="form.phone" type="text" :placeholder="'Phone number'" :pattern="['+## (##) ####-####']"/>
@@ -93,19 +93,26 @@ export default {
         first_name: '',
         last_name: '',
         password: '',
-        address: {
-          address_1: '',
-          address_2: '',
-          city: '',
-          country: '',
-          country_code: '',
-        },
+        address_1: '',
+        address_2: '',
+        city: '',
+        country: '',
+        postcode: '',
+        country_code: '',
         phone: '',
         dob: '',
       },
       load: false,
       validationErrors: {},
       authError: '',
+      showOtherFields: false
+    }
+  },
+
+  computed: {
+    toggleFields() {
+      let model = this.form.address_1
+      return model != null && this.showOtherFields ? 1 : this.showOtherFields = false
     }
   },
 
@@ -120,15 +127,18 @@ export default {
     }),
 
     onComplete(response) {
+      this.showOtherFields = true
       let {country, postcode, value, name, countryCode} = response
 
-      this.form.address = {
+      let places = {
         address_1: value,
-        address_2: name,
         country: country,
+        city: name,
         postcode: postcode,
         country_code: countryCode
       }
+
+      this.form = Object.assign(this.form, places)
     },
 
     async validate () {
