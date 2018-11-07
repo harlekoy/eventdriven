@@ -6,16 +6,25 @@ export default [
     path: '/',
     name: 'home',
     component: () => lazyLoadView(import('@views/Home')),
+    meta: {
+      breadCrumb: 'Home'
+    }
   },
   {
     path: '/team',
     name: 'team',
     component: () => lazyLoadView(import('@views/TeamIntermediary')),
+    meta: {
+      breadCrumb: 'Team'
+    }
   },
   {
     path: '/competition',
     name: 'competition',
     component: () => lazyLoadView(import('@views/Competition')),
+    meta: {
+      breadCrumb: 'Competition'
+    }
   },
   {
     path: '/callback',
@@ -26,27 +35,42 @@ export default [
     path: '/register',
     name: 'register',
     component: () => lazyLoadView(import('@views/auth/Register')),
+    meta: {
+      breadCrumb: 'Register'
+    }
   },
   {
-    path: '/password/reset/:token',
+    path: '/reset-password/:token',
     name: 'reset-password',
     component: () => lazyLoadView(import('@views/ResetPassword')),
+    meta: {
+      breadCrumb: 'Reset Password'
+    }
   },
   {
-    path: '/password/forgot',
+    path: '/forgot-password',
     name: 'forgot-password',
     component: () => lazyLoadView(import('@views/ForgotPassword')),
+    meta: {
+      breadCrumb: 'Forgot Password'
+    }
   },
   {
-    path: '/password/change',
+    path: '/change-password',
     name: 'change-password',
     component: () => lazyLoadView(import('@views/ChangePassword')),
+    meta: {
+      breadCrumb: 'Change Password'
+    },
   },
   {
     path: '/login',
     name: 'login',
     component: () => lazyLoadView(import('@views/auth/Login')),
-    beforeEnter: auth
+    beforeEnter: auth,
+    meta: {
+      breadCrumb: 'Login'
+    },
   },
   {
     path: '/profile',
@@ -54,6 +78,7 @@ export default [
     component: () => lazyLoadView(import('@views/Profile')),
     meta: {
       authRequired: true,
+      breadCrumb: 'Profile'
     },
   },
   {
@@ -62,6 +87,7 @@ export default [
     component: () => lazyLoadView(import('@views/Dashboard')),
     meta: {
       authRequired: true,
+      breadCrumb: 'Dashboard'
     },
   },
   {
