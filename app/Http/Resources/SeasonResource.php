@@ -20,7 +20,6 @@ class SeasonResource extends JsonResource
             'start_date'    => $this->start_date,
             'end_date'      => $this->end_date,
             'year'          => $this->year,
-            'betradar_data' => $this->betradar_data,
         ];
     }
 }

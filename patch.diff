@@ -1,14 +1,18 @@
 diff --git a/composer.json b/composer.json
-index 46807f9..a7c6143 100644
+index 43726c9..aaf70c5 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -50,6 +50,10 @@
+@@ -53,6 +53,14 @@
              "type": "path",
              "url": "./nova"
          },
 +        {
 +            "type": "path",
 +            "url": "../betradar"
++        },
++        {
++            "type": "path",
++            "url": "../apidocs"
 +        },
          {
              "type": "vcs",

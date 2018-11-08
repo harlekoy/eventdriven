@@ -15,6 +15,8 @@ class CreateTournamentsTable extends Migration
     {
         Schema::create('tournaments', function (Blueprint $table) {
             $table->string('id')->primary()->nullable();
+            $table->string('image')->nullable();
+            $table->boolean('enable')->default(false);
             $table->string('sport_id')->nullable();
             $table->string('season_id')->nullable();
             $table->string('category_id')->nullable();

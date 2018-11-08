@@ -17,8 +17,7 @@ class CategoryResource extends JsonResource
         return [
             'id'            => $this->id,
             'name'          => $this->name,
-            'start_date'    => $this->country_code,
-            'betradar_data' => $this->betradar_data,
+            'country_code'  => $this->country_code,
         ];
     }
 }

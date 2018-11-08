@@ -27,8 +27,8 @@ Route::group(['middleware' => 'jwt'], function () {
         'as'   => 'upload.store'
     ]);
 
-    Route::apiResource('user', 'UserController');
-    Route::apiResource('user.address', 'UserAddressController');
+    Route::apiResource('users', 'UserController');
+    Route::apiResource('users.addresses', 'UserAddressController');
 
     Route::apiResource('transactions', 'TransactionController', [
         'only' => ['index', 'show'],
@@ -80,6 +80,6 @@ Route::group(['middleware' => 'jwt'], function () {
 
     Route::apiResource('tournaments', 'TournamentController', [
         'only' => ['index', 'show']
-    ]);
+    ])->middleware('enable');
 });
 

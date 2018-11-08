@@ -11,5 +11,5 @@
 |
 */
 Route::get('/{any}', 'SpaController@index')
-    ->where('any', '^((?!('.trim(config('nova.path'), '/').'|nova-api)).)*');
+    ->where('any', '^((?!('.trim(config('nova.path'), '/').'|nova-api|'.config('apidocs.path').')).)*');
 

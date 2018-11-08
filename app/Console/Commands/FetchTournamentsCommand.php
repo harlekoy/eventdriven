@@ -130,13 +130,15 @@ class FetchTournamentsCommand extends Command
      *
      * @return void
      */
-    public function upsertCategory($data)
+    public function upsertCategory($response)
     {
-        $data = array_get($data, 'category', []);
+        $data = array_get($response, 'category', []);
 
         if ($data) {
-            $season = Category::firstOrNew(array_only($data, 'id'));
-            $season->betradarFill($data)->save();
+            $category = Category::firstOrNew(array_only($data, 'id'));
+            $category->betradarFill($data);
+            $category->sport_id = array_get($response, 'sport.id');
+            $category->save();
         }
     }
 

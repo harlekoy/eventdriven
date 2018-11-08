@@ -49,7 +49,9 @@ class Category extends Resource
      */
     public function subtitle()
     {
-        return $this->sport->name;
+        if ($this->sport) {
+            return $this->sport->name;
+        }
     }
 
     /**

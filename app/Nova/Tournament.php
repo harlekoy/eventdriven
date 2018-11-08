@@ -3,14 +3,18 @@
 namespace App\Nova;
 
 use App\Nova\Filters\Category;
+use App\Nova\Filters\CategoryContinent;
+use App\Nova\Filters\Enabled;
 use App\Nova\Filters\Season;
 use App\Nova\Filters\Sport;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
 class Tournament extends Resource
 {
@@ -66,6 +70,11 @@ class Tournament extends Resource
             ID::make()
                 ->sortable()
                 ->hideFromIndex(),
+
+            CloudinaryImage::make('Image'),
+
+            Boolean::make('Enabled', 'enable')
+                ->sortable(),
 
             Text::make('Name')
                 ->sortable(),
@@ -123,6 +132,8 @@ class Tournament extends Resource
     {
         return [
             new Category,
+            new CategoryContinent,
+            new Enabled,
             new Season,
             new Sport,
         ];

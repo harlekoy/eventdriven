@@ -34,7 +34,13 @@ class SportsTableSeeder extends Seeder
             'sr:sport:2'  => 'Basketball',
             'sr:sport:3'  => 'Baseball',
             'sr:sport:5'  => 'Tennis',
+            'sr:sport:6'  => 'Handball',
             'sr:sport:16' => 'American Football',
+            'sr:sport:19' => 'Snooker',
+            'sr:sport:21' => 'Cricket',
+            'sr:sport:22' => 'Darts',
+            'sr:sport:23' => 'Volleyball',
+            'sr:sport:37' => 'Squash',
         ];
     }
 }

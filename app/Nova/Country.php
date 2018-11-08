@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\Continent;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -134,7 +135,9 @@ class Country extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Continent,
+        ];
     }
 
     /**

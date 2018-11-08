@@ -20,7 +20,6 @@ class TournamentResource extends JsonResource
             'season_id'     => $this->season_id,
             'category_id'   => $this->category_id,
             'name'          => $this->name,
-            'betradar_data' => $this->betradar_data,
         ];
     }
 }
