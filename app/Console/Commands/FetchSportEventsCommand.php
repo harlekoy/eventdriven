@@ -43,7 +43,10 @@ class FetchSportEventsCommand extends Command
     {
         foreach ($this->events() as $data) {
             $info = array_merge($data['info'], [
-                'scheduled' => Carbon::parse(array_get($data, 'info.scheduled')),
+                'scheduled'     => Carbon::parse(array_get($data, 'info.scheduled')),
+                'sport_id'      => array_get($data, 'sport.id'),
+                'tournament_id' => array_get($data, 'tournament.id'),
+                'venue_id'      => array_get($data, 'venue.id'),
             ]);
 
             $event = SportEvent::firstOrNew(array_only($info, 'id'));
@@ -71,13 +74,5 @@ class FetchSportEventsCommand extends Command
         $response = $this->fetchSportEvents();
 
         return $response['events'];
-        // return [
-        //     array_get($this->betradarResponse(), 'info');
-        //     array_get($this->betradarResponse(), 'tournament');
-        //     array_get($this->betradarResponse(), 'sport');
-        //     array_get($this->betradarResponse(), 'category');
-        //     array_get($this->betradarResponse(), 'competitors');
-        //     array_get($this->betradarResponse(), 'venue');
-        // ];
     }
 }

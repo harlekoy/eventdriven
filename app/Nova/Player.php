@@ -60,6 +60,9 @@ class Player extends Resource
 
             CloudinaryImage::make('Image'),
 
+            BelongsTo::make('Sport')
+                ->sortable(),
+
             Text::make('Name')
                 ->sortable()
                 ->hideFromIndex(),

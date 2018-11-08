@@ -66,7 +66,9 @@ class FetchCompetitorCommand extends Command
         foreach (array_filter($players) as $data) {
             $player = Player::firstOrNew(array_only($data, 'id'));
 
-            $player->betradarFill($data)->save();
+            $player->betradarFill(array_merge($data, [
+                'sport_id' => array_get($response, 'sport.id'),
+            ]))->save();
         }
     }
 

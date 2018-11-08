@@ -4,13 +4,11 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class SportEvent extends Resource
+class Venue extends Resource
 {
     /**
      * The logical group associated with the resource.
@@ -24,14 +22,14 @@ class SportEvent extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\SportEvent';
+    public static $model = 'App\\Models\\Venue';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -39,18 +37,8 @@ class SportEvent extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name',
     ];
-
-    /**
-     * Get the displayble label of the resource.
-     *
-     * @return string
-     */
-    public static function label()
-    {
-        return 'Sport Event';
-    }
 
     /**
      * Get the fields displayed by the resource.
@@ -61,26 +49,16 @@ class SportEvent extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable()
-                ->hideFromIndex(),
+            ID::make()->sortable(),
 
-            Date::make('Scheduled')
-                ->format('MMM DD, YYYY')
+            Text::make('Name')
                 ->sortable(),
 
-            BelongsTo::make('Sport')
+            Text::make('City', 'city_name')
                 ->sortable(),
 
-            BelongsTo::make('Venue')
+            BelongsTo::make('Country')
                 ->sortable(),
-
-            BelongsTo::make('Tournament')
-                ->sortable(),
-
-            Boolean::make('Start Time TBD')
-                ->hideFromIndex(),
-
-            Text::make('Status'),
         ];
     }
 

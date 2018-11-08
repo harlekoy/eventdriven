@@ -2,7 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Models\SportEvent;
+use App\Models\Tournament;
+use App\Models\Venue;
 use Betprophet\Betradar\Facades\Betradar;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class FetchSchedulesCommand extends Command
@@ -12,7 +16,7 @@ class FetchSchedulesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'betradar:schedules';
+    protected $signature = 'betradar:schedules {--tournament=}';
 
     /**
      * The console command description.
@@ -38,16 +42,105 @@ class FetchSchedulesCommand extends Command
      */
     public function handle()
     {
-        //
+        $response = $this->fetchSchedules();
+        $schedules = $response['schedules'];
+
+        foreach ($schedules as $data) {
+            $this->saveSportEvent($data);
+            $this->saveVenue($data);
+        }
     }
 
     /**
-     * Get fetch betradar sports.
+     * Save sport event.
+     *
+     * @return void
+     */
+    public function saveSportEvent($data)
+    {
+        $event = SportEvent::firstOrNew(array_only($data, 'id'));
+
+        $event->betradarFill(
+            array_merge(array_only($data, $event->getFillable()), [
+                'scheduled' => Carbon::parse($data['scheduled']),
+                'venue_id' => array_get($data, 'venue.id'),
+            ])
+        )->save();
+    }
+
+    /**
+     * Save venue.
+     *
+     * @param  array $response
+     *
+     * @return void
+     */
+    public function saveVenue($response)
+    {
+        $data = $response['venue'];
+
+        $venue = Venue::firstOrNew(array_only($data, 'id'));
+        $venue->betradarFill($data)->save();
+    }
+
+    /**
+     * Get fetch betradar sport event schedules.
      *
      * @return array
      */
-    public function betradarResponse()
+    public function fetchSchedules()
     {
-        return Betradar::unifiedFeed()->sportEvents->schedules();
+        $response = Betradar::unifiedFeed()
+            ->staticSportEvents
+            ->schedules(now()->toDateString());
+
+        return $this->filterSchedules($response);
+    }
+
+    /**
+     * Filter schedule list based on the enabled tournaments.
+     *
+     * @param  array $response
+     *
+     * @return array
+     */
+    public function filterSchedules($response)
+    {
+        $ids = $this->tournamentIds();
+
+        $schedules = collect($response['schedules'])
+            ->filter(function ($schedule) use ($ids) {
+                return in_array(
+                    array_get($schedule, 'tournament.id'), array_keys($ids)
+                );
+            })
+            ->map(function ($schedule) use ($ids) {
+                $tournamentId = array_get($schedule, 'tournament.id');
+
+                return array_merge($schedule, [
+                    'sport_id' => array_get($ids, $tournamentId),
+                ]);
+            })
+            ->all();
+
+        return array_merge($response, compact('schedules'));
+    }
+
+    /**
+     * Get tournaments IDs.
+     *
+     * @return array
+     */
+    public function tournamentIds()
+    {
+        $tournament = array_filter(explode(',', $this->option('tournament')));
+
+        if (!$tournament) {
+            return Tournament::enabled()
+                ->pluck('sport_id', 'id')
+                ->all();
+        }
+
+        return $tournament;
     }
 }

@@ -24,4 +24,24 @@ class Country extends Model
         'sub_region_code',
         'intermediate_region_code',
     ];
+
+    /**
+     * Get sport categories for country.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function categories()
+    {
+        return $this->hasMany(Category::class, 'country_code', 'country_code');
+    }
+
+    /**
+     * Get country list of enabled sports.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function sports()
+    {
+        return $this->hasManyThrough(Sport::class, Category::class);
+    }
 }

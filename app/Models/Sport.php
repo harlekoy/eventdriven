@@ -17,4 +17,24 @@ class Sport extends BetradarModel
         'id',
         'name',
     ];
+
+    /**
+     * Get sport tournaments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tournaments()
+    {
+        return $this->hasMany(Tournament::class);
+    }
+
+    /**
+     * Get sport categories.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
 }

@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Models\Category;
 use App\Models\Season;
 use App\Models\Sport;
+use App\Models\SportEvent;
 use App\Traits\TournamentHasCompetitions;
+use App\Traits\TournamentHasSportEvents;
 
 class Tournament extends BetradarModel
 {
-    use TournamentHasCompetitions;
+    use TournamentHasCompetitions, TournamentHasSportEvents;
 
     /**
      * The attributes that are mass assignable.
@@ -59,5 +61,15 @@ class Tournament extends BetradarModel
     public function season()
     {
         return $this->belongsTo(Season::class);
+    }
+
+    /**
+     * Get tournament sport events.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sportEvents()
+    {
+        return $this->hasMany(SportEvent::class);
     }
 }

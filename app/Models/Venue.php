@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Venue extends Model
+class Venue extends BetradarModel
 {
     /**
      * The attributes that are mass assignable.
@@ -18,15 +18,15 @@ class Venue extends Model
         'city_name',
         'country_code',
         'map_coordinates',
-        'betradar_data',
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get country.
      *
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    protected $casts = [
-        'betradar_data' => 'array',
-    ];
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_code', 'alpha_3');
+    }
 }

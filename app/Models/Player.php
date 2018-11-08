@@ -13,6 +13,7 @@ class Player extends BetradarModel
      */
     protected $fillable = [
         'id',
+        'sport_id',
         'name',
         'full_name',
         'type',
@@ -43,5 +44,15 @@ class Player extends BetradarModel
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_code', 'alpha_3');
+    }
+
+    /**
+     * Get sport.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function sport()
+    {
+        return $this->belongsTo(Sport::class);
     }
 }
