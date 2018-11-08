@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BetradarModel;
 
-class SportEvent extends Model
+class SportEvent extends BetradarModel
 {
     /**
      * The attributes that are mass assignable.
@@ -26,6 +26,7 @@ class SportEvent extends Model
      * @var array
      */
     protected $casts = [
+        'scheduled'     => 'datetime',
         'betradar_data' => 'array',
     ];
 }

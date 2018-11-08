@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\Sport;
+use App\Models\SportEvent;
 use Betprophet\Betradar\Facades\Betradar;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class FetchSportEventsCommand extends Command
@@ -40,8 +42,12 @@ class FetchSportEventsCommand extends Command
     public function handle()
     {
         foreach ($this->events() as $data) {
-            $sport = SportEvent::firstOrNew(array_only($data, 'id'));
-            $sport->betradarFill($data)->save();
+            $info = array_merge($data['info'], [
+                'scheduled' => Carbon::parse(array_get($data, 'info.scheduled')),
+            ]);
+
+            $event = SportEvent::firstOrNew(array_only($info, 'id'));
+            $event->betradarFill($info)->save();
         }
     }
 
@@ -50,7 +56,7 @@ class FetchSportEventsCommand extends Command
      *
      * @return array
      */
-    public function betradarResponse()
+    public function fetchSportEvents()
     {
         return Betradar::unifiedFeed()->sportEvents->events();
     }
@@ -62,13 +68,16 @@ class FetchSportEventsCommand extends Command
      */
     public function events()
     {
-        return [
-            array_get($this->betradarResponse(), 'info');
-            array_get($this->betradarResponse(), 'tournament');
-            array_get($this->betradarResponse(), 'sport');
-            array_get($this->betradarResponse(), 'category');
-            array_get($this->betradarResponse(), 'competitors');
-            array_get($this->betradarResponse(), 'venue');
-        ];
+        $response = $this->fetchSportEvents();
+
+        return $response['events'];
+        // return [
+        //     array_get($this->betradarResponse(), 'info');
+        //     array_get($this->betradarResponse(), 'tournament');
+        //     array_get($this->betradarResponse(), 'sport');
+        //     array_get($this->betradarResponse(), 'category');
+        //     array_get($this->betradarResponse(), 'competitors');
+        //     array_get($this->betradarResponse(), 'venue');
+        // ];
     }
 }
