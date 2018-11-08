@@ -3,6 +3,9 @@
 namespace App\Console;
 
 use App\Console\Commands\FetchCategoriesCommand;
+use App\Console\Commands\FetchCompetitorCommand;
+use App\Console\Commands\FetchCompetitorsCommand;
+use App\Console\Commands\FetchJerseysCommand;
 use App\Console\Commands\FetchSchedulesCommand;
 use App\Console\Commands\FetchSportsCommand;
 use App\Console\Commands\FetchTournamentsCommand;
@@ -19,6 +22,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         FetchCategoriesCommand::class,
+        FetchCompetitorCommand::class,
+        FetchCompetitorsCommand::class,
         FetchSchedulesCommand::class,
         FetchSportsCommand::class,
         FetchTournamentsCommand::class,

@@ -2,18 +2,14 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Country;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
-class Player extends Resource
+class Jersey extends Resource
 {
     /**
      * The logical group associated with the resource.
@@ -27,7 +23,7 @@ class Player extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\Player';
+    public static $model = 'App\\Models\\Jersey';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -54,51 +50,39 @@ class Player extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()
-                ->sortable()
-                ->hideFromIndex(),
-
-            CloudinaryImage::make('Image'),
-
-            Text::make('Name')
-                ->sortable()
-                ->hideFromIndex(),
-
-            Text::make('Full Name')
-                ->sortable(),
-
-            Number::make('Jersey No.', 'jersey_number')
-                ->sortable(),
+            ID::make()->sortable(),
 
             Text::make('Type')
                 ->sortable(),
 
-            Date::make('Date of Birth')
-                ->sortable()
-                ->format('MMM DD, YYYY'),
+            Text::make('Base')
+                ->sortable(),
 
-            Text::make('Nationality')
-                ->sortable()
-                ->hideFromIndex(),
-
-            BelongsTo::make('Country')
+            Text::make('Sleeve')
                 ->sortable()
                 ->hideFromIndex(),
 
-            Number::make('Height')
+            Number::make('Number')
+                ->sortable(),
+
+            Boolean::make('Squares')
+                ->sortable(),
+
+            Boolean::make('Stripes')
+                ->sortable(),
+
+            Boolean::make('Horizontal Stripes')
+                ->sortable(),
+
+            Boolean::make('Split')
+                ->sortable(),
+
+            Text::make('Shirt Type')
                 ->sortable()
                 ->hideFromIndex(),
 
-            Number::make('Weight')
+            Text::make('Sleeve Detail')
                 ->sortable()
-                ->hideFromIndex(),
-
-            Select::make('Gender')
-                ->options([
-                    'male'   => 'Male',
-                    'female' => 'Female',
-                ])
-                ->displayUsingLabels()
                 ->hideFromIndex(),
         ];
     }
@@ -122,9 +106,7 @@ class Player extends Resource
      */
     public function filters(Request $request)
     {
-        return [
-            new Country($this),
-        ];
+        return [];
     }
 
     /**

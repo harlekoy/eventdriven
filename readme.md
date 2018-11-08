@@ -14,17 +14,19 @@ This is a Laravel and Vue.JS based web application.
 
 4.) Run `git clone git@github.com:betprophet1/betradar.git ../betradar`
 
-5.) Run `git apply patch.diff`
+5.) Run `git clone git@github.com:betprophet1/apidocs.git ../apidocs`
 
-6.) Run `composer install`
+6.) Run `git apply patch.diff`
 
-7.) Run `cp .env.example .env` to create the projects environment file
+7.) Run `composer install`
 
-8.) Run `php artisan key:generate`
+8.) Run `cp .env.example .env` to create the projects environment file
 
-9.) Run `php artisan migrate --seed`
+9.) Run `php artisan key:generate`
 
-10.) Run `php artisan serve`
+10.) Run `php artisan migrate --seed`
+
+11.) Run `php artisan serve`
 
 
 ## How to run Web App

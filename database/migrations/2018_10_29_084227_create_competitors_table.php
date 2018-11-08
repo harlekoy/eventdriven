@@ -20,6 +20,7 @@ class CreateCompetitorsTable extends Migration
             $table->string('qualifier')->nullable();
             $table->string('country_code')->nullable();
             $table->string('sport_id')->nullable();
+            $table->string('category_id')->nullable();
             $table->string('venue_id')->nullable();
             $table->string('manager_id')->nullable();
             $table->json('betradar_data')->nullable();

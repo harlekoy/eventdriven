@@ -5,9 +5,12 @@ namespace App\Models;
 use App\Models\Category;
 use App\Models\Season;
 use App\Models\Sport;
+use App\Traits\TournamentHasCompetitions;
 
 class Tournament extends BetradarModel
 {
+    use TournamentHasCompetitions;
+
     /**
      * The attributes that are mass assignable.
      *

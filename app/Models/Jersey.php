@@ -5,8 +5,22 @@ namespace App\Models;
 use App\Models\Competitor;
 use Illuminate\Database\Eloquent\Model;
 
-class Jersey extends Model
+class Jersey extends BetradarModel
 {
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'int';
+
     /**
      * The attributes that are mass assignable.
      *

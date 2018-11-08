@@ -14,7 +14,7 @@ class CreateJerseysTable extends Migration
     public function up()
     {
         Schema::create('jerseys', function (Blueprint $table) {
-            $table->string('id')->primary()->nullable();
+            $table->increments('id');
             $table->string('competitor_id')->nullable();
             $table->string('type')->nullable();
             $table->string('base')->nullable();

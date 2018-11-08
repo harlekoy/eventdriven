@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Player extends Model
+class Player extends BetradarModel
 {
     /**
      * The attributes that are mass assignable.
@@ -23,7 +23,6 @@ class Player extends Model
         'weight',
         'jersey_number',
         'gender',
-        'betradar_data',
     ];
 
     /**
@@ -32,6 +31,17 @@ class Player extends Model
      * @var array
      */
     protected $casts = [
+        'date_of_birth' => 'date',
         'betradar_data' => 'array',
     ];
+
+    /**
+     * Get country.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_code', 'alpha_3');
+    }
 }

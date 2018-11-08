@@ -2,18 +2,16 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\Category;
 use App\Nova\Filters\Country;
+use App\Nova\Filters\Sport;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
-class Player extends Resource
+class Competitor extends Resource
 {
     /**
      * The logical group associated with the resource.
@@ -27,14 +25,14 @@ class Player extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\Player';
+    public static $model = 'App\\Models\\Competitor';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -58,47 +56,20 @@ class Player extends Resource
                 ->sortable()
                 ->hideFromIndex(),
 
-            CloudinaryImage::make('Image'),
-
             Text::make('Name')
-                ->sortable()
-                ->hideFromIndex(),
-
-            Text::make('Full Name')
                 ->sortable(),
 
-            Number::make('Jersey No.', 'jersey_number')
+            Text::make('Abbreviation')
                 ->sortable(),
 
-            Text::make('Type')
+            BelongsTo::make('Sport')
                 ->sortable(),
-
-            Date::make('Date of Birth')
-                ->sortable()
-                ->format('MMM DD, YYYY'),
-
-            Text::make('Nationality')
-                ->sortable()
-                ->hideFromIndex(),
 
             BelongsTo::make('Country')
-                ->sortable()
-                ->hideFromIndex(),
+                ->sortable(),
 
-            Number::make('Height')
+            BelongsTo::make('Category')
                 ->sortable()
-                ->hideFromIndex(),
-
-            Number::make('Weight')
-                ->sortable()
-                ->hideFromIndex(),
-
-            Select::make('Gender')
-                ->options([
-                    'male'   => 'Male',
-                    'female' => 'Female',
-                ])
-                ->displayUsingLabels()
                 ->hideFromIndex(),
         ];
     }
@@ -123,7 +94,9 @@ class Player extends Resource
     public function filters(Request $request)
     {
         return [
+            new Sport,
             new Country($this),
+            new Category,
         ];
     }
 
