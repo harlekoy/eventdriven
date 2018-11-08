@@ -15,11 +15,14 @@ class CreateSportEventsTable extends Migration
     {
         Schema::create('sport_events', function (Blueprint $table) {
             $table->string('id')->primary()->nullable();
+            $table->string('name')->nullable();
             $table->datetime('scheduled')->nullable();
             $table->string('start_time_tbd')->nullable();
             $table->string('status')->nullable();
+            $table->string('sport_id')->nullable();
+            $table->string('venue_id')->nullable();
             $table->string('tournament_id')->nullable();
-            $table->json('betradar_data_data')->nullable();
+            $table->json('betradar_data')->nullable();
             $table->timestamps();
         });
     }

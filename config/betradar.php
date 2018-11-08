@@ -6,5 +6,7 @@ return [
     'domain' => env('BETRADAR_DOMAIN', 'https://stgapi.betradar.com'),
     'apiGroups' => [
         'sportEvents' => Betprophet\Betradar\UnifiedFeeds\SportEvents::class,
+        'staticSportEvents' => Betprophet\Betradar\UnifiedFeeds\StaticSportEvents::class,
+        'entity' => Betprophet\Betradar\UnifiedFeeds\Entity::class,
     ],
 ];
