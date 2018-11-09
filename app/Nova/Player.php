@@ -34,7 +34,7 @@ class Player extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -42,8 +42,20 @@ class Player extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name',
     ];
+
+    /**
+     * Get the search result subtitle for the resource.
+     *
+     * @return string
+     */
+    public function subtitle()
+    {
+        $name =  $this->sport->name ?? '';
+
+        return $name.' - '.ucfirst($this->type);
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -67,7 +79,7 @@ class Player extends Resource
                 ->sortable()
                 ->hideFromIndex(),
 
-            Text::make('Full Name')
+            Text::make('Name')
                 ->sortable(),
 
             Number::make('Jersey No.', 'jersey_number')

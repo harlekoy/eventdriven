@@ -2,63 +2,24 @@
 
 namespace App\Http\Controllers\API\v1;
 
+use App\Http\Resources\TeamResource;
 use App\Models\Team;
+use App\Traits\ApiResource;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        var_dump(Team::query()->toSql());die();
-    }
+    use ApiResource;
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * API controller constructor.
      */
-    public function store(Request $request)
+    public function __construct()
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $this->apiInstances([
+            'model'    => Team::class,
+            'request'  => Request::class,
+            'resource' => TeamResource::class,
+        ]);
     }
 }

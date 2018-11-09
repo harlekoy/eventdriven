@@ -2,22 +2,15 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Category;
-use App\Nova\Filters\CategoryContinent;
-use App\Nova\Filters\Enabled;
-use App\Nova\Filters\Season;
-use App\Nova\Filters\Sport;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
-class Tournament extends Resource
+class Team extends Resource
 {
     /**
      * The logical group associated with the resource.
@@ -31,7 +24,7 @@ class Tournament extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\Tournament';
+    public static $model = 'App\\Models\\Team';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -48,6 +41,16 @@ class Tournament extends Resource
     public static $search = [
         'name',
     ];
+
+     /**
+     * Get the value that should be displayed to represent the resource.
+     *
+     * @return string
+     */
+    public function title()
+    {
+        return $this->name . " ({$this->abbreviation})";
+    }
 
     /**
      * Get the search result subtitle for the resource.
@@ -69,48 +72,28 @@ class Tournament extends Resource
     {
         return [
             ID::make()
-                ->sortable()
                 ->hideFromIndex(),
 
             CloudinaryImage::make('Image'),
 
-            Boolean::make('Enabled', 'enable')
-                ->sortable(),
-
             Text::make('Name')
                 ->sortable(),
 
-            BelongsTo::make('Season')
+            Text::make('Abbreviation')
                 ->sortable(),
 
             BelongsTo::make('Sport')
                 ->sortable(),
 
-            BelongsTo::make('Category')
+            BelongsTo::make('Country')
                 ->sortable(),
 
-            Number::make('Round')
+            BelongsTo::make('Category')
+                ->sortable()
                 ->hideFromIndex(),
 
-            Number::make('Scheduled')
-                ->hideFromIndex(),
-
-            Number::make('Played')
-                ->hideFromIndex(),
-
-            Text::make('Min Coverage Level')
-                ->hideFromIndex(),
-
-            Text::make('Max Coverage Level')
-                ->hideFromIndex(),
-
-            Number::make('Max Covered')
-                ->hideFromIndex(),
-
-            Number::make('Live Coverage')
-                ->hideFromIndex(),
-
-            HasMany::make('Sport Events', 'sportEvents'),
+            HasMany::make('Competitors')
+                ->sortable(),
         ];
     }
 
@@ -133,13 +116,7 @@ class Tournament extends Resource
      */
     public function filters(Request $request)
     {
-        return [
-            new Category,
-            new CategoryContinent,
-            new Enabled,
-            new Season,
-            new Sport,
-        ];
+        return [];
     }
 
     /**

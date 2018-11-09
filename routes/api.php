@@ -41,45 +41,49 @@ Route::group(['middleware' => 'jwt'], function () {
     Route::apiResource('user.activity', 'UserActivityController', [
         'only' => ['index'],
     ]);
-
-    Route::apiResource('countries', 'CountryController', [
-        'only' => ['index'],
-    ]);
-
-    Route::apiResource('sports', 'SportController', [
-        'only' => ['index', 'show']
-    ])->middleware('enable');
-
-    Route::apiResource('seasons', 'SeasonController', [
-        'only' => ['index', 'show']
-    ]);
-
-    Route::apiResource('categories', 'CategoryController', [
-        'only' => ['index', 'show']
-    ]);
-
-    Route::apiResource('sport-events', 'SportEventController', [
-        'only' => ['index', 'show']
-    ]);
-
-    Route::apiResource('venues', 'VenueController', [
-        'only' => ['index', 'show']
-    ]);
-
-    Route::apiResource('players', 'PlayerController', [
-        'only' => ['index', 'show']
-    ]);
-
-    Route::apiResource('competitors', 'CompetitorController', [
-        'only' => ['index', 'show']
-    ]);
-
-    Route::apiResource('jerseys', 'JerseyController', [
-        'only' => ['index', 'show']
-    ]);
-
-    Route::apiResource('tournaments', 'TournamentController', [
-        'only' => ['index', 'show']
-    ])->middleware('enable');
 });
+
+Route::apiResource('countries', 'CountryController', [
+    'only' => ['index'],
+]);
+
+Route::apiResource('sports', 'SportController', [
+    'only' => ['index', 'show']
+])->middleware('enable');
+
+Route::apiResource('seasons', 'SeasonController', [
+    'only' => ['index', 'show']
+]);
+
+Route::apiResource('categories', 'CategoryController', [
+    'only' => ['index', 'show']
+]);
+
+Route::apiResource('sport-events', 'SportEventController', [
+    'only' => ['index', 'show']
+]);
+
+Route::apiResource('venues', 'VenueController', [
+    'only' => ['index', 'show']
+]);
+
+Route::apiResource('players', 'PlayerController', [
+    'only' => ['index', 'show']
+]);
+
+Route::apiResource('competitors', 'CompetitorController', [
+    'only' => ['index', 'show']
+]);
+
+Route::apiResource('jerseys', 'JerseyController', [
+    'only' => ['index', 'show']
+]);
+
+Route::apiResource('tournaments', 'TournamentController', [
+    'only' => ['index', 'show']
+])->middleware('enable');
+
+Route::apiResource('teams', 'TeamController', [
+    'only' => ['index', 'show']
+]);
 

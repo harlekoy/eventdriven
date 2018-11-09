@@ -50,6 +50,10 @@ class ApiEndpointsSeeder extends Seeder
                 'description' => 'Betradar competitors integration',
                 'endpoints' => $this->competitors(),
             ], [
+                'name' => 'Teams',
+                'description' => 'Betradar teams integration',
+                'endpoints' => $this->teams(),
+            ], [
                 'name' => 'Jerseys',
                 'description' => 'Betradar jerseys integration',
                 'endpoints' => $this->jerseys(),
@@ -181,6 +185,26 @@ class ApiEndpointsSeeder extends Seeder
                 'endpoint'    => '/competitors/{competitor}',
                 'method'      => 'GET',
                 'description' => 'Get the specific competitor from Betradar',
+            ],
+        ];
+    }
+
+    /**
+     * API endpoints for teams.
+     *
+     * @return array
+     */
+    public function teams()
+    {
+        return [
+            [
+                'endpoint'    => '/teams',
+                'method'      => 'GET',
+                'description' => 'Get list of teams from Betradar',
+            ], [
+                'endpoint'    => '/teams/{team}',
+                'method'      => 'GET',
+                'description' => 'Get the specific team from Betradar',
             ],
         ];
     }

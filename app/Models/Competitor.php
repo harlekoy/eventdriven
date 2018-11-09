@@ -6,10 +6,13 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Sport;
 use App\Models\Venue;
+use App\Traits\HasTeam;
 use Illuminate\Database\Eloquent\Model;
 
 class Competitor extends BetradarModel
 {
+    use HasTeam;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -75,5 +78,27 @@ class Competitor extends BetradarModel
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get team.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function team()
+    {
+        return $this->belongsTo(Team::class, 'abbreviation', 'abbreviation');
+    }
+
+    /**
+     * Get image attribute.
+     *
+     * @return string
+     */
+    public function getImageAttribute()
+    {
+        if ($this->team) {
+            return $this->team->image;
+        }
     }
 }

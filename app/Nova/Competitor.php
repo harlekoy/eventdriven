@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
 class Competitor extends Resource
 {
@@ -53,6 +54,13 @@ class Competitor extends Resource
     {
         return [
             ID::make()
+                ->sortable()
+                ->hideFromIndex(),
+
+            CloudinaryImage::make('Image')
+                ->onlyOnIndex(),
+
+            BelongsTo::make('Team')
                 ->sortable()
                 ->hideFromIndex(),
 

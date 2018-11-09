@@ -38,7 +38,18 @@ class Venue extends Resource
      */
     public static $search = [
         'name',
+        'city_name',
     ];
+
+    /**
+     * Get the search result subtitle for the resource.
+     *
+     * @return string
+     */
+    public function subtitle()
+    {
+        return $this->city_name;
+    }
 
     /**
      * Get the fields displayed by the resource.
