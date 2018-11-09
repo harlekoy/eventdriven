@@ -1,10 +1,23 @@
+<template>
+  <div class="sidebar">
+    <uploader/>
+    <ul>
+      <li v-for="(item, index) in menu" :key="index">
+        <router-link class="text font-semibold hover:text-green-dark" active-class="text-green-dark" exact :to="item.path">
+          {{ item.name }}
+        </router-link>
+      </li>
+    </ul>
+  </div>
+</template>
+
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 import Uploader from '@components/Uploader'
 
 export default {
   components: {
-    Uploader,
+    Uploader
   },
 
   computed: {
@@ -15,30 +28,7 @@ export default {
 }
 </script>
 
-<template>
-  <div class="w-full lg:w-1/4 pr-8 flex justify-center lg:justify-end mb-8 lg:mb-0">
-    <div class="flex flex-col w-48">
-      <Uploader />
-      <ul class="list-reset text-center lg:text-left">
-        <li
-          v-for="(item, index) in menu"
-          :key="index"
-          class="py-4 border-b"
-        >
-          <router-link
-            class="text-black font-bold hover:text-green-dark"
-            active-class="text-green-dark"
-            exact
-            :to="item.path"
-          >
-            {{ item.name }}
-          </router-link>
-        </li>
-      </ul>
-    </div>
-  </div>
-</template>
-
-<style lang="scss">
-@import '@design';
+<style lang="scss" scoped>
+  @import '@assets/styles/modules/_breakpoints.scss';
+  @import '@assets/styles/modules/_user.scss';
 </style>

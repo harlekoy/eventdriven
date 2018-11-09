@@ -75,7 +75,7 @@ export default [
   {
     path: '/profile',
     name: 'profile',
-    component: () => lazyLoadView(import('@views/Profile')),
+    component: () => lazyLoadView(import('@views/settings/Profile')),
     meta: {
       authRequired: true,
       breadCrumb: 'Profile'

@@ -1,45 +1,30 @@
 <template>
-  <div class="flex flex-col items-center lg:items-start">
-    <div class="relative w-32 h-32 rounded-full flex overflow-hidden">
-      <div
-        v-if="load"
-        class="flex items-center justify-center bg-black opacity-50 w-32 h-32 absolute rounded-full z-40"
-      >
-        <BaseIcon
-          class="text-white text-xl z-50"
-          name="spinner"
-          spin
-        />
+  <div class="uploader">
+
+    <!-- Wrapper -->
+    <div class="avatar-wrapper">
+
+      <!-- Loader -->
+      <div v-if="load" class="loader">
+        <BaseIcon name="spinner" spin/>
       </div>
+
+      <!-- Image -->
       <LazyLoad :src="avatar">
-        <img
-          class="absolute w-full"
-          :src="avatar"
-          alt=""
-        >
-        <div
-          slot="placeholder"
-          class="flex justify-center items-center w-32 h-32 bg-grey-lighter text-grey-darker"
-        >
-          <BaseIcon
-            class="text-xl z-50"
-            name="spinner"
-            spin
-          />
+        <img :src="avatar"/>
+        <div slot="placeholder" class="placeholder">
+          <BaseIcon name="spinner" spin/>
         </div>
       </LazyLoad>
+
     </div>
-    <a
-      class="text-black my-8 font-bold hover:text-green-dark"
-      href="#"
-      @click="$upload.select('profile-avatar')"
-    >
-      <BaseIcon
-        class="mr-2"
-        name="camera"
-      />
+
+    <!-- Label -->
+    <a class="label text font-semibold cursor-pointer" @click="$upload.select('profile-avatar')">
+      <BaseIcon name="camera"/>
       Upload Picture
     </a>
+
   </div>
 </template>
 
@@ -56,11 +41,11 @@ export default {
 
   data () {
     return {
-      load: false,
+      load: false
     }
   },
 
-  created() {
+  created () {
     this.$upload.on('profile-avatar', {
       onError(res) {
         fail({
@@ -99,3 +84,8 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  @import '@assets/styles/modules/_breakpoints.scss';
+  @import '@assets/styles/modules/_uploader.scss';
+</style>

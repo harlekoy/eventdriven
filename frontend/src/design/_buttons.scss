@@ -73,4 +73,9 @@
   &.bg-white {
     @apply bg-white text-brand-green;
   }
+
+  &.min-width {
+    @apply w-full;
+    max-width: 215px;
+  }
 }

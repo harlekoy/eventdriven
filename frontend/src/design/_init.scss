@@ -1,5 +1,8 @@
 // Set Min Height
-html, body, #app { @apply min-h-full; }
+html, body, #app {
+  @apply flex flex-col justify-center;
+  min-height: 100vh;
+}
 
 // Font
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');

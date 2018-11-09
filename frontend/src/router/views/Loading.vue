@@ -26,8 +26,6 @@ export default {
 @import '@design';
 
 .loadingIcon {
-  @extend %typography-xxlarge;
-
   display: block;
   margin: 0 auto;
 

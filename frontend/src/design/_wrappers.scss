@@ -1,5 +1,5 @@
 .white-wrapper {
-  @apply bg-white rounded-lg text-grey-darkest p-4 shadow-wrapper;
+  @apply bg-white rounded-lg text-grey-darkest p-6 shadow-wrapper;
 
   &.form {
     @apply mx-auto flex flex-col w-full;
@@ -9,7 +9,7 @@
 }
 
 .container {
-  @include breakpoint-max(sm) {
+  @include breakpoint-max(lg) {
     padding-left: 15px;
     padding-right: 15px;
   }

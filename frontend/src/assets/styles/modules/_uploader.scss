@@ -1,0 +1,47 @@
+.uploader {
+  @apply mb-8;
+
+  @include breakpoint-max(md) {
+    @apply text-center;
+  }
+
+  .avatar-wrapper {
+    @apply relative rounded-full flex overflow-hidden mb-5;
+    width: 170px;
+    height: 170px;
+
+    @include breakpoint-max(md) {
+      @apply .mx-auto;
+    }
+
+    + .label {
+      &:hover {
+        @apply text-green-dark;
+      }
+
+      svg {
+        @apply mr-2;
+      }
+    }
+  }
+
+  .loader {
+    @apply flex items-center justify-center bg-black opacity-50 w-full h-full absolute rounded-full z-40;
+
+    svg {
+      @apply text-white text-xl z-50;
+    }
+  }
+
+  .placeholder {
+    @apply flex justify-center items-center w-32 h-32 bg-grey-lighter text-grey-darker;
+
+    svg {
+      @apply text-xl z-50;
+    }
+  }
+
+  img {
+    @apply absolute w-full;
+  }
+}

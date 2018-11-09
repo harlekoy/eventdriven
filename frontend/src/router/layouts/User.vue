@@ -1,19 +1,37 @@
 <template>
-  <div class="h-full">
-    <NavBar />
+  <div>
+
+    <!-- Navbar -->
+    <NavBar/>
+
     <div class="content px-3 lg:px-0">
-      <slot name="page-title" />
+
+      <!-- Title -->
+      <slot name="page-title"/>
+
+      <!-- Content -->
       <div class="container mx-auto mb-12">
-        <div class="flex flex-col lg:flex-row">
-          <SideBar />
-          <div class="bg-white h-full flex-1 rounded-lg text-grey-darkest p-4 shadow-lg">
-            <slot />
+        <div class="flex flex-col md:flex-row">
+
+          <!-- Sidebar -->
+          <SideBar/>
+
+          <!-- Form  -->
+          <div class="white-wrapper flex-1 ml-0 md:ml-6">
+            <slot/>
           </div>
+
         </div>
       </div>
+
     </div>
-    <Breadcrumbs />
-    <AppFooter />
+
+    <!-- Breadcrumb -->
+    <Breadcrumbs/>
+
+    <!-- Footer -->
+    <AppFooter/>
+
   </div>
 </template>
 
@@ -28,11 +46,7 @@ export default {
     NavBar,
     AppFooter,
     Breadcrumbs,
-    SideBar,
+    SideBar
   },
 }
 </script>
-
-<style lang="scss">
-@import '@design';
-</style>

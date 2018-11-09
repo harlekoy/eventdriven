@@ -1,0 +1,24 @@
+.sidebar {
+  flex: 0 0 224px;
+  width: 224px;
+
+  @include breakpoint-max(md) {
+    @apply flex-1 w-auto mb-8;
+  }
+
+  ul {
+    @apply list-reset text-left;
+
+    li {
+      @apply py-4 border-b;
+
+      @include breakpoint-max(md) {
+        @apply text-center;
+      }
+
+      &:last-child {
+        @apply border-0;
+      }
+    }
+  }
+}
