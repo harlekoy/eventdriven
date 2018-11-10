@@ -42,7 +42,7 @@ h5 {
 
 
 h6 {
-  @apply font-sans font-thin text-green-darker text-lg;
+  @apply font-sans font-thin text-green-darker text-lg text-black;
 
   @include breakpoint-min(lg) {
     @apply text-lg;

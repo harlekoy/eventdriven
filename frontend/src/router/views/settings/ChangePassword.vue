@@ -1,74 +1,48 @@
 <template>
   <Layout class="bg-grey-lightest">
-    <h1 
-      slot="page-title" 
-      class="text-center my-8"
-    >
-      Change Password
-    </h1>
-    <div class="flex items-center justify-between border-b pb-4 mb-6">
-      <h2 class="font-light text-lg">
-        Change Password
-      </h2>
+
+    <!-- Title -->
+    <h1 slot="page-title" class="text-center my-4 md:my-8">Change Password</h1>
+
+    <!-- Form Heading -->
+    <div class="flex items-center justify-between border-b pb-4 mb-4">
+      <h6 class="font-medium">Change Password</h6>
     </div>
-    <form @submit.prevent="submit">
-      <div class="flex flex-col">
-        <p class="w-full lg:w-1/2 my-1">
-          Old Password
-        </p>
-        <div class="w-full lg:w-1/2 my-1 mb-4">
-          <BasePassword
-            v-model="password.old"
-            v-validate="'required'"
-            name="password"
-            type="password"
-            placeholder="Password"
-          />
-          <span 
-            v-if="message.old" 
-            class="text-red text-xs"
-          >
-            {{ message.old }}
-          </span>
+
+    <!-- Form -->
+    <form class="flex-1 flex flex-col justify-between" @submit.prevent="submit">
+      <div>
+
+        <!-- Old Password -->
+        <div class="cols">
+          <div class="col half">
+            <BasePassword v-model="password.old" v-validate="'required'" name="password" type="password" placeholder="Old Password"/>
+            <span v-if="message.old" class="text-red text-xs">
+              {{ message.old }}
+            </span>
+          </div>
         </div>
-        <p class="w-full lg:w-1/2 my-1">
-          New Password
-        </p>
-        <div class="w-full lg:w-1/2 my-1">
-          <BasePassword
-            v-model="password.new"
-            v-validate="'required'"
-            name="password"
-            type="password"
-            placeholder="Password"
-          />
-          <span 
-            v-if="message.new" 
-            class="text-red text-xs"
-          >
-            {{ message.new }}
-          </span>
+
+        <!-- New Password -->
+        <div class="cols">
+          <div class="col half">
+            <BasePassword v-model="password.new" v-validate="'required'" name="password" type="password" placeholder="New Password"/>
+            <span v-if="message.new" class="text-red text-xs">
+              {{ message.new }}
+            </span>
+          </div>
         </div>
+
       </div>
+
+      <!-- Register Button -->
       <div class="flex justify-center lg:justify-end">
-        <BaseButton
-          class="rounded py-4 w-48 my-2 bg-gradient"
-          type="submit"
-          :disabled="!canUpdate"
-        >
-          <BaseIcon
-            v-if="load"
-            name="spinner"
-            spin
-          />
-          <span
-            v-else
-            class="uppercase font-bold"
-          >
-            Save
-          </span>
+        <BaseButton class="min-width shadow" :disabled="!canUpdate" type="submit">
+          <BaseIcon v-if="load" name="spinner" spin/>
+          <span v-else>SAVE</span>
         </BaseButton>
       </div>
+
     </form>
   </Layout>
 </template>
@@ -84,7 +58,7 @@ import { success } from '@utils/toast'
 export default {
   page: {
     title: 'Change Password',
-    meta: [{ name: 'description', content: 'ChangePassword' }],
+    meta: [{ name: 'description', content: 'ChangePassword' }]
   },
 
   components: { Layout },
@@ -93,15 +67,15 @@ export default {
     return {
       password: {
         old: '',
-        new: '',
+        new: ''
       },
       load: false,
       message: {
         old: '',
-        new: '',
+        new: ''
       },
       canUpdate: false,
-      validationErrors: {},
+      validationErrors: {}
     }
   },
 
@@ -120,7 +94,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      user: 'auth/user',
+      user: 'auth/user'
     }),
   },
 
@@ -136,7 +110,7 @@ export default {
 
         success({
           text: 'Password successfully changed.',
-          width: 500,
+          width: 500
         })
 
         Cookie.remove('password')
@@ -151,7 +125,7 @@ export default {
     ...mapActions({
       updateUser: 'profile/updateUser',
       authorizeToChangePass: 'auth/logIn',
-      canChangePass: 'auth/canChangePass',
+      canChangePass: 'auth/canChangePass'
     }),
 
     verify () {
@@ -190,24 +164,9 @@ export default {
     clear () {
       this.message = {
         old: '',
-        new: '',
+        new: ''
       }
     }
   }
 }
 </script>
-
-<style scoped>
-/deep/ input {
-  @apply bg-grey-lightest p-4 rounded my-2 border border-grey-lightest w-full;
-}
-
-/deep/ .border-red {
-  @apply border-red
-}
-
-/deep/ button:disabled {
-  cursor: not-allowed;
-  background: #ccc;
-}
-</style>

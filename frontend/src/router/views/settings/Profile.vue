@@ -6,14 +6,12 @@
 
     <!-- Form Heading -->
     <div class="flex items-center justify-between border-b pb-4 mb-4">
-      <h2 class="font-light text-lg">
-        Personal Details & Contact Information
-      </h2>
-      <span>76% Complete</span>
+      <h6 class="font-medium">Personal Details & Contact Information</h6>
+      <h6 class="font-medium">76% Complete</h6>
     </div>
 
     <!-- Form -->
-    <form @submit.prevent="updateProfile">
+    <form class="flex-1 flex flex-col justify-between" @submit.prevent="updateProfile">
       <div class="cols">
 
         <!-- First Name -->
@@ -70,7 +68,7 @@
 
       <!-- Register Button -->
       <div class="flex justify-center lg:justify-end">
-        <BaseButton class="min-width" :disabled="load" type="submit">
+        <BaseButton class="min-width shadow" :disabled="load" type="submit">
           <BaseIcon v-if="load" name="spinner" spin/>
           <span v-else>SAVE</span>
         </BaseButton>
@@ -88,13 +86,13 @@ import { pick, mapValues, head } from 'lodash'
 import { success } from '@utils/toast'
 
 export default {
-  page() {
+  page () {
     return {
       title: this.user.name,
       meta: [
         {
           name: 'description',
-          content: `The user profile for ${this.user.name}.`,
+          content: `The user profile for ${this.user.name}.`
         },
       ],
     }
@@ -108,7 +106,7 @@ export default {
         first_name: '',
         last_name: '',
         email: '',
-        username: '',
+        username: ''
       },
       address: {
         address_1: '',
@@ -116,16 +114,16 @@ export default {
         state: '',
         city: '',
         zip_code: '',
-        country: '',
+        country: ''
       },
       validationErrors: {},
-      load: false,
+      load: false
     }
   },
 
   computed: {
     ...mapGetters({
-      user: 'auth/user',
+      user: 'auth/user'
     })
   },
 
@@ -145,7 +143,7 @@ export default {
         'first_name',
         'last_name',
         'username',
-        'email',
+        'email'
       ]))
 
       this.address = Object.assign(this.address, this.user.address)

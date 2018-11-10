@@ -22,6 +22,10 @@
     @apply bg-facebook-blue;
   }
 
+  &[disabled] {
+    @apply bg-grey;
+  }
+
   // Bordered
 
   &.btn-border {

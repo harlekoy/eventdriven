@@ -3,7 +3,7 @@
     v-model="password"
     class="flex relative items-center"
     :type="type"
-    placeholder="Password"
+    :placeholder="placeholder"
     :error="error"
   >
     <a
@@ -29,6 +29,11 @@ export default {
     },
 
     error: {
+      type: String,
+      default: null
+    },
+
+    placeholder: {
       type: String,
       default: null
     }

@@ -58,7 +58,7 @@ export default [
   {
     path: '/change-password',
     name: 'change-password',
-    component: () => lazyLoadView(import('@views/ChangePassword')),
+    component: () => lazyLoadView(import('@views/settings/ChangePassword')),
     meta: {
       breadCrumb: 'Change Password'
     },

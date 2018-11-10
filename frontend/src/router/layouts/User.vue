@@ -17,7 +17,7 @@
           <SideBar/>
 
           <!-- Form  -->
-          <div class="white-wrapper flex-1 ml-0 md:ml-6">
+          <div class="white-wrapper flex flex-col flex-1 ml-0 md:ml-6">
             <slot/>
           </div>
 
