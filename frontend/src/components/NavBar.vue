@@ -8,6 +8,8 @@
         <Logo :width="162"/>
       </LeftMenu>
 
+      <SellSteps v-if=" $route.name == 'sell'"/>
+
       <!-- Right Side Menu -->
       <RightMenu />
 
@@ -18,6 +20,7 @@
 <script>
 import Logo from '@components/Logo'
 import LeftMenu from '@components/LeftMenu'
+import SellSteps from '@components/Sell/SellSteps'
 import RightMenu from '@components/RightMenu'
 import { mapActions } from 'vuex'
 
@@ -27,6 +30,7 @@ export default {
   components: {
     LeftMenu,
     RightMenu,
+    SellSteps,
     Logo
   },
 

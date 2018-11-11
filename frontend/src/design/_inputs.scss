@@ -8,6 +8,18 @@
   }
 }
 
+.has-icon {
+  input {
+    padding-left: 48px !important;
+  }    
+}
+
+.input-size-lg {
+  input {
+    font-size: 24px;
+  }
+}
+
 // Algolia
 .algolia-places {
   @apply relative;

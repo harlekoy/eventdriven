@@ -82,6 +82,15 @@ export default [
     },
   },
   {
+    path: '/sell',
+    name: 'sell',
+    component: () => lazyLoadView(import('@views/sell/Sell')),
+    meta: {
+      authRequired: true,
+      breadCrumb: 'Sell'
+    },
+  },
+  {
     path: '/dashboard',
     name: 'dashboard',
     component: () => lazyLoadView(import('@views/Dashboard')),
