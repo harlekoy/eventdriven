@@ -2,14 +2,11 @@
 
 <template>
   <div class="left">
-
     <!-- Logo -->
-    <router-link :to="{ name: 'home' }" class="logo">
-      <Logo :width="162" />
-    </router-link>
+    <slot />
 
     <!-- Item -->
-    <div class="item" @click="activate">
+    <div v-if="onPage" class="item" @click="activate">
 
       <!-- Label -->
       Buy
@@ -119,28 +116,38 @@
     </div>
 
     <!-- Item -->
-    <div class="item" @click="activate">
-      Sell
-      <i class="icon-down" />
+    <div v-if="onPage" class="item">
+      <router-link 
+        to="/sell"
+        class="text-xl text-black"
+        >Sell</router-link>
     </div>
 
   </div>
 </template>
 
 <script>
-import Logo from '@components/Logo'
 import { forEach, indexOf } from 'lodash'
 import { mapGetters } from 'vuex'
 
 export default {
+  data() {
+    return {
+      hideOnPages: ['sell']
+    }
+  },
   components: {
-    Logo
+
   },
 
   computed: {
     ...mapGetters({
       sports: 'sports/sports'
-    })
+    }),
+
+    onPage() {
+      return !this.hideOnPages.includes( this.$route.name )
+    }
   },
 
   methods: {

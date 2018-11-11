@@ -3,9 +3,10 @@
 <template>
   <header class="bg-white">
     <nav class="container mx-auto">
-
       <!-- Left Side Menu -->
-      <LeftMenu />
+      <LeftMenu>
+        <Logo :width="162"/>
+      </LeftMenu>
 
       <!-- Right Side Menu -->
       <RightMenu />
@@ -15,6 +16,7 @@
 </template>
 
 <script>
+import Logo from '@components/Logo'
 import LeftMenu from '@components/LeftMenu'
 import RightMenu from '@components/RightMenu'
 import { mapActions } from 'vuex'
@@ -24,7 +26,8 @@ import { mapActions } from 'vuex'
 export default {
   components: {
     LeftMenu,
-    RightMenu
+    RightMenu,
+    Logo
   },
 
   mounted () {

@@ -18,7 +18,7 @@ header {
       }
 
       > * {
-        @apply border-r border-grey-lighter flex items-center;
+        @apply flex items-center;
       }
 
       > .logo {
@@ -30,7 +30,7 @@ header {
       }
 
       > .item {
-        @apply items-center justify-center text-xl relative cursor-pointer;
+        @apply items-center justify-center text-xl relative cursor-pointer border-l border-grey-lighter;
         border-bottom: 5px solid transparent;
         padding: 5px 40px 0 30px;
 
@@ -45,6 +45,10 @@ header {
             @include breakpoint-max(md) {
               @apply border-0;
             }
+          }
+
+          &:last-of-type {
+            @apply border-r;
           }
         }
 
