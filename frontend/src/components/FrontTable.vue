@@ -2,11 +2,11 @@
   <table>
     <thead>
       <tr>
-        <slot name="head"/>
+        <slot name="head" />
       </tr>
     </thead>
     <tbody>
-      <slot/>
+      <slot />
     </tbody>
   </table>
 </template>

@@ -13,7 +13,7 @@ return [
 
     'api_url' => env('APP_URL', '/').'/api/v1',
 
-    'group_open' => false,
+    'group_open' => true,
 
     'middleware' => [
         'web',

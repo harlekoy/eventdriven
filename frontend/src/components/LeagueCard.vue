@@ -1,10 +1,14 @@
 <template>
   <div class="card">
     <div class="thumbnail">
-      <img src="@assets/images/league-thumb.png"/>
+      <img src="@assets/images/league-thumb.png">
     </div>
     <div class="info">
-      <h4><b class="font-bold">UEFA Champions League</b></h4>
+      <h4>
+        <b class="font-bold">
+          UEFA Champions League
+        </b>
+      </h4>
     </div>
   </div>
 </template>

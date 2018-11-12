@@ -1,5 +1,8 @@
 <template>
-  <router-link :to="{ name: 'home' }" class="logo flex items-center">
+  <router-link 
+    :to="{ name: 'home' }" 
+    class="logo flex items-center"
+  >
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
       :width="width" 

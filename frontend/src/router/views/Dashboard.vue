@@ -15,15 +15,15 @@
             :key="tab.slug"
             :class="['tab', { active: currentTab === tab.slug }]"
             @click="changeTab(tab.slug)"
-            >
-            <span v-text="tab.title"/>
+          >
+            <span v-text="tab.title" />
           </div>
         </div>
         <div class="table-wrapper">
           <keep-alive>
             <component
-              :is="currentTabComponent">
-            </component>
+              :is="currentTabComponent"
+            />
           </keep-alive>
         </div>
         <div class="actions">

@@ -3,20 +3,25 @@
     <div class="container mx-auto">
       <router-link 
         to="/" 
-        class="uppercase">
-          Home
+        class="uppercase"
+      >
+        Home
       </router-link>
 
       <span
         v-for="(item, index) in crumbs"
-        :key="index">
-        <i v-show="isHome(item.to)" class="icon-down" />
+        :key="index"
+      >
+        <i 
+          v-show="isHome(item.to)" 
+          class="icon-down"
+        />
         <router-link
           v-show="isHome(item.to)"
           :to="item.to"
           class="uppercase"
-          >
-          {{item.text}}
+        >
+          {{ item.text }}
         </router-link>
       </span>
     </div>
@@ -43,7 +48,7 @@ export default {
 
   methods: {
     isHome(val) {
-      return val != '' ? true : false
+      return val != ''
     },
   }
 }

@@ -1,9 +1,17 @@
 <template>
   <div class="sidebar">
-    <uploader/>
+    <Uploader />
     <ul>
-      <li v-for="(item, index) in menu" :key="index">
-        <router-link class="text font-semibold hover:text-green-dark" active-class="text-green-dark" exact :to="item.path">
+      <li 
+        v-for="(item, index) in menu" 
+        :key="index"
+      >
+        <router-link 
+          class="text font-semibold hover:text-green-dark" 
+          active-class="text-green-dark" 
+          exact 
+          :to="item.path"
+        >
           {{ item.name }}
         </router-link>
       </li>

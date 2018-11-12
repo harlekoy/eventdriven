@@ -24,25 +24,29 @@ export default {
 <template>
   <div class="w-full md:w-2/5 mx-auto flex justify-center items-center pt-2">
     <div class="flex flex-1 flex-col">
-
       <div class="flex-1 px-20">
-        <input class="w-full slider" type="range" min="1" :max="itemsStepLength" :value="current" disabled>        
+        <input 
+          class="w-full slider" 
+          type="range" 
+          min="1" 
+          :max="itemsStepLength" 
+          :value="current" 
+          disabled
+        >        
       </div>
 
       <div class="flex-1 text-center flex items-center">
-
         <!-- Step Names -->
         <p 
           v-for="(item, index) in stepNames"
           :key="index"
-          @click="nextStep(index+1)"
           class="text-black text-center flex-1 cursor-pointer justify-between px-2 py-3 opacity-50"
-          :class="[{ active: current == index + 1 }]">
+          :class="[{ active: current == index + 1 }]"
+          @click="nextStep(index+1)"
+        >
           {{ item }}
         </p>
-
-      </div> 
-
+      </div>
     </div>
   </div>
 </template>

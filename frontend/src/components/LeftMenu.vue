@@ -131,13 +131,13 @@ import { forEach, indexOf } from 'lodash'
 import { mapGetters } from 'vuex'
 
 export default {
+  components: {
+
+  },
   data() {
     return {
       hideOnPages: ['sell']
     }
-  },
-  components: {
-
   },
 
   computed: {

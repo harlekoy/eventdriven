@@ -1,23 +1,40 @@
 <template>
   <Layout class="bg-grey-lightest">
-
     <!-- Title -->
-    <h1 slot="page-title" class="text-center my-4 md:my-8">Change Password</h1>
+    <h1 
+      slot="page-title" 
+      class="text-center my-4 md:my-8"
+    >
+      Change Password
+    </h1>
 
     <!-- Form Heading -->
     <div class="flex items-center justify-between border-b pb-4 mb-4">
-      <h6 class="font-medium">Change Password</h6>
+      <h6 class="font-medium">
+        Change Password
+      </h6>
     </div>
 
     <!-- Form -->
-    <form class="flex-1 flex flex-col justify-between" @submit.prevent="submit">
+    <form 
+      class="flex-1 flex flex-col justify-between" 
+      @submit.prevent="submit"
+    >
       <div>
-
         <!-- Old Password -->
         <div class="cols">
           <div class="col half">
-            <BasePassword v-model="password.old" v-validate="'required'" name="password" type="password" placeholder="Old Password"/>
-            <span v-if="message.old" class="text-red text-xs">
+            <BasePassword 
+              v-model="password.old" 
+              v-validate="'required'" 
+              name="password" 
+              type="password" 
+              placeholder="Old Password"
+            />
+            <span 
+              v-if="message.old" 
+              class="text-red text-xs"
+            >
               {{ message.old }}
             </span>
           </div>
@@ -26,23 +43,40 @@
         <!-- New Password -->
         <div class="cols">
           <div class="col half">
-            <BasePassword v-model="password.new" v-validate="'required'" name="password" type="password" placeholder="New Password"/>
-            <span v-if="message.new" class="text-red text-xs">
+            <BasePassword 
+              v-model="password.new" 
+              v-validate="'required'" 
+              name="password" 
+              type="password" 
+              placeholder="New Password"
+            />
+            <span 
+              v-if="message.new" 
+              class="text-red text-xs"
+            >
               {{ message.new }}
             </span>
           </div>
         </div>
-
       </div>
 
       <!-- Register Button -->
       <div class="flex justify-center lg:justify-end">
-        <BaseButton class="min-width shadow" :disabled="!canUpdate" type="submit">
-          <BaseIcon v-if="load" name="spinner" spin/>
-          <span v-else>SAVE</span>
+        <BaseButton 
+          class="min-width shadow" 
+          :disabled="!canUpdate" 
+          type="submit"
+        >
+          <BaseIcon 
+            v-if="load" 
+            name="spinner" 
+            spin
+          />
+          <span v-else>
+            SAVE
+          </span>
         </BaseButton>
       </div>
-
     </form>
   </Layout>
 </template>

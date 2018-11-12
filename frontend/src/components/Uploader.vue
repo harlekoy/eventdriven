@@ -1,30 +1,41 @@
 <template>
   <div class="uploader">
-
     <!-- Wrapper -->
     <div class="avatar-wrapper">
-
       <!-- Loader -->
-      <div v-if="load" class="loader">
-        <BaseIcon name="spinner" spin/>
+      <div 
+        v-if="load" 
+        class="loader"
+      >
+        <BaseIcon 
+          name="spinner" 
+          spin
+        />
       </div>
 
       <!-- Image -->
       <LazyLoad :src="avatar">
-        <img :src="avatar"/>
-        <div slot="placeholder" class="placeholder">
-          <BaseIcon name="spinner" spin/>
+        <img :src="avatar">
+        <div 
+          slot="placeholder" 
+          class="placeholder"
+        >
+          <BaseIcon 
+            name="spinner" 
+            spin
+          />
         </div>
       </LazyLoad>
-
     </div>
 
     <!-- Label -->
-    <a class="label text font-semibold cursor-pointer" @click="$upload.select('profile-avatar')">
-      <BaseIcon name="camera"/>
+    <a 
+      class="label text font-semibold cursor-pointer" 
+      @click="$upload.select('profile-avatar')"
+    >
+      <BaseIcon name="camera" />
       Upload Picture
     </a>
-
   </div>
 </template>
 

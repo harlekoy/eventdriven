@@ -56,24 +56,28 @@ export default {
         <tr
           v-for="(item, index) in all_recent_activity"
           :key="index"
-          >
+        >
           <td>
-            <span v-text="item.date"/>
+            <span v-text="item.date" />
           </td>
           <td>
-            <span v-text="item.wager"/>
+            <span v-text="item.wager" />
           </td>
           <td>
-            <span v-text="item.odds"/>
+            <span v-text="item.odds" />
           </td>
           <td>
-            <span v-text="item.total"/>
+            <span v-text="item.total" />
           </td>
           <td>
             <i
+              class="icon-trash cursor-pointer"
               @click="remove(item)"
-              class="icon-trash cursor-pointer" />
-            <button @click.prevent="edit(item)" class="btn btn-success btn-xs">
+            />
+            <button 
+              class="btn btn-success btn-xs" 
+              @click.prevent="edit(item)"
+            >
               EDIT
             </button>
           </td>
@@ -81,12 +85,12 @@ export default {
       </tbody>
     </table>
     <SidebarRight
-      @close="close"
-      :data="recent"
       v-if="showSidebarRight"
-      ref="rightSidebar"/>
+      ref="rightSidebar"
+      :data="recent"
+      @close="close"
+    />
   </div>
-
 </template>
 
 <style lang="scss" module>

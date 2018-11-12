@@ -1,6 +1,10 @@
 <template>
   <div>
-    <v-date-picker v-model="date" @input="onUpdate" mode='single' />
+    <VDatePicker 
+      v-model="date" 
+      mode="single" 
+      @input="onUpdate"
+    />
   </div>
 </template>
 
@@ -14,6 +18,10 @@ setupCalendar({
 });
 
 export default {
+
+  components: {
+    VDatePicker: DatePicker
+  },
   inheritAttrs: false,
 
   props: {
@@ -28,10 +36,6 @@ export default {
 
   mounted () {
     this.date = this.value ? this.value : null
-  },
-
-  components: {
-    VDatePicker: DatePicker
   },
 
   methods: {

@@ -1,6 +1,13 @@
 <template>
   <div class="tabs">
-    <router-link v-for="(tab, key) in tabs" :key="key" :to="{ name: tab.route }" class="tab">{{ tab.label }}</router-link>
+    <router-link 
+      v-for="(tab, key) in tabs" 
+      :key="key" 
+      :to="{ name: tab.route }" 
+      class="tab"
+    >
+      {{ tab.label }}
+    </router-link>
   </div>
 </template>
 

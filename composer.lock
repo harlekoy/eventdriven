@@ -271,7 +271,7 @@
             "dist": {
                 "type": "path",
                 "url": "../apidocs",
-                "reference": "08dc088e9a22ee39ef3cd930f98aa769060b0a97",
+                "reference": "1b4a9f614b5062e43477b8c34df3d19056ef5d50",
                 "shasum": null
             },
             "require": {
@@ -327,7 +327,7 @@
             "dist": {
                 "type": "path",
                 "url": "../betradar",
-                "reference": "f95001cdd925732bb3dd9051497caf1e4d90477e",
+                "reference": "9e88d7697d0e9b8f251893a47567702c3cd8c5ee",
                 "shasum": null
             },
             "require": {
