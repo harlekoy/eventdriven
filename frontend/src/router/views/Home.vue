@@ -5,23 +5,23 @@
         Gambling just got Smarter.
       </h1>
       <h6>Prophet is the only marketplace designed for users to buy and sell previously placed sports bets. Maximized odds for buyers. Guaranteed profit for sellers.</h6>
-      <button class="btn btn-plain">
+      <router-link to="sell" class="btn btn-plain">
         START SELLING
-      </button>
+      </router-link>
     </Banner>
     <div class="container mx-auto my-12">
       <h3 class="text-center mb-10">
         Events
       </h3>
-      <Carousel />
+      <TheEvent />
       <h3 class="text-center mt-12 mb-10">
         Teams
       </h3>
-      <Carousel />
+      <TheTeam />
       <h3 class="text-center mt-12 mb-10">
         Players
       </h3>
-      <Carousel />
+      <ThePlayer />
     </div>
   </Layout>
 </template>
@@ -30,6 +30,9 @@
 import appConfig from '@src/app.config'
 import Layout from '@layouts/Main'
 import Banner from '@components/Banner'
+import ThePlayer from '@components/Home/ThePlayer'
+import TheEvent from '@components/Home/TheEvent'
+import TheTeam from '@components/Home/TheTeam'
 import Carousel from '@components/Carousel'
 import { mapActions } from 'vuex'
 
@@ -42,7 +45,10 @@ export default {
   components: {
     Layout,
     Banner,
-    Carousel
+    Carousel,
+    ThePlayer,
+    TheEvent,
+    TheTeam,
   },
 
   async mounted () {

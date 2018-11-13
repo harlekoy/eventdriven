@@ -19,6 +19,14 @@ export default [
     }
   },
   {
+    path: '/player',
+    name: 'player',
+    component: () => lazyLoadView(import('@views/player/Index')),
+    meta: {
+      breadCrumb: 'Player'
+    }
+  },
+  {
     path: '/competition',
     name: 'competition',
     component: () => lazyLoadView(import('@views/Competition')),

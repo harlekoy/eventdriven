@@ -1,29 +1,29 @@
 <template>
-  <div class="card">
+  <router-link :to="page" class="card">
     <div class="white-wrapper overflow-hidden">
       <div class="thumb">
         <!-- <Heart /> -->
-        <img src="@assets/images/card-thumb.png">
+        <img :src="`/images/${page}${info.image}`">
       </div>
       <div class="content">
         <p class="text-base font-normal mb-4">
-          Superbowl 2018
+          {{info.name}}
         </p>
         <div class="cols">
           <div class="col text-center border-r border-grey-light">
-            <h2>80:1</h2>
+            <h2>{{info.odds}}</h2>
             <p class="text-xs">
               Odds
             </p>
           </div>
           <div class="col text-center border-r border-grey-light">
-            <h2>22x</h2>
+            <h2>{{info.return}}</h2>
             <p class="text-xs">
               Return
             </p>
           </div>
           <div class="col text-center">
-            <h2>97</h2>
+            <h2>{{info.wagers}}</h2>
             <p class="text-xs">
               Wagers
             </p>
@@ -31,13 +31,15 @@
         </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
 import Heart from '@components/Heart'
 
 export default {
+  props: ['info', 'page'],
+
   components: {
     Heart
   }
