@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Filters\Continent;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Asset;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -63,6 +64,8 @@ class Country extends Resource
     public function fields(Request $request)
     {
         return [
+            Asset::make('Flag'),
+
             Text::make('Abbreviation', 'alpha_2')
                 ->hideFromIndex()
                 ->rules('required', 'max:255'),

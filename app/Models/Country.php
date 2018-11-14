@@ -44,4 +44,16 @@ class Country extends Model
     {
         return $this->hasManyThrough(Sport::class, Category::class);
     }
+
+    /**
+     * Get flag image attribute.
+     *
+     * @return string
+     */
+    public function getFlagAttribute()
+    {
+        $code = strtolower($this->alpha_2);
+
+        return asset("country-flags/{$code}.png");
+    }
 }
