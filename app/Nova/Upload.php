@@ -4,11 +4,11 @@ namespace App\Nova;
 
 use App\Nova\User;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\CloudinaryImage;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
 class Upload extends Resource
 {

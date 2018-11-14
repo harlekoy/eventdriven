@@ -4,11 +4,11 @@ namespace App\Nova;
 
 use App\Nova\Filters\Year;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\CloudinaryImage;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
 class Season extends Resource
 {

@@ -2,11 +2,16 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\Sport;
+use App\Nova\Filters\Status;
+use App\Nova\Filters\Tournament;
+use App\Nova\Filters\Venue;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -68,6 +73,10 @@ class SportEvent extends Resource
                 ->format('MMM DD, YYYY')
                 ->sortable(),
 
+            Date::make('Next Live Time')
+                ->format('MMM DD, YYYY')
+                ->hideFromIndex(),
+
             BelongsTo::make('Sport')
                 ->sortable(),
 
@@ -80,7 +89,30 @@ class SportEvent extends Resource
             Boolean::make('Start Time TBD')
                 ->hideFromIndex(),
 
-            Text::make('Status'),
+            Select::make('Live Odds', 'liveodds')
+                ->options([
+                    'not_available' => 'Not Available',
+                    'booked'        => 'Booked',
+                    'bookable'      => 'Bookable',
+                    'buyable'       => 'Buyable',
+                ])
+                ->displayUsingLabels()
+                ->hideFromIndex(),
+
+            Select::make('Status')
+                ->options([
+                    'not_started' => 'Not Started',
+                    'live'        => 'Live',
+                    'ended'       => 'Ended',
+                    'closed'      => 'Closed',
+                    'cancelled'   => 'Cancelled',
+                    'postponed'   => 'Postponed',
+                    'suspended'   => 'Suspended',
+                    'interrupted' => 'Interrupted',
+                    'delayed'     => 'Delayed',
+                ])
+                ->displayUsingLabels()
+                ->sortable(),
         ];
     }
 
@@ -103,7 +135,12 @@ class SportEvent extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Tournament($this),
+            new Sport($this),
+            new Venue($this),
+            new Status,
+        ];
     }
 
     /**

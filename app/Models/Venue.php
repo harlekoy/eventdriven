@@ -13,6 +13,7 @@ class Venue extends BetradarModel
      */
     protected $fillable = [
         'id',
+        'image',
         'name',
         'capacity',
         'city_name',

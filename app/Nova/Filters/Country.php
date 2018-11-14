@@ -3,64 +3,25 @@
 namespace App\Nova\Filters;
 
 use App\Models\Country as Model;
+use App\Traits\FilterResource;
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\Filter;
 
 class Country extends Filter
 {
-    /**
-     * @var \App\Nova\Resource
-     */
-    protected $resource;
+    use FilterResource;
 
     /**
-     * @var string
-     */
-    protected $field;
-
-    public function __construct($resource, $field = 'country_code')
-    {
-        $this->resource = $resource->resource;
-        $this->field = $field;
-    }
-
-    /**
-     * Apply the filter to the given query.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  mixed  $value
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function apply(Request $request, $query, $value)
-    {
-        return $query->where($this->field, $value);
-    }
-
-    /**
-     * Get the filter's available options.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function options(Request $request)
-    {
-        return Model::query()
-            ->whereIn('alpha_3', $this->countryCodes())
-            ->pluck('alpha_3', 'name');
-    }
-
-    /**
-     * Get model country codes.
+     * Initialize filter.
      *
      * @return array
      */
-    public function countryCodes()
+    public function init()
     {
-        return $this->resource
-            ->query()
-            ->distinct()
-            ->pluck($this->field)
-            ->all();
+        return [
+            'model_field'      => 'country_code',
+            'related_field'    => 'alpha_3',
+            'related_instance' => new Model,
+        ];
     }
 }

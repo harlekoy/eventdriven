@@ -96,7 +96,7 @@ class Category extends Resource
     public function filters(Request $request)
     {
         return [
-            new Sport,
+            new Sport($this),
             new Country($this),
         ];
     }

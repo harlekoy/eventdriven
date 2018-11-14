@@ -62,8 +62,10 @@ class FetchSchedulesCommand extends Command
 
         $event->betradarFill(
             array_merge(array_only($data, $event->getFillable()), [
-                'scheduled' => Carbon::parse($data['scheduled']),
-                'venue_id' => array_get($data, 'venue.id'),
+                'scheduled'      => Carbon::parse($data['scheduled']),
+                'next_live_time' => Carbon::parse($data['next_live_time']),
+                'venue_id'       => array_get($data, 'venue.id'),
+                'tournament_id'  => array_get($data, 'tournament.id'),
             ])
         )->save();
     }
@@ -79,8 +81,10 @@ class FetchSchedulesCommand extends Command
     {
         $data = $response['venue'];
 
-        $venue = Venue::firstOrNew(array_only($data, 'id'));
-        $venue->betradarFill($data)->save();
+        if ($data) {
+            $venue = Venue::firstOrNew(array_only($data, 'id'));
+            $venue->betradarFill($data)->save();
+        }
     }
 
     /**
@@ -141,6 +145,8 @@ class FetchSchedulesCommand extends Command
                 ->all();
         }
 
-        return $tournament;
+        return Tournament::whereIn('id', $tournament)
+            ->pluck('sport_id', 'id')
+            ->all();
     }
 }

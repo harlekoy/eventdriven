@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\Models\BetradarModel;
+use Betprophet\Betradar\Traits\HasLiveOdds;
 
 class SportEvent extends BetradarModel
 {
+    use HasLiveOdds;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,6 +22,8 @@ class SportEvent extends BetradarModel
         'scheduled',
         'start_time_tbd',
         'status',
+        'next_live_time',
+        'liveodds',
         'betradar_data',
     ];
 
@@ -28,8 +33,9 @@ class SportEvent extends BetradarModel
      * @var array
      */
     protected $casts = [
-        'scheduled'     => 'datetime',
-        'betradar_data' => 'array',
+        'betradar_data'  => 'array',
+        'next_live_time' => 'datetime',
+        'scheduled'      => 'datetime',
     ];
 
     /**

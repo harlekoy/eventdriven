@@ -7,10 +7,10 @@ use App\Nova\Filters\Country;
 use App\Nova\Filters\Sport;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\CloudinaryImage;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
 class Competitor extends Resource
 {
@@ -102,7 +102,7 @@ class Competitor extends Resource
     public function filters(Request $request)
     {
         return [
-            new Sport,
+            new Sport($this),
             new Country($this),
             new Category,
         ];

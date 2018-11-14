@@ -15,7 +15,8 @@ class CreateSportEventsTable extends Migration
     {
         Schema::create('sport_events', function (Blueprint $table) {
             $table->string('id')->primary()->nullable();
-            $table->string('name')->nullable();
+            $table->string('liveodds')->nullable();
+            $table->datetime('next_live_time')->nullable();
             $table->datetime('scheduled')->nullable();
             $table->string('start_time_tbd')->nullable();
             $table->string('status')->nullable();

@@ -10,12 +10,12 @@ use App\Nova\Filters\Sport;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\CloudinaryImage;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
 class Tournament extends Resource
 {
@@ -80,14 +80,14 @@ class Tournament extends Resource
             Text::make('Name')
                 ->sortable(),
 
-            BelongsTo::make('Season')
-                ->sortable(),
-
             BelongsTo::make('Sport')
                 ->sortable(),
 
-            BelongsTo::make('Category')
+            BelongsTo::make('Season')
                 ->sortable(),
+
+            BelongsTo::make('Category')
+                ->hideFromIndex(),
 
             Number::make('Round')
                 ->hideFromIndex(),
@@ -138,7 +138,7 @@ class Tournament extends Resource
             new CategoryContinent,
             new Enabled,
             new Season,
-            new Sport,
+            new Sport($this),
         ];
     }
 

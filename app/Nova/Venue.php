@@ -2,8 +2,10 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\Country;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\CloudinaryImage;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -60,7 +62,9 @@ class Venue extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make()->hideFromIndex(),
+
+            CloudinaryImage::make('Image'),
 
             Text::make('Name')
                 ->sortable(),
@@ -92,7 +96,9 @@ class Venue extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Country($this),
+        ];
     }
 
     /**

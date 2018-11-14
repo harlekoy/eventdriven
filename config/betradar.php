@@ -8,6 +8,7 @@ return [
         'sportEvents' => Betprophet\Betradar\UnifiedFeeds\SportEvents::class,
         'staticSportEvents' => Betprophet\Betradar\UnifiedFeeds\StaticSportEvents::class,
         'entity' => Betprophet\Betradar\UnifiedFeeds\Entity::class,
+        'calendar' => Betprophet\Betradar\UnifiedFeeds\BookingCalendar::class,
     ],
     'amqp' => [
         'host' => env('BETRADAR_AMQP_HOST', 'stgmq.betradar.com'),

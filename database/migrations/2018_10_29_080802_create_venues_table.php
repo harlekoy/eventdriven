@@ -15,6 +15,7 @@ class CreateVenuesTable extends Migration
     {
         Schema::create('venues', function (Blueprint $table) {
             $table->string('id')->primary()->nullable();
+            $table->string('image')->nullable();
             $table->string('name')->nullable();
             $table->unsignedInteger('capacity')->nullable();
             $table->string('city_name')->nullable();

@@ -9,6 +9,16 @@ use Laravel\Nova\Filters\Filter;
 class Sport extends Filter
 {
     /**
+     * @var \App\Nova\Resource
+     */
+    protected $resource;
+
+    public function __construct($resource)
+    {
+        $this->resource = $resource->resource;
+    }
+
+    /**
      * Apply the filter to the given query.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -29,6 +39,22 @@ class Sport extends Filter
      */
     public function options(Request $request)
     {
-        return Model::enabled()->pluck('id', 'name');
+        return Model::enabled()
+            ->whereIn('id', $this->enabledSports())
+            ->pluck('id', 'name');
+    }
+
+    /**
+     * Get the enabled sports.
+     *
+     * @return array
+     */
+    public function enabledSports()
+    {
+        return $this->resource
+            ->query()
+            ->distinct()
+            ->pluck('sport_id')
+            ->all();
     }
 }
