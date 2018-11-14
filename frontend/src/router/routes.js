@@ -27,12 +27,39 @@ export default [
     }
   },
   {
-    path: '/competition',
-    name: 'competition',
-    component: () => lazyLoadView(import('@views/Competition')),
+    path: '/events',
+    name: 'event',
+    redirect: '/events/competition',
+    component: () => lazyLoadView(import('@views/events/Index')),
     meta: {
-      breadCrumb: 'Competition'
-    }
+      breadCrumb: 'Events'
+    },
+    children:[
+      {
+        path: '/events/competition',
+        name: 'competition',
+        component: () => lazyLoadView(import('@views/events/Competition')),
+        meta: {
+          breadCrumb: 'Competition'
+        },
+      },
+      {
+        path: '/events/gameline',
+        name: 'gameline',
+        component: () => lazyLoadView(import('@views/events/gameline/GameLine')),
+        meta: {
+          breadCrumb: 'Gameline'
+        },
+      },
+      {
+        path: '/events/all-game-lines',
+        name: 'all-game-lines',
+        component: () => lazyLoadView(import('@views/events/AllGameLines')),
+        meta: {
+          breadCrumb: 'All Game Lines'
+        }  
+      },
+    ]
   },
   {
     path: '/callback',

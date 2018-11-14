@@ -1,8 +1,25 @@
 <template>
 	<section>
-		<h3 class="uppercase font-bold">Upcoming Games</h3>
-		
-		<!-- Table -->
+
+		<!-- Event Information -->
+		<div class="cols py-4 mb-8">
+			<div class="col half flex flex-col">
+				<div class="flex items-center">
+					<img class="pr-4" width="200" src="/images/events/fifa-world-cup.png">
+					<h2 class="font-bold">World Cup</h2>
+				</div>
+				<div class="py-3">
+					<h4 class="font-medium">Current Favorite: <span class="font-thin">Germany (4:1)</span></h4>
+				</div>
+			</div>
+			<div class="col half flex items-start justify-end">
+				<router-link to="/events/competition" class="btn btn-lg border-green w-min-full uppercase shadow-md">
+					See FIFA World Cup
+				</router-link>
+			</div>
+		</div>
+
+		<!-- All Gamelines -->
 		<game-line-table class="mt-5">
 			<template slot="head">
 				<th class="text-center">TIME</th>
@@ -61,9 +78,9 @@
 					</tr>
 				</td>
 				<td class="action text-center">
-					<button class="btn btn-xs border-0 btn-success-dark">
+					<router-link to="/events/gameline" class="btn btn-xs border-0 btn-success-dark">
 						View All
-					</button>
+					</router-link>
 				</td>
 			</tr>	
 
@@ -114,13 +131,13 @@
 					</tr>
 				</td>
 				<td class="action text-center">
-					<button class="btn btn-xs border-0 btn-success-dark">
+					<router-link to="/events/gameline" class="btn btn-xs border-0 btn-success-dark">
 						View All
-					</button>
+					</router-link>
 				</td>
 			</tr>	
-		</game-line-table>
 
+		</game-line-table>          
 	</section>
 </template>
 

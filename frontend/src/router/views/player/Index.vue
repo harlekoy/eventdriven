@@ -17,9 +17,9 @@
             </h2>
           </div>
           <div class="col half flex items-center justify-end">
-            <button class="btn btn-lg border-green w-min-full uppercase shadow-md">
+            <router-link to="/team" class="btn btn-lg border-green w-min-full uppercase shadow-md">
               See Hary Kane's Team Page
-            </button>
+            </router-link>
           </div>
         </div>
 

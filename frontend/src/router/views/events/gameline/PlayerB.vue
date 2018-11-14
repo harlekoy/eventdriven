@@ -1,62 +1,67 @@
 <template>
   <section>
-    <!-- ToDo Graph Component see mockup -->
+    <h2>Arsenal</h2>
 
     <!-- Bet for Sale -->
     <front-table class="mt-5">
       <template slot="head">
-        <th class="text-left">PLAYERS</th>
-        <th class="text-left">ODDS</th>
-        <th class="text-left">RISK/RETURN</th>
+        <th class="text-left">BET TYPE</th>
+        <th class="text-left">TEAM</th>
+        <th class="text-left">TOTAL RETURN</th>
         <th class="text-left">PRICE</th>
         <th class="text-right">ACTION</th>
       </template>
 
       <tr>
-        <td>Player 1</td>
-        <td>-7</td>
-        <td>£100 / £150</td>
-        <td>-£10</td>
+        <td>TO WIN</td>
+        <td>ARSENAL</td>
+        <td>150/140</td>
+        <td>300</td>
         <td class="text-right"><button class="btn btn-xs border-0 btn-success-dark">BUY</button></td>
       </tr>
       <tr>
-        <td>Player 2</td>
-        <td>+7</td>
-        <td>£100 / £250</td>
-        <td>£650</td>
+        <td>TO WIN</td>
+        <td>ARSENAL</td>
+        <td>1000/90</td>
+        <td>100</td>
         <td class="text-right"><button class="btn btn-xs border-0 btn-success-dark">BUY</button></td>
       </tr>
       <tr>
-        <td>Player 3</td>
-        <td>+12</td>
-        <td>£100 / £350</td>
-        <td>£150</td>
+        <td>TO WIN</td>
+        <td>MANCHESTER UNITED</td>
+        <td>450/130</td>
+        <td>90</td>
         <td class="text-right"><button class="btn btn-xs border-0 btn-success-dark">BUY</button></td>
       </tr>
       <tr>
-        <td>Player 4</td>
-        <td>+7</td>
-        <td>£100 / £450</td>
-        <td>£450</td>
+        <td>DRAW</td>
+        <td>DRAW</td>
+        <td>100/140</td>
+        <td>90</td>
         <td class="text-right"><button class="btn btn-xs border-0 btn-success-dark">BUY</button></td>
       </tr>
       <tr>
-        <td>Player 5</td>
-        <td>+7</td>
-        <td>£100 / £250</td>
-        <td>£250</td>
+        <td>TO WIN</td>
+        <td>MANCHESTER UNITED</td>
+        <td>450/130</td>
+        <td>90</td>
         <td class="text-right"><button class="btn btn-xs border-0 btn-success-dark">BUY</button></td>
       </tr>
       <tr>
-        <td>Player 6</td>
-        <td>+29</td>
-        <td>£100 / £350</td>
-        <td>£250</td>
+        <td>TO WIN</td>
+        <td>MANCHESTER UNITED</td>
+        <td>450/130</td>
+        <td>90</td>
         <td class="text-right"><button class="btn btn-xs border-0 btn-success-dark">BUY</button></td>
       </tr>
-
-    </front-table>   
- 
+      <tr>
+        <td>TO WIN</td>
+        <td>MANCHESTER UNITED</td>
+        <td>450/130</td>
+        <td>90</td>
+        <td class="text-right"><button class="btn btn-xs border-0 btn-success-dark">BUY</button></td>
+      </tr>
+    </front-table>    
   </section>
 </template>
 

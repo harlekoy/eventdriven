@@ -17,7 +17,7 @@ export default {
       v-for="(item, index) in event_data"
       :key="index"
       class="carousel-inner">
-      <Card :info="item" :page="'event'"/>
+      <Card :info="item" :page="'events'"/>
     </Slide>
 
   </Carousel>
