@@ -2,7 +2,11 @@
   <section>
     <!-- Tab Graph Component -->
 
-
+    <BuyModal
+      v-if="showModal" 
+      @close="showModal = false"
+    >
+    </BuyModal>
     <!-- Bet for Sale -->
       <FrontTable class="mt-5">
         <template slot="head">
@@ -29,7 +33,7 @@
           <td>£100 / £150</td>
           <td>£150</td>
           <td class="text-right">
-            <button class="btn btn-xs border-0 btn-success-dark">
+            <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
               BUY
             </button>
           </td>
@@ -51,7 +55,7 @@
           <td>£40 / £120</td>
           <td>£110</td>
           <td class="text-right">
-            <button class="btn btn-xs border-0 btn-success-dark">
+            <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
               BUY
             </button>
           </td>
@@ -62,7 +66,7 @@
           <td>£20 / £400</td>
           <td>£90</td>
           <td class="text-right">
-            <button class="btn btn-xs border-0 btn-success-dark">
+            <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
               BUY
             </button>
           </td>
@@ -73,7 +77,7 @@
           <td>£50 / £100</td>
           <td>£70</td>
           <td class="text-right">
-            <button class="btn btn-xs border-0 btn-success-dark">
+            <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
               BUY
             </button>
           </td>
@@ -84,16 +88,18 @@
 
 <script>
 import FrontTable from '@components/FrontTable'
+import BuyModal from '@components/BuyModal'
 
 export default {
   data() {
     return {
-
+      showModal: false,
     }
   },
 
   components: {
-    FrontTable
+    FrontTable,
+    BuyModal,
   }
 }
 </script>

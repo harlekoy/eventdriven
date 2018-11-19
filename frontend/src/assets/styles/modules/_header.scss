@@ -30,9 +30,13 @@ header {
       }
 
       > .item {
-        @apply items-center justify-center text-xl relative cursor-pointer border-l border-grey-lighter;
+        @apply flex items-center justify-center text-xl relative cursor-pointer border-l border-grey-lighter;
         border-bottom: 5px solid transparent;
-        padding: 5px 40px 0 30px;
+        width: 100px;
+
+        > a {
+          @apply h-full flex-1 flex items-center justify-center;
+        }
 
         @include breakpoint-min(md) {
           &:hover {
@@ -64,10 +68,7 @@ header {
         }
 
         i {
-          @apply absolute pin-b m-auto text-green;
-          top: 5px;
-          right: 20px;
-          height: 10px;
+          @apply text-green pl-1 pt-1;
           font-size: 8px;
 
           @include breakpoint-max(md) {

@@ -1,7 +1,13 @@
 <template>
   <section>
-    <h2>Manchester United</h2>
 
+    <BuyModal
+      v-if="showModal" 
+      @close="showModal = false"
+    >
+    </BuyModal>
+
+    <h2>Manchester United</h2>
     <!-- Bet for Sale -->
     <front-table class="mt-5">
       <template slot="head">
@@ -17,28 +23,44 @@
         <td>MANCHESTER UNITED</td>
         <td>100/140</td>
         <td>120</td>
-        <td class="text-right"><button class="btn btn-xs border-0 btn-success-dark">BUY</button></td>
+        <td class="text-right">
+          <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
+            BUY
+          </button>
+        </td>
       </tr>
       <tr>
         <td>TO WIN</td>
         <td>MANCHESTER UNITED</td>
         <td>130/120</td>
         <td>140</td>
-        <td class="text-right"><button class="btn btn-xs border-0 btn-success-dark">BUY</button></td>
+        <td class="text-right">
+          <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
+            BUY
+          </button>
+        </td>
       </tr>
       <tr>
         <td>TO WIN</td>
         <td>MANCHESTER UNITED</td>
         <td>150/130</td>
         <td>120</td>
-        <td class="text-right"><button class="btn btn-xs border-0 btn-success-dark">BUY</button></td>
+        <td class="text-right">
+          <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
+            BUY
+          </button>
+        </td>
       </tr>
       <tr>
         <td>TO WIN</td>
         <td>ARSENAL</td>
         <td>100/110</td>
         <td>50</td>
-        <td class="text-right"><button class="btn btn-xs border-0 btn-success-dark">BUY</button></td>
+        <td class="text-right">
+          <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
+            BUY
+          </button>
+        </td>
       </tr>
     </front-table>    
   </section>
@@ -46,16 +68,18 @@
 
 <script>
 import FrontTable from '@components/FrontTable'
+import BuyModal from '@components/BuyModal'
 
 export default {
   data() {
     return {
-
+      showModal: false,
     }
   },
 
   components: {
-    FrontTable
+    FrontTable,
+    BuyModal,
   }
 }
 </script>

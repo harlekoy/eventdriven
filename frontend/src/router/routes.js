@@ -187,7 +187,7 @@ function lazyLoadView(AsyncView) {
     loading: require('@views/Loading').default,
     // A fallback component in case the timeout is exceeded
     // when loading the component.
-    error: require('@views/Timeout').default,
+    error: require('@views/TimeOutView').default,
     // Delay before showing the loading component.
     // Default: 200 (milliseconds).
     delay: 400,
