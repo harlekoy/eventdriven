@@ -72,4 +72,14 @@ class Tournament extends BetradarModel
     {
         return $this->hasMany(SportEvent::class);
     }
+
+    /**
+     * Get image attribute.
+     *
+     * @return string|null
+     */
+    public function getImageAttribute()
+    {
+        return $this->attributes['image'] ?? $this->season->image ?? null;
+    }
 }

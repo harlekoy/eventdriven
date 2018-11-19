@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class PlayerResource extends JsonResource
 {
@@ -16,6 +17,7 @@ class PlayerResource extends JsonResource
     {
         return [
             'id'            => $this->id,
+            'image'         => Storage::disk('cloudinary')->url($this->image),
             'name'          => $this->name,
             'full_name'     => $this->full_name,
             'type'          => $this->type,
@@ -26,7 +28,6 @@ class PlayerResource extends JsonResource
             'weight'        => $this->weight,
             'jersey_number' => $this->jersey_number,
             'gender'        => $this->gender,
-            'betradar_data' => $this->betradar_data,
         ];
     }
 }
