@@ -14,7 +14,7 @@ export default {
   >
 
     <Slide 
-      v-for="(item, index) in team_data"
+      v-for="(item, index) in teams"
       :key="index"
       class="carousel-inner">
       <Card :info="item" :page="'team'"/>
@@ -26,6 +26,7 @@ export default {
 <script>
 import Card from '@components/Card'
 import { Carousel, Slide } from 'vue-carousel'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   components: {
@@ -34,38 +35,26 @@ export default {
     Slide
   },
 
+  mounted() {
+    this.fetchTeams()
+  },
+
+  computed: {
+    ...mapGetters({
+      teams: 'teams/getTeams'
+    }),
+  },
+  
+
+  methods: {
+    ...mapActions({
+      fetchTeams: 'teams/fetchTeams'
+    })
+  },
+
   data() {
     return {
-      team_data: [
-        {
-          name: 'Liverpool',
-          image: '/team_liverpool.png',
-          odds: '80:1',
-          return: '22x',
-          wagers: 37,
-        },
-        {
-          name: 'Manchester United',
-          image: '/team_manchester_united.png',
-          odds: '32:1',
-          return: '20x',
-          wagers: 227,
-        },
-        {
-          name: 'Chelsea',
-          image: '/team_chelsea.png',
-          odds: '41:1',
-          return: '5x',
-          wagers: 300,
-        },
-        {
-          name: 'Arsenal',
-          image: '/team_arsenal.png',
-          odds: '12:1',
-          return: '3x',
-          wagers: 88,
-        },
-      ]
+
     }
   }
 }

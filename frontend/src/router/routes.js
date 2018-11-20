@@ -11,7 +11,7 @@ export default [
     }
   },
   {
-    path: '/team',
+    path: '/team/:id',
     name: 'team',
     component: () => lazyLoadView(import('@views/TeamIntermediary')),
     meta: {
@@ -19,8 +19,9 @@ export default [
     }
   },
   {
-    path: '/player',
+    path: '/player/:id',
     name: 'player',
+    props: true,
     component: () => lazyLoadView(import('@views/player/Index')),
     meta: {
       breadCrumb: 'Player'
@@ -29,15 +30,16 @@ export default [
   {
     path: '/events',
     name: 'event',
-    redirect: '/events/competition',
+    redirect: 'competition',
     component: () => lazyLoadView(import('@views/events/Index')),
     meta: {
       breadCrumb: 'Events'
     },
     children:[
       {
-        path: '/events/competition',
+        path: '/events/:id',
         name: 'competition',
+        props: true,
         component: () => lazyLoadView(import('@views/events/Competition')),
         meta: {
           breadCrumb: 'Competition'

@@ -12,7 +12,7 @@
 			<div class="col half flex flex-col">
 				<div class="flex items-center">
 					<img class="pr-4" width="200" src="/images/events/fifa-world-cup.png">
-					<h2 class="font-bold">World Cup</h2>
+					<h2 class="font-bold">{{event.name}}</h2>
 				</div>
 				<div class="py-3">
 					<h4 class="font-medium">Current Favorite: <span class="font-thin">Germany (4:1)</span></h4>
@@ -40,12 +40,15 @@ import Layout from '@layouts/Main'
 import Tabs from '@components/FrontTabs'
 import ToWin from './ToWin'
 import PropositionBets from './PropositionBets'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   page: {
     title: 'Competition',
     meta: [{ name: 'description', content: appConfig.description }],
   },
+
+  props: ['id'],
 
   data() {
     return {
@@ -59,13 +62,32 @@ export default {
           value: 'proposition-bets' 
         }
       ],
+      prefixId: 'sr:match:'
     }
   },
 
   computed: {
+    ...mapGetters({
+      event: 'events/getEvent'
+    }),
+
     currentTabComponent() {
       return this.currentTab
+    },
+
+    eventId () {
+      return this.prefixId + this.id
     }
+  },
+
+  mounted() {
+    this.fetchEvent(this.eventId)
+  },
+
+  methods: {
+    ...mapActions({
+      fetchEvent: 'events/fetchEvent'
+    })
   },
 
   components: {

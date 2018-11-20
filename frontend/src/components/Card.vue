@@ -1,9 +1,9 @@
 <template>
-  <router-link :to="page" class="card">
+  <router-link :to="setUrl" class="card">
     <div class="white-wrapper overflow-hidden">
       <div class="thumb">
-        <!-- <Heart /> -->
-        <img :src="`/images/${page}${info.image}`">
+        <img v-if="'images' in info" :src="`/images/${page}${info.image}`">
+        <img v-else :src="`/images/${page}/default_image.jpg`">
       </div>
       <div class="content">
         <p class="text-base font-normal mb-4">
@@ -42,7 +42,19 @@ export default {
 
   components: {
     Heart
-  }
+  },
+
+  computed: {
+    setUrl() {
+      let rawId  = this.info.id + ''
+      let values = rawId.split(':')
+      let id     = values.pop()
+
+      return {
+        path: `${this.page}/${id}`
+      }
+    }
+  },
 }
 </script>
 
