@@ -10,17 +10,19 @@ class AddressRequest extends FormRequest
         'POST' => [
             'address_1' => 'required',
             'address_2' => 'nullable',
-            'city'      => 'nullable',
+            'city'      => 'required',
             'state'     => 'nullable',
             'country'   => 'required',
+            'alpha_2'   => 'required|exists:countries,alpha_2',
             'zip_code'  => 'nullable'
         ],
         'PATCH' => [
             'address_1' => 'required',
             'address_2' => 'nullable',
-            'city'      => 'nullable',
+            'city'      => 'required',
             'state'     => 'nullable',
             'country'   => 'required',
+            'alpha_2'   => 'required|exists:countries,alpha_2',
             'zip_code'  => 'nullable'
         ],
     ];

@@ -22,6 +22,7 @@ class Address extends Model
         'city',
         'state',
         'country',
+        'alpha_2',
         'zip_code',
     ];
 
@@ -31,6 +32,7 @@ class Address extends Model
         'city',
         'state',
         'country',
+        'alpha_2',
         'zip_code'
     ];
 

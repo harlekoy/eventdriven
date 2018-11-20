@@ -41,6 +41,13 @@ Route::group(['middleware' => 'jwt'], function () {
     Route::apiResource('user.activity', 'UserActivityController', [
         'only' => ['index'],
     ]);
+
+    Route::post('/kyc-verify/{user}', 'KYCController@verify');
+    Route::get('/kyc-status/{kyc}', 'KYCController@status');
+    Route::post('/kyc-callback', [
+        'uses' => 'KYCController@callback',
+        'as' => 'kyc.callback'
+    ]);
 });
 
 Route::apiResource('countries', 'CountryController', [

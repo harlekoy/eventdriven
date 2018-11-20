@@ -66,6 +66,26 @@ class User extends Authenticatable
     }
 
     /**
+     * Get user's full address.
+     *
+     * @return string
+     */
+    public function getFullAddressAttribute()
+    {
+        return implode(", ",array_filter(
+            array_only(
+                $this->address->toArray(), [
+                'address_1',
+                'address_2',
+                'city',
+                'state',
+                'country',
+                'alpha_2',
+                'zip_code'
+        ])));
+    }
+
+    /**
      * Get all of the user's uploads.
      */
     public function uploads()

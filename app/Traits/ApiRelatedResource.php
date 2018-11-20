@@ -22,32 +22,109 @@ trait ApiRelatedResource
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function fetchModel($id)
+    public function fetchModel($relatedId)
     {
+        $id = $this->modelId();
+
         $model = app(Model::class)->findOrFail($id);
-        $related = $this->related;
+        $related = new $this->related;
 
         return $related->where([
             $model->getForeignKey() => $model->id,
-            'id' => $id,
+            'id' => $relatedId,
         ])->firstOrFail();
     }
 
     /**
-     * Fill and save model.
+     * Get model ID.
      *
-     * @param  \Illuminate\Database\Eloquent\Model $model
-     * @return boolean
+     * @return int
      */
-    public function fillAndSave(&$model)
+    protected function modelId()
     {
-        $related = $this->related;
+        $model = app(Model::class);
 
-        $data = array_merge(request()->all(), [
-            $model->getForeignKey() => $model->id,
-        ]);
+        return request()->route(
+            str_singular($model->getTable())
+        );
+    }
 
-        return $related->fill($data)->save();
+    /**
+     * Fetch records based on query params.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function fetchRecords()
+    {
+        $model = new $this->related;
+
+        if ($page = request()->get('page')) {
+            return $model->paginate($this->limit());
+        }
+
+        return $model->get();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id, $relatedId)
+    {
+        $model = $this->fetchModel($relatedId);
+
+        return $this->apiResponse($model);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, $id)
+    {
+        $model = app(Model::class);
+        $related = new $this->related;
+        $related->{$model->getForeignKey()} = $id;
+
+        $this->fillAndSave($related);
+
+        return $this->apiResponse($related);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id, $relatedId)
+    {
+        $model = $this->fetchModel($relatedId);
+
+        $this->fillAndSave($model);
+
+        return $this->apiResponse($model);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id, $relatedId)
+    {
+        $model = $this->fetchModel($relatedId);
+
+        $model->delete();
+
+        return $this->apiResponse($model);
     }
 
     /**

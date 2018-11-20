@@ -4,10 +4,6 @@ namespace App\ShuftiPro;
 
 class ShuftiPro
 {
-    protected $verificationServices;
-
-    protected $postData;
-
     /**
      * Set client credentials.
      *
@@ -25,61 +21,6 @@ class ShuftiPro
     }
 
     /**
-     * Set post data.
-     *
-     * @param  array $data
-     *
-     * @return void
-     */
-    public function postData($data)
-    {
-        $credentials = $this->clientCredentials();
-        $this->verificationServices = $this->verificationServices($data);
-
-        $this->postData = array_only($data, [
-            'reference',
-            'email',
-            'phone_number',
-            'country',
-            'lang',
-            'callback_url',
-            'redirect_url',
-        ]);
-
-        $this->postData['verification_services'] = $this->verificationServices;
-        $this->postData['client_id'] = $credentials['client_id'];
-
-        ksort($this->postData); // Sort the all request parameter.
-        $rawData = implode("", $this->postData) . $credentials['secret_key'];
-
-        $signature = hash("sha256", $rawData);
-        $this->postData["signature"] = $signature;
-    }
-
-    /**
-     * Encode verification services data.
-     *
-     * @param  array $data
-     *
-     * @return string
-     */
-    public function verificationServices($data)
-    {
-        $this->verificationServices = array_only($data, [
-            'document_type',
-            'document_id_no',
-            'document_expiry_date',
-            'address',
-            'first_name',
-            'last_name',
-            'dob',
-            'background_checks'
-        ]);
-
-        return json_encode($this->verificationServices);
-    }
-
-    /**
      * Request verification to ShuftiPro.
      *
      * @param  array $data
@@ -88,34 +29,62 @@ class ShuftiPro
      */
     public function request($data)
     {
+        return $this->cURL($data, "api/");
+    }
+
+    /**
+     * Request verification's status from ShuftiPro.
+     *
+     * @param  string $referenceId
+     *
+     * @return string
+     */
+    public function status($referenceId)
+    {
+        $data = ['reference' => $referenceId];
+
+        return $this->cURL($data, "api/status");
+    }
+
+    /**
+     * cURL to ShuftiPRo.
+     *
+     * @param  array $data
+     * @param  string $route
+     *
+     * @return string
+     */
+    private function cURL($data, $route)
+    {
         $credentials = $this->clientCredentials();
-        $this->postData($data);
+        $data['client_id'] = $credentials['client_id'];
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $credentials['url']);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $this->postData);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => $credentials['url'].$route,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_POSTFIELDS => json_encode($data),
+          CURLOPT_HTTPHEADER => array(
+            "Authorization: Basic ".base64_encode($credentials['client_id'].":".$credentials['secret_key']),
+            "Content-Type: application/json",
+            "cache-control: no-cache"
+          ),
+        ));
 
-        #Parse Response body
-        $response = json_decode($response);
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
 
-        #Verify Response signature
-        $my_signature = hash("SHA256", $response->status_code . $response->message . $response->reference . $credentials['secret_key']);
+        curl_close($curl);
 
-        if($my_signature == $response->signature){
-            # Response is valid. Now you can redirect your customer if you receive status code SP2
-            if($response->status_code == "SP2"){
-                header("Location: " . $response->message);
-            }
-            else{
-                echo $response->message;
-            }
-        }
-        else{
-            echo "Response signature is invalid";
+        if ($err) {
+          return "cURL Error #:" . $err;
+        } else {
+          return $response;
         }
     }
 }
