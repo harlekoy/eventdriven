@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <section v-if="players.length">
+    <h3 class="text-center mt-12 mb-10">
+      Players
+    </h3>
     <Carousel
       class="carousel"
       :pagination-enabled="false"
@@ -14,8 +17,8 @@
         class="carousel-inner">
         <Card :info="item" :page="'player'"/>
       </Slide>
-    </Carousel>    
-  </div>
+    </Carousel>
+  </section>
 </template>
 
 <script>

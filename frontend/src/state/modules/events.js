@@ -22,7 +22,7 @@ export const mutations = {
 
 export const actions = {
   async fetchEvents ({commit}) {
-    const { data: { data } } = await axios.get('/sports')
+    const { data: { data } } = await axios.get('/sport-events')
     commit('SET_EVENTS', data)
   },
 
