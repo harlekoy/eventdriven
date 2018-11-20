@@ -16,11 +16,11 @@ class SportEventResource extends JsonResource
     {
         return [
             'id'            => $this->id,
-            'name'          => $this->tournament_id,
-            'start_date'    => $this->scheduled,
-            'end_date'      => $this->start_time_tbd,
-            'year'          => $this->status,
-            'betradar_data' => $this->betradar_data,
+            'sport_id'      => $this->sport->id,
+            'venue_id'      => $this->venue->id,
+            'tournament_id' => $this->tournament->id,
+            'name'          => $this->tournament->name ?? null,
+            'status'        => $this->status,
         ];
     }
 }
