@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Address;
+use App\Models\KYCVerification;
 use App\Models\Upload;
 use App\Traits\HasAddress;
 use App\Traits\HasAuth0;
@@ -83,6 +84,16 @@ class User extends Authenticatable
                 'alpha_2',
                 'zip_code'
         ])));
+    }
+
+    /**
+     * Get KYC verification record.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function kyc()
+    {
+        return $this->hasOne(KYCVerification::class, 'user_id');
     }
 
     /**

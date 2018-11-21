@@ -21,22 +21,37 @@ class KYCController extends Controller
      */
     public function verify(Request $request, User $user)
     {
-        $verify = new ShuftiPro();
+        if (is_null($user->kyc)) {
+            $verify = new ShuftiPro();
 
-        $data = $this->verifyRequestData($request, $user);
+            $kyc = KYC::create([
+                'user_id' => $user->id
+            ]);
 
-        $response = $verify->request($data);
-        $data = json_decode($response);
+            $info = $request->all();
+            $info['reference'] = $kyc->uuid;
 
-        $kyc = KYC::create([
-            'user_id' => $user->id,
-            'reference' => $data->reference,
-            'event' => $data->event,
-            'verification_url' => $data->verification_url,
-            'email' => $data->email
-        ]);
+            $data = $this->verifyRequestData($info, $user);
 
-        return new KYCResource($kyc);
+            $response = $verify->request($data);
+            $data = json_decode($response);
+
+            $kyc->fill([
+                'user_id' => $user->id,
+                'uuid' => $data->reference,
+                'event' => $data->event,
+                'verification_url' => $data->verification_url,
+                'email' => $data->email
+            ])->save();
+
+            return new KYCResource($kyc);
+        }
+
+        return [
+            'data' => [
+                'message' => 'User already verified or in verification process.'
+            ]
+        ];
     }
 
     /**
@@ -48,16 +63,24 @@ class KYCController extends Controller
      */
     public function status(KYC $kyc)
     {
-        $request = new ShuftiPro();
+        if ($user->kyc) {
+            $request = new ShuftiPro();
 
-        $response = $request->status($kyc->reference);
-        $data = json_decode($response);
+            $response = $request->status($kyc->reference);
+            $data = json_decode($response);
 
-        $kyc->fill([
-            'event' => $data->event,
-        ])->save();
+            $kyc->fill([
+                'event' => $data->event,
+            ])->save();
 
-        return new KYCResource($kyc);
+            return new KYCResource($kyc);
+        }
+
+        return [
+            'data' => [
+                'message' => 'User has no verification request made.'
+            ]
+        ];
     }
 
     /**
@@ -85,10 +108,10 @@ class KYCController extends Controller
         ];
 
         $data = [
-            'reference' => uniqid(),
+            'reference' => $request['reference'],
             // 'callback_url' => "http://f5e014c7.ngrok.io/api/v1/kyc-callback",
             'callback_url' => route('kyc.callback'),
-            'redirect_url' => array_get($request->all(), 'redirect_url', 'https://www.betprophet.co/'),
+            'redirect_url' => array_get($request, 'redirect_url', 'https://www.betprophet.co/'),
             'email' => $user->email,
             'country' => $user->address->alpha_2,
             'language' => "EN",

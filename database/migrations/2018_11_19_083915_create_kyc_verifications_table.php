@@ -15,18 +15,17 @@ class CreateKYCVerificationsTable extends Migration
     {
         Schema::create('kyc_verifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->string('reference');
-            $table->string('event');
-            $table->text('verification_url');
-            $table->string('email');
+            $table->string('uuid');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->string('event')->nullable();
+            $table->text('verification_url')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-
         });
     }
 

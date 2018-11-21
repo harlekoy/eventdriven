@@ -16,7 +16,7 @@ class KYCResource extends JsonResource
     {
         return [
             'user_id' => $this->user_id,
-            'reference' => $this->reference,
+            'reference' => $this->uuid,
             'event' => $this->event,
             'verification_url' => $this->verification_url,
             'email' => $this->email
