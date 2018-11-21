@@ -2,7 +2,7 @@
   <router-link :to="setUrl" class="card">
     <div class="white-wrapper overflow-hidden">
       <div class="thumb">
-        <img v-if="'images' in info" :src="`/images/${page}${info.image}`">
+        <img v-if="image" :src="image" class="w-full">
         <img v-else :src="`/images/${page}/default_image.jpg`">
       </div>
       <div class="content">
@@ -35,13 +35,23 @@
 </template>
 
 <script>
-import Heart from '@components/Heart'
+import { tournament } from '@utils/tournament'
+import { head } from 'lodash'
 
 export default {
   props: ['info', 'page'],
 
-  components: {
-    Heart
+  data() {
+    return {
+      image: ''
+    }
+  },
+
+  mounted() {
+    if ( this.info.tournament_id ) {
+      let item    = tournament( this.info.sport_id )
+      this.image  = _.first(item).image
+    }
   },
 
   computed: {

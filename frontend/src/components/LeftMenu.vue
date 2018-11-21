@@ -128,21 +128,24 @@
 
 <script>
 import { forEach, indexOf } from 'lodash'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  components: {
 
-  },
   data() {
     return {
       hideOnPages: ['sell']
     }
   },
 
+  mounted() {
+    this.fetchTournaments()
+  },
+
   computed: {
     ...mapGetters({
-      sports: 'sports/sports'
+      sports: 'sports/sports',
+      getTournaments: 'sports/getTournaments'
     }),
 
     onPage() {
@@ -151,6 +154,10 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      fetchTournaments: 'sports/fetchTournaments'
+    }),
+
     deactivate () {
       // Select all items.
       const all = document.querySelectorAll('nav > .left > .item')
