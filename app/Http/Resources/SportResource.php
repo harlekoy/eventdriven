@@ -16,7 +16,7 @@ class SportResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'    => str_replace('sr:sport:', '', $this->id),
+            'id'    => $this->id,
             'image' => Storage::disk('cloudinary')->url($this->image),
             'name'  => $this->name,
         ];
