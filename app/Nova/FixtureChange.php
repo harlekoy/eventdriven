@@ -2,17 +2,13 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Active;
-use App\Nova\Filters\Scope;
 use Illuminate\Http\Request;
-use Inspheric\Fields\Url;
-use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Producer extends Resource
+class FixtureChange extends Resource
 {
     /**
      * The logical group associated with the resource.
@@ -26,26 +22,21 @@ class Producer extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\Producer';
+    public static $model = 'App\\Models\\FixtureChange';
+
+    /**
+     * The single value that should be used to represent the resource when being displayed.
+     *
+     * @var string
+     */
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
      *
      * @var array
      */
-    public static $search = [
-        'id',
-    ];
-
-    /**
-     * Get the value that should be displayed to represent the resource.
-     *
-     * @return string
-     */
-    public function title()
-    {
-        return "{$this->name} - {$this->description}";
-    }
+    public static $search = [];
 
     /**
      * Get the fields displayed by the resource.
@@ -56,26 +47,26 @@ class Producer extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make()->sortable()
+                ->hideFromIndex(),
 
-            Boolean::make('Active')
+            BelongsTo::make('Sport Event', 'event')
+                ->sortable(),
+
+            BelongsTo::make('Producer', 'producer')
+                ->sortable(),
+
+            DateTime::make('Start Time')
                 ->sortable()
-                ->exceptOnForms(),
+                ->format('MMM DD, YYYY hh:mm A'),
 
-            Text::make('Name')
-                ->sortable(),
-
-            Text::make('Description')
-                ->sortable(),
-
-            Url::make('API Url')
-                ->clickable(),
-
-            Text::make('Scope')
-                ->sortable(),
-
-            Number::make('Stateful Recovery Window in Minutes')
+            DateTime::make('Next Live Time')
                 ->sortable()
+                ->format('MMM DD, YYYY hh:mm A'),
+
+            DateTime::make('Timestamp')
+                ->sortable()
+                ->format('MMM DD, YYYY hh:mm A')
                 ->hideFromIndex(),
         ];
     }
@@ -99,10 +90,7 @@ class Producer extends Resource
      */
     public function filters(Request $request)
     {
-        return [
-            new Active,
-            new Scope,
-        ];
+        return [];
     }
 
     /**

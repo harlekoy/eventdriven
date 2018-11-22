@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Producer extends BetradarModel
 {
@@ -30,4 +31,26 @@ class Producer extends BetradarModel
         'betradar_data' => 'array',
         'active'        => 'boolean',
     ];
+
+    /**
+     * Set active status.
+     *
+     * @param boolean $value
+     */
+    public function setActiveAttribute($value)
+    {
+        $expiresAt = now()->addSeconds(60);
+
+        Cache::put("betradar:producer:{$this->id}", $value, $expiresAt);
+    }
+
+    /**
+     * Get producer active status.
+     *
+     * @return boolean
+     */
+    public function getActiveAttribute()
+    {
+        return Cache::get("betradar:producer:{$this->id}", false);
+    }
 }

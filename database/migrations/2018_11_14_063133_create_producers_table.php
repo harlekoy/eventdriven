@@ -18,7 +18,6 @@ class CreateProducersTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('api_url')->nullable();
-            $table->boolean('active')->default(false);
             $table->string('scope')->nullable();
             $table->unsignedInteger('stateful_recovery_window_in_minutes');
             $table->json('betradar_data')->nullable();
