@@ -75,6 +75,7 @@ export default {
       return this.currentTab
     },
 
+    // get props params id
     eventId () {
       return this.prefixId + this.id
     }

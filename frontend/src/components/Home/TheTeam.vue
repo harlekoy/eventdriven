@@ -41,7 +41,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      teams: 'teams/getTeams'
+      teams: 'teams/teams'
     }),
   },
   

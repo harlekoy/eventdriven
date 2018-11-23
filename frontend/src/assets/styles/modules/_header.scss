@@ -127,37 +127,35 @@ header {
   > .parent {
     @apply absolute pin-l bg-green pin-y;
     padding: 17px 0;
-    width: 178px;
+    width: 198px;
 
     @include breakpoint-max(sm) {
       width: 145px;
     }
 
-    > .item,
-    > .close {
-      @apply text-white leading-loose text-base relative;
-      padding: 0 20px;
+    > .item {
+      p {
+        @apply text-white leading-loose text-base relative;
+        @apply flex justify-between;
+        padding: 0 20px;
 
-      > .icon-down {
-        @apply text-white absolute pin-y m-auto;
-        font-style: normal;
-        transform: rotate(-90deg);
-        font-size: 8px;
-        right: 14px;
-      }
+        > .icon-down {
+          @apply text-white absolute pin-y m-auto;
+          font-style: normal;
+          transform: rotate(-90deg);
+          font-size: 8px;
+          right: 2px;
+        }
 
-      &:hover,
-      &.active {
-        @apply bg-green-darkest;
-      }
-
-      > .inner {
-        @apply hidden;
+        &.active {
+          @apply bg-green-darkest;
+        }
       }
     }
 
     > .close {
-      @apply hidden pin-x absolute pin-b;
+      @apply text-white leading-loose text-base relative hidden pin-x absolute pin-b;
+      padding: 0 20px;
 
       @include breakpoint-max(md) {
         @apply block;
@@ -167,7 +165,7 @@ header {
 
   > .child {
     @apply pin-r pin-y bg-white absolute overflow-auto;
-    width: calc(100% - 178px);
+    width: calc(100% - 198px);
     padding-bottom: 10px;
 
     @include breakpoint-max(sm) {
@@ -183,7 +181,7 @@ header {
 
       > p {
         @apply text-black;
-        margin-bottom: 23px;
+        margin-bottom: 16px;
         padding: 0 25px 0 20px;
       }
 

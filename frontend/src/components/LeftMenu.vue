@@ -17,90 +17,17 @@
 
         <!-- Parent -->
         <div class="parent">
-          <div
-            v-for="(sport, sport_key) in sports"
-            :key="sport_key"
-            class="item"
-            :class="{ active: sport_key === 0 }"
-            @mouseenter="showInnerMenu"
-          >
-
-            {{ sport.name }}
-            <i class="icon-down" />
-
-            <div class="inner">
-              <section>
-                <p><b>EVENTS</b></p>
-                <div class="items">
-                  <div class="item">
-                    NFL Playoffs
-                  </div>
-                  <div class="item">
-                    Superbowl
-                  </div>
-                </div>
-                <div class="divider divider-green"/>
-              </section>
-              <section>
-                <p><b>TEAMS</b></p>
-                <div class="items">
-                  <div class="item">
-                    Buffallo Bills
-                  </div>
-                  <div class="item">
-                    LA Rams
-                  </div>
-                  <div class="item">
-                    Carolina Panthers
-                  </div>
-                  <div class="item">
-                    Miami Dolphins
-                  </div>
-                  <div class="item">
-                    Chicago Bears
-                  </div>
-                  <div class="item">
-                    Minnesota Vikings
-                  </div>
-                  <div class="item">
-                    Cincinnati Bengals
-                  </div>
-                  <div class="item">
-                    New Orleans Saints
-                  </div>
-                  <div class="item">
-                    Cleveland Browns
-                  </div>
-                  <div class="item">
-                    New York Giants
-                  </div>
-                  <div class="item">
-                    Dallas Cowboys
-                  </div>
-                  <div class="item">
-                    New York Jets
-                  </div>
-                  <div class="item">
-                    Denver Broncos
-                  </div>
-                  <div class="item">
-                    Philadelphia Eagles
-                  </div>
-                  <div class="item">
-                    Houston Texans
-                  </div>
-                  <div class="item">
-                    Pittsburgh Steelers
-                  </div>
-                  <div class="item">
-                    Kansas City Chiefs
-                  </div>
-                  <div class="item">
-                    San Francisco 49ers
-                  </div>
-                </div>
-              </section>
-            </div>
+          <div class="item">
+            <p
+              @mouseleave="leaveMenu"
+              @mouseenter="enterMenu"
+              v-for="(item, index) in sports"
+              :data-sport-id="item.id"
+              :key="index"
+            >
+              <span v-text="item.name"/>
+              <i class="icon-down" />
+            </p>
           </div>
 
           <!-- Close -->
@@ -110,6 +37,40 @@
 
         <!-- Child -->
         <div ref="child" class="child">
+          <section>
+            <p><b>EVENTS ({{sport_events.length}})</b> </p>
+            <div class="items">
+              <template v-if="sport_events.length">
+                <router-link
+                  v-for="(item, index) in sport_events"
+                  :key="index"
+                  :to="'/'"
+                  class="item"
+                >
+                  {{item.name}}
+                </router-link>
+              </template>
+              <p v-else class="text-black item">No event data</p>
+            </div>
+          </section>
+          <section>
+            <p><b>TEAMS ({{sport_teams.length}})</b></p>
+            <div class="items">
+              <template
+                v-if="sport_teams.length"
+              >
+                <router-link
+                  v-for="(item, index) in sport_teams"
+                  :key="index"
+                  :to="'/'"
+                  class="item"
+                >
+                  {{item.name}}
+                </router-link>
+              </template>
+              <p v-else class="text-black item">No team data</p>
+            </div>
+          </section>
         </div>
 
       </div>
@@ -127,14 +88,17 @@
 </template>
 
 <script>
-import { forEach, indexOf } from 'lodash'
+import { forEach, indexOf, get } from 'lodash'
 import { mapGetters, mapActions } from 'vuex'
+import { tournament, team } from '@utils/betradar'
 
 export default {
 
   data() {
     return {
-      hideOnPages: ['sell']
+      hideOnPages: ['sell'],
+      sport_teams: [],
+      sport_events: []
     }
   },
 
@@ -145,7 +109,7 @@ export default {
   computed: {
     ...mapGetters({
       sports: 'sports/sports',
-      getTournaments: 'sports/getTournaments'
+      teams: 'teams/teams',
     }),
 
     onPage() {
@@ -177,22 +141,18 @@ export default {
       }
     },
 
-    showInnerMenu (e) {
-      // Select all items.
-      const all = document.querySelectorAll('.menu-dropdown > .parent > .item')
+    enterMenu(e) {
+      e.target.classList.add('active')
 
-      // Get target from event.
-      const target =  e.target
+      // get data id
+      let sport_id      = e.target.dataset.sportId
+      this.sport_teams  = team( sport_id )
+      this.sport_events = tournament( sport_id )
+    },
 
-      // Reset all item classes.
-      forEach(all, (item) => { item.classList.remove('active') })
-
-      // Activate selected item.
-      target.classList.add('active')
-
-      // Copy content to child menu.
-      this.$refs.child.innerHTML = target.querySelector('.inner').innerHTML
-    }
+    leaveMenu(e) {
+      e.target.classList.remove('active')
+    },
   }
 }
 </script>

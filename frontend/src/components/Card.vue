@@ -35,19 +35,19 @@
 </template>
 
 <script>
-import { tournament } from '@utils/tournament'
-import { head } from 'lodash'
+import { tournament } from '@utils/betradar'
+import { head, first } from 'lodash'
 
 export default {
   props: ['info', 'page'],
 
-  data() {
+  data () {
     return {
       image: ''
     }
   },
 
-  mounted() {
+  mounted () {
     if ( this.info.tournament_id ) {
       let item    = tournament( this.info.sport_id )
       this.image  = _.first(item).image
@@ -55,7 +55,7 @@ export default {
   },
 
   computed: {
-    setUrl() {
+    setUrl () {
       let rawId  = this.info.id + ''
       let values = rawId.split(':')
       let id     = values.pop()
