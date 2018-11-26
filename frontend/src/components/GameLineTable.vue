@@ -1,12 +1,12 @@
 <template>
   <table>
-		<colgroup>
-			<col width="20%">
-			<col width="30%">
-			<col width="12%">
-			<col width="12%">
-			<col width="12%">
-		</colgroup>
+    <colgroup>
+      <col width="20%">
+      <col width="30%">
+      <col width="12%">
+      <col width="12%">
+      <col width="12%">
+    </colgroup>
     <thead>
       <tr>
         <slot name="head" />

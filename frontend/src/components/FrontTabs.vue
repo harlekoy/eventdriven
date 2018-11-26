@@ -4,9 +4,10 @@
       v-for="(tab, key) in tabs" 
       :key="key"
       :class="[{ active: tabActive == key }]"
+      class="tab"
       @click.prevent="changeTab({ tab: tab.value, key})"
-      class="tab">
-        {{ tab.label }}
+    >
+      {{ tab.label }}
     </button>
   </div>
 </template>

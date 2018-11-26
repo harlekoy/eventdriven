@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="container mx-auto my-10">
-      <router-view></router-view>
+      <router-view />
     </div>
   </Layout>
 </template>
@@ -18,6 +18,13 @@ export default {
   page: {
     title: 'Competition',
     meta: [{ name: 'description', content: appConfig.description }],
+  },
+
+  components: {
+    Layout,
+    Tabs,
+    ToWin,
+    PropositionBets,
   },
 
   data() {
@@ -40,12 +47,5 @@ export default {
       return this.currentTab
     }
   },
-
-  components: {
-    Layout,
-    Tabs,
-    ToWin,
-    PropositionBets,
-  }
 }
 </script>

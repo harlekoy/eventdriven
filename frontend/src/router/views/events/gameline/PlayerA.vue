@@ -1,21 +1,29 @@
 <template>
   <section>
-
     <BuyModal
       v-if="showModal" 
       @close="showModal = false"
-    >
-    </BuyModal>
+    />
 
     <h2>Manchester United</h2>
     <!-- Bet for Sale -->
-    <front-table class="mt-5">
+    <FrontTable class="mt-5">
       <template slot="head">
-        <th class="text-left">BET TYPE</th>
-        <th class="text-left">TEAM</th>
-        <th class="text-left">TOTAL RETURN</th>
-        <th class="text-left">PRICE</th>
-        <th class="text-right">ACTION</th>
+        <th class="text-left">
+          BET TYPE
+        </th>
+        <th class="text-left">
+          TEAM
+        </th>
+        <th class="text-left">
+          TOTAL RETURN
+        </th>
+        <th class="text-left">
+          PRICE
+        </th>
+        <th class="text-right">
+          ACTION
+        </th>
       </template>
 
       <tr>
@@ -24,7 +32,10 @@
         <td>100/140</td>
         <td>120</td>
         <td class="text-right">
-          <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
+          <button 
+            class="btn btn-xs border-0 btn-success-dark" 
+            @click="showModal = true"
+          >
             BUY
           </button>
         </td>
@@ -35,7 +46,10 @@
         <td>130/120</td>
         <td>140</td>
         <td class="text-right">
-          <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
+          <button 
+            class="btn btn-xs border-0 btn-success-dark" 
+            @click="showModal = true"
+          >
             BUY
           </button>
         </td>
@@ -46,7 +60,10 @@
         <td>150/130</td>
         <td>120</td>
         <td class="text-right">
-          <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
+          <button 
+            class="btn btn-xs border-0 btn-success-dark" 
+            @click="showModal = true"
+          >
             BUY
           </button>
         </td>
@@ -57,12 +74,15 @@
         <td>100/110</td>
         <td>50</td>
         <td class="text-right">
-          <button @click="showModal = true" class="btn btn-xs border-0 btn-success-dark">
+          <button 
+            class="btn btn-xs border-0 btn-success-dark" 
+            @click="showModal = true"
+          >
             BUY
           </button>
         </td>
       </tr>
-    </front-table>    
+    </FrontTable>    
   </section>
 </template>
 
@@ -71,16 +91,16 @@ import FrontTable from '@components/FrontTable'
 import BuyModal from '@components/BuyModal'
 
 export default {
+
+  components: {
+    FrontTable,
+    BuyModal,
+  },
   data() {
     return {
       showModal: false,
     }
   },
-
-  components: {
-    FrontTable,
-    BuyModal,
-  }
 }
 </script>
 

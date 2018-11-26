@@ -2,22 +2,29 @@
   <Layout>
     <div class="container mx-auto flex flex-wrap py-8 pb-24">
       <div class="w-full">
-
         <!-- Tabs -->
-        <tabs
+        <Tabs
           :tabs="tabSettings"
-          @change="currentTab = $event"/>
+          @change="currentTab = $event"
+        />
 
         <!-- Profile - Fixed -->
         <div class="cols py-4 mb-8">
           <div class="col half flex items-center justify-start">
-            <img class="pr-4" src="https://via.placeholder.com/100" alt="">
+            <img 
+              class="pr-4" 
+              src="https://via.placeholder.com/100" 
+              alt=""
+            >
             <h2 class="font-bold">
               Harry Kane
             </h2>
           </div>
           <div class="col half flex items-center justify-end">
-            <router-link to="/team" class="btn btn-lg border-green w-min-full uppercase shadow-md">
+            <router-link 
+              to="/team" 
+              class="btn btn-lg border-green w-min-full uppercase shadow-md"
+            >
               See Hary Kane's Team Page
             </router-link>
           </div>
@@ -25,9 +32,8 @@
 
         <!-- Content Components -->
         <keep-alive>
-          <component :is="currentTabComponent"/>
+          <component :is="currentTabComponent" />
         </keep-alive>
-
       </div>
     </div>
   </Layout>
@@ -44,6 +50,13 @@ export default {
   page: {
     title: 'Profile Information',
     meta: [{ name: 'description', content: 'Profile Information' }],
+  },
+
+  components: { 
+    Layout,
+    Tabs,
+    ToWin,
+    UpcomingGames,
   },
 
   data() {
@@ -66,13 +79,6 @@ export default {
       return this.currentTab
     }
   },
-
-  components: { 
-    Layout,
-    Tabs,
-    ToWin,
-    UpcomingGames,
-  }
 }
 </script>
 

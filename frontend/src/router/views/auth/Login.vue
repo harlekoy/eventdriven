@@ -38,7 +38,7 @@
             Remember Me
           </BaseCheckbox>
 
-          <router-link :to="{ name: 'forgot-password' }" class="text-grey-darkest flex items-center text-green-darker hover:text-blue-dark">Forgot Password</router-link>
+          <router-link :to="{ name: 'forgot-password' }" class="forgot-password text-grey-darkest flex items-center text-green-darker hover:text-blue-dark">Forgot Password</router-link>
         </p>
 
         <!-- Facebook Login -->

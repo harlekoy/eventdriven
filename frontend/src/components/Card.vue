@@ -1,29 +1,39 @@
 <template>
-  <router-link :to="setUrl" class="card">
+  <router-link 
+    :to="setUrl" 
+    class="card"
+  >
     <div class="white-wrapper overflow-hidden">
       <div class="thumb">
-        <img v-if="image" :src="image" class="w-full">
-        <img v-else :src="`/images/${page}/default_image.jpg`">
+        <img 
+          v-if="image" 
+          :src="image" 
+          class="w-full"
+        >
+        <img 
+          v-else 
+          :src="`/images/${page}/default_image.jpg`"
+        >
       </div>
       <div class="content">
         <p class="text-base font-normal mb-4">
-          {{info.name}}
+          {{ info.name }}
         </p>
         <div class="cols">
           <div class="col text-center border-r border-grey-light">
-            <h2>{{info.odds}}</h2>
+            <h2>{{ info.odds }}</h2>
             <p class="text-xs">
               Odds
             </p>
           </div>
           <div class="col text-center border-r border-grey-light">
-            <h2>{{info.return}}</h2>
+            <h2>{{ info.return }}</h2>
             <p class="text-xs">
               Return
             </p>
           </div>
           <div class="col text-center">
-            <h2>{{info.wagers}}</h2>
+            <h2>{{ info.wagers }}</h2>
             <p class="text-xs">
               Wagers
             </p>
@@ -47,13 +57,6 @@ export default {
     }
   },
 
-  mounted () {
-    if ( this.info.tournament_id ) {
-      let item    = tournament( this.info.sport_id )
-      this.image  = _.first(item).image
-    }
-  },
-
   computed: {
     setUrl () {
       let rawId  = this.info.id + ''
@@ -63,6 +66,13 @@ export default {
       return {
         path: `${this.page}/${id}`
       }
+    }
+  },
+
+  mounted () {
+    if ( this.info.tournament_id ) {
+      let item    = tournament( this.info.sport_id )
+      this.image  = _.first(item).image
     }
   },
 }

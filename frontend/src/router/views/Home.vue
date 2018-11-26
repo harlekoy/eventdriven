@@ -5,7 +5,10 @@
         Gambling just got Smarter.
       </h1>
       <h6>Prophet is the only marketplace designed for users to buy and sell previously placed sports bets. Maximized odds for buyers. Guaranteed profit for sellers.</h6>
-      <router-link to="sell" class="btn btn-plain">
+      <router-link 
+        to="sell" 
+        class="btn btn-plain"
+      >
         START SELLING
       </router-link>
     </Banner>

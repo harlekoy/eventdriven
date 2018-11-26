@@ -1,6 +1,6 @@
 describe('Forgot Password', () => {
   beforeEach(() => {
-    cy.visit('/password/forgot')
+    cy.visit('/forgot-password')
   })
 
   it('Greets Forgot Password', () => {
@@ -15,11 +15,11 @@ describe('Forgot Password', () => {
 
   it('Requires Valid Email', () => {
     cy.contains('form', 'Reset Password').click()
-    cy.get('.text-red').should('contain', 'email or username are required.')
+    cy.get('.invalid').should('contain', 'email or username are required.')
   })
 
   it('Has Alert Message on Success Forgot Passowrd', () => {
-    cy.get('[type="email"]').type('test@test.com{enter}')
+    cy.get('[placeholder="Email"]').type('test@test.com{enter}')
     cy.contains('[role="alert"]', 'We\'ve just sent you an email to reset your password.')
   })
 })

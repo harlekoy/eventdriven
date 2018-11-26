@@ -9,7 +9,7 @@ p {
 a { @apply no-underline text-sm text-brand-green-light outline-none; }
 
 // Invalid
-.invalid { @apply pb-4 text-red text-sm; }
+.invalid { @apply mt-2 block pb-4 text-red text-sm; }
 
 // Text
 .text {

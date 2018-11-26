@@ -16,13 +16,13 @@ describe('Login', () => {
   it('Has a forgot password link', () => {
     cy
       .contains('Forgot Password')
-      .should('have.attr', 'href', '/password/forgot')
+      .should('have.attr', 'href', '/forgot-password')
   })
 
   it('Requires Valid Email & Password', () => {
     cy.contains('form', 'Log in').click()
-    cy.get('.text-red').should('contain', 'The username field is required.')
-    cy.get('.text-red').should('contain', 'The username field is required.')
+    cy.get('.invalid').should('contain', 'The username field is required.')
+    cy.get('.invalid').should('contain', 'The username field is required.')
   })
 
   it('Redirect # When Logged In', () => {
