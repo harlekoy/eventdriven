@@ -48,6 +48,8 @@ Route::group(['middleware' => 'jwt'], function () {
         'uses' => 'KYCController@callback',
         'as' => 'kyc.callback'
     ]);
+
+    Route::get('/validate-ip', 'GeoIPValidationController@check');
 });
 
 Route::apiResource('countries', 'CountryController', [

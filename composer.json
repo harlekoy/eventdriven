@@ -20,6 +20,7 @@
         "laravel/horizon": "^1.4",
         "laravel/nova": "*",
         "laravel/tinker": "^1.0",
+        "maxmind-db/reader": "~1.0",
         "silvanite/nova-field-cloudinary": "^1.0",
         "spatie/laravel-activitylog": "^3.1",
         "studio/laravel-totem": "^4.0",

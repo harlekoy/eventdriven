@@ -1,0 +1,3 @@
+# List of areas for allowed users.
+# Add by new line
+Europe
