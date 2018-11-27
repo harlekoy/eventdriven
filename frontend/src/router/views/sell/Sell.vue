@@ -228,11 +228,19 @@
                 <p>
                   Use our Smart Pricing (recommended) or set a fixed price.
                 </p>
-                <img 
-                  width="26" 
-                  class="pl-2" 
-                  src="@assets/images/icon-info.svg"
-                >
+                <PopOver>
+                  <img 
+                    width="26" 
+                    class="pl-2"
+                    slot="icon"
+                    src="@assets/images/icon-info.svg"
+                  />
+                  <div slot="text">
+                    <h4 class="mb-2 pb-1 font-medium border-b border-grey-lightest">Smart Pricing</h4>
+                    <p class="text-grey-dark text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, recusandae? Eveniet, et!</p>
+                  </div>
+                </PopOver>
+
               </div>
 
               <div class="flex justify-center items-center mb-3">
@@ -272,11 +280,18 @@
                 </BaseCheckbox>                  
               </div>
               <div class="pt-2">
-                <img 
-                  width="26" 
-                  class="pl-2" 
-                  src="@assets/images/icon-info.svg"
-                >
+                <PopOver>
+                  <img 
+                    width="26" 
+                    class="pl-2"
+                    slot="icon"
+                    src="@assets/images/icon-info.svg"
+                  />
+                  <div slot="text">
+                    <h4 class="mb-2 pb-1 font-medium border-b border-grey-lightest">Keep in Play</h4>
+                    <p class="text-grey-dark text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, recusandae? Eveniet, et!</p>
+                  </div>
+                </PopOver>
               </div>
             </div>
 
@@ -335,6 +350,7 @@ import Layout from '@layouts/Main'
 import SellSteps from '@components/Sell/SellSteps'
 import BetDetails from '@components/Sell/BetDetails'
 import MarketOdds from '@components/Sell/MarketOdds'
+import PopOver from '@components/PopOver'
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -361,6 +377,7 @@ export default {
     SellSteps,
     BetDetails,
     MarketOdds,
+    PopOver,
   },
 
   data() {
