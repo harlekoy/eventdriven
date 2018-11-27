@@ -24,14 +24,14 @@ class GeoIPValidationController extends Controller
             if (in_array($area, $this->areas())) {
                 return response()->json([
                     'valid' => true,
-                    'message' => 'User is valid.'
+                    'message' => 'User\'s current location is valid.'
                 ]);
             }
         }
 
         return response()->json([
             'valid' => false,
-            'message' => 'User is invalid.'
+            'message' => 'User\'s current location is not allowed.'
         ]);
     }
 

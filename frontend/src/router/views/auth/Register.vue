@@ -70,7 +70,7 @@ import PlaceInput from 'vue-places'
 import { geoip } from '@utils/geoip'
 import { head, mapValues } from 'lodash'
 import { mapActions } from 'vuex'
-import { success } from '@utils/toast'
+import { success, fail } from '@utils/toast'
 import PhoneMasked from '@components/Phone';
 
 export default {
@@ -142,19 +142,27 @@ export default {
     },
 
     async validate () {
-      try {
-        await axios.post('signup/validate', this.form)
-      } catch ({ response: { data: { errors }} }) {
-        this.validationErrors = mapValues(errors, (errors) => {
-          return head(errors)
-        })
+      if (await this.validateIP()) {
+        try {
+          await axios.post('signup/validate', this.form)
+        } catch ({ response: { data: { errors }} }) {
+          this.validationErrors = mapValues(errors, (errors) => {
+            return head(errors)
+          })
 
+          this.load = false
+
+          return false
+        }
+
+        return true
+      } else {
         this.load = false
 
-        return false
+        fail({
+          text: 'User\'s current location is not allowed.'
+        })
       }
-
-      return true
     },
 
     async register () {
@@ -182,6 +190,12 @@ export default {
           }
         })
       }
+    },
+
+    async validateIP() {
+      const { data: { valid } } = await axios.get('validate-ip')
+
+      return valid
     }
   }
 }

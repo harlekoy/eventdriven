@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 // This endpoint doesn't need authentication
 Route::post('/signup/validate', 'RegisterController@store');
+Route::get('/validate-ip', 'GeoIPValidationController@check');
 
 Route::group(['middleware' => 'jwt'], function () {
     Route::get('/auth', [
@@ -48,8 +49,6 @@ Route::group(['middleware' => 'jwt'], function () {
         'uses' => 'KYCController@callback',
         'as' => 'kyc.callback'
     ]);
-
-    Route::get('/validate-ip', 'GeoIPValidationController@check');
 });
 
 Route::apiResource('countries', 'CountryController', [

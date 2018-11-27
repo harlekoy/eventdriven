@@ -65,11 +65,13 @@
 </template>
 
 <script>
+import axios from 'axios'
 import appConfig from '@src/app.config'
 import Layout from '@layouts/Main'
 import { authMethods } from '@state/helpers'
 import { loginViaSocial } from '@utils/auth'
 import { mapActions } from 'vuex';
+import { fail } from '@utils/toast'
 
 export default {
   page: {
@@ -102,7 +104,8 @@ export default {
       this.authError = null
 
       const valid = await this.$validator.validateAll()
-      if (valid) {
+
+      if (valid && await this.validateIP()) {
         this.logIn({
           username: this.username,
           password: this.password,
@@ -115,11 +118,21 @@ export default {
         this.saveToken({ remember_me: this.remember_me })
       } else {
         this.load = false
+
+        fail({
+          text: 'User\'s current location is not allowed.'
+        })
       }
     },
 
     toggleValue(state) {
       this.remember_me = state
+    },
+
+    async validateIP() {
+      const { data: { valid } } = await axios.get('validate-ip')
+
+      return valid
     },
 
     loginViaSocial
