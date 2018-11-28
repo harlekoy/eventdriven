@@ -20,6 +20,6 @@ export const actions = {
   },
 
   async updateUser ({ commit }, data) {
-    return await axios.patch(`user/${data.id}`, data)
+    return await axios.patch(`users/${data.id}`, data)
   }
 }

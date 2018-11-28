@@ -49,6 +49,8 @@ trait ApiResource
      */
     public function store(Request $request, Model $model)
     {
+        app(get_class($request));
+
         $this->fillAndSave($model);
 
         return $this->apiResponse($model);
@@ -77,6 +79,8 @@ trait ApiResource
      */
     public function update(Request $request, $id)
     {
+        app(get_class($request));
+
         $model = $this->fetchModel($id);
 
         $this->fillAndSave($model);

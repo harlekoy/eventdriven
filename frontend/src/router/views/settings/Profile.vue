@@ -1,8 +1,8 @@
 <template>
   <UserLayout class="bg-grey-lightest">
     <!-- Title -->
-    <h1 
-      slot="page-title" 
+    <h1
+      slot="page-title"
       class="text-center my-4 md:my-8"
     >
       Your Profile
@@ -19,117 +19,117 @@
     </div>
 
     <!-- Form -->
-    <form 
-      class="flex-1 flex flex-col justify-between" 
+    <form
+      class="flex-1 flex flex-col justify-between"
       @submit.prevent="updateProfile"
     >
       <div class="cols">
         <!-- First Name -->
         <div class="col half">
-          <BaseInput 
-            v-model="profile.first_name" 
-            v-validate="'required'" 
-            name="first_name" 
-            placeholder="First name" 
+          <BaseInput
+            v-model="profile.first_name"
+            v-validate="'required'"
+            name="first_name"
+            placeholder="First name"
             :error="validationErrors.first_name"
           />
         </div>
 
         <!-- Last Name -->
         <div class="col half">
-          <BaseInput 
-            v-model="profile.last_name" 
-            v-validate="'required'" 
-            name="last_name" 
-            placeholder="Last name" 
+          <BaseInput
+            v-model="profile.last_name"
+            v-validate="'required'"
+            name="last_name"
+            placeholder="Last name"
             :error="validationErrors.last_name"
           />
         </div>
 
         <!-- Username -->
         <div class="col half">
-          <BaseInput 
-            v-model="profile.username" 
-            v-validate="'required'" 
-            name="username" 
-            placeholder="Username" 
+          <BaseInput
+            v-model="profile.username"
+            v-validate="'required'"
+            name="username"
+            placeholder="Username"
             :error="validationErrors.username"
           />
         </div>
 
         <!-- Email -->
         <div class="col half">
-          <BaseInput 
-            v-model="profile.email" 
-            v-validate="'required'" 
-            name="email" 
-            placeholder="Email Address" 
+          <BaseInput
+            v-model="profile.email"
+            v-validate="'required'"
+            name="email"
+            placeholder="Email Address"
             :error="validationErrors.email"
           />
         </div>
 
         <!-- Address 1 -->
         <div class="col half">
-          <BaseInput 
-            v-model="address.address_1" 
-            v-validate="'required'" 
-            name="address_1" 
-            placeholder="Address Line 1" 
+          <BaseInput
+            v-model="address.address_1"
+            v-validate="'required'"
+            name="address_1"
+            placeholder="Address Line 1"
             :error="validationErrors.address_1"
           />
         </div>
 
         <!-- Address 2 -->
         <div class="col half">
-          <BaseInput 
-            v-model="address.address_2" 
-            v-validate="'required'" 
-            name="address_2" 
-            placeholder="Address Line 2" 
+          <BaseInput
+            v-model="address.address_2"
+            v-validate="'required'"
+            name="address_2"
+            placeholder="Address Line 2"
             :error="validationErrors.address_2"
           />
         </div>
 
         <!-- City -->
         <div class="col half">
-          <BaseInput 
-            v-model="address.city" 
-            v-validate="'required'" 
-            name="city" 
-            placeholder="Town / City" 
+          <BaseInput
+            v-model="address.city"
+            v-validate="'required'"
+            name="city"
+            placeholder="Town / City"
             :error="validationErrors.city"
           />
         </div>
 
         <!-- State / Country -->
         <div class="col half">
-          <BaseInput 
-            v-model="address.state" 
-            v-validate="'required'" 
-            name="state" 
-            placeholder="State / County" 
+          <BaseInput
+            v-model="address.state"
+            v-validate="'required'"
+            name="state"
+            placeholder="State / County"
             :error="validationErrors.state"
           />
         </div>
 
         <!-- Country -->
         <div class="col half">
-          <BaseInput 
-            v-model="address.country" 
-            v-validate="'required'" 
-            name="country" 
-            placeholder="Country" 
+          <BaseInput
+            v-model="address.country"
+            v-validate="'required'"
+            name="country"
+            placeholder="Country"
             :error="validationErrors.country"
           />
         </div>
 
         <!-- Zip code / Postcode -->
         <div class="col half">
-          <BaseInput 
-            v-model="address.zip_code" 
-            v-validate="'required'" 
-            name="postcode" 
-            placeholder="Zip Code / Postcode" 
+          <BaseInput
+            v-model="address.zip_code"
+            v-validate="'required'"
+            name="postcode"
+            placeholder="Zip Code / Postcode"
             :error="validationErrors.zip_code"
           />
         </div>
@@ -137,14 +137,14 @@
 
       <!-- Register Button -->
       <div class="flex justify-center lg:justify-end">
-        <BaseButton 
-          class="min-width shadow" 
-          :disabled="load" 
+        <BaseButton
+          class="min-width shadow"
+          :disabled="load"
           type="submit"
         >
-          <BaseIcon 
-            v-if="load" 
-            name="spinner" 
+          <BaseIcon
+            v-if="load"
+            name="spinner"
             spin
           />
           <span v-else>
