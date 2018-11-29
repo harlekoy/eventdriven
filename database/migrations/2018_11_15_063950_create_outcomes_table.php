@@ -15,7 +15,16 @@ class CreateOutcomesTable extends Migration
     {
         Schema::create('outcomes', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('betradar_id');
+            $table->unsignedInteger('market_id');
+            $table->float('odds');
+            $table->double('probabilities');
+            $table->boolean('active');
             $table->timestamps();
+
+            $table->foreign('market_id')
+                ->references('id')->on('markets')
+                ->onDelete('cascade');
         });
     }
 

@@ -15,7 +15,15 @@ class CreateMarketsTable extends Migration
     {
         Schema::create('markets', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('odds_change_id');
+            $table->unsignedInteger('betradar_id');
+            $table->unsignedInteger('status');
+            $table->string('specifiers');
             $table->timestamps();
+
+            $table->foreign('odds_change_id')
+                ->references('id')->on('odds_changes')
+                ->onDelete('cascade');
         });
     }
 

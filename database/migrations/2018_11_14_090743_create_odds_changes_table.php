@@ -15,6 +15,11 @@ class CreateOddsChangesTable extends Migration
     {
         Schema::create('odds_changes', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('product')->nullable();
+            $table->string('event_id')->nullable();
+            $table->dateTime('timestamp')->nullable();
+            $table->unsignedInteger('status')->nullable();
+            $table->unsignedInteger('match_status')->nullable();
             $table->timestamps();
         });
     }
