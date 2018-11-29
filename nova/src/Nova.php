@@ -110,7 +110,7 @@ class Nova
      */
     public static function version()
     {
-        return '1.1.4';
+        return '1.2.0';
     }
 
     /**
@@ -241,7 +241,7 @@ class Nova
         return collect(static::availableResources($request))
                     ->groupBy(function ($item, $key) {
                         return $item::group();
-                    })->sortKeysDesc()->all();
+                    })->sortKeys()->all();
     }
 
     /**

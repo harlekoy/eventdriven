@@ -19,11 +19,11 @@ class CreateActionEventsTable extends Migration
             $table->unsignedInteger('user_id')->index();
             $table->string('name');
             $table->string('actionable_type');
-            $table->string('actionable_id');
+            $table->unsignedInteger('actionable_id');
             $table->string('target_type');
-            $table->string('target_id');
+            $table->unsignedInteger('target_id');
             $table->string('model_type');
-            $table->string('model_id')->nullable();
+            $table->unsignedInteger('model_id')->nullable();
             $table->text('fields');
             $table->string('status', 25)->default('running');
             $table->text('exception');

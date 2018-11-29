@@ -204,9 +204,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
      */
     public static function label()
     {
-        $label = snake_case(class_basename(get_called_class()), ' ');
-
-        return Str::plural(ucwords($label));
+        return Str::plural(class_basename(get_called_class()));
     }
 
     /**

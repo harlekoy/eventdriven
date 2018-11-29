@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=1280">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="/favicon.png">
 
     <title>{{ Nova::name() }}</title>
 
@@ -50,7 +49,7 @@
                         <global-search></global-search>
                     @endif
 
-                    <dropdown class="ml-auto h-9 flex items-center" style="right: 20px">
+                    <dropdown class="ml-auto h-9 flex items-center dropdown-right">
                         @include('nova::partials.user')
                     </dropdown>
                 </div>
