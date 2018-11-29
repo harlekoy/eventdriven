@@ -52,19 +52,6 @@ class FixtureChange extends BetradarModel
     }
 
     /**
-     * Format date.
-     *
-     * @param string $value
-     * @return \Carbon\Carbon
-     */
-    public function formatDate($value)
-    {
-        $value = substr($value, 0, 10);
-
-        return Carbon::createFromTimestamp($value);
-    }
-
-    /**
      * Set start time attribute.
      *
      * @param string $value
@@ -82,15 +69,5 @@ class FixtureChange extends BetradarModel
     public function setNextLiveTimeAttribute($value)
     {
         $this->attributes['next_live_time'] = $this->formatDate($value);
-    }
-
-    /**
-     * Set timestamp attribute.
-     *
-     * @param string $value
-     */
-    public function setTimestampAttribute($value)
-    {
-        $this->attributes['timestamp'] = $this->formatDate($value);
     }
 }

@@ -4,14 +4,12 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Market extends Resource
+class Recovery extends Resource
 {
     /**
      * The logical group associated with the resource.
@@ -25,7 +23,7 @@ class Market extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\Market';
+    public static $model = 'App\\Models\\Recovery';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -44,17 +42,6 @@ class Market extends Resource
     ];
 
     /**
-     * Determine if the current user can create new resources.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    public static function authorizedToCreate(Request $request)
-    {
-        return false;
-    }
-
-    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -65,15 +52,14 @@ class Market extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('Odds Change', 'oddsChange'),
+            BelongsTo::make('Producer', 'producer'),
 
-            Number::make('Betradar ID'),
+            BelongsTo::make('Sport Event', 'event'),
 
-            Boolean::make('Status'),
-
-            Text::make('Specifiers'),
-
-            HasMany::make('Outcomes'),
+            Select::make('Status')->options([
+                'pending' => 'Pending',
+                'done'    => 'Done',
+            ])->displayUsingLabels(),
         ];
     }
 

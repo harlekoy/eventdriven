@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class BetradarModel extends Model
 {
@@ -55,5 +56,28 @@ class BetradarModel extends Model
         }
 
         return $this;
+    }
+
+    /**
+     * Set timestamp attribute.
+     *
+     * @param string $value
+     */
+    public function setTimestampAttribute($value)
+    {
+        $this->attributes['timestamp'] = $this->formatDate($value);
+    }
+
+    /**
+     * Format date.
+     *
+     * @param string $value
+     * @return \Carbon\Carbon
+     */
+    public function formatDate($value)
+    {
+        $value = substr($value, 0, 10);
+
+        return Carbon::createFromTimestamp($value);
     }
 }

@@ -33,6 +33,20 @@ class Producer extends BetradarModel
     ];
 
     /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->slug = last(array_filter(explode('/', $str)));
+        });
+    }
+
+    /**
      * Set active status.
      *
      * @param boolean $value

@@ -16,6 +16,8 @@ class CreateOddsChangesTable extends Migration
         Schema::create('odds_changes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('product')->nullable();
+            $table->double('expected_totals')->nullable();
+            $table->double('expected_supremacy')->nullable();
             $table->string('event_id')->nullable();
             $table->dateTime('timestamp')->nullable();
             $table->unsignedInteger('status')->nullable();

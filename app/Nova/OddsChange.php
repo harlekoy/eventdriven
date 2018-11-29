@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -55,11 +56,14 @@ class OddsChange extends Resource
 
             BelongsTo::make('Sport Event', 'event'),
 
-            DateTime::make('Timestamp'),
+            DateTime::make('Timestamp')
+                ->format('MMM DD, YYYY hh:mm A'),
 
             Boolean::make('Status'),
 
             Boolean::make('Match Status'),
+
+            HasMany::make('Markets'),
         ];
     }
 

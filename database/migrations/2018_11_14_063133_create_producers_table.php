@@ -15,6 +15,7 @@ class CreateProducersTable extends Migration
     {
         Schema::create('producers', function (Blueprint $table) {
             $table->string('id')->primary()->nullable();
+            $table->string('slug')->nullable();
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('api_url')->nullable();
