@@ -68,4 +68,13 @@ class SportEvent extends BetradarModel
     {
         return $this->belongsTo(Venue::class);
     }
+
+    /**
+     * Get recoveries.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function recoveries()
+    {
+        return $this->hasMany(Recovery::class, 'event_id');
+    }
 }

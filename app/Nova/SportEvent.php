@@ -9,6 +9,7 @@ use App\Nova\Filters\Tournament;
 use App\Nova\Filters\Venue;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
@@ -104,6 +105,8 @@ class SportEvent extends Resource
                 ])
                 ->displayUsingLabels()
                 ->sortable(),
+
+            HasMany::make('Recoveries'),
         ];
     }
 
