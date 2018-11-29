@@ -1,5 +1,7 @@
 <?php
 
+use Laravel\Nova\Http\Middleware\Authenticate;
+
 return [
 
     /*
@@ -15,6 +17,7 @@ return [
 
     'use' => 'default',
 
+
     /*
     |--------------------------------------------------------------------------
     | Horizon Redis Prefix
@@ -27,6 +30,22 @@ return [
     */
 
     'prefix' => env('HORIZON_PREFIX', 'horizon:'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Horizon Route Middleware
+    |--------------------------------------------------------------------------
+    |
+    | These middleware will get attached onto each Horizon route, giving you
+    | the chance to add your own middleware to this list or change any of
+    | the existing middleware. Or, you can simply stick with this list.
+    |
+    */
+
+    'middleware' => [
+        'web',
+        Authenticate::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -58,6 +77,21 @@ return [
         'recent' => 60,
         'failed' => 10080,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Fast Termination
+    |--------------------------------------------------------------------------
+    |
+    | When this option is enabled, Horizon's "terminate" command will not
+    | wait on all of the workers to terminate unless the --wait option
+    | is provided. Fast termination can shorten deployment delay by
+    | allowing a new instance of Horizon to start while the last
+    | instance will continue to terminate each of its workers.
+    |
+    */
+
+    'fast_termination' => false,
 
     /*
     |--------------------------------------------------------------------------

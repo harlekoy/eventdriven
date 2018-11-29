@@ -20,14 +20,6 @@ class AppServiceProvider extends ServiceProvider
         Totem::auth(function($request) {
             return Auth::guard('admins')->check();
         });
-
-        Horizon::auth(function ($request) {
-            return Auth::guard('admins')->check();
-        });
-
-        Telescope::auth(function ($request) {
-            return Auth::guard('admins')->check();
-        });
     }
 
     /**

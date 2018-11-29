@@ -15,9 +15,9 @@ class CreateRecoveriesTable extends Migration
     {
         Schema::create('recoveries', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('product');
-            $table->unsignedInteger('event_id');
-            $table->string('status')->default('pending');
+            $table->string('product');
+            $table->string('event_id');
+            $table->boolean('is_done')->default(false);
             $table->timestamps();
         });
     }

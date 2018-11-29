@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\SportEventRequestRecovery;
 use App\Nova\Filters\Sport;
 use App\Nova\Filters\Status;
 use App\Nova\Filters\Tournament;
@@ -152,6 +153,8 @@ class SportEvent extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new SportEventRequestRecovery,
+        ];
     }
 }

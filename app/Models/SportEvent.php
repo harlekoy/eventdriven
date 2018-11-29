@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Models\BetradarModel;
 use Betprophet\Betradar\Traits\HasLiveOdds;
+use Betprophet\Betradar\Traits\HasRecovery;
 
 class SportEvent extends BetradarModel
 {
-    use HasLiveOdds;
+    use HasLiveOdds, HasRecovery;
 
     /**
      * The attributes that are mass assignable.
