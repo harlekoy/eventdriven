@@ -2,8 +2,9 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Resource as NovaResource;
+use Illuminate\Support\Str;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Resource as NovaResource;
 
 abstract class Resource extends NovaResource
 {
@@ -62,5 +63,17 @@ abstract class Resource extends NovaResource
     public static function relatableQuery(NovaRequest $request, $query)
     {
         return parent::relatableQuery($request, $query);
+    }
+
+    /**
+     * Get the displayable label of the resource.
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        $label = snake_case(class_basename(get_called_class()), ' ');
+
+        return Str::plural(ucwords($label));
     }
 }
