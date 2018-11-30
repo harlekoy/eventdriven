@@ -6,13 +6,8 @@
     <div class="white-wrapper overflow-hidden">
       <div class="thumb">
         <img
-          v-if="image"
           :src="image"
           class="w-full"
-        >
-        <img
-          v-else
-          :src="`/images/${page}/default_image.jpg`"
         >
       </div>
       <div class="content">
@@ -46,16 +41,10 @@
 
 <script>
 import { tournament } from '@utils/betradar'
-import { head, first } from 'lodash'
+import { head, first, get } from 'lodash'
 
 export default {
   props: ['info', 'page'],
-
-  data () {
-    return {
-      image: ''
-    }
-  },
 
   computed: {
     setUrl () {
@@ -66,13 +55,12 @@ export default {
       return {
         path: `${this.page}/${id}`
       }
-    }
-  },
+    },
 
-  mounted () {
-    if ( this.info.tournament_id ) {
-      let item    = tournament( this.info.sport_id )
-      this.image  = _.first(item).image
+    image () {
+      let image = get(this.info, 'image')
+
+      return image ? image : `/images/${this.page}/default_image.jpg`
     }
   },
 }
