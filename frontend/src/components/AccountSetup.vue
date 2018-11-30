@@ -65,21 +65,28 @@
           </p>
         </td>
       </tr>
-      <tr class="bg-red-lightest">
+      <tr :class="{
+        'bg-red-lightest': notVerified()
+      }">
         <td>
           <p class="font-semibold">
             KYC Info
           </p>
         </td>
         <td>
-          <p class="font-semibold text-red">
-            <i class="icon-warning" /> Missing
+          <p class="font-light" :class="{
+            'font-semibold text-red': notVerified()
+          }">
+            <i :class="{
+              'icon-warning': notVerified() && status !== 'Pending'
+            }" />
+            {{ status }}
           </p>
         </td>
         <td>
-          <p class="font-semibold text-red text-right">
-            + Add
-          </p>
+          <a href="#" @click.prevent="kyc()" class="font-semibold text-red text-right">
+            {{ kycAction }}
+          </a>
         </td>
       </tr>
       <tr>
@@ -104,15 +111,70 @@
 </template>
 
 <script>
-import {mask} from 'vue-the-mask'
+import axios from 'axios'
+import { mask } from 'vue-the-mask'
+import { mapGetters } from 'vuex'
 
 export default {
   directives: {mask},
   data() {
     return {
       phone: '4499 4444 3333',
+      status: 'Missing',
+      kycAction: 'Verify'
     }
   },
+
+  computed: {
+    ...mapGetters({
+      user: 'auth/user'
+    })
+  },
+
+  async mounted () {
+    await this.kycStatus()
+  },
+
+  methods: {
+    async kyc() {
+      const { data: { data: { verification_url } } } = await axios.post(`kyc-verify/${this.user.id}`, {
+        redirect_url: window.location.href
+      })
+
+      window.location.href = verification_url
+    },
+
+    async kycStatus() {
+      const { data: { data } } = await axios.get(`kyc-status/${this.user.id}`)
+
+      switch (data.event) {
+        case "request.timeout":
+        case "request.invalid":
+          this.status = 'Invalid'
+          this.kycAction = 'Recheck'
+          break;
+
+        case "request.pending":
+          this.status = 'Pending'
+          this.kycAction = ''
+          break;
+
+        case "verification.accepted":
+          this.status = 'Verified'
+          this.kycAction = ''
+          break;
+
+        case "verification.declined":
+          this.status = 'Declined'
+          this.kycAction = 'Recheck'
+          break;
+      }
+    },
+
+    notVerified() {
+      return this.status !== 'Verified'
+    }
+  }
 }
 </script>
 

@@ -21,15 +21,17 @@ class KYCController extends Controller
      */
     public function verify(Request $request, User $user)
     {
-        if (is_null($user->kyc)) {
-            $verify = new ShuftiPro();
+        $kyc = $user->kyc;
 
+        if (!$kyc || ($kyc && !(str_contains($kyc->event, 'accepted') ||
+            str_contains($kyc->event, 'pending')))) {
             $kyc = KYC::create([
                 'user_id' => $user->id
             ]);
 
             $info = $request->all();
             $info['reference'] = $kyc->uuid;
+            $verify = new ShuftiPro();
 
             $data = $this->verifyRequestData($info, $user);
 
@@ -37,21 +39,16 @@ class KYCController extends Controller
             $data = json_decode($response);
 
             $kyc->fill([
+                'verify_type' => 'kyc'
                 'user_id' => $user->id,
                 'uuid' => $data->reference,
                 'event' => $data->event,
                 'verification_url' => $data->verification_url,
                 'email' => $data->email
             ])->save();
-
-            return new KYCResource($kyc);
         }
 
-        return [
-            'data' => [
-                'message' => 'User already verified or in verification process.'
-            ]
-        ];
+        return new KYCResource($kyc);
     }
 
     /**
@@ -61,12 +58,12 @@ class KYCController extends Controller
      *
      * @return \App\Http\Resources\KYCResource
      */
-    public function status(KYC $kyc)
+    public function status(User $user)
     {
-        if ($user->kyc) {
+        if ($kyc = $user->kyc) {
             $request = new ShuftiPro();
 
-            $response = $request->status($kyc->reference);
+            $response = $request->status($kyc->uuid);
             $data = json_decode($response);
 
             $kyc->fill([
@@ -77,6 +74,7 @@ class KYCController extends Controller
         }
 
         return [
+            'status' => false,
             'data' => [
                 'message' => 'User has no verification request made.'
             ]
@@ -115,7 +113,10 @@ class KYCController extends Controller
             'email' => $user->email,
             'country' => $user->address->alpha_2,
             'language' => "EN",
-            'verification_mode' => 'any',
+            'verification_mode' => 'any'
+        ];
+
+        $userDetails = array_merge($data, [
             'document' => [
                 'supported_types' => ['id_card','driving_license','passport'],
                 'name' => $name,
@@ -125,11 +126,14 @@ class KYCController extends Controller
                 'supported_types' => ['id_card','bank_statement','driving_license','passport'],
                 'name' => $name,
                 'full_address' => $user->fullAddress
-            ],
+            ]
+        ]);
+
+        $phone = array_merge($data, [
             'phone' => [
                 'phone_number' => $user->phone_number,
             ]
-        ];
+        ]);
 
         return $data;
     }

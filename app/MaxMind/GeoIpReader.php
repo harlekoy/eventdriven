@@ -16,8 +16,8 @@ class GeoIpReader
         $geolocation = null;
 
         // sample european ip address
-        // $ipAddress = '185.18.140.236';
-        $ipAddress = request()->ip();
+        $ipAddress = '185.18.140.236';
+        // $ipAddress = request()->ip();
 
         $location = new Reader($this->cityPath());
 

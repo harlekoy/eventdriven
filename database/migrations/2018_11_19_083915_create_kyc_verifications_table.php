@@ -13,9 +13,10 @@ class CreateKYCVerificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('kyc_verifications', function (Blueprint $table) {
+        Schema::create('shufti_verifications', function (Blueprint $table) {
             $table->increments('id');
             $table->string('uuid');
+            $table->string('verify_type');
             $table->unsignedInteger('user_id')->nullable();
             $table->string('event')->nullable();
             $table->text('verification_url')->nullable();

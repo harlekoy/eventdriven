@@ -10,7 +10,7 @@
       </div>
       <div class="main white-wrapper">
         <div class="tabs mb-6">
-          <div 
+          <div
             v-for="tab in dashboardTabs"
             :key="tab.slug"
             :class="['tab', { active: currentTab === tab.slug }]"

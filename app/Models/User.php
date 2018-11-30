@@ -93,7 +93,7 @@ class User extends Authenticatable
      */
     public function kyc()
     {
-        return $this->hasOne(KYCVerification::class, 'user_id');
+        return $this->hasOne(KYCVerification::class, 'user_id')->latest();
     }
 
     /**
