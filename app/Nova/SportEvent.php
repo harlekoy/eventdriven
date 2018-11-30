@@ -9,9 +9,10 @@ use App\Nova\Filters\Tournament;
 use App\Nova\Filters\Venue;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\CloudinaryImage;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -60,6 +61,8 @@ class SportEvent extends Resource
         return [
             ID::make()->sortable()
                 ->hideFromIndex(),
+
+            CloudinaryImage::make('Image'),
 
             Date::make('Scheduled')
                 ->format('MMM DD, YYYY')

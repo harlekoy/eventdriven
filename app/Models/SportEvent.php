@@ -17,8 +17,10 @@ class SportEvent extends BetradarModel
      */
     protected $fillable = [
         'id',
+        'image',
         'sport_id',
         'tournament_id',
+        'name',
         'venue_id',
         'scheduled',
         'start_time_tbd',
@@ -76,5 +78,15 @@ class SportEvent extends BetradarModel
     public function recoveries()
     {
         return $this->hasMany(Recovery::class, 'event_id');
+    }
+
+    /**
+     * Get image attribute.
+     *
+     * @return string
+     */
+    public function getImageAttribute($image)
+    {
+        return $image ?? $this->tournament->image ?? $this->sport->image ?? null;
     }
 }

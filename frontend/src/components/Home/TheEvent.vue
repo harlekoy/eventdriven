@@ -10,13 +10,13 @@
       :per-page="4"
       :per-page-custom="[[0, 1], [768, 2], [992, 3], [1200, 4]]"
     >
-      <Slide 
+      <Slide
         v-for="(item, index) in events"
         :key="index"
         class="carousel-inner"
       >
-        <Card 
-          :info="item" 
+        <Card
+          :info="item"
           :page="'events'"
         />
       </Slide>
@@ -36,8 +36,8 @@ export default {
     Slide
   },
 
-  mounted() {
-    this.fetchEvents()
+  async mounted() {
+    await this.fetchEvents()
   },
 
   computed: {
@@ -45,7 +45,7 @@ export default {
       events: 'events/getEvents'
     }),
   },
-  
+
 
   methods: {
     ...mapActions({

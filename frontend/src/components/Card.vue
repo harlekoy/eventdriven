@@ -1,17 +1,17 @@
 <template>
-  <router-link 
-    :to="setUrl" 
+  <router-link
+    :to="setUrl"
     class="card"
   >
     <div class="white-wrapper overflow-hidden">
       <div class="thumb">
-        <img 
-          v-if="image" 
-          :src="image" 
+        <img
+          v-if="image"
+          :src="image"
           class="w-full"
         >
-        <img 
-          v-else 
+        <img
+          v-else
           :src="`/images/${page}/default_image.jpg`"
         >
       </div>
