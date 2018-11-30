@@ -13,6 +13,7 @@ export default [
   {
     path: '/team/:id',
     name: 'team',
+    props: true,
     component: () => lazyLoadView(import('@views/TeamIntermediary')),
     meta: {
       breadCrumb: 'Team'

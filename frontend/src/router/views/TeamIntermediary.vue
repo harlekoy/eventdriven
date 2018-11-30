@@ -20,45 +20,16 @@
           Competitions
         </h4>
         <div class="cols py-6">
-          <div class="col w-full sm:w-1/2 flex-auto text-base leading-loose">
-            <a class="text-green">
-              English Premier League
-            </a>
-          </div>
-          <div class="col w-full sm:w-1/2 flex-auto text-base leading-loose">
-            <a class="text-green">
-              Carabao Cup
-            </a>
-          </div>
-          <div class="col w-full sm:w-1/2 flex-auto text-base leading-loose">
-            <a class="text-green">
-              UEFA Champions League
-            </a>
-          </div>
-          <div class="col w-full sm:w-1/2 flex-auto text-base leading-loose">
-            <a class="text-green">
-              FA Cup
-            </a>
-          </div>
-          <div class="col w-full sm:w-1/2 flex-auto text-base leading-loose">
-            <a class="text-green">
-              Manchester City vs. Arsenal
-            </a>
-          </div>
-          <div class="col w-full sm:w-1/2 flex-auto text-base leading-loose">
-            <a class="text-green">
-              Manchester City vs. Liverpool
-            </a>
-          </div>
-          <div class="col w-full sm:w-1/2 flex-auto text-base leading-loose">
-            <a class="text-green">
-              Manchester City vs. Bournemouth
-            </a>
-          </div>
-          <div class="col w-full sm:w-1/2 flex-auto text-base leading-loose">
-            <a class="text-green">
-              Real Madrid vs. Manchester City
-            </a>
+          <div 
+            v-for="(item, index) in competitors"
+            :key="index"
+            class="col w-full sm:w-1/2 flex-auto text-base leading-loose"
+          >
+            <router-link 
+              :to="{ name: 'home' }"
+              class="text-green">
+              {{ item.name }}
+            </router-link>
           </div>
         </div>
         <!-- Leagues -->
@@ -230,6 +201,7 @@ import appConfig from '@src/app.config'
 import Layout from '@layouts/Main'
 import Banner from '@components/Banner'
 import LeagueCard from '@components/LeagueCard'
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   page: {
@@ -237,10 +209,28 @@ export default {
     meta: [{ name: 'description', content: appConfig.description }],
   },
 
+  props: ['id'],
+
   components: {
     Layout,
     Banner,
     LeagueCard
+  },
+
+  computed: {
+    ...mapGetters({
+      competitors: 'sports/competitors'
+    })
+  },
+
+  async mounted() {
+    await this.fetchCompetitors()
+  },
+
+  methods: {
+    ...mapActions({
+      fetchCompetitors: 'sports/fetchCompetitors'
+    })
   }
 }
 </script>

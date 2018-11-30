@@ -2,36 +2,53 @@
   <Layout class="bg-grey-lightest">
     <!-- Content -->
     <div class="container mx-auto mb-12 px-32">
+
       <section v-if="current == 1">
         <!-- Title -->
         <h1 class="text-center py-10">
           Your bet details
-        </h1>    
+        </h1>
+        <p>Test:</p>
+        <pre>{{form}}</pre>
           
         <div class="bg-white flex mb-10 shadow-md overflow-hidden">
           <div class="flex-1">
-            <div class="flex-1 bg-grey-lighter p-4">
+
+            <!-- Select: Event -->
+            <div
+              :class="{ active: tabActive }"
+              class="list-item list-item-event active flex-1 bg-grey-lighter p-4 cursor-pointer"
+              @click="setActive('list-item-event')"
+            >
               <div class="flex justify-between items-center">
                 <p class="text-lg font-medium">
                   Which match it is?
                 </p>
-                <i class="icon-down text-xs text-black text-right" />
+                <i
+                  :class="{iconright: tabActive}"
+                  class="icon-down text-xs text-black text-right" />
               </div>
-              <p class="py-4 text-xl">
+              <p v-if="form.sport_event" class="py-4 text-xl">
                 <img 
                   class="pr-2 pl-1" 
                   src="@assets/images/icon-checkmark.svg"
                 >
-                English Premiere League
+                {{ form.sport_event.name }}
               </p>
+              <p v-else class="py-4 text-xl">- Select a sport events -</p>
             </div>
 
-            <div class="flex-1 clearfix p-4">
+            <!-- Select: Team or Player -->
+            <div
+              :class="{ active: tabActive }"
+              class="list-item list-item-match flex-1 clearfix p-4"
+              @click="setActive('list-item-match')"
+            >
               <div class="flex justify-between">
                 <p class="text-lg font-medium">
                   Which match it is?
                 </p>
-                <i class="icon-down text-xs text-black text-right icon-right" />
+                <i class="icon-down text-xs text-black text-right" />
               </div>
               <div class="py-4 text-xl relative">
                 <BaseInput 
@@ -46,14 +63,19 @@
               </div>
             </div>
 
-            <div class="flex-1 bg-grey-lighter p-4">
+            <!-- Select: Type of bet -->
+            <div
+              :class="{ active: tabActive }"
+              class="list-item list-item-bet-type flex-1 bg-grey-lighter p-4"
+              @click="setActive('list-item-bet-type')"
+            >
               <p class="mb-4 text-lg font-medium">
                 What type of bet it is?
               </p>
               <div class="relative">
                 <BaseInput 
-                  v-model="to_win" 
-                  name="to_win" 
+                  v-model="form.bet_type"
+                  name="bet_type"
                   class="has-icon absolute"
                   placeholder=""
                 />
@@ -65,39 +87,15 @@
             </div>
           </div>
 
-          <div class="flex-1 shadow">
-            <div 
-              v-if="filteredList.length" 
-              class="list-wrapper overflow-y-auto"
+          <!-- load active List item component -->
+          <keep-alive>
+            <component 
+              @selected="getValue"
+              :is="currentTabComponent"
             >
-              <p
-                v-for="(item, index) in filteredList"
-                :key="index"
-                to=""
-                class="block text-lg py-3 px-5"
-                :class="[{active: form.selected_player == index}]"
-                @click.prevent="selectPlayer(index)"
-              >
-                {{ item.name }}
-              </p>
-            </div>
-            <div 
-              v-else 
-              class="flex h-full justify-center items-center"
-            >
-              <div class="flex-1 text-center">
-                <p class="mb-2">
-                  <img 
-                    width="150" 
-                    src="@assets/images/icon-empty.svg"
-                  >                  
-                </p>
-                <h5 class="font-medium">
-                  Ugh, cant find it or it doesn't exist. <br>Try again.
-                </h5>                  
-              </div>
-            </div>
-          </div>
+            </component>
+          </keep-alive>
+
         </div>
 
         <BetDetails />
@@ -146,10 +144,10 @@
               </h5>
               <div class="flex justify-start items-center">
                 <div class="w-1/4">
-                  <BaseInput 
-                    v-model="wager_value" 
+                  <BaseInput
+                    v-model="form.total_wager_value" 
                     class="amount mr-0 sm:mr-2 input-size-lg"
-                  />                  
+                  />
                 </div>
                 <div class="flex justify-center items-center px-2 pb-3">
                   <span>at</span>
@@ -167,7 +165,7 @@
                   <BaseInput 
                     v-model="odds_2" 
                     class="amount mr-0 sm:mr-2 input-size-lg"
-                  />  
+                  />
                 </div>
               </div>
             </div>
@@ -186,8 +184,8 @@
 
               <div class="flex justify-center items-center mb-3">
                 <div class="w-1/4 pr-3">
-                  <BaseInput 
-                    v-model="to_sell" 
+                  <BaseInput
+                    v-model="form.sell_percentage"
                     class="amount mr-0 sm:mr-2 text-xl input-size-lg"
                   />
                 </div>
@@ -246,7 +244,7 @@
               <div class="flex justify-center items-center mb-3">
                 <div class="w-1/4 pr-3">
                   <BaseInput 
-                    v-model="to_sell" 
+                    v-model="form.sell_percentage"
                     class="amount mr-0 sm:mr-2 text-xl input-size-lg"
                   />
                 </div>
@@ -269,15 +267,15 @@
 
             <div class="flex rounded-lg text- center justify-start items-center">
               <div>
-                <BaseCheckbox 
+                <BaseCheckbox
                   v-model="keep_in_play" 
-                  class="cursor-pointer whitespace-no-wrap" 
+                  class="cursor-pointer whitespace-no-wrap"
                   type="checkbox" 
                   :checked="keep_in_play" 
                   @input="toggleValue"
                 >
                   Remember Me
-                </BaseCheckbox>                  
+                </BaseCheckbox>
               </div>
               <div class="pt-2">
                 <PopOver>
@@ -305,13 +303,13 @@
                   Continue
                 </button>
               </div>
-            </div>            
+            </div>
           </div>
 
           <div class="flex-1">
             <MarketOdds />
           </div>
-        </div>          
+        </div>
       </section>
 
 
@@ -339,7 +337,7 @@
               </button>
             </div>
           </div>  
-        </div>          
+        </div>
       </section>
     </div>
   </Layout>
@@ -351,12 +349,42 @@ import SellSteps from '@components/Sell/SellSteps'
 import BetDetails from '@components/Sell/BetDetails'
 import MarketOdds from '@components/Sell/MarketOdds'
 import PopOver from '@components/PopOver'
+
+import ListItemEvent from './ListItemEvent'
+import ListItemMatch from './ListItemMatch'
+import ListItemBetType from './ListItemBetType'
+
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
   page: {
     title: 'Sell',
     meta: [{ name: 'description', content: 'Sell' }],
+  },
+
+  data() {
+    return {
+      form: {
+        sport_event: '',
+        match: '',
+        bet_type: '',
+
+        total_wager_value: '$ 1,000',
+        sell_percentage: 80,
+        sell_price: 80,
+      },
+
+      tabActive: false,
+      currentList: 'list-item-event',
+      validationErrors: {},
+      search_players: '',
+
+      to_sell: '100%',
+      odds_1: 20,
+      odds_2: 1,
+      keep_in_play: '',
+
+    }
   },
 
   computed: {
@@ -369,38 +397,22 @@ export default {
       return this.players.filter( post => {
         return post.name.toLowerCase().includes(this.search_players.toLowerCase())
       })
+    },
+
+    currentTabComponent() {
+      return this.currentList
     }
   },
 
-  components: { 
+  components: {
     Layout, 
     SellSteps,
     BetDetails,
     MarketOdds,
     PopOver,
-  },
-
-  data() {
-    return {
-      form: {
-        selected_player: 1,        
-      },
-      validationErrors: {},
-      search_players: '',
-
-
-      // step 1 model data
-      to_win: '',
-
-      // step 2 model data
-      wager_value: '$ 1,000',
-      to_sell: '100%',
-      odds_1: 20,
-      odds_2: 1,
-      keep_in_play: '',      
-
-      // step 3 model data
-    }
+    ListItemEvent,
+    ListItemMatch,
+    ListItemBetType,
   },
 
   methods: {
@@ -415,16 +427,27 @@ export default {
     },
 
     next() {
-
       if ( this.validationErrors ) {
         this.nextStep()
       }
     },
 
-    selectPlayer(value) {
-      // test set selected player
-      console.log(value)
-      this.form.selected_player = value
+    setActive( tabComponent ) {
+      this.currentList = tabComponent
+    },
+
+    getValue( value ) {
+
+      switch( this.currentList ) {
+        case 'list-item-event':
+          this.form.sport_event = value
+          break;
+        case 'list-item-match':
+          this.form.match = value
+          break;
+        default:
+
+      }
     },
 
     toggleValue(checkbox) {
@@ -443,7 +466,7 @@ export default {
   }
 }
 
-.icon-right {
+.iconright {
   transform: rotate(-90deg);
 }
 </style>
