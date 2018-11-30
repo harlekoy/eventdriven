@@ -42,7 +42,7 @@ class Producer extends BetradarModel
         parent::boot();
 
         static::creating(function ($model) {
-            $model->slug = last(array_filter(explode('/', $str)));
+            $model->slug = last(array_filter(explode('/', $model->api_url)));
         });
     }
 
