@@ -16,8 +16,8 @@
 
             <!-- Select: Event -->
             <div
-              :class="{ active: tabActive }"
-              class="list-item list-item-event active flex-1 bg-grey-lighter p-4 cursor-pointer"
+              :class="{ active: currentList == 'list-item-event' }"
+              class="list-item list-item-event flex-1 p-4 cursor-pointer border-b border-grey-lightest"
               @click="setActive('list-item-event')"
             >
               <div class="flex justify-between items-center">
@@ -25,7 +25,6 @@
                   Which match it is?
                 </p>
                 <i
-                  :class="{iconright: tabActive}"
                   class="icon-down text-xs text-black text-right" />
               </div>
               <p v-if="form.sport_event" class="py-4 text-xl">
@@ -40,8 +39,8 @@
 
             <!-- Select: Team or Player -->
             <div
-              :class="{ active: tabActive }"
-              class="list-item list-item-match flex-1 clearfix p-4"
+              :class="{ active: currentList == 'list-item-match' }"
+              class="list-item list-item-match flex-1 clearfix p-4 cursor-pointer border-b border-grey-lightest"
               @click="setActive('list-item-match')"
             >
               <div class="flex justify-between">
@@ -65,8 +64,8 @@
 
             <!-- Select: Type of bet -->
             <div
-              :class="{ active: tabActive }"
-              class="list-item list-item-bet-type flex-1 bg-grey-lighter p-4"
+              :class="{ active: currentList == 'list-item-bet-type' }"
+              class="list-item list-item-bet-type flex-1 p-4 cursor-pointer"
               @click="setActive('list-item-bet-type')"
             >
               <p class="mb-4 text-lg font-medium">
@@ -365,8 +364,8 @@ export default {
   data() {
     return {
       form: {
-        sport_event: '',
-        match: '',
+        sport_event: null,
+        match: null,
         bet_type: '',
 
         total_wager_value: '$ 1,000',
@@ -374,7 +373,6 @@ export default {
         sell_price: 80,
       },
 
-      tabActive: false,
       currentList: 'list-item-event',
       validationErrors: {},
       search_players: '',
@@ -437,7 +435,6 @@ export default {
     },
 
     getValue( value ) {
-
       switch( this.currentList ) {
         case 'list-item-event':
           this.form.sport_event = value
@@ -445,8 +442,8 @@ export default {
         case 'list-item-match':
           this.form.match = value
           break;
+         case 'list-item-bet-type':
         default:
-
       }
     },
 
@@ -466,9 +463,21 @@ export default {
   }
 }
 
-.iconright {
-  transform: rotate(-90deg);
+.list-item {
+  transition: all .3s ease;
+  opacity: .45;
+  @apply bg-grey-light;
+ 
+  .icon-down {
+    transition: all .3s ease;
+  }
+
+  &.active {
+    @apply bg-white opacity-100;
+
+    .icon-down {
+      transform: rotate(-90deg) !important;
+    }
+  }
 }
 </style>
-
-

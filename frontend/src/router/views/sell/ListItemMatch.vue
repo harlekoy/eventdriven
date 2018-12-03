@@ -1,5 +1,6 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import EmptyContent from '@components/EmptyContent'
 
 export default {
   props: [],
@@ -130,6 +131,10 @@ export default {
     ...mapGetters({
       events: 'events/getEvents'
     })
+  },
+
+  components: {
+    EmptyContent,
   }
 }
 </script>
@@ -137,7 +142,7 @@ export default {
 <template>
   <div class="flex-1 shadow">
     <div
-      data-if="filteredList.length" 
+      data-v-if="filteredList.length"
       class="list-wrapper overflow-y-auto"
     >
       <p
@@ -151,23 +156,11 @@ export default {
         {{ item.name }}
       </p>
     </div>
-    <!-- <div 
-      v-else 
-      class="flex h-full justify-center items-center"
-    >
-      <div class="flex-1 text-center">
-        <p class="mb-2">
-          <img 
-            width="150" 
-            src="@assets/images/icon-empty.svg"
-          >                  
-        </p>
-        <h5 class="font-medium">
-          Ugh, cant find it or it doesn't exist. <br>Try again.
-        </h5>                  
-      </div>
+    <!-- <div v-else class="h-full">
+      <EmptyContent />
     </div> -->
   </div>
+
 </template>
 
 <style lang="scss">
