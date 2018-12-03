@@ -13,9 +13,15 @@
       </router-link>
     </Banner>
     <div class="container mx-auto my-12">
-      <TheEvent />
-      <TheTeam />
-      <ThePlayer />
+      <div v-if="hasSportData">
+        <TheEvent />
+        <TheTeam />
+        <ThePlayer />
+      </div>
+      <div v-else class="text-center py-8">
+        <img src="@assets/images/icon-empty.svg" class="mb-8 w-2/5 lg:w-1/5">
+        <p class="font-medium text-lg">We are sorry, There is no data available at the moment</p>
+      </div>
     </div>
   </Layout>
 </template>
@@ -28,7 +34,7 @@ import ThePlayer from '@components/Home/ThePlayer'
 import TheEvent from '@components/Home/TheEvent'
 import TheTeam from '@components/Home/TheTeam'
 import Carousel from '@components/Carousel'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   page: {
@@ -43,6 +49,18 @@ export default {
     ThePlayer,
     TheEvent,
     TheTeam,
+  },
+
+  computed: {
+    ...mapGetters({
+      tournaments: 'sports/tournaments',
+      teams: 'sports/teams',
+      players: 'players/getPlayers',
+    }),
+
+    hasSportData () {
+      return this.tournaments && this.teams && this.players ? true : false
+    }
   },
 
   async mounted () {
