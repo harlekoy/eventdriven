@@ -1,6 +1,6 @@
 <?php
 
-use Betprophet\ApiDocs\Http\Middleware\Authenticate;
+use Harlekoy\ApiDocs\Http\Middleware\Authenticate;
 
 return [
     'path' => 'apidocs',

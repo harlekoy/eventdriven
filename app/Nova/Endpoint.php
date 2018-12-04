@@ -26,7 +26,7 @@ class Endpoint extends Resource
      *
      * @var string
      */
-    public static $model = 'Betprophet\\ApiDocs\\Endpoint';
+    public static $model = 'Harlekoy\\ApiDocs\\Endpoint';
 
     /**
      * The single value that should be used to represent the resource when being displayed.

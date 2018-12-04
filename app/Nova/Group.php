@@ -23,7 +23,7 @@ class Group extends Resource
      *
      * @var string
      */
-    public static $model = 'Betprophet\\ApiDocs\\ApiGroup';
+    public static $model = 'Harlekoy\\ApiDocs\\ApiGroup';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
