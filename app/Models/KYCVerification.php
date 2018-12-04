@@ -15,7 +15,7 @@ class KYCVerification extends Model
      *
      * @var string
      */
-    protected $table = 'kyc_verifications';
+    protected $table = 'shufti_verifications';
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +25,7 @@ class KYCVerification extends Model
     protected $fillable = [
         'reference',
         'event',
+        'type',
         'verification_url',
         'email',
         'user_id',

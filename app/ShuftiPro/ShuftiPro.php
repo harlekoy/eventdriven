@@ -4,6 +4,17 @@ namespace App\ShuftiPro;
 
 class ShuftiPro
 {
+    // ShuftiPro services to verify
+    const PHONE_VERIFY = 'phone';
+    const USER_VERIFY = 'user'; // address and document
+
+    // ShuftiPro Statuses
+    const REQUEST_PENDING = 'request.pending';
+    const REQUEST_TIMEOUT = 'request.timeout';
+    const REQUEST_INVALID = 'request.invalid';
+    const VERIFICATION_ACCEPTED = 'verification.accepted';
+    const VERIFICATION_DECLINED = 'verification.declined';
+
     /**
      * Set client credentials.
      *

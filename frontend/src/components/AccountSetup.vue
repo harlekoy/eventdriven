@@ -24,18 +24,25 @@
           </p>
         </td>
       </tr>
-      <tr>
+      <tr :class="{
+          'bg-red-lightest': notVerified('phone')
+        }">
         <td>
           <p class="font-semibold">
             Phone
           </p>
         </td>
         <td>
-          <p>
+          <p class="font-light" :class="{
+            'font-semibold text-red': notVerified('phone')
+          }">
             <input
-              v-model="phone"
+              :class="{
+                'bg-red-lightest': notVerified('phone')
+              }"
+              v-model="phoneNum"
               v-mask="'+## (##) ####-####'"
-              class="select-text font-light bg-white text-black"
+              class="select-text font-light text-black"
               type="tel"
               :masked="true"
               disabled
@@ -43,9 +50,12 @@
           </p>
         </td>
         <td>
-          <p class="font-semibold text-green text-right">
-            Verify
-          </p>
+           <a v-if="phone.url !== '#'" :href="phone.url" :class="{ 'btn-loading': load['phone'] }" class="font-semibold text-red text-right">
+            {{ phone.kycAction }}
+          </a>
+          <a v-else href="#" @click.prevent="kyc('phone')" :class="{ 'btn-loading': load['phone'] }" class="font-semibold text-red text-right">
+            {{ phone.kycAction }}
+          </a>
         </td>
       </tr>
       <tr>
@@ -66,7 +76,7 @@
         </td>
       </tr>
       <tr :class="{
-        'bg-red-lightest': notVerified()
+        'bg-red-lightest': notVerified('user')
       }">
         <td>
           <p class="font-semibold">
@@ -75,17 +85,20 @@
         </td>
         <td>
           <p class="font-light" :class="{
-            'font-semibold text-red': notVerified()
+            'font-semibold text-red': notVerified('user')
           }">
             <i :class="{
-              'icon-warning': notVerified() && status !== 'Pending'
+              'icon-warning': notVerified('user') && user.status !== 'Pending'
             }" />
-            {{ status }}
+            {{ user.status }}
           </p>
         </td>
         <td>
-          <a href="#" @click.prevent="kyc()" class="font-semibold text-red text-right">
-            {{ kycAction }}
+          <a v-if="user.url !== '#'" :href="user.url" :class="{ 'btn-loading': load['user'] }" class="font-semibold text-red text-right">
+            {{ user.kycAction }}
+          </a>
+          <a v-else href="#" @click.prevent="kyc('user')" :class="{ 'btn-loading': load['user'] }" class="font-semibold text-red text-right">
+            {{ user.kycAction }}
           </a>
         </td>
       </tr>
@@ -119,60 +132,86 @@ export default {
   directives: {mask},
   data() {
     return {
-      phone: '4499 4444 3333',
-      status: 'Missing',
-      kycAction: 'Verify'
+      load: {
+        user: false,
+        phone: false,
+      },
+      phoneNum: '4499 4444 3333',
+      phone: {
+        status: 'Missing',
+        kycAction: 'Verify',
+        url: '#'
+      },
+      user: {
+        status: 'Missing',
+        kycAction: 'Verify',
+        url: '#'
+      }
     }
   },
 
   computed: {
     ...mapGetters({
-      user: 'auth/user'
+      authUser: 'auth/user'
     })
   },
 
   async mounted () {
-    await this.kycStatus()
+    this.kycStatus('user')
+    this.kycStatus('phone')
   },
 
   methods: {
-    async kyc() {
-      const { data: { data: { verification_url } } } = await axios.post(`kyc-verify/${this.user.id}`, {
-        redirect_url: window.location.href
+    async kyc (type) {
+      this.load[type] = true
+
+      const { data: { data: { verification_url } } } = await axios.post(`kyc-verify/${this.authUser.id}`, {
+        redirect_url: window.location.href,
+        type: type
       })
 
+      this.load[type] = false
       window.location.href = verification_url
     },
 
-    async kycStatus() {
-      const { data: { data } } = await axios.get(`kyc-status/${this.user.id}`)
+    async kycStatus (type) {
+      this.load[type] = true
 
+      const { data: { data } } = await axios.get(`kyc-status/${this.authUser.id}/${type}`)
+
+      this.setStatus(data, type)
+
+      this.load[type] = false
+    },
+
+    notVerified (type) {
+      return this[`${type}`].status !== 'Verified'
+    },
+
+    setStatus (data, type) {
       switch (data.event) {
         case "request.timeout":
         case "request.invalid":
-          this.status = 'Invalid'
-          this.kycAction = 'Recheck'
+          this[`${type}`].status = 'Invalid'
+          this[`${type}`].kycAction = 'Recheck'
           break;
 
         case "request.pending":
-          this.status = 'Pending'
-          this.kycAction = ''
+          this[`${type}`].status = 'Pending'
+          this[`${type}`].kycAction = 'Continue'
+          this[`${type}`].url = data.verification_url
           break;
 
         case "verification.accepted":
-          this.status = 'Verified'
-          this.kycAction = ''
+          this[`${type}`].status = 'Verified'
+          this[`${type}`].kycAction = ''
           break;
 
         case "verification.declined":
-          this.status = 'Declined'
-          this.kycAction = 'Recheck'
+          this[`${type}`].status = 'Declined'
+          this[`${type}`].kycAction = 'Recheck'
           break;
       }
-    },
-
-    notVerified() {
-      return this.status !== 'Verified'
     }
   }
 }

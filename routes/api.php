@@ -45,7 +45,7 @@ Route::group(['middleware' => 'jwt'], function () {
     ]);
 
     Route::post('/kyc-verify/{user}', 'KYCController@verify');
-    Route::get('/kyc-status/{user}', 'KYCController@status');
+    Route::get('/kyc-status/{user}/{type?}', 'KYCController@status');
     Route::post('/kyc-callback', [
         'uses' => 'KYCController@callback',
         'as' => 'kyc.callback'

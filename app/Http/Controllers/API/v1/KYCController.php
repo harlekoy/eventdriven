@@ -7,11 +7,14 @@ use App\Http\Resources\KYCResource;
 use App\Models\KYCVerification as KYC;
 use App\Models\User;
 use App\ShuftiPro\ShuftiPro;
+use App\Traits\HasKYC;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class KYCController extends Controller
 {
+    use HasKYC;
+
     /**
      * Create verification request to ShuftiPro.
      *
@@ -19,32 +22,27 @@ class KYCController extends Controller
      *
      * @return \App\Http\Resources\KYCResource
      */
-    public function verify(Request $request, User $user)
+    public function verify(KYCRequest $request, User $user)
     {
-        $kyc = $user->kyc;
+        $info = $request->all();
+        $type = $info['type'];
+        $kyc = $user->latestVerification($type);
 
-        if (!$kyc || ($kyc && !(str_contains($kyc->event, 'accepted') ||
-            str_contains($kyc->event, 'pending')))) {
+        if (!$user->isUserVerified($type)) {
             $kyc = KYC::create([
                 'user_id' => $user->id
             ]);
 
-            $info = $request->all();
             $info['reference'] = $kyc->uuid;
-            $verify = new ShuftiPro();
-
-            $data = $this->verifyRequestData($info, $user);
-
-            $response = $verify->request($data);
-            $data = json_decode($response);
+            $response = $this->sendRequest($user, $info);
 
             $kyc->fill([
-                'verify_type' => 'kyc'
+                'type' => $type,
                 'user_id' => $user->id,
-                'uuid' => $data->reference,
-                'event' => $data->event,
-                'verification_url' => $data->verification_url,
-                'email' => $data->email
+                'uuid' => $response->reference,
+                'event' => $response->event,
+                'verification_url' => $response->verification_url,
+                'email' => $response->email
             ])->save();
         }
 
@@ -58,16 +56,13 @@ class KYCController extends Controller
      *
      * @return \App\Http\Resources\KYCResource
      */
-    public function status(User $user)
+    public function status(User $user, $type = 'user')
     {
-        if ($kyc = $user->kyc) {
-            $request = new ShuftiPro();
-
-            $response = $request->status($kyc->uuid);
-            $data = json_decode($response);
+        if ($kyc = $user->latestVerification($type)) {
+            $response = $this->getStatus($kyc->uuid);
 
             $kyc->fill([
-                'event' => $data->event,
+                'event' => $response->event,
             ])->save();
 
             return new KYCResource($kyc);
@@ -76,7 +71,7 @@ class KYCController extends Controller
         return [
             'status' => false,
             'data' => [
-                'message' => 'User has no verification request made.'
+                'message' => 'User made no request for verification.'
             ]
         ];
     }
@@ -89,52 +84,5 @@ class KYCController extends Controller
     public function callback(Request $request)
     {
         Log::info($request);
-    }
-
-    /**
-     * Construct verification request.
-     *
-     * @param  \App\Models\User $user
-     *
-     * @return array
-     */
-    private function verifyRequestData($request, $user)
-    {
-        $name = [
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-        ];
-
-        $data = [
-            'reference' => $request['reference'],
-            // 'callback_url' => "http://f5e014c7.ngrok.io/api/v1/kyc-callback",
-            'callback_url' => route('kyc.callback'),
-            'redirect_url' => array_get($request, 'redirect_url', 'https://www.betprophet.co/'),
-            'email' => $user->email,
-            'country' => $user->address->alpha_2,
-            'language' => "EN",
-            'verification_mode' => 'any'
-        ];
-
-        $userDetails = array_merge($data, [
-            'document' => [
-                'supported_types' => ['id_card','driving_license','passport'],
-                'name' => $name,
-                'dob' => $user->dob,
-            ],
-            'address' => [
-                'supported_types' => ['id_card','bank_statement','driving_license','passport'],
-                'name' => $name,
-                'full_address' => $user->fullAddress
-            ]
-        ]);
-
-        $phone = array_merge($data, [
-            'phone' => [
-                'phone_number' => $user->phone_number,
-            ]
-        ]);
-
-        return $data;
     }
 }

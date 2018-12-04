@@ -29,4 +29,32 @@ export default {
 // Global Stylesheets
 @import '@design';
 
+
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+  color: transparent !important;
+  text-align: right;
+
+  &:after {
+    animation: spinAround 500ms infinite linear;
+    border: 2px solid #666;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    content: "";
+    display: block;
+    height: 1em;
+    width: 1em;
+    position: absolute;
+    left: calc(50% - (1em / 2));
+    top: calc(50% - (1em / 2));
+  }
+}
+
+@keyframes spinAround {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}
+
 </style>

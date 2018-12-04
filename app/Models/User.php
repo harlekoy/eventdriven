@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Address;
 use App\Models\KYCVerification;
 use App\Models\Upload;
+use App\ShuftiPro\ShuftiPro;
 use App\Traits\HasAddress;
 use App\Traits\HasAuth0;
 use App\Traits\HasAvatar;
@@ -91,9 +92,9 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function kyc()
+    public function verifications()
     {
-        return $this->hasOne(KYCVerification::class, 'user_id')->latest();
+        return $this->hasMany(KYCVerification::class, 'user_id');
     }
 
     /**
@@ -122,5 +123,51 @@ class User extends Authenticatable
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Check if user is verified or in verification process.
+     *
+     * @param  sting  $type
+     *
+     * @return boolean
+     */
+    public function isUserVerified($type)
+    {
+        return (bool) self::userVerifications($type)->count() >= 1;
+    }
+
+    /**
+     * Get latest verification record of user from type.
+     *
+     * @param  string $type
+     *
+     * @return \App\Models\KYCVerification
+     */
+    public function latestVerification($type)
+    {
+        return $this->verifications
+            ->where('type', $type)
+            ->sortByDesc('created_at')
+            ->first();
+    }
+
+    /**
+     * Return all verification records with accepted or pending status of user.
+     *
+     * @param  string $type
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    private function userVerifications($type)
+    {
+        $verifications = $this->verifications
+            ->where('type', $type)
+            ->whereIn('event', [
+                ShuftiPro::VERIFICATION_ACCEPTED,
+                ShuftiPro::REQUEST_PENDING
+            ]);
+
+        return $verifications;
     }
 }

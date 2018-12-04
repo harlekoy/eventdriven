@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKYCVerificationsTable extends Migration
+class CreateShuftiVerificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateKYCVerificationsTable extends Migration
         Schema::create('shufti_verifications', function (Blueprint $table) {
             $table->increments('id');
             $table->string('uuid');
-            $table->string('verify_type');
+            $table->string('type')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->string('event')->nullable();
             $table->text('verification_url')->nullable();
@@ -37,6 +37,6 @@ class CreateKYCVerificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kyc_verifications');
+        Schema::dropIfExists('shufti_verifications');
     }
 }
