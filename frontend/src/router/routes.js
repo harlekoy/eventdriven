@@ -60,14 +60,9 @@ export default [
         component: () => lazyLoadView(import('@views/events/AllGameLines')),
         meta: {
           breadCrumb: 'All Game Lines'
-        }  
+        }
       },
     ]
-  },
-  {
-    path: '/callback',
-    name: 'callback',
-    component: () => lazyLoadView(import('@views/Callback')),
   },
   {
     path: '/register',

@@ -1,34 +1,21 @@
 <template>
-  <div>
-    <VDatePicker 
-      v-model="date" 
-      mode="single" 
-      @input="onUpdate"
-    />
-  </div>
+  <datepicker ref="date" :placeholder="placeholder" :format="'yyyy-MM-dd'" @input="onUpdate"></datepicker>
 </template>
 
 <script>
-import { setupCalendar, Calendar, DatePicker } from 'v-calendar'
-import 'v-calendar/lib/v-calendar.min.css';
-
-// Remember to setup calendar (passing in defaults if needed)
-setupCalendar({
-  firstDayOfWeek: 2
-});
+import Datepicker from 'vuejs-datepicker'
 
 export default {
-
   components: {
-    VDatePicker: DatePicker
+    Datepicker
   },
-  inheritAttrs: false,
 
   props: {
-    value: Date
+    value: String,
+    placeholder: String
   },
 
-  data() {
+  data () {
     return {
       date: null
     };
@@ -40,8 +27,39 @@ export default {
 
   methods: {
     onUpdate (value) {
-      this.$emit('input', value)
+      setTimeout(() => {
+        this.$emit('input', this.$refs.date.$el.querySelector('input').value)
+      }, 100)
     }
   }
 }
 </script>
+
+<style lang="scss">
+.vdp-datepicker {
+  @apply w-full;
+  margin-bottom: .75rem !important;
+
+  input {
+    @apply bg-grey-lightest p-4 text-sm leading-none rounded-lg w-full border border-transparent;
+    height: 50px;
+
+    &:focus {
+      @apply border-blue-light
+    }
+  }
+
+  [aria-invalid="true"] input {
+    @apply border-red
+  }
+
+  .invalid {
+    @apply pb-2;
+  }
+
+  .vdp-datepicker__calendar {
+    margin-top: 10px;
+  }
+}
+</style>
+

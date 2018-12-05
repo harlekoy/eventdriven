@@ -10,14 +10,14 @@
       <!-- Form -->
       <form class="white-wrapper form mb-12" @submit.prevent="register">
 
-        <!-- Username -->
-        <BaseInput v-model="form.username" placeholder="Username" :error="validationErrors.username"/>
-
         <!-- First Name -->
         <BaseInput v-model="form.first_name" placeholder="First Name" :error="validationErrors.first_name"/>
 
         <!-- Last Name -->
         <BaseInput v-model="form.last_name" placeholder="Last Name" :error="validationErrors.last_name"/>
+
+        <!-- DOB -->
+        <BaseDatePicker  v-model="form.dob" :placeholder="'Birth of Date'"/>
 
         <!-- Email -->
         <BaseInput v-model="form.email" type="email" placeholder="Email" :error="validationErrors.email"/>
@@ -68,7 +68,7 @@ import { geoip } from '@utils/geoip'
 import { head, mapValues } from 'lodash'
 import { mapActions } from 'vuex'
 import { success, fail } from '@utils/toast'
-import PhoneMasked from '@components/Phone';
+import PhoneMasked from '@components/Phone'
 
 export default {
   page: {
@@ -85,7 +85,6 @@ export default {
   data () {
     return {
       form: {
-        username: '',
         email: '',
         first_name: '',
         last_name: '',
@@ -114,6 +113,7 @@ export default {
 
   async mounted () {
     this.validationErrors = Object.assign({}, this.form)
+
     await geoip()
   },
 
@@ -162,29 +162,20 @@ export default {
 
     async register () {
       this.load = true
+      this.validationErrors = {}
 
-      const valid = await this.validate()
+      try {
+        const { data } = await axios.post('register', this.form)
 
-      if (valid) {
-        this.signup({
-          data: Object.assign(this.form, {
-            name: `${this.form.first_name} ${this.form.last_name}`,
-          }),
-          cb: (err) => {
-            this.load = false
-
-            if (!err) {
-              success({
-                text: 'User account created.'
-              })
-
-              this.$router.push({ name: 'login' })
-            } else {
-              this.authError = err
-            }
-          }
+        success({ text: 'You have successfully registered!' })
+        this.$router.push({ name: 'login' })
+      } catch ({ response: { data: { errors }} }) {
+        this.validationErrors = mapValues(errors, (errors) => {
+          return head(errors)
         })
       }
+
+      this.load = false
     },
 
     async validateIP() {
