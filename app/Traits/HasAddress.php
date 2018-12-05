@@ -16,13 +16,5 @@ trait HasAddress
                 $model->addresses()->create($data);
             }
         });
-
-        static::updated(function ($model) {
-            if ($data = request()->get('address')) {
-                $address = $model->address ?? new Address(['user_id' => $model->id]);
-
-                $address->fill($data)->save();
-            }
-        });
     }
 }

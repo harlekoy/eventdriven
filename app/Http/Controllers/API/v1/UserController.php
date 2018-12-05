@@ -25,4 +25,19 @@ class UserController extends Controller
             'resource' => UserResource::class,
         ];
     }
+
+    /**
+     * Updated event.
+     *
+     * @param  \App\Http\Requests\UserRequest $request
+     * @param  \App\Models\User $model
+     */
+    public function updated($request, $model)
+    {
+        if ($data = $request->get('address', [])) {
+            $address = $model->address ?? new Address(['user_id' => $model->id]);
+
+            $address->fill($data)->save();
+        }
+    }
 }

@@ -53,6 +53,10 @@ trait ApiResource
 
         $this->fillAndSave($model);
 
+        if (method_exists($this, 'created')) {
+            $this->created($request, $model);
+        }
+
         return $this->apiResponse($model);
     }
 
@@ -84,6 +88,10 @@ trait ApiResource
         $model = $this->fetchModel($id);
 
         $this->fillAndSave($model);
+
+        if (method_exists($this, 'updated')) {
+            $this->updated(request(), $model);
+        }
 
         return $this->apiResponse($model);
     }
