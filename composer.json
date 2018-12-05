@@ -12,6 +12,7 @@
         "darkaonline/l5-swagger": "5.7.*",
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "harlekoy/apidocs": "^0.2.0",
         "hipsterjazzbo/landlord": "dev-laravel-57",
         "inspheric/nova-url-field": "^1.1",

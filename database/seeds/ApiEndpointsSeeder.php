@@ -1,6 +1,7 @@
 <?php
 
 use Harlekoy\ApiDocs\ApiGroup;
+use Harlekoy\ApiDocs\Endpoint;
 use Illuminate\Database\Seeder;
 
 class ApiEndpointsSeeder extends Seeder
@@ -12,6 +13,8 @@ class ApiEndpointsSeeder extends Seeder
      */
     public function run()
     {
+        $this->truncate();
+
         foreach ($this->groups() as $data) {
             $group = ApiGroup::create(array_except($data, 'endpoints'));
 
@@ -19,6 +22,17 @@ class ApiEndpointsSeeder extends Seeder
                 $group->endpoints()->create($endpoint);
             }
         }
+    }
+
+    /**
+     * Truncate tables.
+     *
+     * @return void
+     */
+    public function truncate()
+    {
+        Endpoint::truncate();
+        ApiGroup::truncate();
     }
 
     /**
@@ -109,6 +123,10 @@ class ApiEndpointsSeeder extends Seeder
                 'endpoint'    => '/login',
                 'method'      => 'POST',
                 'description' => 'Login user',
+            ], [
+                'endpoint'    => '/register',
+                'method'      => 'POST',
+                'description' => 'Signup new user',
             ], [
                 'endpoint'    => '/auth',
                 'method'      => 'GET',

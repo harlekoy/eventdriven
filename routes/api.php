@@ -19,6 +19,9 @@ Route::post('/signup/validate', 'RegisterController@store');
 Route::get('/validate-ip', 'GeoIPValidationController@check');
 
 Route::post('login', 'Auth\LoginController@login');
+Route::post('register', 'Auth\RegisterController@register');
+Route::get('email/verify/{user}', 'Auth\VerificationController@verify')
+    ->name('verification.verify');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/auth', [
