@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Address;
 use App\Models\KYCVerification;
 use App\Models\Upload;
+use App\Notifications\VerifyEmail;
 use App\ShuftiPro\ShuftiPro;
 use App\Traits\HasAddress;
 use App\Traits\HasAvatar;
@@ -26,7 +27,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'address_id',
-        'auth0id',
         'avatar',
         'dob',
         'email',
@@ -34,7 +34,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'last_name',
         'password',
         'phone_number',
-        'username',
     ];
 
     /**
@@ -168,5 +167,15 @@ class User extends Authenticatable implements MustVerifyEmail
             ]);
 
         return $verifications;
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
     }
 }

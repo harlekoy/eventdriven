@@ -15,10 +15,10 @@ class AlterUsersTableAddUserDetailsColumns extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('name');
-            $table->unsignedInteger('address_id')->after('username')->nullable();
-            $table->date('dob')->after('username')->nullable();
-            $table->string('last_name')->after('username')->nullable();
-            $table->string('first_name')->after('username')->nullable();
+            $table->unsignedInteger('address_id')->after('email')->nullable();
+            $table->date('dob')->after('email')->nullable();
+            $table->string('last_name')->after('email')->nullable();
+            $table->string('first_name')->after('email')->nullable();
 
             $table->foreign('address_id')->references('id')->on('addresses');
         });
