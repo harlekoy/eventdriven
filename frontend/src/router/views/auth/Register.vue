@@ -25,9 +25,6 @@
         <!-- Address 1 -->
         <PlaceInput class="input" autocomplete="off" v-model="form.address_1" type="text" :error="validationErrors.address_1"placeholder="Address, Country, Postcode" @change="onComplete"/>
 
-        <!-- Country -->
-        <BaseInput v-show="toggleFields" v-model="form.country" type="text" placeholder="Country" :error="validationErrors.country"/>
-
         <!-- City -->
         <BaseInput v-show="toggleFields" v-model="form.city" type="text" placeholder="City" :error="validationErrors.city"/>
 
@@ -96,7 +93,6 @@ export default {
         address_1: '',
         address_2: '',
         city: '',
-        country: '',
         postcode: '',
         country_code: '',
         phone: '',
@@ -132,10 +128,9 @@ export default {
 
       let places = {
         address_1: value,
-        country: country,
         city: name,
         postcode: postcode,
-        country_code: countryCode
+        country_code: `${countryCode}`.toUpperCase()
       }
 
       this.form = Object.assign(this.form, places)
