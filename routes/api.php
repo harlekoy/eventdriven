@@ -18,7 +18,9 @@ Route::post('/signup/validate', 'RegisterController@store');
 
 Route::get('/validate-ip', 'GeoIPValidationController@check');
 
-Route::group(['middleware' => 'jwt'], function () {
+Route::post('login', 'Auth\LoginController@login');
+
+Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/auth', [
         'uses' => 'AuthController@index',
         'as'   => 'user.auth',

@@ -59,7 +59,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'check.scope' => \App\Http\Middleware\CheckScope::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'jwt' => \App\Http\Middleware\CheckJWT::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,

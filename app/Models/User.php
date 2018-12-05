@@ -7,18 +7,17 @@ use App\Models\KYCVerification;
 use App\Models\Upload;
 use App\ShuftiPro\ShuftiPro;
 use App\Traits\HasAddress;
-use App\Traits\HasAuth0;
 use App\Traits\HasAvatar;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasAuth0, HasAddress,
-        HasAvatar, CausesActivity;
+    use Notifiable, HasAddress, HasAvatar, CausesActivity, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.

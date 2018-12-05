@@ -30,6 +30,10 @@ class ApiEndpointsSeeder extends Seeder
     {
         return [
             [
+                'name'        => 'Authentication',
+                'description' => 'Betprophet authentication process',
+                'endpoints'   => $this->authentications(),
+            ], [
                 'name'        => 'Sports',
                 'description' => 'Betradar sports integration',
                 'endpoints'   => $this->sports(),
@@ -90,6 +94,26 @@ class ApiEndpointsSeeder extends Seeder
                 'description' => 'Betradar tournaments integration',
                 'endpoints' => $this->venues(),
             ]
+        ];
+    }
+
+    /**
+     * API endpoints for user authentication.
+     *
+     * @return array
+     */
+    public function authentications()
+    {
+        return [
+            [
+                'endpoint'    => '/login',
+                'method'      => 'POST',
+                'description' => 'Login user',
+            ], [
+                'endpoint'    => '/auth',
+                'method'      => 'GET',
+                'description' => 'Get the authenticated user record',
+            ],
         ];
     }
 
