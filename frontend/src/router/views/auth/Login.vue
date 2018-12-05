@@ -18,19 +18,16 @@
         </BaseAlert>
 
         <!-- Username -->
-        <BaseInput v-model="username" v-validate="'required'" name="username" placeholder="Username"/>
+        <BaseInput :error="authError && authError.email ? authError.email[0] : null" v-model="email" v-validate="'required'" name="email" placeholder="Username"/>
 
         <!-- Password -->
-        <BasePassword v-model="password" v-validate="'required'" name="password" type="password" placeholder="Password"/>
+        <BasePassword :error="authError && authError.password ? authError.password[0] : null" v-model="password" v-validate="'required'" name="password" type="password" placeholder="Password"/>
 
         <!-- Login Button -->
         <BaseButton class="btn mb-5" :disabled="load" type="submit">
           <BaseIcon v-if="load" name="spinner" spin/>
           <span v-else>Log in</span>
         </BaseButton>
-
-        <!-- Errors -->
-        <p v-if="authError" class="invalid text-center">{{ authError }}</p>
 
         <!-- Checkbox -->
         <p class="flex flex-row mb-5 justify-between">
@@ -71,7 +68,7 @@ import Layout from '@layouts/Main'
 import { authMethods } from '@state/helpers'
 import { loginViaSocial } from '@utils/auth'
 import { mapActions } from 'vuex';
-import { fail } from '@utils/toast'
+import { fail, success } from '@utils/toast'
 
 export default {
   page: {
@@ -83,7 +80,7 @@ export default {
 
   data () {
     return {
-      username: '',
+      email: '',
       password: '',
       authError: null,
       load: false,
@@ -95,34 +92,31 @@ export default {
     ...authMethods,
 
     ...mapActions({
-      saveToken: 'auth/saveToken'
+      saveToken: 'auth/saveToken',
+      handleAuth: 'auth/handleAuth'
     }),
 
     async tryToLogIn() {
-      // Try to log the user in with the username and password they provided.
+      // Try to log the user in with the email and password they provided.
       this.load = true
       this.authError = null
 
-      const valid = await this.$validator.validateAll()
-
-      if (valid && await this.validateIP()) {
-        this.logIn({
-          username: this.username,
-          password: this.password,
-          cb: ({ error_description: msg }) => {
-            this.authError = msg
-            this.load = false
-          }
+      try {
+        const { data } = await axios.post('login', {
+          email: this.email,
+          password: this.password
         })
 
+        this.handleAuth(data.token)
         this.saveToken({ remember_me: this.remember_me })
-      } else {
-        this.load = false
 
-        fail({
-          text: 'User\'s current location is not allowed.'
-        })
+        success({ text: 'You have successfully logged in!' })
+        this.$router.push({ name: 'home' })
+      } catch (e) {
+        this.authError = e.response.data.errors
       }
+
+      this.load = false
     },
 
     toggleValue(state) {
@@ -132,7 +126,7 @@ export default {
     async validateIP() {
       const { data: { valid } } = await axios.get('validate-ip')
 
-      return valid
+      return
     },
 
     loginViaSocial

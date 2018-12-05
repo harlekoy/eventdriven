@@ -39,22 +39,15 @@ export const actions = {
     signin(username, password, cb, redirectUri)
   },
 
-  // This handles the Auth0 callback
-  async handleAuth ({ commit }) {
-    let response = qs.parse(
-      router
-        .currentRoute
-        .hash
-        .substring(1)
-    )
-
+  // This handles the Auth0 callback.
+  async handleAuth ({ commit }, token) {
     const { data: { data }} = await axios.get('auth', {
       headers: {
-        Authorization: `Bearer ${response.id_token}`
+        Authorization: `Bearer ${token}`
       }
     })
 
-    commit('SET_CURRENT_USER', Object.assign(response, data))
+    commit('SET_CURRENT_USER', data)
   },
 
   // Logs out the current user.
