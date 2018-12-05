@@ -1,6 +1,6 @@
 <?php
 
-use Betprophet\ApiDocs\ApiGroup;
+use Harlekoy\ApiDocs\ApiGroup;
 use Illuminate\Database\Seeder;
 
 class ApiEndpointsSeeder extends Seeder

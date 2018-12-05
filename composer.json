@@ -9,6 +9,7 @@
         "auth0/login": "~5.0",
         "barryvdh/laravel-cors": "^0.11.2",
         "betprophet/betradar": "*",
+        "beyondcode/laravel-websockets": "^1.0",
         "darkaonline/l5-swagger": "5.7.*",
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "^4.0",

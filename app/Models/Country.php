@@ -46,6 +46,17 @@ class Country extends Model
     }
 
     /**
+     * Scope a query to only include enabled data.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeEnabled($query)
+    {
+        return $query->whereEnable(1);
+    }
+
+    /**
      * Get flag image attribute.
      *
      * @return string

@@ -2,9 +2,14 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\Disable;
+use App\Nova\Actions\Enable;
+use App\Nova\Actions\ToggleEnable;
 use App\Nova\Filters\Continent;
+use App\Nova\Filters\Enabled;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Asset;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -64,6 +69,8 @@ class Country extends Resource
     public function fields(Request $request)
     {
         return [
+            Boolean::make('Enabled', 'enable'),
+
             Asset::make('Flag'),
 
             Text::make('Abbreviation', 'alpha_2')
@@ -90,7 +97,7 @@ class Country extends Resource
             Text::make('Intermediate Region')
                 ->sortable()
                 ->hideFromIndex()
-                ->rules('required', 'max:255'),
+                ->rules('max:255'),
 
             Text::make('Country Code')
                 ->sortable()
@@ -115,7 +122,7 @@ class Country extends Resource
             Text::make('Intermediate Region Code')
                 ->sortable()
                 ->hideFromIndex()
-                ->rules('required', 'max:255'),
+                ->rules('max:255'),
         ];
     }
 
@@ -140,6 +147,7 @@ class Country extends Resource
     {
         return [
             new Continent,
+            new Enabled,
         ];
     }
 
@@ -162,6 +170,10 @@ class Country extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new Disable,
+            new Enable,
+            // new ToggleEnable,
+        ];
     }
 }
