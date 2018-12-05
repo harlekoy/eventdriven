@@ -210,8 +210,7 @@ export default {
 
   methods: {
     ...mapActions({
-      updateUser: 'profile/updateUser',
-      updateCurrentUser: 'auth/updateCurrentUser'
+      updateUser: 'profile/updateUser'
     }),
 
     initData() {
@@ -232,7 +231,7 @@ export default {
       try {
         const { data: { data }} = await this.updateUser({
           ...this.profile,
-          address: this.address,
+          address: this.address
         })
 
         await this.updateCurrentUser(data)

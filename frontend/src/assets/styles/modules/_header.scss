@@ -125,7 +125,7 @@ header {
   }
 
   > .parent {
-    @apply absolute pin-l bg-green pin-y;
+    @apply absolute pin-l bg-green pin-y overflow-auto overflow-x-hidden;
     padding: 17px 0;
     width: 198px;
 
@@ -135,9 +135,13 @@ header {
 
     > .item {
       p {
-        @apply text-white leading-loose text-base relative;
-        @apply flex justify-between;
+        @apply text-white leading-loose text-base relative flex justify-between;
         padding: 0 20px;
+
+        span {
+          @apply truncate;
+          width: calc(100% - 10px);
+        }
 
         > .icon-down {
           @apply text-white absolute pin-y m-auto;

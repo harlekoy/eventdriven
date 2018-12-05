@@ -49,11 +49,11 @@
             >
           </p>
         </td>
-        <td>
-           <a v-if="phone.url !== '#'" :href="phone.url" :class="{ 'btn-loading': load['phone'] }" class="font-semibold text-red text-right">
+        <td class="text-right">
+           <a v-if="phone.url !== '#'" :href="phone.url" :class="{ 'btn-loading': load['phone'] }" class="font-semibold text-red">
             {{ phone.kycAction }}
           </a>
-          <a v-else href="#" @click.prevent="kyc('phone')" :class="{ 'btn-loading': load['phone'] }" class="font-semibold text-red text-right">
+          <a v-else href="#" @click.prevent="kyc('phone')" :class="{ 'btn-loading': load['phone'] }" class="font-semibold text-red">
             {{ phone.kycAction }}
           </a>
         </td>
@@ -93,11 +93,11 @@
             {{ user.status }}
           </p>
         </td>
-        <td>
-          <a v-if="user.url !== '#'" :href="user.url" :class="{ 'btn-loading': load['user'] }" class="font-semibold text-red text-right">
+        <td class="text-right">
+          <a v-if="user.url !== '#'" :href="user.url" :class="{ 'btn-loading': load['user'] }" class="font-semibold text-red">
             {{ user.kycAction }}
           </a>
-          <a v-else href="#" @click.prevent="kyc('user')" :class="{ 'btn-loading': load['user'] }" class="font-semibold text-red text-right">
+          <a v-else href="#" @click.prevent="kyc('user')" :class="{ 'btn-loading': load['user'] }" class="font-semibold text-red">
             {{ user.kycAction }}
           </a>
         </td>

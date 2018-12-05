@@ -1,7 +1,7 @@
 <template>
   <div class="cols spaced flex-wrap">
-    <div 
-      class="col" 
+    <div
+      class="col"
       :class="colClass"
     >
       <div class="inner bg-red">
@@ -10,8 +10,8 @@
         </p>
       </div>
     </div>
-    <div 
-      class="col" 
+    <div
+      class="col"
       :class="colClass"
     >
       <div class="inner bg-blue">
@@ -20,11 +20,11 @@
         </p>
       </div>
     </div>
-    <div 
-      class="col" 
+    <div
+      class="col"
       :class="colClass"
     >
-      <div class="inner dotted">
+      <div class="inner dotted cursor-pointer">
         <p class="text-center text-grey-darker">
           <span class="icon">
             +
@@ -66,11 +66,9 @@ export default {
         }
 
         .icon {
-          @apply rounded-full bg-green block m-auto font-light text-3xl text-center text-white;
+          @apply rounded-full bg-green flex items-center justify-center m-auto font-light text-3xl text-white;
           height: 30px;
-          padding: 0 0 1px 0;
           width: 30px;
-          line-height: 26px;
         }
       }
     }
