@@ -35,7 +35,9 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Layout from '@layouts/Main'
+import { fail, success } from '@utils/toast'
 import { mapActions } from 'vuex'
 
 export default {
@@ -60,21 +62,23 @@ export default {
       forgotPassword: 'auth/forgotPassword'
     }),
 
-    forgot () {
+    async forgot () {
       // Reset data.
       this.error = null
-      this.message = null
       this.load = true
 
-      // API request for forgot password.
-      this.forgotPassword({
-        email: this.email,
-        cb: (err, msg) => {
-          if (err) this.error = err.description
-          this.message = msg
-          this.load = false
-        }
-      })
+      try {
+        const { data } = await axios.post('password/email', {
+          email: this.email
+        })
+
+        success({ text: 'Please check your email to reset password.' })
+        this.email = ''
+      } catch (e) {
+        this.error = e.response.data.errors.email[0]
+      }
+
+      this.load = false
     }
   }
 }

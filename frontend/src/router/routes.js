@@ -73,7 +73,7 @@ export default [
     }
   },
   {
-    path: '/reset-password/:token',
+    path: '/reset-password',
     name: 'reset-password',
     component: () => lazyLoadView(import('@views/ResetPassword')),
     meta: {
