@@ -22,6 +22,8 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('register', 'Auth\RegisterController@register');
 Route::get('email/verify/{user}', 'Auth\VerificationController@verify')
     ->name('verification.verify');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/auth', [
