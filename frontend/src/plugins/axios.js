@@ -12,7 +12,7 @@ axios.interceptors.request.use(request => {
   const user = getSavedState('auth.currentUser')
 
   if (user) {
-    request.headers.common['Authorization'] = `Bearer ${user.id_token}`
+    request.headers.common['Authorization'] = `Bearer ${user.token}`
     request.headers.common['X-Sport-League'] = 'nba'
   }
 

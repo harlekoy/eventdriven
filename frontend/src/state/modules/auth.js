@@ -3,7 +3,8 @@ import qs from 'qs'
 import router from '@router'
 import { getSavedState, saveState } from '@utils/localStorage'
 import { signin, signup, forgot } from '@utils/auth'
-import Cookies from "js-cookie";
+import Cookies from "js-cookie"
+import { fail, success } from '@utils/toast'
 
 export const state = {
   currentUser: getSavedState('auth.currentUser'),
@@ -47,7 +48,12 @@ export const actions = {
       }
     })
 
+    data.token = token
+
     commit('SET_CURRENT_USER', data)
+
+    success({ text: 'You have successfully logged in!' })
+    router.push({ name: 'home' })
   },
 
   // Logs out the current user.

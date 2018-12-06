@@ -45,7 +45,7 @@
         </a>
 
         <!-- Google Login -->
-        <a class="btn btn-danger iconed-left mb-3" @click="loginViaSocial('google-oauth2')">
+        <a class="btn btn-danger iconed-left mb-3" :href="loginGoogle">
           <img class="icon" src="@assets/images/google.svg" width="14" alt="Google"/>
           Continue with Google
         </a>
@@ -88,6 +88,13 @@ export default {
     }
   },
 
+  computed: {
+
+    loginGoogle () {
+      return process.env.VUE_APP_API_URL + '/social/redirect/google'
+    }
+  },
+
   methods: {
     ...authMethods,
 
@@ -109,9 +116,6 @@ export default {
 
         this.handleAuth(data.token)
         this.saveToken({ remember_me: this.remember_me })
-
-        success({ text: 'You have successfully logged in!' })
-        this.$router.push({ name: 'home' })
       } catch (e) {
         this.authError = e.response.data.errors
       }

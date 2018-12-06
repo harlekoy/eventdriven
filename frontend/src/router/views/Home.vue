@@ -64,12 +64,17 @@ export default {
   },
 
   async mounted () {
+    if (this.$route.query.token) {
+      this.handleAuth(this.$route.query.token)
+    }
+
     await this.fetchSports()
   },
 
   methods: {
     ...mapActions({
       fetchSports: 'league/fetchSports',
+      handleAuth: 'auth/handleAuth'
     })
   }
 }

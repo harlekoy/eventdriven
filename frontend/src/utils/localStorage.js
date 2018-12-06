@@ -1,5 +1,9 @@
 export function getSavedState(key) {
-  return JSON.parse(window.localStorage.getItem(key))
+  if (window.localStorage.getItem(key) != null) {
+    return JSON.parse(window.localStorage.getItem(key))
+  }
+
+  return {}
 }
 
 export function saveState(key, state) {
