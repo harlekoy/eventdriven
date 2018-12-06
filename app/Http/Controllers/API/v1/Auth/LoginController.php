@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\API\v1\Auth;
 
 use App\Http\Controllers\API\v1\Controller;
+use App\Traits\HandleLoginVia;
+use App\Traits\HandlesGoogle;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -19,7 +22,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, HandleLoginVia, HandlesGoogle;
 
     /**
      * Where to redirect users after login.

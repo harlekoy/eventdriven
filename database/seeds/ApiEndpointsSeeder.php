@@ -124,6 +124,14 @@ class ApiEndpointsSeeder extends Seeder
                 'method'      => 'POST',
                 'description' => 'Login user',
             ], [
+                'endpoint'    => '/social/redirect/{provider}',
+                'method'      => 'GET',
+                'description' => 'Redirect to social login provider',
+            ],  [
+                'endpoint'    => '/social/callback/{provider}',
+                'method'      => 'GET',
+                'description' => 'Handle social provider callback',
+            ], [
                 'endpoint'    => '/register',
                 'method'      => 'POST',
                 'description' => 'Signup new user',
