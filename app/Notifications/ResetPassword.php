@@ -36,7 +36,7 @@ class ResetPassword extends Notification
      */
     public function passwordResetLink($user)
     {
-        $domain = env('PASSWORD_RESET_URL', url('password/reset'));
+        $domain = env('PASSWORD_RESET_URL', url('reset-password'));
         $queryString = http_build_query([
             'token' => $this->token,
             'email' => $user->email,

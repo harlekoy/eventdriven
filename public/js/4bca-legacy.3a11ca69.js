@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["4bca"],{"4bca":function(e,t,s){"use strict";s.r(t);var n=function(){var e=this,t=e.$createElement,s=e._self._c||t;return s("Layout",{staticClass:"bg-green-linea"},[e._v("\n  Resetpassword\n")])},a=[],o=s("c776"),c={page:{title:"ResetPassword",meta:[{name:"description",content:"ResetPassword"}]},components:{Layout:o["a"]}},r=c,i=s("2877"),l=Object(i["a"])(r,n,a,!1,null,null,null);l.options.__file="ResetPassword.vue";t["default"]=l.exports}}]);
-//# sourceMappingURL=4bca-legacy.3a11ca69.js.map

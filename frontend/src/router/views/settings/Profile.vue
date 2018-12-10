@@ -46,17 +46,6 @@
           />
         </div>
 
-        <!-- Username -->
-        <div class="col half">
-          <BaseInput
-            v-model="profile.username"
-            v-validate="'required'"
-            name="username"
-            placeholder="Username"
-            :error="validationErrors.username"
-          />
-        </div>
-
         <!-- Email -->
         <div class="col half">
           <BaseInput
