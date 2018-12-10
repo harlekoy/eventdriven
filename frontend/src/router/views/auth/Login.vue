@@ -18,7 +18,7 @@
         </BaseAlert>
 
         <!-- Username -->
-        <BaseInput :error="authError && authError.email ? authError.email[0] : null" v-model="email" v-validate="'required'" name="email" placeholder="Username"/>
+        <BaseInput :error="authError && authError.email ? authError.email[0] : null" v-model="email" v-validate="'required'" name="email" placeholder="Email"/>
 
         <!-- Password -->
         <BasePassword :error="authError && authError.password ? authError.password[0] : null" v-model="password" v-validate="'required'" name="password" type="password" placeholder="Password"/>
@@ -89,7 +89,6 @@ export default {
   },
 
   computed: {
-
     loginGoogle () {
       return process.env.VUE_APP_API_URL + '/social/redirect/google'
     }

@@ -85,6 +85,8 @@ export default {
     async toggleLogout () {
       await this.authLogout()
       this.$router.push({ name: 'home' })
+
+      success({ text: 'You are now logged out!' })
     },
 
     toggeDropdown () {

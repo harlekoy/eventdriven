@@ -1,12 +1,12 @@
 <template>
   <Layout>
-    <Banner 
-      :img="require('@assets/images/team.png')" 
+    <Banner
+      :img="require('@assets/images/team.png')"
       class="team"
     >
       <h1>
-        <img 
-          src="@assets/images/seal.png" 
+        <img
+          src="@assets/images/seal.png"
           width="94"
         >
         Manchester City
@@ -20,12 +20,12 @@
           Competitions
         </h4>
         <div class="cols py-6">
-          <div 
+          <div
             v-for="(item, index) in competitors"
             :key="index"
             class="col w-full sm:w-1/2 flex-auto text-base leading-loose"
           >
-            <router-link 
+            <router-link
               :to="{ name: 'home' }"
               class="text-green">
               {{ item.name }}
@@ -176,10 +176,10 @@
             <i class="icon-fb text-xl pin-l pin-y absolute h-12 flex items-center ml-4" />
             Continue with Facebook
           </button>
-          <button class="rounded-sm bg-red-light w-full text-base text-white h-12 font-semibold flex justify-center relative mb-5">
+          <a :href="loginGoogle" class="rounded-sm bg-red-light w-full text-base text-white h-12 font-semibold flex justify-center relative mb-5 items-center">
             <i class="icon-google-plus text-xl pin-l pin-y absolute h-12 flex items-center ml-4" />
             Continue with Google
-          </button>
+          </a>
           <div class="flex items-center justify-center mb-5">
             <div class="border-b border-grey-light w-full" />
             <p class="font-semibold text-base bg-grey-lighter px-4">
@@ -187,9 +187,9 @@
             </p>
             <div class="border-b border-grey-light w-full" />
           </div>
-          <button class="rounded-sm bg-grey-darker w-full text-base text-white h-12 font-semibold flex justify-center relative">
+          <router-link to="/register" class="rounded-sm bg-grey-darker w-full text-base text-white h-12 font-semibold flex justify-center relative items-center">
             Sign up with an email
-          </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -220,7 +220,11 @@ export default {
   computed: {
     ...mapGetters({
       competitors: 'sports/competitors'
-    })
+    }),
+
+    loginGoogle () {
+      return process.env.VUE_APP_API_URL + '/social/redirect/google'
+    }
   },
 
   async mounted() {
