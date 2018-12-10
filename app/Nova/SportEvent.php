@@ -39,7 +39,7 @@ class SportEvent extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -47,7 +47,7 @@ class SportEvent extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name',
     ];
 
     /**
@@ -68,6 +68,8 @@ class SportEvent extends Resource
                 ->format('MMM DD, YYYY')
                 ->sortable(),
 
+            Text::make('Name')->sortable(),
+
             Date::make('Next Live Time')
                 ->format('MMM DD, YYYY')
                 ->hideFromIndex(),
@@ -76,7 +78,7 @@ class SportEvent extends Resource
                 ->sortable(),
 
             BelongsTo::make('Venue')
-                ->sortable(),
+                ->hideFromIndex(),
 
             BelongsTo::make('Tournament')
                 ->sortable(),
@@ -108,6 +110,8 @@ class SportEvent extends Resource
                 ])
                 ->displayUsingLabels()
                 ->sortable(),
+
+            HasMany::make('Competitors'),
 
             HasMany::make('Recoveries'),
         ];

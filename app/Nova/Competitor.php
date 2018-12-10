@@ -8,6 +8,7 @@ use App\Nova\Filters\Sport;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\CloudinaryImage;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -73,12 +74,17 @@ class Competitor extends Resource
             BelongsTo::make('Sport')
                 ->sortable(),
 
+            BelongsTo::make('Sport Event', 'sportEvent')
+                ->hideFromIndex(),
+
             BelongsTo::make('Country')
                 ->sortable(),
 
             BelongsTo::make('Category')
                 ->sortable()
                 ->hideFromIndex(),
+
+            HasMany::make('Players'),
         ];
     }
 

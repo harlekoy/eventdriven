@@ -33,7 +33,6 @@ class User extends Resource
      */
     public static $search = [
         'id',
-        'username',
         'first_name',
         'last_name',
         'email',

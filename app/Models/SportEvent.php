@@ -81,6 +81,16 @@ class SportEvent extends BetradarModel
     }
 
     /**
+     * Get competitors.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function competitors()
+    {
+        return $this->hasMany(Competitor::class);
+    }
+
+    /**
      * Get image attribute.
      *
      * @return string

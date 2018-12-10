@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Competitor;
 use App\Models\SportEvent;
 use App\Models\Tournament;
 use App\Models\Venue;
@@ -59,6 +60,7 @@ class FetchSchedulesCommand extends Command
     public function saveSportEvent($data)
     {
         $event = SportEvent::firstOrNew(array_only($data, 'id'));
+        $competitors = $data['competitors.competitor'];
 
         $event->betradarFill(
             array_merge(array_only($data, $event->getFillable()), [
@@ -68,6 +70,20 @@ class FetchSchedulesCommand extends Command
                 'tournament_id'  => array_get($data, 'tournament.id'),
             ])
         )->save();
+
+        foreach ($competitors as $item) {
+            $competitor = Competitor::firstOrNew(array_only($item, 'id'));
+
+            $competitor->betradarFill(array_merge([
+                'sport_event_id' => $event->id,
+            ], $item))->save();
+        }
+
+        $event->betradarFill([
+            'name' => collect($competitors)
+                ->pluck('name')
+                ->implode(' vs ')
+        ])->save();
     }
 
     /**

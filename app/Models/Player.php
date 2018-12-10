@@ -55,4 +55,12 @@ class Player extends BetradarModel
     {
         return $this->belongsTo(Sport::class);
     }
+
+    /**
+     * Get all wagers placed.
+     */
+    public function wagers()
+    {
+        return $this->morphMany(Wager::class, 'wagerable');
+    }
 }

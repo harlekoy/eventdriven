@@ -23,7 +23,6 @@ class CompetitorResource extends JsonResource
             'sport_id'      => $this->sport_id,
             'venue_id'      => $this->venue_id,
             'manager_id'    => $this->manager_id,
-            'betradar_data' => $this->betradar_data,
         ];
     }
 }

@@ -107,7 +107,11 @@ class ApiEndpointsSeeder extends Seeder
                 'name' => 'Venues',
                 'description' => 'Betradar tournaments integration',
                 'endpoints' => $this->venues(),
-            ]
+            ], [
+                'name' => 'Wagers',
+                'description' => 'Application wagers',
+                'endpoints' => $this->wagers(),
+            ],
         ];
     }
 
@@ -316,11 +320,11 @@ class ApiEndpointsSeeder extends Seeder
     {
         return [
             [
-                'endpoint'    => '/sportEvents',
+                'endpoint'    => '/sport-events',
                 'method'      => 'GET',
                 'description' => 'Get list of sport events from Betradar',
             ], [
-                'endpoint'    => '/sportEvents/{player}',
+                'endpoint'    => '/sport-events/{event}',
                 'method'      => 'GET',
                 'description' => 'Get the specific sport event from Betradar',
             ],
@@ -463,6 +467,38 @@ class ApiEndpointsSeeder extends Seeder
                 'endpoint'    => '/users/{user}/addresses/{address}',
                 'method'      => 'DELETE',
                 'description' => 'Delete user',
+            ],
+        ];
+    }
+
+    /**
+     * API endpoints for wagers.
+     *
+     * @return array
+     */
+    public function wagers()
+    {
+        return [
+            [
+                'endpoint'    => '/wagers',
+                'method'      => 'GET',
+                'description' => 'Get wager list',
+            ], [
+                'endpoint'    => '/wagers/{wager}',
+                'method'      => 'GET',
+                'description' => 'Get the specific wager',
+            ], [
+                'endpoint'    => '/wagers',
+                'method'      => 'POST',
+                'description' => 'Create wager',
+            ], [
+                'endpoint'    => '/wagers/{wager}',
+                'method'      => 'PUT',
+                'description' => 'Update details for wager',
+            ], [
+                'endpoint'    => '/wagers/{wager}',
+                'method'      => 'DELETE',
+                'description' => 'Delete wager',
             ],
         ];
     }

@@ -42,6 +42,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('users', 'UserController');
     Route::apiResource('users.addresses', 'UserAddressController');
 
+    Route::apiResource('wagers', 'WagerController');
+
     Route::apiResource('transactions', 'TransactionController', [
         'only' => ['index', 'show'],
     ]);

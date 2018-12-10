@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Sport;
 use App\Models\Venue;
+use App\Models\Wager;
 use App\Traits\HasTeam;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,11 +25,11 @@ class Competitor extends BetradarModel
         'abbreviation',
         'qualifier',
         'country_code',
+        'sport_event_id',
         'category_id',
         'manager_id',
         'sport_id',
         'venue_id',
-        'betradar_data',
     ];
 
     /**
@@ -100,5 +101,35 @@ class Competitor extends BetradarModel
         if ($this->team) {
             return $this->team->image;
         }
+    }
+
+    /**
+     * Get all wagers placed.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function wagers()
+    {
+        return $this->morphMany(Wager::class, 'wagerable');
+    }
+
+    /**
+     * Get sport event.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function sportEvent()
+    {
+        return $this->belongsTo(SportEvent::class);
+    }
+
+    /**
+     * Get players.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function players()
+    {
+        return $this->hasMany(Player::class);
     }
 }
