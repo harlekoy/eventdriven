@@ -63,4 +63,14 @@ class Player extends BetradarModel
     {
         return $this->morphMany(Wager::class, 'wagerable');
     }
+
+    /**
+     * Get competitors.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function competitors()
+    {
+        return $this->belongsToMany(Competitor::class, 'competitor_players');
+    }
 }

@@ -29,6 +29,11 @@ class FetchCompetitorCommand extends Command
     protected $description = 'Fetch Betradar competitor full details.';
 
     /**
+     * @var \App\Models\Competitor
+     */
+    protected $competitor;
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -47,8 +52,10 @@ class FetchCompetitorCommand extends Command
     {
         $response = $this->fetchCompetitor();
 
+        $this->competitor = Competitor::find($response['id']);
+
         $this->saveJerseys($response);
-        // $this->saveManager($response);
+        $this->saveManager($response);
         $this->savePlayers($response);
     }
 
@@ -69,6 +76,9 @@ class FetchCompetitorCommand extends Command
             $player->betradarFill(array_merge($data, [
                 'sport_id' => array_get($response, 'sport.id'),
             ]))->save();
+
+            $player->competitors()
+                ->syncWithoutDetaching(array_filter([$this->competitor->id ?? null]));
         }
     }
 

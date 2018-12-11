@@ -130,6 +130,6 @@ class Competitor extends BetradarModel
      */
     public function players()
     {
-        return $this->hasMany(Player::class);
+        return $this->belongsToMany(Player::class, 'competitor_players');
     }
 }

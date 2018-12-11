@@ -7,8 +7,8 @@ use App\Nova\Filters\Country;
 use App\Nova\Filters\Sport;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\CloudinaryImage;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -42,7 +42,7 @@ class Competitor extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name',
     ];
 
     /**
@@ -84,7 +84,7 @@ class Competitor extends Resource
                 ->sortable()
                 ->hideFromIndex(),
 
-            HasMany::make('Players'),
+            BelongsToMany::make('Players'),
         ];
     }
 
