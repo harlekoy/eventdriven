@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9d9901ccb1ef1d58e674e3372b3dc5e",
+    "content-hash": "3406fd8cfc1549df16b0e0afdcc44d21",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -5265,6 +5265,47 @@
                 "string"
             ],
             "time": "2017-11-08T14:28:57+00:00"
+        },
+        {
+            "name": "staudenmeir/eloquent-has-many-deep",
+            "version": "v1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/staudenmeir/eloquent-has-many-deep.git",
+                "reference": "ee6bc9dd435268033128a5af01262600c2e1157f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/staudenmeir/eloquent-has-many-deep/zipball/ee6bc9dd435268033128a5af01262600c2e1157f",
+                "reference": "ee6bc9dd435268033128a5af01262600c2e1157f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.5.29",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "illuminate/pagination": "^5.5.29",
+                "phpunit/phpunit": "~6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Staudenmeir\\EloquentHasManyDeep\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Staudenmeir",
+                    "email": "mail@jonas-staudenmeir.de"
+                }
+            ],
+            "description": "Laravel Eloquent HasManyThrough relationship with unlimited levels",
+            "time": "2018-11-28T06:03:13+00:00"
         },
         {
             "name": "studio/laravel-totem",

@@ -56,13 +56,18 @@ trait ApiRelatedResource
      */
     public function fetchRecords()
     {
-        $model = new $this->related;
+        $id = $this->modelId();
+
+        $model = app(Model::class)->findOrFail($id);
+        $related = (new $this->related)->where([
+            $model->getForeignKey() => $model->id,
+        ]);
 
         if ($page = request()->get('page')) {
-            return $model->paginate($this->limit());
+            return $related->paginate($this->limit());
         }
 
-        return $model->get();
+        return $related->get();
     }
 
     /**

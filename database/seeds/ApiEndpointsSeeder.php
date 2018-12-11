@@ -84,6 +84,14 @@ class ApiEndpointsSeeder extends Seeder
                 'description' => 'Betradar sport events integration',
                 'endpoints' => $this->sportEvents(),
             ], [
+                'name' => 'Sport Event Competitors',
+                'description' => 'Sport event\'s competitors integration',
+                'endpoints' => $this->sportEventCompetitors(),
+            ], [
+                'name' => 'Sport Event Players',
+                'description' => 'Sport event\'s players integration',
+                'endpoints' => $this->sportEventPlayers(),
+            ], [
                 'name' => 'Tournaments',
                 'description' => 'Betradar tournaments integration',
                 'endpoints' => $this->tournaments(),
@@ -467,6 +475,42 @@ class ApiEndpointsSeeder extends Seeder
                 'endpoint'    => '/users/{user}/addresses/{address}',
                 'method'      => 'DELETE',
                 'description' => 'Delete user',
+            ],
+        ];
+    }
+
+    /**
+     * API endpoints for sport event competitors.
+     *
+     * @return array
+     */
+    public function sportEventCompetitors()
+    {
+        return [
+            [
+                'endpoint'    => '/sport-events/{event}/competitors',
+                'method'      => 'GET',
+                'description' => 'Get sport event list',
+            ], [
+                'endpoint'    => '/sport-events/{event}/competitors/{competitor}',
+                'method'      => 'GET',
+                'description' => 'Get the sport event specific competitor',
+            ],
+        ];
+    }
+
+    /**
+     * API endpoints for sport event players.
+     *
+     * @return array
+     */
+    public function sportEventPlayers()
+    {
+        return [
+            [
+                'endpoint'    => '/sport-events/{event}/players',
+                'method'      => 'GET',
+                'description' => 'Get sport event list',
             ],
         ];
     }

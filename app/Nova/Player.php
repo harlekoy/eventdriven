@@ -76,10 +76,6 @@ class Player extends Resource
                 ->sortable(),
 
             Text::make('Name')
-                ->sortable()
-                ->hideFromIndex(),
-
-            Text::make('Name')
                 ->sortable(),
 
             Number::make('Jersey No.', 'jersey_number')

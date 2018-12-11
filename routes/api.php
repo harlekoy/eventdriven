@@ -88,6 +88,14 @@ Route::apiResource('sport-events', 'SportEventController', [
     'only' => ['index', 'show']
 ]);
 
+Route::apiResource('sport-events.competitors', 'SportEventCompetitorController', [
+    'only' => ['index', 'show']
+]);
+
+Route::apiResource('sport-events.players', 'SportEventPlayerController', [
+    'only' => ['index']
+]);
+
 Route::apiResource('venues', 'VenueController', [
     'only' => ['index', 'show']
 ]);
