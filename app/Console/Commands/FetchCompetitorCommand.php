@@ -52,11 +52,39 @@ class FetchCompetitorCommand extends Command
     {
         $response = $this->fetchCompetitor();
 
-        $this->competitor = Competitor::find($response['id']);
+        $this->updateCompetitor($response);
 
         $this->saveJerseys($response);
         $this->saveManager($response);
         $this->savePlayers($response);
+    }
+
+    /**
+     * Update competitor record.
+     *
+     * @param  array $response
+     *
+     * @return void
+     */
+    public function updateCompetitor($response)
+    {
+        $this->competitor = Competitor::find(array_get($response, 'competitor.id'));
+        $this->competitor->fill([
+            'manager_id' => array_get($response, 'manager.id'),
+            'venue_id'   => array_get($response, 'venue.id'),
+        ])->save();
+    }
+
+    /**
+     * Save competitor manager.
+     *
+     * @param  array $response
+     *
+     * @return void
+     */
+    public function saveManager($response)
+    {
+        $this->savePlayers($response, [array_get($response, 'manager')]);
     }
 
     /**
@@ -66,15 +94,15 @@ class FetchCompetitorCommand extends Command
      *
      * @return void
      */
-    public function savePlayers($response)
+    public function savePlayers($response, $players = null)
     {
-        $players = array_get($response, 'players') ?? [];
+        $players = $players ?? array_get($response, 'players') ?? [];
 
         foreach (array_filter($players) as $data) {
             $player = Player::firstOrNew(array_only($data, 'id'));
 
             $player->betradarFill(array_merge($data, [
-                'sport_id' => array_get($response, 'sport.id'),
+                'sport_id'   => array_get($response, 'sport.id'),
             ]))->save();
 
             $player->competitors()

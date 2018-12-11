@@ -23,7 +23,7 @@ class CreateWagersTable extends Migration
             $table->string('odds');
             $table->string('selling_percentage');
             $table->string('selling_price');
-            $table->string('status');
+            $table->string('status')->default('open');
             $table->timestamps();
         });
     }

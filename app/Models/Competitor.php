@@ -124,6 +124,16 @@ class Competitor extends BetradarModel
     }
 
     /**
+     * Get manager.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function manager()
+    {
+        return $this->belongsTo(Player::class, 'manager_id');
+    }
+
+    /**
      * Get players.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

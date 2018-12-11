@@ -80,6 +80,12 @@ class Competitor extends Resource
             BelongsTo::make('Country')
                 ->sortable(),
 
+            BelongsTo::make('Venue')
+                ->sortable(),
+
+            BelongsTo::make('Manager', 'manager', Player::class)
+                ->sortable(),
+
             BelongsTo::make('Category')
                 ->sortable()
                 ->hideFromIndex(),

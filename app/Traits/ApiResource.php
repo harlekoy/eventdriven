@@ -176,7 +176,13 @@ trait ApiResource
      */
     public function fillAndSave(&$model)
     {
-        return $model->fill(request()->all())->save();
+        $model->fill(request()->all());
+
+        if (method_exists($this, 'creating')) {
+            $this->creating(request(), $model);
+        }
+
+        return $model->save();
     }
 
     /**
