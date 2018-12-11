@@ -1,17 +1,26 @@
 <template>
   <span
     ref="popover"
-    @mouseover.stop="enterPop"
-    @mouseout.stop="leavePop"
     class="popover relative"
   >
-    <!-- Icon -->
-    <slot name="icon"/>
-
-    <!-- Popup texts -->
-    <div class="inner" :class="[{active: focus}]">
-      <slot name="text"/>
-    </div>    
+    <span
+      @mouseover.stop="enterPop"
+      @mouseout.stop="leavePop"
+      >
+        <!-- Icon -->
+        <slot name="icon"/>
+    </span>
+    <transition name="popover">
+      <div class="inner"
+        v-show="show"
+        :class="{ active: show }"
+        @mouseover.stop="enterPop"
+        @mouseout.stop="leavePop"
+        >
+          <!-- Popup texts -->
+          <slot name="text"/>
+      </div>
+    </transition>
   </span>
 </template>
 
@@ -19,17 +28,17 @@
 export default {
   data() {
     return {
-      focus: false,
+      show: false,
     }
   },
 
   methods: {
     enterPop() {
-      this.focus = true
+      this.show = true
     },
 
     leavePop() {
-      this.focus = false
+      this.show = false
     },
   }
 }
@@ -38,9 +47,9 @@ export default {
 <style lang="scss" scoped>
 .popover {
   .inner {
-    @apply p-5 bg-white shadow-md absolute opacity-0 leading-normal;
+    @apply p-5 bg-white shadow-md absolute opacity-0 leading-normal z-10;
     width: 500px;
-    left: 45px;
+    left: 40px;
     top: -16px;
     transition: all .3s ease;
 
@@ -49,7 +58,7 @@ export default {
     }
 
     &::before {
-      @appy h-0;
+      @apply min-h-0 bg-white absolute;
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
       border-right: 20px solid #fff;
@@ -57,11 +66,13 @@ export default {
       left: -8px;
       top: 14px;
       transform: rotate(42deg);
-      @apply bg-white absolute;
       box-shadow: -3px 4px 5px -3px rgba(0, 0, 0, .1);
     }
   }
 }
+
+.popover-leave-active,
+.popover-enter {
+  @apply opacity-0;
+}
 </style>
-
-

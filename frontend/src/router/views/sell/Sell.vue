@@ -191,8 +191,7 @@
                 <div class="flex-1 mb-3">
                   <BaseRangeSlider
                     :min="0"
-                    :max="100"
-                    @input="val"/>
+                    :max="100"/>
                 </div>
               </div>
 
@@ -253,8 +252,7 @@
                 <div class="flex-1 mb-3">
                   <BaseRangeSlider
                     :min="0"
-                    :max="200"
-                    @input="val"/>
+                    :max="200"/>
                 </div>
               </div>
 
