@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API\v1\Auth;
 
 use App\Http\Controllers\API\v1\Controller;
+use App\Models\User;
+use App\Traits\HasAccountSetup;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
@@ -21,7 +23,7 @@ class VerificationController extends Controller
     |
     */
 
-    use VerifiesEmails;
+    use VerifiesEmails, HasAccountSetup;
 
     /**
      * Where to redirect users after verification.
@@ -50,14 +52,31 @@ class VerificationController extends Controller
      */
     public function verify(Request $request)
     {
-        if ($request->route('user') != $request->user()->getKey()) {
+        $user = $request->user();
+
+        if ($request->route('user') != $user->getKey()) {
             throw new AuthorizationException;
         }
 
         if ($request->user()->markEmailAsVerified()) {
+            $this->completed($user, 'email');
             event(new Verified($request->user()));
         }
 
         return redirect($this->redirectPath())->with('verified', true);
+    }
+
+    /**
+     * Resend verification email.
+     *
+     * @param  User   $user
+     */
+    public function resend(User $user)
+    {
+        $user->sendEmailVerificationNotification();
+
+        return [
+            'message' => 'Verification email sent!'
+        ];
     }
 }

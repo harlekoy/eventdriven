@@ -7,13 +7,13 @@ use App\Http\Resources\KYCResource;
 use App\Models\KYCVerification as KYC;
 use App\Models\User;
 use App\ShuftiPro\ShuftiPro;
-use App\Traits\HasKYC;
+use App\Traits\HasAccountSetup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class KYCController extends Controller
 {
-    use HasKYC;
+    use HasAccountSetup;
 
     /**
      * Create verification request to ShuftiPro.
@@ -64,6 +64,11 @@ class KYCController extends Controller
             $kyc->fill([
                 'event' => $response->event,
             ])->save();
+
+            if ($response->event == ShuftiPro::VERIFICATION_ACCEPTED) {
+                $step = $type === 'user' ? 'kyc' : 'phone';
+                $this->completed($user, $step);
+            }
 
             return new KYCResource($kyc);
         }

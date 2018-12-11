@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Address;
+use App\Models\CompleteAccount;
 use App\Models\KYCVerification;
 use App\Models\Upload;
 use App\Notifications\ResetPassword;
@@ -170,6 +171,16 @@ class User extends Authenticatable implements MustVerifyEmail
             ]);
 
         return $verifications;
+    }
+
+    /**
+     * Get complete account record.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function accountSetup()
+    {
+        return $this->hasOne(AccountSetup::class);
     }
 
     /**

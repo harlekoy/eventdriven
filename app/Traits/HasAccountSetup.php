@@ -5,9 +5,25 @@ namespace App\Traits;
 use App\Models\User;
 use App\ShuftiPro\ShuftiPro;
 
-trait HasKYC {
+trait HasAccountSetup {
 
     protected $data;
+
+    /**
+     * Set user account step to true.
+     *
+     * @param  \App\Models\User   $user
+     * @param  string $step
+     *
+     * @return void
+     */
+    public function completed(User $user, $step)
+    {
+        $user->accountSetup->fill([
+            'user_id' => $user->id,
+            $step => true
+        ])->save();
+    }
 
     /**
      * Send request for verification to ShuftiPro.
