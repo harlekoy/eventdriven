@@ -10,7 +10,7 @@
         </h1>
         <p>Test:</p>
         <pre>{{form}}</pre>
-          
+
         <div class="bg-white flex mb-10 shadow-md overflow-hidden">
           <div class="flex-1">
 
@@ -28,8 +28,8 @@
                   class="icon-down text-xs text-black text-right" />
               </div>
               <p v-if="form.sport_event" class="py-4 text-xl">
-                <img 
-                  class="pr-2 pl-1" 
+                <img
+                  class="pr-2 pl-1"
                   src="@assets/images/icon-checkmark.svg"
                 >
                 {{ form.sport_event.name }}
@@ -50,13 +50,13 @@
                 <i class="icon-down text-xs text-black text-right" />
               </div>
               <div class="py-4 text-xl relative">
-                <BaseInput 
+                <BaseInput
                   v-model="search_players"
                   class="has-icon absolute"
                   placeholder="Search teams or players"
                 />
-                <img 
-                  class="relative p-4" 
+                <img
+                  class="relative p-4"
                   src="@assets/images/icon-search.svg"
                 >
               </div>
@@ -72,14 +72,14 @@
                 What type of bet it is?
               </p>
               <div class="relative">
-                <BaseInput 
+                <BaseInput
                   v-model="form.bet_type"
                   name="bet_type"
                   class="has-icon absolute"
                   placeholder=""
                 />
-                <img 
-                  class="relative p-4" 
+                <img
+                  class="relative p-4"
                   src="@assets/images/icon-search.svg"
                 >
               </div>
@@ -88,7 +88,7 @@
 
           <!-- load active List item component -->
           <keep-alive>
-            <component 
+            <component
               @selected="getValue"
               :is="currentTabComponent"
             >
@@ -112,14 +112,14 @@
             </p>
           </div>
           <div class="flex-1">
-            <button 
-              class="btn btn-lg border-green w-full uppercase" 
+            <button
+              class="btn btn-lg border-green w-full uppercase"
               @click.prevent="nextStep(current + 1)"
             >
               Continue
             </button>
           </div>
-        </div> 
+        </div>
       </section>
 
 
@@ -144,7 +144,7 @@
               <div class="flex justify-start items-center">
                 <div class="w-1/4">
                   <BaseInput
-                    v-model="form.total_wager_value" 
+                    v-model="form.total_wager_value"
                     class="amount mr-0 sm:mr-2 input-size-lg"
                   />
                 </div>
@@ -152,17 +152,17 @@
                   <span>at</span>
                 </div>
                 <div class="w-16">
-                  <BaseInput 
-                    v-model="odds_1" 
+                  <BaseInput
+                    v-model="odds_1"
                     class="amount mr-0 sm:mr-2 input-size-lg"
-                  />  
+                  />
                 </div>
                 <div class="flex justify-center items-center px-2 pb-3">
                   <span>:</span>
                 </div>
                 <div class="w-16">
-                  <BaseInput 
-                    v-model="odds_2" 
+                  <BaseInput
+                    v-model="odds_2"
                     class="amount mr-0 sm:mr-2 input-size-lg"
                   />
                 </div>
@@ -188,8 +188,11 @@
                     class="amount mr-0 sm:mr-2 text-xl input-size-lg"
                   />
                 </div>
-                <div class="flex-1">
-                  <input type="range">
+                <div class="flex-1 mb-3">
+                  <BaseRangeSlider
+                    :min="0"
+                    :max="100"
+                    @input="val"/>
                 </div>
               </div>
 
@@ -226,8 +229,8 @@
                   Use our Smart Pricing (recommended) or set a fixed price.
                 </p>
                 <PopOver>
-                  <img 
-                    width="26" 
+                  <img
+                    width="26"
                     class="pl-2"
                     slot="icon"
                     src="@assets/images/icon-info.svg"
@@ -242,13 +245,16 @@
 
               <div class="flex justify-center items-center mb-3">
                 <div class="w-1/4 pr-3">
-                  <BaseInput 
+                  <BaseInput
                     v-model="form.sell_percentage"
                     class="amount mr-0 sm:mr-2 text-xl input-size-lg"
                   />
                 </div>
-                <div class="flex-1">
-                  <input type="range">
+                <div class="flex-1 mb-3">
+                  <BaseRangeSlider
+                    :min="0"
+                    :max="200"
+                    @input="val"/>
                 </div>
               </div>
 
@@ -267,10 +273,10 @@
             <div class="flex rounded-lg text- center justify-start items-center">
               <div>
                 <BaseCheckbox
-                  v-model="keep_in_play" 
+                  v-model="keep_in_play"
                   class="cursor-pointer whitespace-no-wrap"
-                  type="checkbox" 
-                  :checked="keep_in_play" 
+                  type="checkbox"
+                  :checked="keep_in_play"
                   @input="toggleValue"
                 >
                   Remember Me
@@ -278,8 +284,8 @@
               </div>
               <div class="pt-2">
                 <PopOver>
-                  <img 
-                    width="26" 
+                  <img
+                    width="26"
                     class="pl-2"
                     slot="icon"
                     src="@assets/images/icon-info.svg"
@@ -295,8 +301,8 @@
             <!-- Actions -->
             <div class="flex rounded-lg mt-6 text- center justify-center items-center">
               <div class="flex-1">
-                <button 
-                  class="btn btn-lg border-green w-full uppercase" 
+                <button
+                  class="btn btn-lg border-green w-full uppercase"
                   @click.prevent="nextStep(current + 1)"
                 >
                   Continue
@@ -316,7 +322,7 @@
         <!-- Title -->
         <h1 class="text-center py-10">
           Thanks!
-        </h1> 
+        </h1>
         <div class="text-center text-center h-64">
           <p class="text-lg font-medium mb-4">
             Your bet is now listed.  We will let you know when it has been purchased.
@@ -328,14 +334,14 @@
           <!-- Actions -->
           <div class="flex rounded-lg mt-10 text- center justify-center items-center">
             <div class="w-3/5 mx-auto">
-              <button 
-                class="btn btn-lg border-green w-full uppercase" 
+              <button
+                class="btn btn-lg border-green w-full uppercase"
                 @click.prevent="reset"
               >
                 Continue to Dashboard
               </button>
             </div>
-          </div>  
+          </div>
         </div>
       </section>
     </div>
@@ -348,6 +354,7 @@ import SellSteps from '@components/Sell/SellSteps'
 import BetDetails from '@components/Sell/BetDetails'
 import MarketOdds from '@components/Sell/MarketOdds'
 import PopOver from '@components/PopOver'
+import BaseRangeSlider from '@components/BaseRangeSlider'
 
 import ListItemEvent from './ListItemEvent'
 import ListItemMatch from './ListItemMatch'
@@ -403,7 +410,7 @@ export default {
   },
 
   components: {
-    Layout, 
+    Layout,
     SellSteps,
     BetDetails,
     MarketOdds,
@@ -411,6 +418,7 @@ export default {
     ListItemEvent,
     ListItemMatch,
     ListItemBetType,
+    BaseRangeSlider,
   },
 
   methods: {
@@ -467,7 +475,7 @@ export default {
   transition: all .3s ease;
   opacity: .45;
   @apply bg-grey-light;
- 
+
   .icon-down {
     transition: all .3s ease;
   }

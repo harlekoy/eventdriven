@@ -13,7 +13,7 @@
         <!-- Note -->
         <BaseAlert>
           <p class="font-bold">User Test Credentials:</p>
-          <p class="text-sm"><b>Username:</b> admin</p>
+          <p class="text-sm"><b>Email:</b> admin@admin.com</p>
           <p class="text-sm"><b>Password:</b> Testing@123</p>
         </BaseAlert>
 
