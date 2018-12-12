@@ -18,9 +18,17 @@
         <TheTeam />
         <ThePlayer />
       </div>
-      <div v-else class="text-center py-8">
-        <img src="@assets/images/icon-empty.svg" class="mb-8 w-2/5 lg:w-1/5">
-        <p class="font-medium text-lg">We are sorry, There is no data available at the moment</p>
+      <div 
+        v-else 
+        class="text-center py-8"
+      >
+        <img 
+          src="@assets/images/icon-empty.svg" 
+          class="mb-8 w-2/5 lg:w-1/5"
+        >
+        <p class="font-medium text-lg">
+          We are sorry, There is no data available at the moment
+        </p>
       </div>
     </div>
   </Layout>

@@ -6,19 +6,20 @@
     <span
       @mouseover.stop="enterPop"
       @mouseout.stop="leavePop"
-      >
-        <!-- Icon -->
-        <slot name="icon"/>
+    >
+      <!-- Icon -->
+      <slot name="icon" />
     </span>
     <transition name="popover">
-      <div class="inner"
+      <div 
         v-show="show"
+        class="inner"
         :class="{ active: show }"
         @mouseover.stop="enterPop"
         @mouseout.stop="leavePop"
-        >
-          <!-- Popup texts -->
-          <slot name="text"/>
+      >
+        <!-- Popup texts -->
+        <slot name="text" />
       </div>
     </transition>
   </span>

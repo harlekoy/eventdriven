@@ -18,7 +18,7 @@ class FetchCompetitorsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'betradar:competitors  {--tournament=}';
+    protected $signature = 'betradar:competitors {--tournament=}';
 
     /**
      * The console command description.

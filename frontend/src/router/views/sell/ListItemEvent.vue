@@ -1,3 +1,30 @@
+<template>
+  <div class="flex-1 shadow">
+    <div
+      v-if="events.length"
+      class="list-wrapper overflow-y-auto"
+    >
+      <a
+        href="#"
+        v-for="(item, index) in events"
+        :key="index"
+        class="block text-lg py-3 px-5"
+        :data-index="index"
+        :class="{ active: selected_list === index }"
+        @click.prevent="select( item, index )"
+      >
+        {{ item.name }}
+      </a>
+    </div>
+    <div
+      v-else
+      class="h-full"
+    >
+      <EmptyContent />
+    </div>
+  </div>
+</template>
+
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import EmptyContent from '@components/EmptyContent'
@@ -38,29 +65,6 @@ export default {
   }
 }
 </script>
-
-<template>
-  <div class="flex-1 shadow">
-    <div
-      v-if="filteredList.length"
-      class="list-wrapper overflow-y-auto"
-    >
-      <p
-        v-for="(item, index) in events"
-        :key="index"
-        class="block text-lg py-3 px-5"
-        :data-index="index"
-        :class="{active: selected_list == index }"
-        @click="select( item, index )"
-      >
-        {{ item.name }}
-      </p>
-    </div>
-    <div v-else class="h-full">
-      <EmptyContent />
-    </div>
-  </div>
-</template>
 
 <style lang="scss">
 .list-wrapper {

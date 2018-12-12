@@ -27,7 +27,8 @@
           >
             <router-link
               :to="{ name: 'home' }"
-              class="text-green">
+              class="text-green"
+            >
               {{ item.name }}
             </router-link>
           </div>
@@ -176,7 +177,10 @@
             <i class="icon-fb text-xl pin-l pin-y absolute h-12 flex items-center ml-4" />
             Continue with Facebook
           </button>
-          <a :href="loginGoogle" class="rounded-sm bg-red-light w-full text-base text-white h-12 font-semibold flex justify-center relative mb-5 items-center">
+          <a 
+            :href="loginGoogle" 
+            class="rounded-sm bg-red-light w-full text-base text-white h-12 font-semibold flex justify-center relative mb-5 items-center"
+          >
             <i class="icon-google-plus text-xl pin-l pin-y absolute h-12 flex items-center ml-4" />
             Continue with Google
           </a>
@@ -187,7 +191,10 @@
             </p>
             <div class="border-b border-grey-light w-full" />
           </div>
-          <router-link to="/register" class="rounded-sm bg-grey-darker w-full text-base text-white h-12 font-semibold flex justify-center relative items-center">
+          <router-link 
+            to="/register" 
+            class="rounded-sm bg-grey-darker w-full text-base text-white h-12 font-semibold flex justify-center relative items-center"
+          >
             Sign up with an email
           </router-link>
         </div>
@@ -209,13 +216,13 @@ export default {
     meta: [{ name: 'description', content: appConfig.description }],
   },
 
-  props: ['id'],
-
   components: {
     Layout,
     Banner,
     LeagueCard
   },
+
+  props: ['id'],
 
   computed: {
     ...mapGetters({

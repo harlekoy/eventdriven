@@ -151,6 +151,10 @@ trait ApiResource
     {
         $model = app(Model::class);
 
+        if ($with = request()->get('with')) {
+            $model = $model->with(explode(',', $with));
+        }
+
         if ($page = request()->get('page')) {
             return $model->paginate($this->limit());
         }

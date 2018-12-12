@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\CloudinaryImage;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -89,6 +90,9 @@ class Competitor extends Resource
             BelongsTo::make('Category')
                 ->sortable()
                 ->hideFromIndex(),
+
+            Number::make('Player Count')
+                ->onlyOnDetail(),
 
             BelongsToMany::make('Players'),
         ];

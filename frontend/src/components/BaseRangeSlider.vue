@@ -2,41 +2,41 @@
   <div class="slidecontainer">
     <input
       type="range"
-      @input="changeValue"
       :min="min"
       :max="max"
       value="50"
       class="slider"
-      >
+      @input="changeValue"
+    >
   </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      min: {
-        type: Number,
-        default: 1,
-      },
-
-      max: {
-        type: Number,
-        default: 100,
-      },
+export default {
+  props: {
+    min: {
+      type: Number,
+      default: 1,
     },
 
-    data() {
-      return {
-
-      }
+    max: {
+      type: Number,
+      default: 100,
     },
+  },
 
-    methods: {
-      changeValue() {
-        this.$emit('input', event.target.value)
-      }
+  data() {
+    return {
+
+    }
+  },
+
+  methods: {
+    changeValue() {
+      this.$emit('input', event.target.value)
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

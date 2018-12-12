@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\Enable;
 use App\Nova\Filters\Category;
 use App\Nova\Filters\CategoryContinent;
 use App\Nova\Filters\Enabled;
@@ -161,6 +162,8 @@ class Tournament extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new Enable,
+        ];
     }
 }

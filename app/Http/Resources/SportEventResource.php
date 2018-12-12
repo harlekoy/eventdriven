@@ -18,9 +18,9 @@ class SportEventResource extends JsonResource
         return [
             'id'            => $this->id,
             'image'         => Storage::disk('cloudinary')->url($this->image),
-            'sport_id'      => $this->sport->id,
-            'venue_id'      => $this->venue->id,
-            'tournament_id' => $this->tournament->id,
+            'sport_id'      => $this->sport->id ?? null,
+            'venue_id'      => $this->venue->id ?? null,
+            'tournament_id' => $this->tournament->id ?? null,
             'name'          => $this->name ?? $this->tournament->name,
             'status'        => $this->status,
         ];

@@ -18,7 +18,10 @@ export default {
     >
       <h4>List Item Bet Types</h4>
     </div>
-    <div v-else class="h-full">
+    <div 
+      v-else 
+      class="h-full"
+    >
       <EmptyContent />
     </div>
   </div>

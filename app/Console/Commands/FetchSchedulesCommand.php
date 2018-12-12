@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\CompetitorDetails;
 use App\Models\Competitor;
 use App\Models\SportEvent;
 use App\Models\Tournament;
@@ -71,19 +72,47 @@ class FetchSchedulesCommand extends Command
             ])
         )->save();
 
-        foreach ($competitors as $item) {
-            $competitor = Competitor::firstOrNew(array_only($item, 'id'));
+        $this->saveCompetitors($event, $competitors);
+        $this->saveEventName($event, $competitors);
+    }
 
-            $competitor->betradarFill(array_merge([
-                'sport_event_id' => $event->id,
-            ], $item))->save();
-        }
-
+    /**
+     * Save event name.
+     *
+     * @param  \App\Models\SportEvent $event
+     * @param  array $competitors
+     *
+     * @return void
+     */
+    public function saveEventName($event, $competitors)
+    {
         $event->betradarFill([
             'name' => collect($competitors)
                 ->pluck('name')
                 ->implode(' vs ')
         ])->save();
+    }
+
+    /**
+     * Save competitors.
+     *
+     * @param \App\Models\SportEvent $event
+     * @param array $competitors
+     *
+     * @return void
+     */
+    public function saveCompetitors($event, $competitors)
+    {
+        foreach ($competitors as $item) {
+            $competitor = Competitor::firstOrNew(array_only($item, 'id'));
+
+            $competitor->betradarFill(array_merge([
+                'sport_event_id' => $event->id,
+                'tournament_id'  => $event->tournament_id,
+            ], $item))->save();
+
+            dispatch(new CompetitorDetails($competitor));
+        }
     }
 
     /**
