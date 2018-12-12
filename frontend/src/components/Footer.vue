@@ -5,32 +5,32 @@
         <h3 class="mb-3 text-white text-lg">
           Company
         </h3>
-        <router-link 
-          class="py-2 block text-white text-sm font-thin" 
+        <router-link
+          class="py-2 block text-white text-sm font-thin"
           to="/"
         >
           Our Story
         </router-link>
-        <router-link 
-          class="py-2 block text-white text-sm font-thin" 
-          to="/"
+        <a
+          class="py-2 block text-white text-sm font-thin"
+          href="https://betprophet.zendesk.com/hc/en-us/sections/360003129532-FAQ"
         >
           FAQs
-        </router-link>
-        <router-link 
-          class="py-2 block text-white text-sm font-thin" 
-          to="/"
+        </a>
+        <a
+          class="py-2 block text-white text-sm font-thin"
+          href="https://betprophet.zendesk.com/hc/en-us/sections/360003129512-How-It-Works"
         >
           How it Works
-        </router-link>
-        <router-link 
-          class="py-2 block text-white text-sm font-thin" 
+        </a>
+        <router-link
+          class="py-2 block text-white text-sm font-thin"
           to="/"
         >
           Meet the Team
         </router-link>
-        <router-link 
-          class="py-2 block text-white text-sm font-thin" 
+        <router-link
+          class="py-2 block text-white text-sm font-thin"
           to="/"
         >
           Careers
@@ -40,20 +40,20 @@
         <h3 class="mb-3 text-white text-lg">
           Help & Contact
         </h3>
-        <router-link 
-          class="py-2 block text-white text-sm font-thin" 
+        <router-link
+          class="py-2 block text-white text-sm font-thin"
           to="/"
         >
           Contact Us
         </router-link>
-        <router-link 
-          class="py-2 block text-white text-sm font-thin" 
+        <router-link
+          class="py-2 block text-white text-sm font-thin"
           to="/"
         >
           Support Docs
         </router-link>
-        <router-link 
-          class="py-2 block text-white text-sm font-thin" 
+        <router-link
+          class="py-2 block text-white text-sm font-thin"
           to="/"
         >
           Ask the Community
@@ -63,20 +63,20 @@
         <h3 class="mb-3 text-white text-lg">
           Join us
         </h3>
-        <router-link 
-          class="py-2 block text-white text-sm font-thin" 
+        <router-link
+          class="py-2 block text-white text-sm font-thin"
           to="/register"
         >
           Create an Account
         </router-link>
-        <router-link 
-          class="py-2 block text-white text-sm font-thin" 
+        <router-link
+          class="py-2 block text-white text-sm font-thin"
           to="/"
         >
           Partner with Us
         </router-link>
-        <router-link 
-          class="py-2 block text-white text-sm font-thin" 
+        <router-link
+          class="py-2 block text-white text-sm font-thin"
           to="/"
         >
           Careers

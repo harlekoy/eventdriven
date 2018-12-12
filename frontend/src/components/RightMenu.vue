@@ -4,7 +4,7 @@
   <div class="right relative">
 
     <!-- Help -->
-    <a href="#" class="item">Help <i class="icon-help" /></a>
+    <a href="https://betprophet.zendesk.com/hc/en-us" class="item">Help <i class="icon-help" /></a>
 
     <!-- Logged -->
     <template v-if="loggedIn">
