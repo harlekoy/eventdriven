@@ -17,7 +17,7 @@
         <BaseInput v-model="form.last_name" placeholder="Last Name" :error="validationErrors.last_name"/>
 
         <!-- DOB -->
-        <BaseDatePicker  v-model="form.dob" :placeholder="'Birth of Date'"/>
+        <BaseDatePicker v-model="form.dob" :placeholder="'Birth of Date'"/>
 
         <!-- Email -->
         <BaseInput v-model="form.email" type="email" placeholder="Email" :error="validationErrors.email"/>

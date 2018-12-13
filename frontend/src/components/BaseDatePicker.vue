@@ -1,5 +1,5 @@
 <template>
-  <datepicker ref="date" :placeholder="placeholder" :format="'yyyy-MM-dd'" @input="onUpdate"></datepicker>
+  <datepicker ref="date" :value="value" :placeholder="placeholder" :format="'yyyy-MM-dd'" @input="onUpdate"></datepicker>
 </template>
 
 <script>
@@ -26,7 +26,7 @@ export default {
   },
 
   methods: {
-    onUpdate (value) {
+    onUpdate () {
       setTimeout(() => {
         this.$emit('input', this.$refs.date.$el.querySelector('input').value)
       }, 100)

@@ -57,6 +57,10 @@
           />
         </div>
 
+        <div class="col half">
+          <BaseDatePicker v-model="profile.dob" :value="profile.dob" :placeholder="'Birth of Date'" :error="error.dob ? error.dob[0] : null"/>
+        </div>
+
         <!-- Address 1 -->
         <div class="col half">
           <BaseInput
@@ -173,7 +177,7 @@ export default {
         first_name: '',
         last_name: '',
         email: '',
-        username: '',
+        dob: '',
         address: {
           address_1: '',
           address_2: '',
@@ -204,7 +208,8 @@ export default {
   methods: {
     ...mapActions({
       updateUser: 'profile/updateUser',
-      setUserAddress: 'auth/setUserAddress'
+      setUserAddress: 'auth/setUserAddress',
+      updateCurrentUser: 'auth/updateCurrentUser'
     }),
 
     initData () {
@@ -212,8 +217,8 @@ export default {
         'id',
         'first_name',
         'last_name',
-        'username',
-        'email'
+        'email',
+        'dob'
       ]))
 
       this.profile.address = Object.assign(this.profile.address, this.address)
@@ -224,6 +229,8 @@ export default {
 
       try {
         const { data } = await axios.patch(`users/${this.user.id}`, this.profile)
+
+        this.updateCurrentUser(data.data)
 
         success({ text: 'User successfully updated!' })
       } catch (e) {
