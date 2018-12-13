@@ -151,6 +151,10 @@ trait ApiResource
     {
         $model = app(Model::class);
 
+        if (method_exists($this, 'fetching')) {
+            $this->fetching(request(), $model);
+        }
+
         if ($page = request()->get('page')) {
             return $model->paginate($this->limit());
         }

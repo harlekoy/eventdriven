@@ -24,4 +24,17 @@ class CountryController extends Controller
             'resource' => CountryResource::class,
         ];
     }
+
+    /**
+     * Fetching controller event.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Database\Eloquent\QueryBuilder &$model
+     *
+     * @return void
+     */
+    public function fetching($request, &$model)
+    {
+        $model = $model->enabled();
+    }
 }

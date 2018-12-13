@@ -15,9 +15,10 @@ class CountryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'image' => $this->flag,
-            'name'  => $this->name,
-            'code'  => $this->alpha_3,
+            'image'   => $this->flag,
+            'name'    => $this->name,
+            'code'    => $this->alpha_3,
+            'alpha_2' => $this->alpha_2,
         ];
     }
 }
