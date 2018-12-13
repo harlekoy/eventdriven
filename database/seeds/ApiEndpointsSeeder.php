@@ -148,6 +148,10 @@ class ApiEndpointsSeeder extends Seeder
                 'method'      => 'POST',
                 'description' => 'Signup new user',
             ], [
+                'endpoint'    => '/password/change',
+                'method'      => 'POST',
+                'description' => 'Change authenticated user password',
+            ], [
                 'endpoint'    => '/password/email',
                 'method'      => 'POST',
                 'description' => 'Send reset link email',

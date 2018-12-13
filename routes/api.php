@@ -36,6 +36,11 @@ Route::group(['middleware' => 'auth:api'], function () {
         'as'   => 'user.auth',
     ]);
 
+    Route::post('/password/change', [
+        'uses' => 'ChangePasswordController@store',
+        'as'   => 'user.auth',
+    ]);
+
     Route::post('/upload', [
         'uses' => 'UploadController@store',
         'as'   => 'upload.store'
