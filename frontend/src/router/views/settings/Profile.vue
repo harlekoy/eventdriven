@@ -60,7 +60,7 @@
         <!-- Address 1 -->
         <div class="col half">
           <BaseInput
-            v-model="address.address_1"
+            v-model="profile.address.address_1"
             v-validate="'required'"
             name="address_1"
             placeholder="Address Line 1"
@@ -71,7 +71,7 @@
         <!-- Address 2 -->
         <div class="col half">
           <BaseInput
-            v-model="address.address_2"
+            v-model="profile.address.address_2"
             v-validate="'required'"
             name="address_2"
             placeholder="Address Line 2"
@@ -82,7 +82,7 @@
         <!-- City -->
         <div class="col half">
           <BaseInput
-            v-model="address.city"
+            v-model="profile.address.city"
             v-validate="'required'"
             name="city"
             placeholder="Town / City"
@@ -93,7 +93,7 @@
         <!-- State / Country -->
         <div class="col half">
           <BaseInput
-            v-model="address.state"
+            v-model="profile.address.state"
             v-validate="'required'"
             name="state"
             placeholder="State / County"
@@ -104,7 +104,7 @@
         <!-- Country -->
         <div class="col half">
           <BaseInput
-            v-model="address.country"
+            v-model="profile.address.country"
             v-validate="'required'"
             name="country"
             placeholder="Country"
@@ -115,7 +115,7 @@
         <!-- Zip code / Postcode -->
         <div class="col half">
           <BaseInput
-            v-model="address.zip_code"
+            v-model="profile.address.zip_code"
             v-validate="'required'"
             name="postcode"
             placeholder="Zip Code / Postcode"
@@ -146,6 +146,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import UserLayout from '@layouts/User'
 import { mapGetters, mapActions } from 'vuex'
 import { pick, mapValues, head } from 'lodash'
@@ -172,37 +173,41 @@ export default {
         first_name: '',
         last_name: '',
         email: '',
-        username: ''
-      },
-      address: {
-        address_1: '',
-        address_2: '',
-        state: '',
-        city: '',
-        zip_code: '',
-        country: ''
+        username: '',
+        address: {
+          address_1: '',
+          address_2: '',
+          state: '',
+          city: '',
+          zip_code: '',
+          country: ''
+        }
       },
       validationErrors: {},
+      error: {},
       load: false
     }
   },
 
   computed: {
     ...mapGetters({
-      user: 'auth/user'
+      user: 'auth/user',
+      address: 'auth/address'
     })
   },
 
-  mounted () {
+  async mounted () {
+    await this.setUserAddress()
     this.initData()
   },
 
   methods: {
     ...mapActions({
-      updateUser: 'profile/updateUser'
+      updateUser: 'profile/updateUser',
+      setUserAddress: 'auth/setUserAddress'
     }),
 
-    initData() {
+    initData () {
       this.profile = Object.assign(this.profile, pick(this.user, [
         'id',
         'first_name',
@@ -211,29 +216,37 @@ export default {
         'email'
       ]))
 
-      this.address = Object.assign(this.address, this.user.address)
+      this.profile.address = Object.assign(this.profile.address, this.address)
     },
 
     async updateProfile () {
       this.load = true
 
       try {
-        const { data: { data }} = await this.updateUser({
-          ...this.profile,
-          address: this.address
-        })
+        const { data } = await axios.patch(`users/${this.user.id}`, this.profile)
 
-        await this.updateCurrentUser(data)
-
-        success({
-          text: 'Account successfully updated.',
-          width: 400,
-        })
-      } catch ({ response: { data: { errors }} }) {
-        this.validationErrors = mapValues(errors, (errors) => {
-          return head(errors)
-        })
+        success({ text: 'User successfully updated!' })
+      } catch (e) {
+        this.error = e.response.data.errors
       }
+
+      // try {
+      //   const { data: { data }} = await this.updateUser({
+      //     ...this.profile,
+      //     address: this.address
+      //   })
+
+      //   await this.updateCurrentUser(data)
+
+      //   success({
+      //     text: 'Account successfully updated.',
+      //     width: 400,
+      //   })
+      // } catch ({ response: { data: { errors }} }) {
+      //   this.validationErrors = mapValues(errors, (errors) => {
+      //     return head(errors)
+      //   })
+      // }
 
       this.load = false
     }
