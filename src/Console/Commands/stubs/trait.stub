@@ -1,0 +1,15 @@
+<?php
+
+namespace DummyNamespace;
+
+trait DummyClass
+{
+    /**
+     * Boot DummyClass.
+     */
+    protected static function bootDummyClass()
+    {
+        // static::created(function ($model) {
+        // });
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace Harlekoy\EventDriven;
 
+use Harlekoy\EventDriven\Console\Commands\TraitMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
 class EventDrivenServiceProvider extends ServiceProvider
@@ -13,11 +14,6 @@ class EventDrivenServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'harlekoy');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'harlekoy');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
-
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
@@ -48,7 +44,7 @@ class EventDrivenServiceProvider extends ServiceProvider
     {
         return ['eventdriven'];
     }
-    
+
     /**
      * Console-specific booting.
      *
@@ -61,22 +57,9 @@ class EventDrivenServiceProvider extends ServiceProvider
             __DIR__.'/../config/eventdriven.php' => config_path('eventdriven.php'),
         ], 'eventdriven.config');
 
-        // Publishing the views.
-        /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/harlekoy'),
-        ], 'eventdriven.views');*/
-
-        // Publishing assets.
-        /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/harlekoy'),
-        ], 'eventdriven.views');*/
-
-        // Publishing the translation files.
-        /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/harlekoy'),
-        ], 'eventdriven.views');*/
-
         // Registering package commands.
-        // $this->commands([]);
+        $this->commands([
+            TraitMakeCommand::class,
+        ]);
     }
 }
