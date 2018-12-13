@@ -12,6 +12,7 @@ use App\ShuftiPro\ShuftiPro;
 use App\Traits\HasAddress;
 use App\Traits\HasAvatar;
 use App\Traits\HasSocialProvider;
+use App\Traits\HasWallet;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,7 +23,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasAddress, HasAvatar,
-        CausesActivity, HasApiTokens, HasSocialProvider;
+        CausesActivity, HasApiTokens, HasSocialProvider,
+        HasWallet;
 
     /**
      * The attributes that are mass assignable.

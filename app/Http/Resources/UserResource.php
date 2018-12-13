@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Http\Resources\AddressResource;
 use App\Http\Resources\Collection as ResourceCollection;
+use App\Http\Resources\WalletResource;
 use App\Traits\ApiResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -24,6 +25,7 @@ class UserResource extends JsonResource
             'first_name' => $this->first_name,
             'last_name'  => $this->last_name,
             'address'    => new AddressResource($this->whenLoaded('address')),
+            'wallet'     => new WalletResource($this->whenLoaded('wallet')),
             'dob'        => $this->dob,
             'email'      => $this->email,
             'avatar'     => $this->avatar,

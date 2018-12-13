@@ -27,7 +27,7 @@ class UserController extends Controller
     }
 
     /**
-     * Updated event.
+     * "updated" controller event.
      *
      * @param  \App\Http\Requests\UserRequest $request
      * @param  \App\Models\User $model

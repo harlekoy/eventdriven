@@ -2,14 +2,10 @@
 
 namespace App\Models;
 
-use App\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
 
-class Transaction extends Model
+class Wallet extends Model
 {
-    use HasUuid;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -17,10 +13,5 @@ class Transaction extends Model
      */
     protected $fillable = [
         'balance',
-        'date',
-        'from',
-        'issue_type',
-        'note',
-        'transaction_type',
     ];
 }

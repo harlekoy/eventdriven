@@ -36,9 +36,27 @@ trait ApiResource
      */
     public function index(Request $request, Model $model)
     {
+        $this->fireControllerEvent('fetching', $request, $model);
+
         $records = $this->fetchRecords();
 
+        $this->fireControllerEvent('fetched', $request, $model);
+
         return $this->apiResponse($records);
+    }
+
+    /**
+     * Fire the given event for the controller.
+     *
+     * @param  string  $event
+     * @param  bool  $halt
+     * @return mixed
+     */
+    protected function fireControllerEvent($event, $request, &$model)
+    {
+        if (method_exists($this, $event)) {
+            $this->$event($request, $model);
+        }
     }
 
     /**
@@ -51,11 +69,13 @@ trait ApiResource
     {
         app(get_class($request));
 
+        $this->fireControllerEvent('creating', $request, $model);
+        $this->fireControllerEvent('saving', $request, $model);
+
         $this->fillAndSave($model);
 
-        if (method_exists($this, 'created')) {
-            $this->created($request, $model);
-        }
+        $this->fireControllerEvent('created', $request, $model);
+        $this->fireControllerEvent('saved', $request, $model);
 
         return $this->apiResponse($model);
     }
@@ -87,11 +107,13 @@ trait ApiResource
 
         $model = $this->fetchModel($id);
 
+        $this->fireControllerEvent('creating', $request, $model);
+        $this->fireControllerEvent('saving', $request, $model);
+
         $this->fillAndSave($model);
 
-        if (method_exists($this, 'updated')) {
-            $this->updated(request(), $model);
-        }
+        $this->fireControllerEvent('updated', $request, $model);
+        $this->fireControllerEvent('saved', $request, $model);
 
         return $this->apiResponse($model);
     }
@@ -102,11 +124,15 @@ trait ApiResource
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $model = $this->fetchModel($id);
 
+        $this->fireControllerEvent('deleting', $request, $model);
+
         $model->delete();
+
+        $this->fireControllerEvent('deleted', $request, $model);
 
         return $this->apiResponse($model);
     }
@@ -143,17 +169,27 @@ trait ApiResource
     }
 
     /**
+     * Return collection with additional relationship data.
+     *
+     * @return array
+     */
+    protected function with()
+    {
+        if ($with = request()->get('with')) {
+            return array_map('trim', explode(',', $with));
+        }
+
+        return [];
+    }
+
+    /**
      * Fetch records based on query params.
      *
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function fetchRecords()
     {
-        $model = app(Model::class);
-
-        if ($with = request()->get('with')) {
-            $model = $model->with(explode(',', $with));
-        }
+        $model = app(Model::class)->with($this->with());
 
         if ($page = request()->get('page')) {
             return $model->paginate($this->limit());
