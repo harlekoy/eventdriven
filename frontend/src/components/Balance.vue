@@ -1,7 +1,7 @@
 <template>
   <div class="white-wrapper">
-    <DepositFundsModal 
-      v-if="showModal" 
+    <DepositFundsModal
+      v-if="showModal"
       @close="showModal = false"
     />
     <div class="cols flex-col sm:flex-row justify-between">
@@ -10,8 +10,8 @@
         <p class="mt-2 mb-8 uppercase">
           TOTAL BALANACE
         </p>
-        <button 
-          class="btn btn-success btn-sm w-full" 
+        <button
+          class="btn btn-success btn-sm w-full"
           @click="showModal = true"
         >
           Deposit
@@ -30,7 +30,7 @@
       </div>
     </div>
     <p class="text-center uppercase">
-      <a href="#">
+      <a>
         SHOW HISTORY
       </a>
     </p>

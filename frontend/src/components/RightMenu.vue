@@ -48,6 +48,7 @@
 import ClickOutside from 'vue-click-outside'
 import { mapGetters, mapActions } from 'vuex'
 import { VueClazyLoad } from 'vue-clazy-load'
+import { success, fail } from '@utils/toast'
 
 export default {
   components: {

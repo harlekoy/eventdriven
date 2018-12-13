@@ -23,16 +23,16 @@
         <BaseInput v-model="form.email" type="email" placeholder="Email" :error="validationErrors.email"/>
 
         <!-- Address 1 -->
-        <PlaceInput class="input" autocomplete="off" v-model="form.address_1" type="text" :error="validationErrors.address_1"placeholder="Address, Country, Postcode" @change="onComplete"/>
+        <PlaceInput class="input" v-model="form.address.address_1" type="text" :error="validationErrors.address_1"placeholder="Address, Country, Postcode" @change="onComplete"/>
 
         <!-- City -->
-        <BaseInput v-show="toggleFields" v-model="form.city" type="text" placeholder="City" :error="validationErrors.city"/>
+        <BaseInput v-show="toggleFields" v-model="form.address.city" type="text" placeholder="City" :error="validationErrors.city"/>
 
         <!-- Country Code -->
-        <BaseInput v-show="toggleFields" v-model="form.country_code" type="text" placeholder="Country code" :error="validationErrors.country_code"/>
+        <BaseInput v-show="toggleFields" v-model="form.address.country" type="text" placeholder="Country code" :error="validationErrors.country"/>
 
         <!-- Post Code -->
-        <BaseInput v-show="toggleFields" v-model="form.postcode" type="text" placeholder="Postcode" :error="validationErrors.postcode"/>
+        <BaseInput v-show="toggleFields" v-model="form.address.zip_code" type="text" placeholder="Postcode" :error="validationErrors.zip_code"/>
 
         <!-- Phone -->
         <PhoneMasked class="input-parent" v-model="form.phone" type="text" :placeholder="'Phone number'" :pattern="['+## (##) ####-####']"/>
@@ -89,13 +89,14 @@ export default {
         first_name: '',
         last_name: '',
         password: '',
-        address_1: '',
-        address_2: '',
-        city: '',
-        postcode: '',
-        country_code: '',
         phone: '',
         dob: '',
+        address: {
+          address_1: '',
+          city: '',
+          zip_code: '',
+          country: ''
+        }
       },
       load: false,
       validationErrors: {},
@@ -106,7 +107,7 @@ export default {
 
   computed: {
     toggleFields() {
-      let model = this.form.address_1
+      let model = this.form.address.address_1
       return model != null && this.showOtherFields ? 1 : this.showOtherFields = false
     }
   },
@@ -119,45 +120,21 @@ export default {
 
   methods: {
     ...mapActions({
-      signup: 'auth/signUp',
+      signup: 'auth/signUp'
     }),
 
-    onComplete(response) {
+    onComplete (response) {
       this.showOtherFields = true
-      let {country, postcode, value, name, countryCode} = response
+      let { country, postcode, value, name, countryCode } = response
 
       let places = {
         address_1: value,
         city: name,
-        postcode: postcode,
-        country_code: `${countryCode}`.toUpperCase()
+        zip_code: postcode,
+        country: `${countryCode}`.toUpperCase()
       }
 
-      this.form = Object.assign(this.form, places)
-    },
-
-    async validate () {
-      if (await this.validateIP()) {
-        try {
-          await axios.post('signup/validate', this.form)
-        } catch ({ response: { data: { errors }} }) {
-          this.validationErrors = mapValues(errors, (errors) => {
-            return head(errors)
-          })
-
-          this.load = false
-
-          return false
-        }
-
-        return true
-      } else {
-        this.load = false
-
-        fail({
-          text: 'User\'s current location is not allowed.'
-        })
-      }
+      this.form.address = Object.assign(this.form.address, places)
     },
 
     async register () {
@@ -176,12 +153,6 @@ export default {
       }
 
       this.load = false
-    },
-
-    async validateIP() {
-      const { data: { valid } } = await axios.get('validate-ip')
-
-      return valid
     }
   }
 }
