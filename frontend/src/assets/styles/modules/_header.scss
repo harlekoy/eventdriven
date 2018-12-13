@@ -13,7 +13,7 @@ header {
       min-height: 83px;
 
       @include breakpoint-max(md) {
-        @apply flex-col;
+        @apply flex-col items-center;
         padding-top: 10px;
       }
 
