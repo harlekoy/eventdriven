@@ -1,8 +1,8 @@
 <template>
   <Layout class="bg-grey-lightest">
     <!-- Title -->
-    <h1 
-      slot="page-title" 
+    <h1
+      slot="page-title"
       class="text-center my-4 md:my-8"
     >
       Change Password
@@ -16,60 +16,49 @@
     </div>
 
     <!-- Form -->
-    <form 
-      class="flex-1 flex flex-col justify-between" 
+    <form
+      class="flex-1 flex flex-col justify-between"
       @submit.prevent="submit"
     >
       <div>
         <!-- Old Password -->
         <div class="cols">
           <div class="col half">
-            <BasePassword 
-              v-model="password.old" 
-              v-validate="'required'" 
-              name="password" 
-              type="password" 
+            <BasePassword
+              v-model="password.old_password"
+              v-validate="'required'"
+              name="password"
+              type="password"
               placeholder="Old Password"
+              :error="error.old_password ? error.old_password[0] : null"
             />
-            <span 
-              v-if="message.old" 
-              class="text-red text-xs"
-            >
-              {{ message.old }}
-            </span>
           </div>
         </div>
 
         <!-- New Password -->
         <div class="cols">
           <div class="col half">
-            <BasePassword 
-              v-model="password.new" 
-              v-validate="'required'" 
-              name="password" 
-              type="password" 
+            <BasePassword
+              v-model="password.new_password"
+              v-validate="'required'"
+              name="password"
+              type="password"
               placeholder="New Password"
+              :error="error.new_password ? error.new_password[0] : null"
             />
-            <span 
-              v-if="message.new" 
-              class="text-red text-xs"
-            >
-              {{ message.new }}
-            </span>
           </div>
         </div>
       </div>
 
       <!-- Register Button -->
       <div class="flex justify-center lg:justify-end">
-        <BaseButton 
-          class="min-width shadow" 
-          :disabled="!canUpdate" 
+        <BaseButton
+          class="min-width shadow"
           type="submit"
         >
-          <BaseIcon 
-            v-if="load" 
-            name="spinner" 
+          <BaseIcon
+            v-if="load"
+            name="spinner"
             spin
           />
           <span v-else>
@@ -85,6 +74,7 @@
 import Cookie from 'js-cookie'
 import Layout from '@layouts/User'
 import qs from 'qs'
+import axios from 'axios'
 import { mapGetters, mapActions } from 'vuex'
 import { mapValues, get } from 'lodash'
 import { success } from '@utils/toast'
@@ -100,29 +90,11 @@ export default {
   data () {
     return {
       password: {
-        old: '',
-        new: ''
+        old_password: '',
+        new_password: ''
       },
       load: false,
-      message: {
-        old: '',
-        new: ''
-      },
-      canUpdate: false,
-      validationErrors: {}
-    }
-  },
-
-  watch: {
-    password: {
-      handler (current) {
-        if (current.old && current.new) {
-          this.canUpdate = true
-        }
-
-        this.clear()
-      },
-      deep: true
+      error: {}
     }
   },
 
@@ -132,29 +104,6 @@ export default {
     }),
   },
 
-  async mounted () {
-    if (this.verify()) {
-      try {
-        this.load = true
-
-        await this.updateUser({
-          id: this.user.id,
-          password: Cookie.get('password')
-        })
-
-        success({
-          text: 'Password successfully changed.',
-          width: 500
-        })
-
-        Cookie.remove('password')
-        this.$router.push({ name: 'change-password' })
-      } catch ({ response: { data: { message } } }) {
-        this.message.new = message
-      }
-    }
-  },
-
   methods: {
     ...mapActions({
       updateUser: 'profile/updateUser',
@@ -162,44 +111,26 @@ export default {
       canChangePass: 'auth/canChangePass'
     }),
 
-    verify () {
-      let params = qs.parse(this.$route.hash.substring(1))
-      let token = get(params, 'access_token', '')
-
-      return !!Cookie.get('password') && token.length === 32
-    },
-
-    cachePassword () {
-      let minutes = 1.5
-      let date = new Date()
-
-      date.setTime(date.getTime() + (minutes * 60 * 1000))
-
-      Cookie.set('password', this.password.new, { expires: date })
-    },
-
     async submit() {
       this.load = true
-      this.clear()
+      this.error = {}
 
-      this.cachePassword()
+      try {
+        const { data } = await axios.post(`password/change`, this.password)
 
-      this.authorizeToChangePass({
-        username: this.user.username,
-        password: this.password.old,
-        redirectUri: `${location.origin}/password/change`,
-        cb: () => {
-          this.message.old = 'Incorrect password'
-          this.load = false
+        success({ text: 'Password successfully changed.' })
+
+        this.password.old_password = ''
+        this.password.new_password = ''
+      } catch (e) {
+        if (Array.isArray(e.response.data)) {
+          this.error.old_password = e.response.data
+        } else {
+          this.error = e.response.data.errors
         }
-      })
-    },
-
-    clear () {
-      this.message = {
-        old: '',
-        new: ''
       }
+
+      this.load = false
     }
   }
 }

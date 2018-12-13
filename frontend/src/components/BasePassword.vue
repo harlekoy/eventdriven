@@ -8,7 +8,7 @@
   >
     <a
       v-if="value"
-      class="absolute pin-r p-4"
+      class="absolute pin-r pin-t p-4"
       href="#"
       @click.prevent="toggle"
     >

@@ -31,7 +31,7 @@
             v-validate="'required'"
             name="first_name"
             placeholder="First name"
-            :error="validationErrors.first_name"
+            :error="error.first_name ? error.first_name[0] : null"
           />
         </div>
 
@@ -42,7 +42,7 @@
             v-validate="'required'"
             name="last_name"
             placeholder="Last name"
-            :error="validationErrors.last_name"
+            :error="error.last_name ? error.last_name[0] : null"
           />
         </div>
 
@@ -53,7 +53,7 @@
             v-validate="'required'"
             name="email"
             placeholder="Email Address"
-            :error="validationErrors.email"
+            :error="error.email ? error.email[0] : null"
           />
         </div>
 
@@ -64,7 +64,7 @@
             v-validate="'required'"
             name="address_1"
             placeholder="Address Line 1"
-            :error="validationErrors.address_1"
+            :error="error.address_1 ? error.address_1[0] : null"
           />
         </div>
 
@@ -75,7 +75,7 @@
             v-validate="'required'"
             name="address_2"
             placeholder="Address Line 2"
-            :error="validationErrors.address_2"
+            :error="error.address_2 ? error.address_2[0] : null"
           />
         </div>
 
@@ -86,7 +86,7 @@
             v-validate="'required'"
             name="city"
             placeholder="Town / City"
-            :error="validationErrors.city"
+            :error="error.city ? error.city[0] : null"
           />
         </div>
 
@@ -97,7 +97,7 @@
             v-validate="'required'"
             name="state"
             placeholder="State / County"
-            :error="validationErrors.state"
+            :error="error.state ? error.state[0] : null"
           />
         </div>
 
@@ -108,7 +108,7 @@
             v-validate="'required'"
             name="country"
             placeholder="Country"
-            :error="validationErrors.country"
+            :error="error.country ? error.country[0] : null"
           />
         </div>
 
@@ -119,7 +119,7 @@
             v-validate="'required'"
             name="postcode"
             placeholder="Zip Code / Postcode"
-            :error="validationErrors.zip_code"
+            :error="error.zip_code ? error.zip_code[0] : null"
           />
         </div>
       </div>
@@ -229,24 +229,6 @@ export default {
       } catch (e) {
         this.error = e.response.data.errors
       }
-
-      // try {
-      //   const { data: { data }} = await this.updateUser({
-      //     ...this.profile,
-      //     address: this.address
-      //   })
-
-      //   await this.updateCurrentUser(data)
-
-      //   success({
-      //     text: 'Account successfully updated.',
-      //     width: 400,
-      //   })
-      // } catch ({ response: { data: { errors }} }) {
-      //   this.validationErrors = mapValues(errors, (errors) => {
-      //     return head(errors)
-      //   })
-      // }
 
       this.load = false
     }
