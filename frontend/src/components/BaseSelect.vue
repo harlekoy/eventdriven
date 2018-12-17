@@ -53,6 +53,7 @@ export default {
 </script>
 
 <style lang="scss">
+/* purgecss start ignore */
 .select-wrapper {
   @apply w-full mb-3;
 
@@ -97,4 +98,5 @@ export default {
     @apply pb-2;
   }
 }
+/* purgecss end ignore */
 </style>
