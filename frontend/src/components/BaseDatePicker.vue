@@ -1,11 +1,16 @@
 <template>
-  <Datepicker
-    ref="date"
-    :value="value"
-    :placeholder="placeholder"
-    :format="'yyyy-MM-dd'"
-    @input="onUpdate"
-  />
+  <div>
+    <Datepicker
+      ref="date"
+      :value="value"
+      :placeholder="placeholder"
+      :format="'yyyy-MM-dd'"
+      @input="onUpdate"
+    />
+    <span v-if="error" class="invalid">
+      {{ error }}
+    </span>
+  </div>
 </template>
 
 <script>
@@ -18,7 +23,8 @@ export default {
 
   props: {
     value: String,
-    placeholder: String
+    placeholder: String,
+    error: String
   },
 
   data () {

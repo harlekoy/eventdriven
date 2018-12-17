@@ -68,6 +68,7 @@ export default [
     path: '/register',
     name: 'register',
     component: () => lazyLoadView(import('@views/auth/Register')),
+    beforeEnter: auth,
     meta: {
       breadCrumb: 'Register'
     }
@@ -84,6 +85,7 @@ export default [
     path: '/forgot-password',
     name: 'forgot-password',
     component: () => lazyLoadView(import('@views/ForgotPassword')),
+    beforeEnter: auth,
     meta: {
       breadCrumb: 'Forgot Password'
     }

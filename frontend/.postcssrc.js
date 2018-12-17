@@ -23,6 +23,7 @@ module.exports = {
           extensions: extensionsUsingCSS,
         },
       ],
+      whitelistPatterns: [/^vdp/]
     }),
     require('autoprefixer')(),
   ],
