@@ -30,7 +30,7 @@
             v-model="profile.first_name"
             v-validate="'required'"
             name="first_name"
-            placeholder="First name"
+            placeholder="First Name"
             :error="error.first_name ? error.first_name[0] : null"
           />
         </div>
@@ -41,7 +41,7 @@
             v-model="profile.last_name"
             v-validate="'required'"
             name="last_name"
-            placeholder="Last name"
+            placeholder="Last Name"
             :error="error.last_name ? error.last_name[0] : null"
           />
         </div>
@@ -58,7 +58,7 @@
         </div>
 
         <div class="col half">
-          <BaseDatePicker v-model="profile.dob" :value="profile.dob" :placeholder="'Birth of Date'" :error="error.dob ? error.dob[0] : null"/>
+          <BaseDatePicker v-model="profile.dob" :value="profile.dob" :placeholder="'Date of Birth'" :error="error.dob ? error.dob[0] : null"/>
         </div>
 
         <!-- Address 1 -->
