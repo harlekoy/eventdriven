@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3406fd8cfc1549df16b0e0afdcc44d21",
+    "content-hash": "fa50f7797606d3c0c0a0e58a337be034",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -873,16 +873,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.9.0",
+            "version": "v2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "21fdabe2fc01e004e1966f200d900554876bc63c"
+                "reference": "ec74d6e300d78fbc896669c3ca57ef9719adc9c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/21fdabe2fc01e004e1966f200d900554876bc63c",
-                "reference": "21fdabe2fc01e004e1966f200d900554876bc63c",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/ec74d6e300d78fbc896669c3ca57ef9719adc9c6",
+                "reference": "ec74d6e300d78fbc896669c3ca57ef9719adc9c6",
                 "shasum": ""
             },
             "require": {
@@ -951,7 +951,7 @@
                 "php",
                 "queryobject"
             ],
-            "time": "2018-12-04T04:39:48+00:00"
+            "time": "2018-12-14T04:51:13+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -1628,16 +1628,16 @@
         },
         {
             "name": "harlekoy/apidocs",
-            "version": "v0.4.2",
+            "version": "v0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/harlekoy/apidocs.git",
-                "reference": "80e072f5dd8e48ab0864170fdfd961cc41c15780"
+                "reference": "6a3d3d2156f0d2896931bc76b140d6a6af8af082"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harlekoy/apidocs/zipball/80e072f5dd8e48ab0864170fdfd961cc41c15780",
-                "reference": "80e072f5dd8e48ab0864170fdfd961cc41c15780",
+                "url": "https://api.github.com/repos/harlekoy/apidocs/zipball/6a3d3d2156f0d2896931bc76b140d6a6af8af082",
+                "reference": "6a3d3d2156f0d2896931bc76b140d6a6af8af082",
                 "shasum": ""
             },
             "require": {
@@ -1682,7 +1682,7 @@
                 "api docs",
                 "laravel"
             ],
-            "time": "2018-12-07T05:57:46+00:00"
+            "time": "2018-12-15T05:29:22+00:00"
         },
         {
             "name": "hipsterjazzbo/landlord",
@@ -1939,16 +1939,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.16",
+            "version": "v5.7.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "9acea9e0a356cba7e6a13f8784d5532a82fee92a"
+                "reference": "a15898e2de5f5ae5548a09349c558ef0435d495a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/9acea9e0a356cba7e6a13f8784d5532a82fee92a",
-                "reference": "9acea9e0a356cba7e6a13f8784d5532a82fee92a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a15898e2de5f5ae5548a09349c558ef0435d495a",
+                "reference": "a15898e2de5f5ae5548a09349c558ef0435d495a",
                 "shasum": ""
             },
             "require": {
@@ -2081,7 +2081,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-12-05T14:36:24+00:00"
+            "time": "2018-12-12T14:38:09+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -2342,16 +2342,16 @@
         },
         {
             "name": "laravel/slack-notification-channel",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/slack-notification-channel.git",
-                "reference": "0ede60acbbf5f91be2e45d0c0b4d95e2f3837252"
+                "reference": "6e164293b754a95f246faf50ab2bbea3e4923cc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/slack-notification-channel/zipball/0ede60acbbf5f91be2e45d0c0b4d95e2f3837252",
-                "reference": "0ede60acbbf5f91be2e45d0c0b4d95e2f3837252",
+                "url": "https://api.github.com/repos/laravel/slack-notification-channel/zipball/6e164293b754a95f246faf50ab2bbea3e4923cc9",
+                "reference": "6e164293b754a95f246faf50ab2bbea3e4923cc9",
                 "shasum": ""
             },
             "require": {
@@ -2395,7 +2395,7 @@
                 "notifications",
                 "slack"
             ],
-            "time": "2018-12-04T12:58:59+00:00"
+            "time": "2018-12-12T13:12:06+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -2462,16 +2462,16 @@
         },
         {
             "name": "laravel/telescope",
-            "version": "v1.0.9",
+            "version": "v1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/telescope.git",
-                "reference": "0287613e09639dd0784de53ca587e665082b7618"
+                "reference": "4962a3c3a5da71756dd01dad2ea86e55fbb86df8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/telescope/zipball/0287613e09639dd0784de53ca587e665082b7618",
-                "reference": "0287613e09639dd0784de53ca587e665082b7618",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/4962a3c3a5da71756dd01dad2ea86e55fbb86df8",
+                "reference": "4962a3c3a5da71756dd01dad2ea86e55fbb86df8",
                 "shasum": ""
             },
             "require": {
@@ -2521,7 +2521,7 @@
                 "laravel",
                 "monitoring"
             ],
-            "time": "2018-12-06T09:39:19+00:00"
+            "time": "2018-12-09T16:34:14+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -5033,16 +5033,16 @@
         },
         {
             "name": "silvanite/nova-field-cloudinary",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Silvanite/nova-field-cloudinary.git",
-                "reference": "8f5d41a422f8bc2812427ea7397e8a1e3857f01a"
+                "reference": "5884a46273f19ae5b85d2906bd8206dac421ddb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Silvanite/nova-field-cloudinary/zipball/8f5d41a422f8bc2812427ea7397e8a1e3857f01a",
-                "reference": "8f5d41a422f8bc2812427ea7397e8a1e3857f01a",
+                "url": "https://api.github.com/repos/Silvanite/nova-field-cloudinary/zipball/5884a46273f19ae5b85d2906bd8206dac421ddb5",
+                "reference": "5884a46273f19ae5b85d2906bd8206dac421ddb5",
                 "shasum": ""
             },
             "require": {
@@ -5088,7 +5088,7 @@
                 "media",
                 "nova"
             ],
-            "time": "2018-10-30T11:38:07+00:00"
+            "time": "2018-12-14T09:20:51+00:00"
         },
         {
             "name": "spatie/laravel-activitylog",
@@ -5265,47 +5265,6 @@
                 "string"
             ],
             "time": "2017-11-08T14:28:57+00:00"
-        },
-        {
-            "name": "staudenmeir/eloquent-has-many-deep",
-            "version": "v1.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/staudenmeir/eloquent-has-many-deep.git",
-                "reference": "ee6bc9dd435268033128a5af01262600c2e1157f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/staudenmeir/eloquent-has-many-deep/zipball/ee6bc9dd435268033128a5af01262600c2e1157f",
-                "reference": "ee6bc9dd435268033128a5af01262600c2e1157f",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "^5.5.29",
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "illuminate/pagination": "^5.5.29",
-                "phpunit/phpunit": "~6.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Staudenmeir\\EloquentHasManyDeep\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jonas Staudenmeir",
-                    "email": "mail@jonas-staudenmeir.de"
-                }
-            ],
-            "description": "Laravel Eloquent HasManyThrough relationship with unlimited levels",
-            "time": "2018-11-28T06:03:13+00:00"
         },
         {
             "name": "studio/laravel-totem",
@@ -7923,16 +7882,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.0",
+            "version": "7.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "520723129e2b3fc1dc4c0953e43c9d40e1ecb352"
+                "reference": "c23d78776ad415d5506e0679723cb461d71f488f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/520723129e2b3fc1dc4c0953e43c9d40e1ecb352",
-                "reference": "520723129e2b3fc1dc4c0953e43c9d40e1ecb352",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c23d78776ad415d5506e0679723cb461d71f488f",
+                "reference": "c23d78776ad415d5506e0679723cb461d71f488f",
                 "shasum": ""
             },
             "require": {
@@ -8003,7 +7962,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-12-07T07:08:12+00:00"
+            "time": "2018-12-12T07:20:32+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

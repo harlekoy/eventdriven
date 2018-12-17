@@ -48,15 +48,6 @@ export default {
 
   components: { Layout },
 
-  mounted () {
-    if (this.$route.query.email) {
-      this.email = this.$route.query.email
-      this.token = this.$route.query.token
-    } else {
-      this.$router.push({ name: 'login' })
-    }
-  },
-
   data () {
     return {
       email: '',
@@ -65,6 +56,15 @@ export default {
       load: false,
       message: null,
       error: null
+    }
+  },
+
+  mounted () {
+    if (this.$route.query.email) {
+      this.email = this.$route.query.email
+      this.token = this.$route.query.token
+    } else {
+      this.$router.push({ name: 'login' })
     }
   },
 

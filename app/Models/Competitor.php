@@ -142,4 +142,14 @@ class Competitor extends BetradarModel
     {
         return $this->belongsToMany(Player::class, 'competitor_players');
     }
+
+    /**
+     * Get player count.
+     *
+     * @return int
+     */
+    public function getPlayerCountAttribute()
+    {
+        return $this->players->count();
+    }
 }

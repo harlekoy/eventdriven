@@ -151,8 +151,8 @@ trait ApiResource
     {
         $model = app(Model::class);
 
-        if (method_exists($this, 'fetching')) {
-            $this->fetching(request(), $model);
+        if ($with = request()->get('with')) {
+            $model = $model->with(explode(',', $with));
         }
 
         if ($page = request()->get('page')) {

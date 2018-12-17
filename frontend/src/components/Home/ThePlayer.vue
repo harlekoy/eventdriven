@@ -15,8 +15,8 @@
         :key="index"
         class="carousel-inner"
       >
-        <Card 
-          :info="item" 
+        <Card
+          :info="item"
           :page="'player'"
         />
       </Slide>
@@ -45,7 +45,7 @@ export default {
       players: 'players/getPlayers'
     }),
   },
-  
+
 
   methods: {
     ...mapActions({

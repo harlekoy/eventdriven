@@ -70,8 +70,10 @@ class FetchCompetitorCommand extends Command
     {
         $this->competitor = Competitor::find(array_get($response, 'competitor.id'));
         $this->competitor->fill([
-            'manager_id' => array_get($response, 'manager.id'),
-            'venue_id'   => array_get($response, 'venue.id'),
+            'sport_id'    => array_get($response, 'sport.id'),
+            'category_id' => array_get($response, 'category.id'),
+            'manager_id'  => array_get($response, 'manager.id'),
+            'venue_id'    => array_get($response, 'venue.id'),
         ])->save();
     }
 

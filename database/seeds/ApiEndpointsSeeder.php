@@ -494,7 +494,7 @@ class ApiEndpointsSeeder extends Seeder
             [
                 'endpoint'    => '/sport-events/{event}/competitors',
                 'method'      => 'GET',
-                'description' => 'Get sport event list',
+                'description' => 'Get sport event competitors list',
             ], [
                 'endpoint'    => '/sport-events/{event}/competitors/{competitor}',
                 'method'      => 'GET',
@@ -514,7 +514,7 @@ class ApiEndpointsSeeder extends Seeder
             [
                 'endpoint'    => '/sport-events/{event}/players',
                 'method'      => 'GET',
-                'description' => 'Get sport event list',
+                'description' => 'Get sport event players list',
             ],
         ];
     }

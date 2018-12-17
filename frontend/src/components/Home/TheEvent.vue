@@ -36,8 +36,8 @@ export default {
     Slide
   },
 
-  async mounted() {
-    await this.fetchEvents()
+  mounted() {
+    this.fetchEvents()
   },
 
   computed: {

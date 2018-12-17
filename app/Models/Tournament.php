@@ -11,7 +11,7 @@ use App\Traits\TournamentHasSportEvents;
 
 class Tournament extends BetradarModel
 {
-    use TournamentHasCompetitions, TournamentHasSportEvents;
+    use TournamentHasSportEvents;
 
     /**
      * The attributes that are mass assignable.

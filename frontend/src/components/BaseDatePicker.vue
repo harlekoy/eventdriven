@@ -1,5 +1,11 @@
 <template>
-  <datepicker ref="date" :value="value" :placeholder="placeholder" :format="'yyyy-MM-dd'" @input="onUpdate"></datepicker>
+  <Datepicker
+    ref="date"
+    :value="value"
+    :placeholder="placeholder"
+    :format="'yyyy-MM-dd'"
+    @input="onUpdate"
+  />
 </template>
 
 <script>

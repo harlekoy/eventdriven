@@ -60,7 +60,7 @@ export default {
     image () {
       let image = get(this.info, 'image')
 
-      return image ? image : `/images/${this.page}/default_image.jpg`
+      return image || `/images/${this.page}/default_image.jpg`
     }
   },
 }

@@ -11,10 +11,11 @@ trait HasTeam
      */
     protected static function bootHasTeam()
     {
-        static::created(function ($model) {
+        static::saved(function ($model) {
             $team = Team::firstOrNew([
                 'abbreviation' => $model->abbreviation,
-                'sport_id'     => $model->sport->id
+                'sport_id'     => $model->sport->id ?? null,
+                'country_code' => $model->country_code,
             ]);
 
             $team->fill(

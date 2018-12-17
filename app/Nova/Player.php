@@ -3,8 +3,10 @@
 namespace App\Nova;
 
 use App\Nova\Filters\Country;
+use App\Nova\Filters\Sport;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\CloudinaryImage;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
@@ -111,6 +113,8 @@ class Player extends Resource
                 ])
                 ->displayUsingLabels()
                 ->hideFromIndex(),
+
+            BelongsToMany::make('Competitors'),
         ];
     }
 
@@ -134,6 +138,7 @@ class Player extends Resource
     public function filters(Request $request)
     {
         return [
+            new Sport($this),
             new Country($this),
         ];
     }

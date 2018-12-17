@@ -24,24 +24,29 @@
           </p>
         </td>
       </tr>
-      <tr :class="{
+      <tr 
+        :class="{
           'bg-red-lightest': notVerified('phone')
-        }">
+        }"
+      >
         <td>
           <p class="font-semibold">
             Phone
           </p>
         </td>
         <td>
-          <p class="font-light" :class="{
-            'font-semibold text-red': notVerified('phone')
-          }">
+          <p 
+            class="font-light" 
+            :class="{
+              'font-semibold text-red': notVerified('phone')
+            }"
+          >
             <input
+              v-model="phoneNum"
+              v-mask="'+## (##) ####-####'"
               :class="{
                 'bg-red-lightest': notVerified('phone')
               }"
-              v-model="phoneNum"
-              v-mask="'+## (##) ####-####'"
               class="select-text font-light text-black"
               type="tel"
               :masked="true"
@@ -50,10 +55,21 @@
           </p>
         </td>
         <td class="text-right">
-           <a v-if="phone.url !== '#'" :href="phone.url" :class="{ 'btn-loading': load['phone'] }" class="font-semibold text-red">
+          <a 
+            v-if="phone.url !== '#'" 
+            :href="phone.url" 
+            :class="{ 'btn-loading': load['phone'] }" 
+            class="font-semibold text-red"
+          >
             {{ phone.kycAction }}
           </a>
-          <a v-else href="#" @click.prevent="kyc('phone')" :class="{ 'btn-loading': load['phone'] }" class="font-semibold text-red">
+          <a 
+            v-else 
+            href="#" 
+            :class="{ 'btn-loading': load['phone'] }" 
+            class="font-semibold text-red" 
+            @click.prevent="kyc('phone')"
+          >
             {{ phone.kycAction }}
           </a>
         </td>
@@ -75,29 +91,47 @@
           </p>
         </td>
       </tr>
-      <tr :class="{
-        'bg-red-lightest': notVerified('user')
-      }">
+      <tr 
+        :class="{
+          'bg-red-lightest': notVerified('user')
+        }"
+      >
         <td>
           <p class="font-semibold">
             KYC Info
           </p>
         </td>
         <td>
-          <p class="font-light" :class="{
-            'font-semibold text-red': notVerified('user')
-          }">
-            <i :class="{
-              'icon-warning': notVerified('user') && user.status !== 'Pending'
-            }" />
+          <p 
+            class="font-light" 
+            :class="{
+              'font-semibold text-red': notVerified('user')
+            }"
+          >
+            <i 
+              :class="{
+                'icon-warning': notVerified('user') && user.status !== 'Pending'
+              }"
+            />
             {{ user.status }}
           </p>
         </td>
         <td class="text-right">
-          <a v-if="user.url !== '#'" :href="user.url" :class="{ 'btn-loading': load['user'] }" class="font-semibold text-red">
+          <a 
+            v-if="user.url !== '#'" 
+            :href="user.url" 
+            :class="{ 'btn-loading': load['user'] }" 
+            class="font-semibold text-red"
+          >
             {{ user.kycAction }}
           </a>
-          <a v-else href="#" @click.prevent="kyc('user')" :class="{ 'btn-loading': load['user'] }" class="font-semibold text-red">
+          <a 
+            v-else 
+            href="#" 
+            :class="{ 'btn-loading': load['user'] }" 
+            class="font-semibold text-red" 
+            @click.prevent="kyc('user')"
+          >
             {{ user.kycAction }}
           </a>
         </td>
@@ -190,27 +224,27 @@ export default {
 
     setStatus (data, type) {
       switch (data.event) {
-        case "request.timeout":
-        case "request.invalid":
-          this[`${type}`].status = 'Invalid'
-          this[`${type}`].kycAction = 'Recheck'
-          break;
+      case "request.timeout":
+      case "request.invalid":
+        this[`${type}`].status = 'Invalid'
+        this[`${type}`].kycAction = 'Recheck'
+        break;
 
-        case "request.pending":
-          this[`${type}`].status = 'Pending'
-          this[`${type}`].kycAction = 'Continue'
-          this[`${type}`].url = data.verification_url
-          break;
+      case "request.pending":
+        this[`${type}`].status = 'Pending'
+        this[`${type}`].kycAction = 'Continue'
+        this[`${type}`].url = data.verification_url
+        break;
 
-        case "verification.accepted":
-          this[`${type}`].status = 'Verified'
-          this[`${type}`].kycAction = ''
-          break;
+      case "verification.accepted":
+        this[`${type}`].status = 'Verified'
+        this[`${type}`].kycAction = ''
+        break;
 
-        case "verification.declined":
-          this[`${type}`].status = 'Declined'
-          this[`${type}`].kycAction = 'Recheck'
-          break;
+      case "verification.declined":
+        this[`${type}`].status = 'Declined'
+        this[`${type}`].kycAction = 'Recheck'
+        break;
       }
     }
   }

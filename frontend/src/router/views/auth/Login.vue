@@ -129,7 +129,7 @@ export default {
     async validateIP() {
       const { data: { valid } } = await axios.get('validate-ip')
 
-      return
+      
     },
 
     loginViaSocial
