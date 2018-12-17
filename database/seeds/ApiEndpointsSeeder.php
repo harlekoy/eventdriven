@@ -1,7 +1,7 @@
 <?php
 
-use Harlekoy\ApiDocs\ApiGroup;
-use Harlekoy\ApiDocs\Endpoint;
+use Harlekoy\ApiDocs\Drivers\Database\Models\ApiGroup;
+use Harlekoy\ApiDocs\Drivers\Database\Models\Endpoint;
 use Illuminate\Database\Seeder;
 
 class ApiEndpointsSeeder extends Seeder

@@ -69,7 +69,7 @@ return [
     */
 
     'ignore_paths' => [
-        //
+        'admin*',
     ],
 
     'ignore_commands' => [
