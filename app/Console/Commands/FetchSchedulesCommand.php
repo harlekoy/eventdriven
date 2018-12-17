@@ -18,7 +18,7 @@ class FetchSchedulesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'betradar:schedules {--tournament=}';
+    protected $signature = 'betradar:schedules {--tournament=} {--enabled-tournaments}';
 
     /**
      * The console command description.
@@ -155,7 +155,7 @@ class FetchSchedulesCommand extends Command
      */
     public function filterSchedules($response)
     {
-        $ids = $this->tournamentIds();
+        $ids = array_merge($this->tournamentIds(), $this->enabledTournamentIds());
 
         $schedules = collect($response['schedules'])
             ->filter(function ($schedule) use ($ids) {
@@ -173,6 +173,22 @@ class FetchSchedulesCommand extends Command
             ->all();
 
         return array_merge($response, compact('schedules'));
+    }
+
+    /**
+     * Get enabled tournament IDs.
+     *
+     * @return array
+     */
+    public function enabledTournamentIds()
+    {
+        if ($this->option('enabled-tournaments')) {
+            return Tournament::enabled()
+                ->pluck('id')
+                ->all();
+        }
+
+        return [];
     }
 
     /**
