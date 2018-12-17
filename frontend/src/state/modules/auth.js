@@ -2,7 +2,6 @@ import axios from 'axios'
 import qs from 'qs'
 import router from '@router'
 import { getSavedState, saveState } from '@utils/localStorage'
-import { signin, signup, forgot } from '@utils/auth'
 import Cookies from "js-cookie"
 import { fail, success } from '@utils/toast'
 
@@ -44,11 +43,6 @@ export const getters = {
 }
 
 export const actions = {
-  // Logs in the current user.
-  async logIn (context, { username, password, cb, redirectUri } = {}) {
-    signin(username, password, cb, redirectUri)
-  },
-
   // This handles the Auth0 callback.
   async handleAuth ({ commit }, token) {
     const { data: { data }} = await axios.get('auth', {
@@ -70,16 +64,8 @@ export const actions = {
     commit('SET_CURRENT_USER', null)
   },
 
-  signUp ({ commit }, { data, cb }) {
-    signup(data, cb)
-  },
-
   saveToken ({ commit }, payload) {
     commit('SAVE_TOKEN', payload)
-  },
-
-  forgotPassword ({ commit }, { email, cb }) {
-    forgot(email, cb)
   },
 
   async setUserAddress ({ commit, state }) {

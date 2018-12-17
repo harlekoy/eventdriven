@@ -66,7 +66,6 @@ import axios from 'axios'
 import appConfig from '@src/app.config'
 import Layout from '@layouts/Main'
 import { authMethods } from '@state/helpers'
-import { loginViaSocial } from '@utils/auth'
 import { mapActions } from 'vuex';
 import { fail, success } from '@utils/toast'
 
@@ -128,11 +127,7 @@ export default {
 
     async validateIP() {
       const { data: { valid } } = await axios.get('validate-ip')
-
-      
     },
-
-    loginViaSocial
   }
 }
 </script>
