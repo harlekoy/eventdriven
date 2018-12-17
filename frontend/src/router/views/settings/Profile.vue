@@ -107,13 +107,7 @@
 
         <!-- Country -->
         <div class="col half">
-          <BaseInput
-            v-model="profile.address.country"
-            v-validate="'required'"
-            name="country"
-            placeholder="Country"
-            :error="error.country ? error.country[0] : null"
-          />
+          <BaseSelect v-if="countries" v-model="profile.address.country" :value="profile.address.country" :options="countries" :placeholder="'Country'" :index="'value'"/>
         </div>
 
         <!-- Zip code / Postcode -->
@@ -153,7 +147,7 @@
 import axios from 'axios'
 import UserLayout from '@layouts/User'
 import { mapGetters, mapActions } from 'vuex'
-import { pick, mapValues, head } from 'lodash'
+import { pick, mapValues, head, map } from 'lodash'
 import { success } from '@utils/toast'
 
 export default {
@@ -189,7 +183,8 @@ export default {
       },
       validationErrors: {},
       error: {},
-      load: false
+      load: false,
+      countries: null
     }
   },
 
@@ -203,6 +198,12 @@ export default {
   async mounted () {
     await this.setUserAddress()
     this.initData()
+
+    const { data: { data } } = await axios.get('countries')
+
+    this.countries = map(data, (country) => {
+      return { label: country.name, value: country.alpha_2 }
+    })
   },
 
   methods: {
@@ -226,7 +227,7 @@ export default {
 
     async updateProfile () {
       this.load = true
-
+      console.log(this.profile)
       try {
         const { data } = await axios.patch(`users/${this.user.id}`, this.profile)
 

@@ -30,7 +30,6 @@
 
         <!-- Country Code -->
         <BaseSelect v-show="toggleFields" v-if="countries" v-model="form.address.country" :value="form.address.country" :options="countries" :placeholder="'Country'" :index="'value'"/>
-        {{ form.address.country }}
 
         <!-- Post Code -->
         <BaseInput v-show="toggleFields" v-model="form.address.zip_code" type="text" placeholder="Postcode" :error="validationErrors.zip_code"/>

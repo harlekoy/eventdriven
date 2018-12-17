@@ -32,14 +32,21 @@ export default {
 
   watch: {
     value (value) {
-      if (value)
+      if (value) {
         this.temp = value
+      }
     }
   },
 
+  mounted () {
+    this.temp = this.value
+  },
+
   methods: {
-    change (e) {
-      this.$emit('input', e.value)
+    change (value) {
+      if (value) {
+        this.$emit('input', value)
+      }
     }
   }
 }
