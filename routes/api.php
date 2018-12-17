@@ -63,7 +63,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         'only' => ['index'],
     ]);
 
-    Route::get('/account-setup/{user}', 'AccountSetupController@index');
+    Route::get('/account-setup', 'AccountSetupController@index');
 
     Route::post('/kyc-verify/{user}', 'KYCController@verify');
     Route::get('/kyc-status/{user}/{type?}', 'KYCController@status');

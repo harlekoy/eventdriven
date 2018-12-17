@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const state = {
   tabComponents: [
     {
@@ -38,7 +40,15 @@ export const state = {
       odds: '40:1',
       total: 400
     },
-  ]
+  ],
+
+  accountSetup: {
+    percentage: '0% Complete',
+    email: false,
+    phone: 'request.pending',
+    kyc: 'request.pending',
+    bank: false
+  }
 }
 
 export const getters = {
@@ -61,17 +71,27 @@ export const getters = {
   },
 
   getRecentActivity: state => state.recentActivity,
+  getAccountSetup: state => state.accountSetup,
 }
 
 export const mutations = {
   CHANGE_DASHBOARD_TAB(state, payload) {
     state.currentTab = payload
+  },
+  ACCOUNT_SETUP(state, data) {
+    state.accountSetup = data
   }
 }
 
 export const actions = {
   changeTab({commit}, payload) {
     commit('CHANGE_DASHBOARD_TAB', payload)
+  },
+
+  async fetchAccountSetup ({ commit }) {
+    const { data: { data } } = await axios.get('/account-setup')
+
+    commit('ACCOUNT_SETUP', data)
   }
 }
 

@@ -6,6 +6,7 @@ use App\Http\Resources\AccountSetupResource;
 use App\Models\AccountSetup;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AccountSetupController extends Controller
 {
@@ -14,8 +15,10 @@ class AccountSetupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index()
     {
+        $user = Auth::user();
+
         $account = AccountSetup::whereUserId($user->id)->first();
 
         return new AccountSetupResource($account);

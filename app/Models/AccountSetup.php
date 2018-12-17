@@ -64,11 +64,18 @@ class AccountSetup extends Model
      */
     public function percentage()
     {
-        $count = collect($this->fillable)
-            ->reject(function ($field) {
+        $fields = [
+            $this->email,
+            $this->kyc,
+            $this->phone,
+            $this->bank
+        ];
+
+        $count = collect($fields)
+            ->filter(function ($field) {
                 return $field;
             })->count();
 
-        return ($count / count($this->fillable)) * 100 . "% Complete";
+        return ($count / count($fields)) * 100 . "% Complete";
     }
 }

@@ -76,6 +76,7 @@ class VerificationController extends Controller
         $user->sendEmailVerificationNotification();
 
         return [
+            'status' => true,
             'message' => 'Verification email sent!'
         ];
     }

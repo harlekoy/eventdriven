@@ -29,6 +29,7 @@ class KYCVerification extends Model
         'verification_url',
         'email',
         'user_id',
+        'notes'
     ];
 
     /**

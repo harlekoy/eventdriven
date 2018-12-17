@@ -28,6 +28,14 @@ class KYCController extends Controller
         $type = $info['type'];
         $kyc = $user->latestVerification($type);
 
+        if (!$user->address) {
+            return [
+                'data' => [
+                    'message' => 'User has no address set!'
+                ]
+            ];
+        }
+
         if (!$user->isUserVerified($type)) {
             $kyc = KYC::create([
                 'user_id' => $user->id
@@ -35,6 +43,23 @@ class KYCController extends Controller
 
             $info['reference'] = $kyc->uuid;
             $response = $this->sendRequest($user, $info);
+
+            if ($response->event === ShuftiPro::REQUEST_INVALID) {
+                $kyc->fill([
+                    'type' => $type,
+                    'user_id' => $user->id,
+                    'uuid' => $response->reference,
+                    'event' => $response->event,
+                    'notes' => json_encode($response->error)
+                ])->save();
+
+                return [
+                    'data' => [
+                        'status' => $response->event,
+                        'message' => $response->error->message
+                    ]
+                ];
+            }
 
             $kyc->fill([
                 'type' => $type,

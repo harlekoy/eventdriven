@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AccountSetup;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -13,7 +14,8 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         foreach ($this->data() as $data) {
-            User::create($data);
+            $user = User::create($data);
+            $user->accountSetup()->create();
         }
     }
 

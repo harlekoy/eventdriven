@@ -16,10 +16,10 @@ class CreateSetupAccountsTable extends Migration
         Schema::create('setup_accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->tinyInteger('email');
-            $table->tinyInteger('kyc');
-            $table->tinyInteger('phone');
-            $table->tinyInteger('bank');
+            $table->tinyInteger('email')->default(0);
+            $table->tinyInteger('kyc')->default(0);
+            $table->tinyInteger('phone')->default(0);
+            $table->tinyInteger('bank')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')

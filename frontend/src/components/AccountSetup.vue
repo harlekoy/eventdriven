@@ -4,10 +4,10 @@
       <p class="lg">
         Account Setup
       </p>
-      <p>76% Complete</p>
+      <p> {{ accountSetup.percentage }} </p>
     </div>
     <table class="w-full">
-      <tr>
+      <tr  :class="{ 'bg-red-lightest': !accountSetup.email }">
         <td>
           <p class="font-semibold">
             Email
@@ -15,16 +15,18 @@
         </td>
         <td>
           <p class="font-light">
-            alex@orchestrate.nyc
+            {{ authUser.email }}
           </p>
         </td>
-        <td>
-          <p class="font-semibold text-green text-right">
-            Verify
-          </p>
+        <td class="text-right">
+          <a href="#" @click.prevent="resendVerifyEmail()"
+          :class="{ 'text-red': !accountSetup.email }"
+          class="font-semibold">
+            {{ accountSetup.email ? '' : 'Resend' }}
+          </a>
         </td>
       </tr>
-      <tr 
+      <tr
         :class="{
           'bg-red-lightest': notVerified('phone')
         }"
@@ -35,8 +37,8 @@
           </p>
         </td>
         <td>
-          <p 
-            class="font-light" 
+          <p
+            class="font-light"
             :class="{
               'font-semibold text-red': notVerified('phone')
             }"
@@ -55,19 +57,19 @@
           </p>
         </td>
         <td class="text-right">
-          <a 
-            v-if="phone.url !== '#'" 
-            :href="phone.url" 
-            :class="{ 'btn-loading': load['phone'] }" 
+          <a
+            v-if="phone.url !== '#'"
+            :href="phone.url"
+            :class="{ 'btn-loading': load['phone'] }"
             class="font-semibold text-red"
           >
             {{ phone.kycAction }}
           </a>
-          <a 
-            v-else 
-            href="#" 
-            :class="{ 'btn-loading': load['phone'] }" 
-            class="font-semibold text-red" 
+          <a
+            v-else
+            href="#"
+            :class="{ 'btn-loading': load['phone'] }"
+            class="font-semibold text-red"
             @click.prevent="kyc('phone')"
           >
             {{ phone.kycAction }}
@@ -91,7 +93,7 @@
           </p>
         </td>
       </tr>
-      <tr 
+      <tr
         :class="{
           'bg-red-lightest': notVerified('user')
         }"
@@ -102,13 +104,13 @@
           </p>
         </td>
         <td>
-          <p 
-            class="font-light" 
+          <p
+            class="font-light"
             :class="{
               'font-semibold text-red': notVerified('user')
             }"
           >
-            <i 
+            <i
               :class="{
                 'icon-warning': notVerified('user') && user.status !== 'Pending'
               }"
@@ -117,19 +119,19 @@
           </p>
         </td>
         <td class="text-right">
-          <a 
-            v-if="user.url !== '#'" 
-            :href="user.url" 
-            :class="{ 'btn-loading': load['user'] }" 
+          <a
+            v-if="user.url !== '#'"
+            :href="user.url"
+            :class="{ 'btn-loading': load['user'] }"
             class="font-semibold text-red"
           >
             {{ user.kycAction }}
           </a>
-          <a 
-            v-else 
-            href="#" 
-            :class="{ 'btn-loading': load['user'] }" 
-            class="font-semibold text-red" 
+          <a
+            v-else
+            href="#"
+            :class="{ 'btn-loading': load['user'] }"
+            class="font-semibold text-red"
             @click.prevent="kyc('user')"
           >
             {{ user.kycAction }}
@@ -160,7 +162,9 @@
 <script>
 import axios from 'axios'
 import { mask } from 'vue-the-mask'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import { fail, success } from '@utils/toast'
+import { has } from 'lodash'
 
 export default {
   directives: {mask},
@@ -169,6 +173,7 @@ export default {
       load: {
         user: false,
         phone: false,
+        email: false
       },
       phoneNum: '4499 4444 3333',
       phone: {
@@ -186,26 +191,40 @@ export default {
 
   computed: {
     ...mapGetters({
-      authUser: 'auth/user'
+      authUser: 'auth/user',
+      accountSetup: 'dashboard/getAccountSetup'
     })
   },
 
   async mounted () {
+    await this.fetchAccountSetup()
     this.kycStatus('user')
     this.kycStatus('phone')
   },
 
   methods: {
+    ...mapActions({
+      fetchAccountSetup: 'dashboard/fetchAccountSetup'
+    }),
+
     async kyc (type) {
       this.load[type] = true
 
-      const { data: { data: { verification_url } } } = await axios.post(`kyc-verify/${this.authUser.id}`, {
+      const { data: { data } } = await axios.post(`kyc-verify/${this.authUser.id}`, {
         redirect_url: window.location.href,
         type: type
       })
 
       this.load[type] = false
-      window.location.href = verification_url
+
+      if (has(data, 'verification_url')) {
+        window.location.href = data.verification_url
+      } else if (has(data, 'message')) {
+        fail({
+          title: 'Oops!',
+          text: data.message
+        })
+      }
     },
 
     async kycStatus (type) {
@@ -218,33 +237,51 @@ export default {
       this.load[type] = false
     },
 
+    async resendVerifyEmail () {
+      this.load['email'] = true
+
+      const { status, message } = await axios.get(`/email/verify-resend/${this.authUser.id}`)
+
+      this.load['email'] = false
+
+      success({
+        title: 'Success!',
+        text: message
+      })
+    },
+
     notVerified (type) {
       return this[`${type}`].status !== 'Verified'
     },
 
     setStatus (data, type) {
       switch (data.event) {
-      case "request.timeout":
-      case "request.invalid":
-        this[`${type}`].status = 'Invalid'
-        this[`${type}`].kycAction = 'Recheck'
-        break;
+        case "request.timeout":
+        case "request.invalid":
+          this[`${type}`].status = 'Invalid'
+          this[`${type}`].kycAction = 'Recheck'
+          break;
 
-      case "request.pending":
-        this[`${type}`].status = 'Pending'
-        this[`${type}`].kycAction = 'Continue'
-        this[`${type}`].url = data.verification_url
-        break;
+        case "request.pending":
+          this[`${type}`].status = 'Pending'
+          this[`${type}`].kycAction = 'Continue'
+          this[`${type}`].url = data.verification_url
+          break;
 
-      case "verification.accepted":
-        this[`${type}`].status = 'Verified'
-        this[`${type}`].kycAction = ''
-        break;
+        case "verification.accepted":
+          this[`${type}`].status = 'Verified'
+          this[`${type}`].kycAction = ''
+          break;
 
-      case "verification.declined":
-        this[`${type}`].status = 'Declined'
-        this[`${type}`].kycAction = 'Recheck'
-        break;
+        case "verification.declined":
+          this[`${type}`].status = 'Declined'
+          this[`${type}`].kycAction = 'Recheck'
+          break;
+
+        default:
+          this[`${type}`].status = 'Missing'
+          this[`${type}`].kycAction = 'Verify'
+          break;
       }
     }
   }

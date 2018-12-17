@@ -20,7 +20,8 @@ class KYCResource extends JsonResource
             'type' => $this->type,
             'event' => $this->event,
             'verification_url' => $this->verification_url,
-            'email' => $this->email
+            'email' => $this->email,
+            'message' => $this->message
         ];
     }
 }

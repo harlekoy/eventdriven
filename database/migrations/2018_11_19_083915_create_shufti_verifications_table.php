@@ -21,6 +21,7 @@ class CreateShuftiVerificationsTable extends Migration
             $table->string('event')->nullable();
             $table->text('verification_url')->nullable();
             $table->string('email')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')
