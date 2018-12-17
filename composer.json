@@ -7,7 +7,7 @@
     "require": {
         "php": "^7.1.3",
         "barryvdh/laravel-cors": "^0.11.2",
-        "betprophet/betradar": "*",
+        "betprophet1/betradar": "*",
         "beyondcode/laravel-websockets": "^1.0",
         "darkaonline/l5-swagger": "5.7.*",
         "doctrine/dbal": "^2.8",
@@ -63,6 +63,10 @@
         {
             "type": "vcs",
             "url":  "git@github.com:hmazter/Landlord.git"
+        },
+        {
+            "type": "vcs",
+            "url":  "git@github.com:betprophet1/betradar.git"
         }
     ],
     "extra": {
