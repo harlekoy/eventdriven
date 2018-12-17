@@ -1,0 +1,444 @@
+{
+    "groups": [
+        {
+            "name": "Account-setup",
+            "id": "029eb3c0-020c-11e9-a072-6916b7668c96"
+        },
+        {
+            "name": "Activity",
+            "id": "029ed450-020c-11e9-9896-d9e0d6e0c35a"
+        },
+        {
+            "name": "Auth",
+            "id": "029eedd0-020c-11e9-bf80-e1a43e63e95f"
+        },
+        {
+            "name": "Categories",
+            "id": "029f0a20-020c-11e9-9d55-0f38cadd3aa5"
+        },
+        {
+            "name": "Competitors",
+            "id": "029f3e20-020c-11e9-a02b-7364ff9f33ab"
+        },
+        {
+            "name": "Countries",
+            "id": "029f6810-020c-11e9-b72b-0923b607b921"
+        },
+        {
+            "name": "Jerseys",
+            "id": "029fc650-020c-11e9-bf1d-b5d9b8d82bc4"
+        },
+        {
+            "name": "KYC",
+            "id": "02a00210-020c-11e9-992c-254e9913aa16"
+        },
+        {
+            "name": "Players",
+            "id": "02a13a80-020c-11e9-9fbb-6df480174f7f"
+        },
+        {
+            "name": "Seasons",
+            "id": "02a1b380-020c-11e9-9b4b-27ee43296368"
+        },
+        {
+            "name": "Social",
+            "id": "02a23e10-020c-11e9-a7ca-2d2e58835efb"
+        },
+        {
+            "name": "Sport Events",
+            "id": "02a2c910-020c-11e9-af87-df3766e66882"
+        },
+        {
+            "name": "Sports",
+            "id": "02a3d6c0-020c-11e9-8875-27495788d39d"
+        },
+        {
+            "name": "Teams",
+            "id": "02a423f0-020c-11e9-b046-3779f9975c33"
+        },
+        {
+            "name": "Tournaments",
+            "id": "02a46f90-020c-11e9-a65c-55b656eb5d94"
+        },
+        {
+            "name": "Transactions",
+            "id": "02a4e090-020c-11e9-b8cb-43a9f63dd5d5"
+        },
+        {
+            "name": "Upload",
+            "id": "02a53c80-020c-11e9-ba0e-13fedafecb6b"
+        },
+        {
+            "name": "Users",
+            "id": "02a5bcf0-020c-11e9-9a87-7d65dac04cf9"
+        },
+        {
+            "name": "Users addresses",
+            "id": "02a69450-020c-11e9-bb3d-dbc317411eb4"
+        },
+        {
+            "name": "Venues",
+            "id": "02a79480-020c-11e9-a821-37048152f9fb"
+        },
+        {
+            "name": "Wagers",
+            "id": "02a7f660-020c-11e9-a3a3-8d12e1feca37"
+        }
+    ],
+    "endpoints": [
+        {
+            "endpoint": "\/account-setup",
+            "api_group_id": "029eb3c0-020c-11e9-a072-6916b7668c96",
+            "method": "GET",
+            "id": "029ec6f0-020c-11e9-91a1-cd6ca40dafca"
+        },
+        {
+            "endpoint": "\/activity",
+            "api_group_id": "029ed450-020c-11e9-9896-d9e0d6e0c35a",
+            "method": "GET",
+            "id": "029edff0-020c-11e9-b4fe-c387ada38ca4"
+        },
+        {
+            "endpoint": "\/auth",
+            "api_group_id": "029eedd0-020c-11e9-bf80-e1a43e63e95f",
+            "method": "GET",
+            "id": "029ef9d0-020c-11e9-96bf-dd37dcf0c9b8"
+        },
+        {
+            "endpoint": "\/categories",
+            "api_group_id": "029f0a20-020c-11e9-9d55-0f38cadd3aa5",
+            "method": "GET",
+            "id": "029f1560-020c-11e9-8242-2b7b8da3ec54"
+        },
+        {
+            "endpoint": "\/categories\/{category}",
+            "api_group_id": "029f0a20-020c-11e9-9d55-0f38cadd3aa5",
+            "method": "GET",
+            "id": "029f2bb0-020c-11e9-9574-bf4d652d0986"
+        },
+        {
+            "endpoint": "\/competitors",
+            "api_group_id": "029f3e20-020c-11e9-a02b-7364ff9f33ab",
+            "method": "GET",
+            "id": "029f4e40-020c-11e9-86db-b96596a19057"
+        },
+        {
+            "endpoint": "\/competitors\/{competitor}",
+            "api_group_id": "029f3e20-020c-11e9-a02b-7364ff9f33ab",
+            "method": "GET",
+            "id": "029f5c10-020c-11e9-bfe4-0b701d7606c6"
+        },
+        {
+            "endpoint": "\/countries",
+            "api_group_id": "029f6810-020c-11e9-b72b-0923b607b921",
+            "method": "GET",
+            "id": "029f74a0-020c-11e9-b011-2fdc445fc8c0"
+        },
+        {
+            "endpoint": "\/email\/verify-resend\/{user}",
+            "api_group_id": "029eedd0-020c-11e9-bf80-e1a43e63e95f",
+            "method": "GET",
+            "id": "029f8d30-020c-11e9-ae42-7db509eec48c"
+        },
+        {
+            "endpoint": "\/email\/verify\/{user}",
+            "api_group_id": "029eedd0-020c-11e9-bf80-e1a43e63e95f",
+            "method": "GET",
+            "id": "029fb3b0-020c-11e9-9bce-8721a9e76cc4"
+        },
+        {
+            "endpoint": "\/jerseys",
+            "api_group_id": "029fc650-020c-11e9-bf1d-b5d9b8d82bc4",
+            "method": "GET",
+            "id": "029fdca0-020c-11e9-9604-c32c8bcb716d"
+        },
+        {
+            "endpoint": "\/jerseys\/{jersey}",
+            "api_group_id": "029fc650-020c-11e9-bf1d-b5d9b8d82bc4",
+            "method": "GET",
+            "id": "029fefa0-020c-11e9-9820-a35f8161a203"
+        },
+        {
+            "endpoint": "\/kyc-callback",
+            "api_group_id": "02a00210-020c-11e9-992c-254e9913aa16",
+            "method": "POST",
+            "id": "02a01430-020c-11e9-a199-2944297d3ab8"
+        },
+        {
+            "endpoint": "\/kyc-status\/{user}\/{type?}",
+            "api_group_id": "02a00210-020c-11e9-992c-254e9913aa16",
+            "method": "GET",
+            "id": "02a03fa0-020c-11e9-a217-394b28e598bb"
+        },
+        {
+            "endpoint": "\/kyc-verify\/{user}",
+            "api_group_id": "02a00210-020c-11e9-992c-254e9913aa16",
+            "method": "POST",
+            "id": "02a07090-020c-11e9-a5e0-d3d95c81dfbd"
+        },
+        {
+            "endpoint": "\/login",
+            "api_group_id": "029eedd0-020c-11e9-bf80-e1a43e63e95f",
+            "method": "POST",
+            "id": "02a09bb0-020c-11e9-9ed9-bd5af91bbd29"
+        },
+        {
+            "endpoint": "\/password\/change",
+            "api_group_id": "029eedd0-020c-11e9-bf80-e1a43e63e95f",
+            "method": "POST",
+            "id": "02a0c360-020c-11e9-9cd7-c791e148cab4"
+        },
+        {
+            "endpoint": "\/password\/email",
+            "api_group_id": "029eedd0-020c-11e9-bf80-e1a43e63e95f",
+            "method": "POST",
+            "id": "02a0f0b0-020c-11e9-a3de-a1735d2a39a6"
+        },
+        {
+            "endpoint": "\/password\/reset",
+            "api_group_id": "02a0c360-020c-11e9-9cd7-c791e148cab4",
+            "method": "POST",
+            "id": "02a11e80-020c-11e9-abb7-9f7e77f9d085"
+        },
+        {
+            "endpoint": "\/players",
+            "api_group_id": "02a13a80-020c-11e9-9fbb-6df480174f7f",
+            "method": "GET",
+            "id": "02a15490-020c-11e9-851b-d94e7df2d253"
+        },
+        {
+            "endpoint": "\/players\/{player}",
+            "api_group_id": "02a13a80-020c-11e9-9fbb-6df480174f7f",
+            "method": "GET",
+            "id": "02a17270-020c-11e9-9850-ad082a2693c5"
+        },
+        {
+            "endpoint": "\/register",
+            "api_group_id": "029eedd0-020c-11e9-bf80-e1a43e63e95f",
+            "method": "POST",
+            "id": "02a197c0-020c-11e9-9802-d3bc3698dc65"
+        },
+        {
+            "endpoint": "\/seasons",
+            "api_group_id": "02a1b380-020c-11e9-9b4b-27ee43296368",
+            "method": "GET",
+            "id": "02a1ca90-020c-11e9-b0ac-bd6b8f93888a"
+        },
+        {
+            "endpoint": "\/seasons\/{season}",
+            "api_group_id": "02a1b380-020c-11e9-9b4b-27ee43296368",
+            "method": "GET",
+            "id": "02a1e6a0-020c-11e9-8fe4-bbe9b2994579"
+        },
+        {
+            "endpoint": "\/social\/callback\/{provider}",
+            "api_group_id": "02a23e10-020c-11e9-a7ca-2d2e58835efb",
+            "method": "GET",
+            "id": "02a25cf0-020c-11e9-b044-4dca4c70f461"
+        },
+        {
+            "endpoint": "\/social\/redirect\/{provider}",
+            "api_group_id": "02a23e10-020c-11e9-a7ca-2d2e58835efb",
+            "method": "GET",
+            "id": "02a2a590-020c-11e9-9368-59788e887e2b"
+        },
+        {
+            "endpoint": "\/sport-events",
+            "api_group_id": "02a2c910-020c-11e9-af87-df3766e66882",
+            "method": "GET",
+            "id": "02a2f2a0-020c-11e9-9544-c3424de03971"
+        },
+        {
+            "endpoint": "\/sport-events\/{sport_event}",
+            "api_group_id": "02a2c910-020c-11e9-af87-df3766e66882",
+            "method": "GET",
+            "id": "02a31440-020c-11e9-8340-eb80b422bde8"
+        },
+        {
+            "endpoint": "\/sport-events\/{sport_event}\/competitors",
+            "api_group_id": "02a2c910-020c-11e9-af87-df3766e66882",
+            "method": "GET",
+            "id": "02a35820-020c-11e9-8903-e7dd94008541"
+        },
+        {
+            "endpoint": "\/sport-events\/{sport_event}\/competitors\/{competitor}",
+            "api_group_id": "02a2c910-020c-11e9-af87-df3766e66882",
+            "method": "GET",
+            "id": "02a37bc0-020c-11e9-82fa-63a73162dad2"
+        },
+        {
+            "endpoint": "\/sport-events\/{sport_event}\/players",
+            "api_group_id": "02a2c910-020c-11e9-af87-df3766e66882",
+            "method": "GET",
+            "id": "02a3baa0-020c-11e9-a0ba-63bca72def70"
+        },
+        {
+            "endpoint": "\/sports",
+            "api_group_id": "02a3d6c0-020c-11e9-8875-27495788d39d",
+            "method": "GET",
+            "id": "02a3f440-020c-11e9-8ad2-23bb474b3aa7"
+        },
+        {
+            "endpoint": "\/sports\/{sport}",
+            "api_group_id": "02a3d6c0-020c-11e9-8875-27495788d39d",
+            "method": "GET",
+            "id": "02a40d20-020c-11e9-9aa5-ebafffc417bb"
+        },
+        {
+            "endpoint": "\/teams",
+            "api_group_id": "02a423f0-020c-11e9-b046-3779f9975c33",
+            "method": "GET",
+            "id": "02a43b30-020c-11e9-9914-33ea779fd11c"
+        },
+        {
+            "endpoint": "\/teams\/{team}",
+            "api_group_id": "02a423f0-020c-11e9-b046-3779f9975c33",
+            "method": "GET",
+            "id": "02a453e0-020c-11e9-a048-69a610c14620"
+        },
+        {
+            "endpoint": "\/tournaments",
+            "api_group_id": "02a46f90-020c-11e9-a65c-55b656eb5d94",
+            "method": "GET",
+            "id": "02a48680-020c-11e9-84f2-899f11b5f57c"
+        },
+        {
+            "endpoint": "\/tournaments\/{tournament}",
+            "api_group_id": "02a46f90-020c-11e9-a65c-55b656eb5d94",
+            "method": "GET",
+            "id": "02a4c700-020c-11e9-96d9-094a00a69bd9"
+        },
+        {
+            "endpoint": "\/transactions",
+            "api_group_id": "02a4e090-020c-11e9-b8cb-43a9f63dd5d5",
+            "method": "GET",
+            "id": "02a501d0-020c-11e9-8b45-95407ab8edfd"
+        },
+        {
+            "endpoint": "\/transactions\/{transaction}",
+            "api_group_id": "02a4e090-020c-11e9-b8cb-43a9f63dd5d5",
+            "method": "GET",
+            "id": "02a51d20-020c-11e9-b33a-19065515536a"
+        },
+        {
+            "endpoint": "\/upload",
+            "api_group_id": "02a53c80-020c-11e9-ba0e-13fedafecb6b",
+            "method": "POST",
+            "id": "02a559c0-020c-11e9-94eb-0bd4c5839890"
+        },
+        {
+            "endpoint": "\/user\/{user}\/activity",
+            "api_group_id": "02a5bcf0-020c-11e9-9a87-7d65dac04cf9",
+            "method": "GET",
+            "id": "02a59c30-020c-11e9-860b-f1043bfb1ca1"
+        },
+        {
+            "endpoint": "\/users",
+            "api_group_id": "02a5bcf0-020c-11e9-9a87-7d65dac04cf9",
+            "method": "GET",
+            "id": "02a5e960-020c-11e9-9ab6-03dd410be0eb"
+        },
+        {
+            "endpoint": "\/users",
+            "api_group_id": "02a5bcf0-020c-11e9-9a87-7d65dac04cf9",
+            "method": "POST",
+            "id": "02a60700-020c-11e9-a850-91682e2d4f78"
+        },
+        {
+            "endpoint": "\/users\/{user}",
+            "api_group_id": "02a5bcf0-020c-11e9-9a87-7d65dac04cf9",
+            "method": "GET",
+            "id": "02a62260-020c-11e9-b774-c94d4264e7e0"
+        },
+        {
+            "endpoint": "\/users\/{user}",
+            "api_group_id": "02a5bcf0-020c-11e9-9a87-7d65dac04cf9",
+            "method": "PUT",
+            "id": "02a63f50-020c-11e9-9a4b-87c37b52ff0d"
+        },
+        {
+            "endpoint": "\/users\/{user}",
+            "api_group_id": "02a5bcf0-020c-11e9-9a87-7d65dac04cf9",
+            "method": "DELETE",
+            "id": "02a66e60-020c-11e9-a87a-a71e305e3ed2"
+        },
+        {
+            "endpoint": "\/users\/{user}\/addresses",
+            "api_group_id": "02a69450-020c-11e9-bb3d-dbc317411eb4",
+            "method": "GET",
+            "id": "02a6b040-020c-11e9-9185-536105e794a1"
+        },
+        {
+            "endpoint": "\/users\/{user}\/addresses",
+            "api_group_id": "02a69450-020c-11e9-bb3d-dbc317411eb4",
+            "method": "POST",
+            "id": "02a6d1f0-020c-11e9-bd5d-098beb1b76f4"
+        },
+        {
+            "endpoint": "\/users\/{user}\/addresses\/{address}",
+            "api_group_id": "02a69450-020c-11e9-bb3d-dbc317411eb4",
+            "method": "GET",
+            "id": "02a6f700-020c-11e9-acdd-75b58c06bf79"
+        },
+        {
+            "endpoint": "\/users\/{user}\/addresses\/{address}",
+            "api_group_id": "02a69450-020c-11e9-bb3d-dbc317411eb4",
+            "method": "PUT",
+            "id": "02a71920-020c-11e9-84a8-db56b13b0fde"
+        },
+        {
+            "endpoint": "\/users\/{user}\/addresses\/{address}",
+            "api_group_id": "02a69450-020c-11e9-bb3d-dbc317411eb4",
+            "method": "DELETE",
+            "id": "02a73860-020c-11e9-8af5-7987c16e8a92"
+        },
+        {
+            "endpoint": "\/validate-ip",
+            "api_group_id": "029eedd0-020c-11e9-bf80-e1a43e63e95f",
+            "method": "GET",
+            "id": "02a77660-020c-11e9-a5ff-93ab639df1c5"
+        },
+        {
+            "endpoint": "\/venues",
+            "api_group_id": "02a79480-020c-11e9-a821-37048152f9fb",
+            "method": "GET",
+            "id": "02a7b240-020c-11e9-9548-e98f14e37a6b"
+        },
+        {
+            "endpoint": "\/venues\/{venue}",
+            "api_group_id": "02a79480-020c-11e9-a821-37048152f9fb",
+            "method": "GET",
+            "id": "02a7d4f0-020c-11e9-8f85-bd7c60e4e145"
+        },
+        {
+            "endpoint": "\/wagers",
+            "api_group_id": "02a7f660-020c-11e9-a3a3-8d12e1feca37",
+            "method": "GET",
+            "id": "02a82b40-020c-11e9-8abe-eddec68a5160"
+        },
+        {
+            "endpoint": "\/wagers",
+            "api_group_id": "02a7f660-020c-11e9-a3a3-8d12e1feca37",
+            "method": "POST",
+            "id": "02a84b80-020c-11e9-8d19-cf2b69350db2"
+        },
+        {
+            "endpoint": "\/wagers\/{wager}",
+            "api_group_id": "02a7f660-020c-11e9-a3a3-8d12e1feca37",
+            "method": "PUT",
+            "id": "02a86b60-020c-11e9-b563-b3f31eab526b"
+        },
+        {
+            "endpoint": "\/wagers\/{wager}",
+            "api_group_id": "02a7f660-020c-11e9-a3a3-8d12e1feca37",
+            "method": "DELETE",
+            "id": "02a89140-020c-11e9-913e-75bef68e0598"
+        },
+        {
+            "endpoint": "\/wagers\/{wager}",
+            "api_group_id": "02a7f660-020c-11e9-a3a3-8d12e1feca37",
+            "method": "GET",
+            "id": "02a8b690-020c-11e9-9393-7f3c6461eabe"
+        }
+    ]
+}

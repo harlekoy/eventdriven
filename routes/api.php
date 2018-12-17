@@ -13,9 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-// This endpoint doesn't need authentication
-Route::post('/signup/validate', 'RegisterController@store');
-
 Route::get('/validate-ip', 'GeoIPValidationController@check');
 
 Route::post('login', 'Auth\LoginController@login');
