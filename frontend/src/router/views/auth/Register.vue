@@ -29,7 +29,8 @@
         <BaseInput v-show="toggleFields" v-model="form.address.city" type="text" placeholder="City" :error="validationErrors.city"/>
 
         <!-- Country Code -->
-        <BaseInput v-show="toggleFields" v-model="form.address.country" type="text" placeholder="Country code" :error="validationErrors.country"/>
+        <BaseSelect v-show="toggleFields" v-if="countries" v-model="form.address.country" :value="form.address.country" :options="countries" :placeholder="'Country'" :index="'value'"/>
+        {{ form.address.country }}
 
         <!-- Post Code -->
         <BaseInput v-show="toggleFields" v-model="form.address.zip_code" type="text" placeholder="Postcode" :error="validationErrors.zip_code"/>
@@ -65,7 +66,7 @@ import axios from 'axios'
 import Layout from '@layouts/Main'
 import PlaceInput from 'vue-places'
 import { geoip } from '@utils/geoip'
-import { head, mapValues } from 'lodash'
+import { head, mapValues, map } from 'lodash'
 import { mapActions } from 'vuex'
 import { success, fail } from '@utils/toast'
 import PhoneMasked from '@components/Phone'
@@ -101,7 +102,8 @@ export default {
       load: false,
       validationErrors: {},
       authError: '',
-      showOtherFields: false
+      showOtherFields: false,
+      countries: null
     }
   },
 
@@ -114,6 +116,12 @@ export default {
 
   async mounted () {
     this.validationErrors = Object.assign({}, this.form)
+
+    const { data: { data } } = await axios.get('countries')
+
+    this.countries = map(data, (country) => {
+      return { label: country.name, value: country.alpha_2 }
+    })
 
     await geoip()
   },

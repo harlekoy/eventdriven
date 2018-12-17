@@ -1,7 +1,7 @@
 <template>
   <div class="select-wrapper">
     <div class="inner">
-      <v-select :placeholder="placeholder" :options="options" @input="change"></v-select>
+      <v-select v-model="temp" :placeholder="placeholder" :options="options" @input="change" :index="index"></v-select>
       <span v-if="error" class="invalid">
         {{ error }}
       </span>
@@ -16,11 +16,26 @@ import vSelect from 'vue-select'
 Vue.component('v-select', vSelect)
 
 export default {
+  data () {
+    return {
+      temp: null
+    }
+  },
+
   props: [
     'placeholder',
     'error',
-    'options'
+    'options',
+    'value',
+    'index'
   ],
+
+  watch: {
+    value (value) {
+      if (value)
+        this.temp = value
+    }
+  },
 
   methods: {
     change (e) {
