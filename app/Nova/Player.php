@@ -96,7 +96,8 @@ class Player extends Resource
 
             BelongsTo::make('Country')
                 ->sortable()
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->display('name'),
 
             Number::make('Height')
                 ->sortable()

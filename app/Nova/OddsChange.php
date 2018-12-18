@@ -7,7 +7,9 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class OddsChange extends Resource
@@ -41,6 +43,13 @@ class OddsChange extends Resource
     public static $search = [];
 
     /**
+     * Indicates if the resource should be displayed in the sidebar.
+     *
+     * @var bool
+     */
+    public static $displayInNavigation = false;
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -59,9 +68,7 @@ class OddsChange extends Resource
             DateTime::make('Timestamp')
                 ->format('MMM DD, YYYY hh:mm A'),
 
-            Boolean::make('Status'),
-
-            Boolean::make('Match Status'),
+            HasOne::make('Sport Event Status', 'status'),
 
             HasMany::make('Markets'),
         ];

@@ -79,7 +79,8 @@ class Competitor extends Resource
                 ->hideFromIndex(),
 
             BelongsTo::make('Country')
-                ->sortable(),
+                ->sortable()
+                ->display('name'),
 
             BelongsTo::make('Venue')
                 ->sortable(),

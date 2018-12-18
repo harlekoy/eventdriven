@@ -3,12 +3,13 @@
 namespace App\Nova\Actions;
 
 use Illuminate\Bus\Queueable;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\ActionFields;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\Select;
 
 class SportEventRequestRecovery extends Action
 {
@@ -34,7 +35,7 @@ class SportEventRequestRecovery extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         foreach ($models as $model) {
-            $model->doRecovery();
+            $model->doRecovery($fields->producer ?? 'pre');
         }
     }
 
@@ -45,6 +46,13 @@ class SportEventRequestRecovery extends Action
      */
     public function fields()
     {
-        return [];
+        return [
+            Select::make('Producer')
+                ->options([
+                    'pre'      => 'Pre-match',
+                    'liveodds' => 'Live',
+                ])
+                ->displayUsingLabels(),
+        ];
     }
 }

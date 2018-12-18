@@ -22,6 +22,8 @@ class CreateOddsChangesTable extends Migration
             $table->dateTime('timestamp')->nullable();
             $table->unsignedInteger('status')->nullable();
             $table->unsignedInteger('match_status')->nullable();
+            $table->integer('betting_reason')->nullable();
+            $table->integer('betting_status')->nullable();
             $table->timestamps();
         });
     }

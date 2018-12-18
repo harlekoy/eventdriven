@@ -15,6 +15,7 @@ class CreateMarketsTable extends Migration
     {
         Schema::create('markets', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('event_id');
             $table->unsignedInteger('odds_change_id');
             $table->unsignedInteger('betradar_id')->nullable();
             $table->integer('status')->nullable();

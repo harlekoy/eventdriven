@@ -42,6 +42,16 @@ class SportEvent extends BetradarModel
     ];
 
     /**
+     * @var array
+     */
+    protected $statuses = [
+        0 => 'not_started',
+        1 => 'live',
+        3 => 'ended',
+        4 => 'closed',
+    ];
+
+    /**
      * Get sport.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -91,6 +101,16 @@ class SportEvent extends BetradarModel
     }
 
     /**
+     * Get event odds changes.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function oddsChanges()
+    {
+        return $this->hasMany(OddsChange::class, 'event_id');
+    }
+
+    /**
      * Get image attribute.
      *
      * @return string
@@ -98,5 +118,19 @@ class SportEvent extends BetradarModel
     public function getImageAttribute($image)
     {
         return $image ?? $this->tournament->image ?? $this->sport->image ?? null;
+    }
+
+    /**
+     * Set status attribute.
+     *
+     * @param integer|string $status
+     */
+    public function setStatusAttribute($status)
+    {
+        if (is_numeric($status) && ($newStatus = array_get($this->statuses, $status))) {
+            $status = $newStatus;
+        }
+
+        $this->attributes['status'] = $status;
     }
 }

@@ -88,7 +88,8 @@ class Team extends Resource
                 ->sortable(),
 
             BelongsTo::make('Country')
-                ->sortable(),
+                ->sortable()
+                ->display('name'),
 
             BelongsTo::make('Category')
                 ->sortable()

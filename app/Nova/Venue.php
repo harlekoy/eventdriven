@@ -73,7 +73,8 @@ class Venue extends Resource
                 ->sortable(),
 
             BelongsTo::make('Country')
-                ->sortable(),
+                ->sortable()
+                ->display('name'),
         ];
     }
 

@@ -12,11 +12,22 @@ class Market extends Model
      * @var array
      */
     protected $fillable = [
+        'event_id',
         'odds_change_id',
         'betradar_id',
         'status',
         'specifiers',
     ];
+
+    /**
+     * Get sport event.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function event()
+    {
+        return $this->belongsTo(SportEvent::class, 'event_id');
+    }
 
     /**
      * Get odds change.

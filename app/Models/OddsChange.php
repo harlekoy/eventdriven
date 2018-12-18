@@ -73,4 +73,14 @@ class OddsChange extends BetradarModel
     {
         return $this->hasMany(Market::class);
     }
+
+    /**
+     * Get sport event status.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function status()
+    {
+        return $this->hasOne(SportEventStatus::class);
+    }
 }

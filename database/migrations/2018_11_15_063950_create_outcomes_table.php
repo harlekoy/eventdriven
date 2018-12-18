@@ -16,7 +16,7 @@ class CreateOutcomesTable extends Migration
         Schema::create('outcomes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('market_id');
-            $table->unsignedInteger('betradar_id')->nullable();
+            $table->string('betradar_id')->nullable();
             $table->float('odds')->nullable();
             $table->double('probabilities')->nullable();
             $table->boolean('active')->nullable();

@@ -47,6 +47,7 @@ class SportEvent extends Resource
      * @var array
      */
     public static $search = [
+        'id',
         'name',
     ];
 
@@ -112,6 +113,8 @@ class SportEvent extends Resource
                 ->sortable(),
 
             HasMany::make('Competitors'),
+
+            HasMany::make('Odds Changes', 'oddsChanges'),
 
             HasMany::make('Recoveries'),
         ];
