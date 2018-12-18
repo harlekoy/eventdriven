@@ -61,16 +61,12 @@
             "url": "./nova"
         },
         {
-            "type": "path",
-            "url": "../betradar"
-        },
-        {
-            "type": "path",
-            "url": "../apidocs"
+            "type": "vcs",
+            "url":  "git@github.com:hmazter/Landlord.git"
         },
         {
             "type": "vcs",
-            "url":  "git@github.com:hmazter/Landlord.git"
+            "url":  "git@github.com:betprophet1/betradar.git"
         }
     ],
     "extra": {
