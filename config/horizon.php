@@ -124,5 +124,15 @@ return [
                 'tries' => 3,
             ],
         ],
+
+        'development' => [
+            'supervisor-1' => [
+                'connection' => 'redis',
+                'queue' => ['default'],
+                'balance' => 'simple',
+                'processes' => 3,
+                'tries' => 3,
+            ],
+        ],
     ],
 ];
