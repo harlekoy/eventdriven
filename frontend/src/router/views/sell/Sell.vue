@@ -2,9 +2,9 @@
   <Layout class="bg-grey-lightest">
     <!-- Content -->
     <div class="container mx-auto mb-12 px-32">
-      <BetDetails v-if="current == 1" v-model="form"/>
-      <PriceYourBet v-if="current == 2" />
-      <section v-if="current == 3">
+      <BetDetails v-show="current == 1" v-model="form"/>
+      <PriceYourBet v-show="current == 2" v-model="form"/>
+      <section v-show="current == 3">
         <!-- Title -->
         <h1 class="text-center py-10">
           Thanks!
@@ -46,6 +46,8 @@ import ListItemEvent from './ListItemEvent'
 import ListItemMatch from './ListItemMatch'
 import ListItemBetType from './ListItemBetType'
 
+import PriceYourBet from '@components/PriceYourBet'
+
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -61,26 +63,24 @@ export default {
         match: null,
         bet_type: '',
 
-        total_wager_value: '$ 1,000',
+        total_wager_value: 100,
         sell_percentage: 80,
         sell_price: 80,
+        odds_1: 10,
+        odds_2: 1,
       },
 
       validationErrors: {},
-      search_players: '',
-
-      to_sell: '100%',
-      odds_1: 20,
-      odds_2: 1,
+      currency: 1 ? '$' : '€',
       keep_in_play: '',
-
+      search_players: '',
     }
   },
 
   computed: {
     ...mapGetters({
       current: 'sell/getCurrentStep',
-      players: 'sell/getPlayers'
+      players: 'sell/getPlayers',
     }),
 
     filteredList() {
@@ -100,12 +100,13 @@ export default {
     ListItemMatch,
     ListItemBetType,
     BaseRangeSlider,
+    PriceYourBet
   },
 
   methods: {
     ...mapActions({
       resetStep: 'sell/resetStep',
-      nextStep: 'sell/nextStep'
+      nextStep: 'sell/nextStep',
     }),
 
     reset() {
@@ -116,6 +117,31 @@ export default {
     next() {
       if ( this.validationErrors ) {
         this.nextStep()
+      }
+    },
+
+    setActive( tabComponent ) {
+      this.currentList = tabComponent
+    },
+
+    setSell(value) {
+      this.c = value
+    },
+
+    setPrice(value) {
+      this.f = parseInt( value )
+    },
+
+    getValue( value ) {
+      switch( this.currentList ) {
+        case 'list-item-event':
+          this.form.sport_event = value
+          break;
+        case 'list-item-match':
+          this.form.match = value
+          break;
+         case 'list-item-bet-type':
+        default:
       }
     },
 

@@ -159,13 +159,16 @@ export default {
         bet_on: false,
         bet_type: false,
       },
+
       currentQuestion: null,
       items: [],
+      validationErrors: null,
     }
   },
 
   computed: {
     ...mapGetters({
+      current: 'sell/getCurrentStep',
       events: 'events/getEvents'
     }),
 
@@ -183,6 +186,7 @@ export default {
   methods: {
     ...mapActions({
       fetchEvents: 'events/fetchEvents',
+      nextStep: 'sell/nextStep',
     }),
 
     clearActive (current) {
@@ -199,3 +203,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  input {
+    @apply text-3xl;
+  }
+</style>

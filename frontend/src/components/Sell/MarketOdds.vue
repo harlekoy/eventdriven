@@ -1,6 +1,6 @@
 <script>
 export default {
-  
+  props: ['totalProfitWin','totalProfitLoses', 'marketOdds', 'currency']
 }
 </script>
 
@@ -13,29 +13,29 @@ export default {
         </p>
       </div>
       <div class="w-1/4 text-right">
-        <img 
-          width="30" 
+        <img
+          width="30"
           src="@assets/images/icon-tip.svg"
         >
       </div>
     </div>
     <h1 class="text-white mb-3">
-      5:1
+      {{marketOdds}}
     </h1>
 
     <p class="text-lg">
       Total profit if original bet wins
     </p>
     <h1 class="text-white mb-3">
-      £400
+      {{currency}}{{totalProfitWin}}
     </h1>
 
     <p class="text-lg">
       Total profit if original bet loses
     </p>
     <h1 class="text-white">
-      £200
-    </h1>                
+      {{currency}}{{totalProfitLoses}}
+    </h1>
   </div>
 </template>
 

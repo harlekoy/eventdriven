@@ -1,11 +1,9 @@
 <template>
-<section v-if="current == 2">
+<section>
   <!-- Title -->
   <h1 class="text-center py-10">
     Price You Bet
   </h1>
-
-  <BetDetails />
 
   <div class="flex rounded-lg">
     <div class="flex flex-col flex-start w-3/5 mr-6">
@@ -29,7 +27,7 @@
           </div>
           <div class="w-16">
             <BaseInput
-              v-model="odds_1"
+              v-model="form.odds_1"
               class="amount mr-0 sm:mr-2 input-size-lg"
             />
           </div>
@@ -38,7 +36,7 @@
           </div>
           <div class="w-16">
             <BaseInput
-              v-model="odds_2"
+              v-model="form.odds_2"
               class="amount mr-0 sm:mr-2 input-size-lg"
             />
           </div>
@@ -66,9 +64,9 @@
           </div>
           <div class="flex-1 mb-3">
             <BaseRangeSlider
+              @input="setSell"
               :min="0"
-              :max="100"
-            />
+              :max="100"/>
           </div>
         </div>
 
@@ -78,7 +76,7 @@
               New wager value
             </p>
             <p class="text-3xl py-3">
-              $100
+              {{currency}}{{d}}
             </p>
           </div>
           <div class="col half pl-9">
@@ -86,7 +84,7 @@
               New wager return
             </p>
             <p class="text-3xl py-3">
-              $1,100
+              {{currency}}{{e}}
             </p>
           </div>
         </div>
@@ -106,18 +104,14 @@
           </p>
           <PopOver>
             <img
-              slot="icon"
               width="26"
               class="pl-2"
+              slot="icon"
               src="@assets/images/icon-info.svg"
-            >
+            />
             <div slot="text">
-              <h4 class="mb-2 pb-1 font-medium border-b border-grey-lightest">
-                Smart Pricing
-              </h4>
-              <p class="text-grey-dark text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, recusandae? Eveniet, et!
-              </p>
+              <h4 class="mb-2 pb-1 font-medium border-b border-grey-lightest">Smart Pricing</h4>
+              <p class="text-grey-dark text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, recusandae? Eveniet, et!</p>
             </div>
           </PopOver>
         </div>
@@ -125,15 +119,15 @@
         <div class="flex justify-center items-center mb-3">
           <div class="w-1/4 pr-3">
             <BaseInput
-              v-model="form.sell_percentage"
+              v-model="form.sell_price"
               class="amount mr-0 sm:mr-2 text-xl input-size-lg"
             />
           </div>
           <div class="flex-1 mb-3">
             <BaseRangeSlider
-              :min="0"
-              :max="200"
-            />
+              @input="setPrice"
+              :min="1"
+              :max="1000"/>
           </div>
         </div>
 
@@ -143,7 +137,7 @@
               Adjusted Odds
             </p>
             <p class="text-3xl py-3">
-              7.25:1
+              {{g}}
             </p>
           </div>
         </div>
@@ -164,18 +158,14 @@
         <div class="pt-2">
           <PopOver>
             <img
-              slot="icon"
               width="26"
               class="pl-2"
+              slot="icon"
               src="@assets/images/icon-info.svg"
-            >
+            />
             <div slot="text">
-              <h4 class="mb-2 pb-1 font-medium border-b border-grey-lightest">
-                Keep in Play
-              </h4>
-              <p class="text-grey-dark text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, recusandae? Eveniet, et!
-              </p>
+              <h4 class="mb-2 pb-1 font-medium border-b border-grey-lightest">Keep in Play</h4>
+              <p class="text-grey-dark text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, recusandae? Eveniet, et!</p>
             </div>
           </PopOver>
         </div>
@@ -195,13 +185,130 @@
     </div>
 
     <div class="flex-1">
-      <MarketOdds />
+      <MarketOdds
+        :currency="currency"
+        :market-odds="`${form.odds_1}/${form.odds_2}`"
+        :total-profit-win="bet_if_win"
+        :total-profit-loses="bet_if_loses"
+      />
     </div>
   </div>
 </section>
 </template>
 
 <script>
+import MarketOdds from '@components/Sell/MarketOdds'
+import PopOver from '@components/PopOver'
+import BetDetails from '@components/Sell/BetDetails'
+import {mapActions, mapGetters} from 'vuex'
+
 export default {
+  props: ['value'],
+
+  watch: {
+    value: {
+      immediate: true,
+      handler (current) {
+        this.form = current
+      }
+    },
+
+    form (currrent) {
+      this.$emit('input', current)
+    }
+  },
+
+  data() {
+    return {
+      form: {
+        total_wager_value: 100,
+        sell_percentage: 10,
+        sell_price: 150,
+        odds_1: 10,
+        odds_2: 1,
+      },
+
+      currency: 1 ? '$' : '€',
+      search_players: '',
+      keep_in_play: '',
+      adjusted_odd: ''
+    }
+  },
+
+  computed: {
+    ...mapGetters({
+      current: 'sell/getCurrentStep',
+    }),
+
+    // Odds
+    b() {
+      return this.form.odds_1 / this.form.odds_2
+    },
+
+    // Sell - add percentage symbol
+    c_to_percent() {
+      return `${this.form.sell_percentage}%`
+    },
+
+    // Sell - percentage to decimal value
+    c_to_decimal() {
+      return this.form.sell_percentage / 100
+    },
+
+    // New wager value
+    d() {
+      let wager_value = this.form.total_wager_value * this.c_to_decimal
+      return parseInt( wager_value.toFixed() )
+    },
+
+    // New wager return
+    e() {
+      let result =  ( parseInt( this.form.total_wager_value )  *  parseInt( this.b ) * this.c_to_decimal ) + parseInt( this.d )
+      return result.toFixed()
+    },
+
+    // Adjusted odds
+    g() {
+      let value = ( parseInt( this.e ) - parseInt( this.d ) ) / parseInt( this.form.sell_price )
+
+      // Round 2 decimals place
+      return Math.round( value * 100 ) / 100
+    },
+
+    bet_if_win() {
+      let result = ( this.form.total_wager_value * this.b ) - ( this.e - this.d )
+      return result.toFixed()
+    },
+
+    bet_if_loses() {
+      let result = parseInt( this.form.sell_price ) - parseInt( this.d )
+
+      return result.toFixed()
+    },
+  },
+
+  components: {
+    PopOver,
+    MarketOdds,
+    BetDetails
+  },
+
+  methods: {
+    ...mapActions({
+      nextStep: 'sell/nextStep',
+    }),
+
+    toggleValue(checkbox) {
+      console.log(checkbox)
+    },
+
+    setSell(value) {
+      this.form.sell_percentage = value
+    },
+
+    setPrice(value) {
+      this.form.sell_price = parseInt( value )
+    },
+  }
 }
 </script>
