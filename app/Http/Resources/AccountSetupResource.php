@@ -17,10 +17,30 @@ class AccountSetupResource extends JsonResource
         return [
             'user_id'    => $this->user_id,
             'email'      => (bool) $this->email,
-            'kyc'        => $this->kyc()->event ?? (bool) $this->kyc,
-            'phone'      => $this->phone()->event ?? (bool) $this->phone,
+            'kyc'        => $this->verifiedKyc(),
+            'phone'      => $this->verifiedPhone(),
             'bank'       => (bool) $this->bank,
             'percentage' => $this->percentage()
         ];
+    }
+
+    /**
+     * Check if KYC is already verified.
+     *
+     * @return boolean
+     */
+    protected function verifiedKyc()
+    {
+        return $this->resource->kyc()->event ?? (bool) $this->kyc;
+    }
+
+    /**
+     * Check if phone is verified.
+     *
+     * @return boolean
+     */
+    protected function verifiedPhone()
+    {
+        return $this->resource->phone()->event ?? (bool) $this->phone;
     }
 }

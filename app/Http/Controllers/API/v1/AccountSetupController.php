@@ -18,8 +18,11 @@ class AccountSetupController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $account = $user->accountSetup;
 
-        $account = AccountSetup::whereUserId($user->id)->first();
+        if (!$account) {
+            $account = $user->accountSetup()->create();
+        }
 
         return new AccountSetupResource($account);
     }
