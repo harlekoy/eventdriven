@@ -56,7 +56,8 @@ export const actions = {
     commit('SET_CURRENT_USER', data)
 
     success({ text: 'You have successfully logged in!' })
-    router.push({ name: 'home' })
+    // Redirect to the originally requested page, or to the home page
+    router.push(router.currentRoute.query.redirectFrom || { name: 'home' })
   },
 
   // Logs out the current user.
