@@ -41,6 +41,13 @@ class Recovery extends Resource
     ];
 
     /**
+     * Indicates if the resource should be displayed in the sidebar.
+     *
+     * @var bool
+     */
+    public static $displayInNavigation = false;
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
