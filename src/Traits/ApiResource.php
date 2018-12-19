@@ -1,6 +1,6 @@
 <?php
 
-namespace Harlekoy\EventDriven\Traits;
+namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -36,7 +36,11 @@ trait ApiResource
      */
     public function index(Request $request, Model $model)
     {
+        $this->fireControllerEvent('fetching', $request, $model);
+
         $records = $this->fetchRecords();
+
+        $this->fireControllerEvent('fetched', $request, $model);
 
         return $this->apiResponse($records);
     }
@@ -165,13 +169,27 @@ trait ApiResource
     }
 
     /**
+     * Return collection with additional relationship data.
+     *
+     * @return array
+     */
+    protected function with()
+    {
+        if ($with = request()->get('with')) {
+            return array_map('trim', explode(',', $with));
+        }
+
+        return [];
+    }
+
+    /**
      * Fetch records based on query params.
      *
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function fetchRecords()
     {
-        $model = app(Model::class);
+        $model = app(Model::class)->with($this->with());
 
         if ($page = request()->get('page')) {
             return $model->paginate($this->limit());
