@@ -69,11 +69,7 @@ return [
     */
 
     'ignore_paths' => [
-        'admin*',
-        'totem*',
         'apidocs*',
-        'nova-api*',
-        'vendor/apidocs*',
     ],
 
     'ignore_commands' => [
