@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\CloudinaryImage;
-use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
@@ -65,15 +65,15 @@ class SportEvent extends Resource
 
             CloudinaryImage::make('Image'),
 
-            Date::make('Scheduled')
-                ->format('MMM DD, YYYY')
-                ->sortable(),
-
             Text::make('Name')->sortable(),
 
-            Date::make('Next Live Time')
-                ->format('MMM DD, YYYY')
+            DateTime::make('Next Live Time')
+                ->format('MMM DD, YYYY h:m A')
                 ->hideFromIndex(),
+
+            DateTime::make('Scheduled')
+                ->format('MMM DD, YYYY h:m A')
+                ->sortable(),
 
             BelongsTo::make('Sport')
                 ->sortable(),

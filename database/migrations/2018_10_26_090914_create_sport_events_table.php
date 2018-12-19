@@ -20,7 +20,7 @@ class CreateSportEventsTable extends Migration
             $table->datetime('next_live_time')->nullable();
             $table->datetime('scheduled')->nullable();
             $table->string('name')->nullable();
-            $table->string('start_time_tbd')->nullable();
+            $table->boolean('start_time_tbd')->default(true);
             $table->string('status')->nullable();
             $table->string('sport_id')->nullable();
             $table->string('venue_id')->nullable();
