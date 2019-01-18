@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace Harlekoy\EventDriven\Traits;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -36,11 +36,7 @@ trait ApiResource
      */
     public function index(Request $request, Model $model)
     {
-        $this->fireControllerEvent('fetching', $request, $model);
-
         $records = $this->fetchRecords();
-
-        $this->fireControllerEvent('fetched', $request, $model);
 
         return $this->apiResponse($records);
     }
@@ -163,7 +159,7 @@ trait ApiResource
      */
     public function fetchModel($id)
     {
-        $model = app(Model::class);
+        $model = app(Model::class)->with($this->with());
 
         return $model->findOrFail($id);
     }
@@ -191,7 +187,9 @@ trait ApiResource
     {
         $model = app(Model::class)->with($this->with());
 
-        if ($page = request()->get('page')) {
+        $this->fireControllerEvent('fetching', $request = request(), $model);
+
+        if ($page = $request->get('page')) {
             return $model->paginate($this->limit());
         }
 

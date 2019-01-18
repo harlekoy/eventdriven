@@ -28,10 +28,13 @@ trait ApiRelatedResource
         $model = app(Model::class)->findOrFail($id);
         $related = new $this->related;
 
-        return $related->where([
-            $model->getForeignKey() => $model->id,
-            'id' => $relatedId,
-        ])->firstOrFail();
+        return $related
+            ->where([
+                $model->getForeignKey() => $model->id,
+                'id' => $relatedId,
+            ])
+            ->with($this->with())
+            ->firstOrFail();
     }
 
     /**
@@ -58,11 +61,14 @@ trait ApiRelatedResource
         $id = $this->modelId();
 
         $model = app(Model::class)->findOrFail($id);
+
+        $this->fireControllerEvent('fetching', $request = request(), $model);
+
         $related = (new $this->related)->where([
             $model->getForeignKey() => $model->id,
-        ]);
+        ])->with($this->with());
 
-        if ($page = request()->get('page')) {
+        if ($page = $request->get('page')) {
             return $related->paginate($this->limit());
         }
 
